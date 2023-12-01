@@ -16,6 +16,9 @@
             height: 200px;
             width: 400px;
         }
+        /* .log{
+            float: left;
+        } */
     </style>
   </head>
   <body>
@@ -29,7 +32,9 @@
     <div style="margin-left:14%">
         <div class="w3-container w3-teal">
             <h1>My Page</h1>
-            {{-- <a href="#" style="float: right; color: #fff; text-decoration: none; margin-right: 10px;">Logout</a> --}}
+           <div class="log">
+            <a href="#" style="float: right; color: #fff; text-decoration: none; margin-right: 10px;">Logout</a>
+           </div>
         </div>
 
         <div class="container mt-4">
