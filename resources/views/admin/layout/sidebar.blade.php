@@ -35,9 +35,16 @@
             <ul class="vertical-nav-menu">
                 {{-- <li class="app-sidebar__heading"></li> --}}
                 <li>
-                    <a href="dashboard" class="mm-active">
+                    {{-- class="mm-active" --}}
+                    <a href="dashboard" class="mm-active">   
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="home" >
+                        <i class="metismenu-icon pe-7s-rocket"></i>
+                        Home
                     </a>
                 </li>
                 <li>
@@ -65,7 +72,12 @@
                        
                     
                     {{-- </ul> --}}
-               
+                    <li  >
+                        <a href="transaction">
+                            <i class="metismenu-icon pe-7s-display2"></i>
+                            Transaction
+                        </a>
+                    </li>
                 <li>
                     <a href="">
                         <i class="metismenu-icon pe-7s-car"></i>
@@ -141,12 +153,7 @@
                         </li>
                     </ul> --}}
                 </li>
-                <li  >
-                    <a href="">
-                        <i class="metismenu-icon pe-7s-display2"></i>
-                        Tables
-                    </a>
-                </li>
+              
                 <li class="app-sidebar__heading"></li>
                 <li>
                     <a href="">

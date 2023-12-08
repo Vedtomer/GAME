@@ -68,10 +68,14 @@
         </style>
         <div class="login-container">
 <!-- Button to open the modal -->
+
 <button id="openModalBtn" class="btn btn-info">Add User</button>
+
 <br><br>
+<h5 class="card-title">Table responsive</h5>
 <!-- Modal container -->
 <div class="modal-container" id="myModal">
+    
     <!-- Modal content -->
     <div class="modal-content">
         <!-- Close button -->
@@ -121,17 +125,25 @@
 {{--  --}}
 @if(count($data) > 0)
         
-            <table class="table">
+<div class="table-responsive">
+    <table class="mb-0 table">
                 <thead>
                     <tr>
-                        <th scope="col">id</th>
+                        {{-- <th scope="col">id</th>
                         <th scope="col">name</th>
                         <th scope="col">email</th>
                       
                       
                         <th scope="col">View</th>
                         <th scope="col">update</th>
-                        <th scope="col">Delete</th>
+                        <th scope="col">Delete</th> --}}
+                        <th>#</th>
+                        <th>Table heading</th>
+                        <th>Table heading</th>
+                        <th>Table heading</th>
+                        <th>Table heading</th>
+                        <th>Table heading</th>
+                        <th>Table heading</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -151,8 +163,11 @@
         @else
             <p>No user data available.</p>
         @endif
+    </div>
 
 
+ 
+    
 <script>
     // Function to open the modal
     function openModal() {

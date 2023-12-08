@@ -43,9 +43,15 @@ class AdminController extends Controller
     
     public function logout()
     {
-        Auth::guard('admin')->logout();
-        return redirect()->route('admin.login');
+        $guard = Auth::getDefaultDriver(); // Get the default guard
+    
+        Auth::guard($guard)->logout();
+    
+        $redirectRoute = ($guard == 'admin') ? 'admin.login' : 'agent.login';
+    
+        return redirect()->route($redirectRoute);
     }
+    
 
     public function dashboard()
     {
@@ -161,6 +167,28 @@ class AdminController extends Controller
     public function user(){
         return view('admin.user');
     }
+
+    public function usersave(Request $request)
+    {
+        $validate = $request->validate([
+
+            'name' => 'required|string|max:100',  // validate krna form ko
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8',
+
+        ]);
+
+
+        $userdata = new User();
+        $userdata->name = $request->name;
+        $userdata->email = $request->email;
+        $userdata->password = $request->password; // store kr raha hai yani database me data insert ho raha hai
+
+        $userdata->save();
+
+        return redirect()->route('user');
+    }
+
     public function result(){
         return view('admin.result');
     }
@@ -168,7 +196,15 @@ class AdminController extends Controller
         return view('admin.profile');
     }
 
-
+    public function  transaction(){
+        return view('admin.transaction');
+    }
+    public function  home(){
+        return view('admin.home');
+    }
+    public function  newhome(){
+        return view('admin.layout.newhome');
+    }
     // public function view(){
 
 

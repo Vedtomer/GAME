@@ -17,4 +17,7 @@ class LoginController extends Controller
     public function usershow(){
         return view('user');
     }
+    public function table(){
+        return view('table');
+    }
 }

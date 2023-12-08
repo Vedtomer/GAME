@@ -46,6 +46,10 @@ return [
             'driver' => 'session',
             'provider' => 'admins', // Assuming you have an 'admins' provider
         ],
+        'agent' => [
+            'driver' => 'session',
+            'provider' => 'admins', // Assuming you have an 'admins' provider
+        ],
     ],
     
 

@@ -1,9 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\Agent\AgentController;
+
+
+
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Admin\AdminController;
+
+
 
 
 /*
@@ -18,7 +24,7 @@ use Illuminate\Support\Facades\Redirect;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 
@@ -28,9 +34,9 @@ route::get('login', [LoginController::class, 'index']);
 route::get('dash', [LoginController::class, 'show']);
 route::get('user', [LoginController::class, 'usershow']);
 
+// route::get('/home', [AdminController::class, 'home']);
 
-
-
+route::get('table', [LoginController::class, 'table']);
 // Admin Routes
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
@@ -51,9 +57,13 @@ Route::prefix('admin')->group(function () {
         route::get('newedit/{id}', [AdminController::class, 'edit'])->name('newedit');
         Route::post('newupdate/{id}', [AdminController::class, 'newupdate'])->name('newupdate');
         route::get('delete/{id}', [AdminController::class, 'delete'])->name('delete');
-     
+        route::get('transaction', [AdminController::class, 'transaction']);
+
+        route::get('newhome', [AdminController::class, 'newhome']);
         route::get('main', [AdminController::class, 'newheader']);
         route::get('user', [AdminController::class, 'user']);
+        
+        route::post('user', [AdminController::class, 'usersave'])->name('usersave');
         route::get('result', [AdminController::class, 'result']);
         route::get('profile', [AdminController::class, 'profile']);
         Route::get('/header', [AdminController::class, 'header'])->name('admin.header');
@@ -61,5 +71,30 @@ Route::prefix('admin')->group(function () {
 Route::post('/change-password', [AdminController::class, 'changePassword'])->name('change.password');
     });
 });
+
+Route::match(['get', 'post'], '/login', [AgentController::class, 'login'])->name('login');
+Route::middleware('auth:agent')->group(function () {
+    Route::get('/logout', [AgentController::class, 'logout'])->name('logout');
+    Route::get('dashboard', [AgentController::class, 'dashboard'])->name('dashboard');
+  
+    // Route::get('/userdata', [AgentController::class, 'userdata'])->name('agent.userdata');
+    // Route::post('/userdata', [AgentController::class, 'userstore'])->name('agent.userdata.store');
+    // route::get('userdata/{id}', [AgentController::class, 'view'])->name('agent.view');
+    // route::get('newview/{id}', [AgentController::class, 'newview'])->name('agent.newview');
+    // route::get('newedit/{id}', [AgentController::class, 'edit'])->name('agent.newedit');
+    // Route::post('newupdate/{id}', [AgentController::class, 'newupdate'])->name('agent.newupdate');
+    // route::get('delete/{id}', [AgentController::class, 'delete'])->name('agent.delete');
+    route::get('transaction', [AgentController::class, 'transaction']);
+    // route::get('home', [AgentController::class, 'home']);
+    // route::get('main', [AgentController::class, 'newheader']);
+    // route::get('user', [AgentController::class, 'user']);
+    // route::post('user', [AgentController::class, 'usersave'])->name('agent.usersave');
+    // route::get('result', [AgentController::class, 'result']);
+    // route::get('profile', [AgentController::class, 'profile']);
+    // Route::get('/header', [AgentController::class, 'header'])->name('agent.header');
+    // Route::get('/change-password', [AgentController::class, 'showChangePasswordForm'])->name('agent.change-password');
+    // Route::post('/change-password', [AgentController::class, 'changePassword'])->name('agent.change.password');
+});
+
 
 
