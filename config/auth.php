@@ -48,9 +48,12 @@ return [
         ],
         'agent' => [
             'driver' => 'session',
-            'provider' => 'admins', // Assuming you have an 'admins' provider
+            'provider' => 'users', // Assuming you have an 'admins' provider
         ],
     ],
+
+  
+    
     
 
     /*

@@ -11,13 +11,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 
+
 class AdminController extends Controller
 {
 
 
     public function login(Request $request)
     {
-          if (Auth::guard('admin')->check()) {
+        if (Auth::guard('admin')->check()) {
             return redirect()->route('admin.dashboard');
         }
 
@@ -35,23 +36,22 @@ class AdminController extends Controller
 
             return redirect()->route('admin.login')
                 ->with('error', 'Invalid login credentials');
-                
         }
         return redirect()->route('admin.login')->with('error', 'Invalid login credentials');
     }
 
-    
+
     public function logout()
     {
         $guard = Auth::getDefaultDriver(); // Get the default guard
-    
+
         Auth::guard($guard)->logout();
-    
+
         $redirectRoute = ($guard == 'admin') ? 'admin.login' : 'agent.login';
-    
+
         return redirect()->route($redirectRoute);
     }
-    
+
 
     public function dashboard()
     {
@@ -161,48 +161,98 @@ class AdminController extends Controller
         return redirect()->route('userdata')->with('success', 'Password changed successfully.');
     }
 
-    public function newheader(){
+    public function newheader()
+    {
         return view('admin.layout.main');
     }
-    public function user(){
-        return view('admin.user');
-    }
 
+
+
+    public function user()
+    {
+        $users = User::all();
+        return view('admin.user', ['data' => $users]);
+    }
     public function usersave(Request $request)
     {
         $validate = $request->validate([
-
-            'name' => 'required|string|max:100',  // validate krna form ko
+            'name' => 'required|string|max:100',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
-
         ]);
-
 
         $userdata = new User();
         $userdata->name = $request->name;
         $userdata->email = $request->email;
-        $userdata->password = $request->password; // store kr raha hai yani database me data insert ho raha hai
+        $userdata->password = $request->password;
 
         $userdata->save();
-
+        session()->flash('success', 'User created successfully.');
         return redirect()->route('user');
     }
 
-    public function result(){
+    public function displayUsers()
+{
+    $users = User::all(); // Sabhi users ki data fetch karein
+
+    // return view('admin.user', ['data' => $users]);
+    return view('admin.user', ['data' => $users]);
+}
+// public function displayUsers()
+// {
+//     $users = User::all();
+//     dd($users); // Check karne ke liye
+//     // return view('admin.user', ['data' => $users]);
+// }
+
+
+public function useredit(string $id)
+{
+    $userdata = DB::table('users')->where('id', $id)->first();
+    return view('admin.useredit', ['data' => $userdata]);
+}
+
+public function userupdate(Request $request, $id)
+{
+    $USER = DB::table('users')->where('id', $id)->update([
+
+        'name' => $request->name,
+        'email' => $request->email,
+
+
+    ]);
+    return redirect()->route('admin.user')->with('success', 'update successfully.');
+    // ]);
+}
+public function userdelete(string $id)
+{
+    $userdata = DB::table('users')->where('id', $id)->delete();
+    return redirect()->route('admin.user');
+}
+
+
+
+
+
+    public function result()
+    {
         return view('admin.result');
     }
-    public function profile(){
+    public function profile()
+    {
         return view('admin.profile');
     }
 
-    public function  transaction(){
+    public function  transaction()
+    {
         return view('admin.transaction');
     }
-    public function  home(){
+    public function  home()
+    {
         return view('admin.home');
     }
-    public function  newhome(){
+    public function  newhome()
+    {
         return view('admin.layout.newhome');
     }
     // public function view(){

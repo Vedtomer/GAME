@@ -2,9 +2,6 @@
 
 // namespace App\Http\Controllers;
 namespace App\Http\Controllers\Agent;
-
-
-
 use App\Models\User;
 
 use App\Http\Controllers\Controller;
@@ -23,7 +20,7 @@ class AgentController extends Controller
         }
 
         if ($request->isMethod('get')) {
-            return view('agent.login');
+            return view('login');
         }
 
 
@@ -34,11 +31,11 @@ class AgentController extends Controller
                 return redirect()->intended(route('dashboard'));
             }
 
-            return redirect()->route('agent.login')
+            return redirect()->route('login')
                 ->with('error', 'Invalid login credentials');
                 
         }
-        return redirect()->route('agent.login')->with('error', 'Invalid login credentials');
+        return redirect()->route('login')->with('error', 'Invalid login credentials');
     }
 
     

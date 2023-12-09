@@ -205,7 +205,7 @@
 
                                                         <td><span id="Span16"></span></span></td>
                                                         <td> <span id="Span17"></span>
-<input name="t_c1" class="" id="t_c1" style=" visibility: visible;"
+<input name="t_c1" class="b" id="t_c1" style=" visibility: visible;"
                                                                 onkeyup="javascript:jodiCArrowkey(1,event);javascript:jodiCCalc(1);"
                                                                 maxlength="4" max="9999" oninput="updateValues('b1',this.value)"  >
                                                                 <span id="m_1"
@@ -292,7 +292,7 @@
                                             <td style="font-weight: bold;">
                                                 <span id="Span15"></span><br>
                                            
-<input type="text" name="initialValue"  min="0" class="initialValue" id="initialValue"
+<input type="text" name="initialValue"  min="0" class="initialValue a" id="initialValue"
                                                     style="visibility: visible;"
                                                     onkeyup="javascript:jodiRArrowkey(0,event);javascript:jodiRCalc(0); updateOtherInputs();"
                                                     maxlength="4" max="9999" required oninput="updateValues('a1',this.value)">
@@ -1291,16 +1291,32 @@
 </div>
 <script>
 function updateValues(classval, value) {
-    console.log(classval);
 
-    // Get all elements with the specified class
-    var elements = document.getElementsByClassName(classval);
+   var elementsA = document.getElementsByClassName(classval);
 
-    // Iterate through the collection and update values
-    for (var i = 0; i < elements.length; i++) {
-        elements[i].value = value;
-    }
+
+   var elementB = document.getElementById("t_c1");
+   console.log(elementB.value);
+
+ 
+   for (var i = 0; i < elementsA.length; i++) {
+    
+       var currentValue = elementsA[i].value;
+
+       currentValue = isNaN(parseFloat(currentValue)) ? 0 : parseFloat(currentValue);
+
+     
+       value = isNaN(parseFloat(value)) ? 0 : parseFloat(value);
+
+   
+       elementsA[i].value = currentValue + value;
+
+     
+   }
 }
+
+
+updateValues("tum", "NayiValue");
 
 </script>
 
