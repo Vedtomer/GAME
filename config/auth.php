@@ -48,8 +48,12 @@ return [
         ],
         'agent' => [
             'driver' => 'session',
-            'provider' => 'users', // Assuming you have an 'admins' provider
+            'provider' => 'agent', // Assuming you have an 'admins' provider
         ],
+        'api' => [ 
+            'driver' => 'passport', 
+            'provider' => 'agent', 
+        ], 
     ],
 
   
@@ -84,6 +88,11 @@ return [
                 'driver' => 'eloquent',
                 'model' => App\Models\Admin::class, // Replace with your actual Admin model
             ],
+            'agent' => [
+                'driver' => 'eloquent',
+                'model' => App\Models\Agent::class,
+            ],
+            
         ],
         
 

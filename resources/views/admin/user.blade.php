@@ -118,26 +118,45 @@
                     @csrf
                     <div class="mb-3">
                         <h3>ADD USER</h3>
-
+                
                         <input type="text" class="form-control" name="name" placeholder="Enter username" required>
                     </div>
                     <div class="mb-3">
-
                         <input type="email" class="form-control" name="email" placeholder="Enter email" required>
                     </div>
                     <div class="mb-3">
-
-                        <input type="password" class="form-control" name="password" placeholder="Enter password"
-                            required>
+                        <input type="password" class="form-control" name="password" placeholder="Enter password" required>
+                    </div>
+                
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="state" placeholder="Enter state" required>
                     </div>
                     <div class="mb-3">
-
-                        <input type="password" class="form-control" name="Confirm Password"
-                            placeholder="Enter Confirm password" required>
+                        <input type="text" class="form-control" name="city" placeholder="Enter city" required>
                     </div>
-
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="address" placeholder="Enter address" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="mobile_number" placeholder="Enter mobile number" required>
+                    </div>
+                    <div class="mb-3">
+                        {{-- <label for="commission">Commission Type:</label> --}}
+                        <select class="form-control" id="commission" name="commission_type" required>
+                            <option value="" disabled selected>Commission Type</option>
+                            <option value="fix">Fixed</option>
+                            <option value="percentage">Percentage</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="commission" placeholder="Enter commission" required>
+                    </div>
+                
+                
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+                
             </div>
         </div>
 

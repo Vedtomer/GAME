@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Models\Agent;
 use App\Models\User;
 use App\Models\Admin;
 use App\Http\Controllers\Controller;
@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
-
 
 class AdminController extends Controller
 {
@@ -36,7 +35,7 @@ class AdminController extends Controller
 
             return redirect()->route('admin.login')
                 ->with('error', 'Invalid login credentials');
-        }
+     }
         return redirect()->route('admin.login')->with('error', 'Invalid login credentials');
     }
 
@@ -144,10 +143,6 @@ class AdminController extends Controller
 
         return redirect()->route('userdata')->with('success', 'Password changed successfully.');
 
-
-
-
-
         $user = Auth::user();
 
         if (!Hash::check($request->current_password, $user->password)) {
@@ -177,16 +172,32 @@ class AdminController extends Controller
     {
         $validate = $request->validate([
             'name' => 'required|string|max:100',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:agent',
             'password' => 'required|min:8',
+            'state' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'mobile_number' => 'required|string|max:20',
+            'commission'=> 'required|string', 
+            'commission_type' => 'required|in:fixed,percentage', // ENUM ke liye 'in' rule ka istemal kiya gaya hai
+             // ENUM ke liye 'in' rule ka istemal kiya gaya hai
         ]);
+        
 
-        $userdata = new User();
+        $userdata = new Agent();
         $userdata->name = $request->name;
         $userdata->email = $request->email;
-        $userdata->password = $request->password;
-
+        $userdata->password = bcrypt($request->password); // Password ko encrypt karna mat bhoolen
+        $userdata->state = $request->state;
+        $userdata->city = $request->city;
+        $userdata->address = $request->address;
+        $userdata->mobile_number = $request->mobile_number;
+        $userdata->commission = $request->commission;
+        $userdata->commission_type = $request->commission_type;
+    
+        
         $userdata->save();
+        
         session()->flash('success', 'User created successfully.');
         return redirect()->route('user');
     }
