@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
+
+use Validator;
+use Illuminate\Http\JsonResponse;
+
 class LoginController extends Controller
 {
 //     public function agentLogin(Request $request)
@@ -37,11 +41,22 @@ public function agentlogin(Request $request)
         if (Auth::guard('agent')->attempt($credentials)) {
             // Authentication passed...
             $user = Auth::guard('agent')->user();
-            $token = $user->createToken('authToken')->accessToken;
+            
 
-            return response()->json(['token' => $token], 200);
+       return response([
+        'status' => true,
+        'data' => ['token' => $user->createToken($request->device ?? 'web')->plainTextToken, 'user' => $user],
+        'msg' => 'Login successful'
+    ]);
 
         }
+
+
+        
+
+
+
+
 
         return response()->json(['error' => 'Invalid credentials'], 401);
     } catch (\Exception $e) {
