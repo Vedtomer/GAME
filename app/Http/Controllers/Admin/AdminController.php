@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 
-
 class AdminController extends Controller
 {
 
@@ -36,7 +35,7 @@ class AdminController extends Controller
 
             return redirect()->route('admin.login')
                 ->with('error', 'Invalid login credentials');
-        }
+     }
         return redirect()->route('admin.login')->with('error', 'Invalid login credentials');
     }
 
@@ -143,10 +142,6 @@ class AdminController extends Controller
         ]);
 
         return redirect()->route('userdata')->with('success', 'Password changed successfully.');
-
-
-
-
 
         $user = Auth::user();
 
