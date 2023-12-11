@@ -8,7 +8,7 @@ use App\Http\Controllers\Agent\AgentController;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\AdminController;
-
+// use App\Http\Controllers\AdminController;
 
 
 
@@ -48,6 +48,8 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware('auth:admin')->group(function () {
         Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+        // Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
         Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
         Route::get('/userdata', [AdminController::class, 'userdata'])->name('userdata');
@@ -61,9 +63,16 @@ Route::prefix('admin')->group(function () {
 
         route::get('newhome', [AdminController::class, 'newhome']);
         route::get('main', [AdminController::class, 'newheader']);
-        route::get('user', [AdminController::class, 'user']);
-        
-        route::post('user', [AdminController::class, 'usersave'])->name('usersave');
+      
+
+        Route::get('user', [AdminController::class, 'user'])->name('user');
+        Route::post('user', [AdminController::class, 'usersave'])->name('user.save');
+        // Route::get('user', [AdminController::class, 'displayUsers'])->name('user.list');
+        Route::get('admin/user', [AdminController::class, 'displayUsers'])->name('admin.user');
+
+        route::get('useredit/{id}', [AdminController::class, 'useredit'])->name('useredit');
+        Route::post('userupdate/{id}', [AdminController::class, 'userupdate'])->name('userupdate');
+        route::get('userdelete/{id}', [AdminController::class, 'userdelete'])->name('userdelete');
         route::get('result', [AdminController::class, 'result']);
         route::get('profile', [AdminController::class, 'profile']);
         Route::get('/header', [AdminController::class, 'header'])->name('admin.header');

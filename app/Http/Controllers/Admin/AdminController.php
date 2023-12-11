@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Models\Agent;
 use App\Models\User;
 use App\Models\Admin;
 use App\Http\Controllers\Controller;
@@ -17,7 +17,7 @@ class AdminController extends Controller
 
     public function login(Request $request)
     {
-          if (Auth::guard('admin')->check()) {
+        if (Auth::guard('admin')->check()) {
             return redirect()->route('admin.dashboard');
         }
 
@@ -35,23 +35,22 @@ class AdminController extends Controller
 
             return redirect()->route('admin.login')
                 ->with('error', 'Invalid login credentials');
-                
-        }
+     }
         return redirect()->route('admin.login')->with('error', 'Invalid login credentials');
     }
 
-    
+
     public function logout()
     {
         $guard = Auth::getDefaultDriver(); // Get the default guard
-    
+
         Auth::guard($guard)->logout();
-    
+
         $redirectRoute = ($guard == 'admin') ? 'admin.login' : 'agent.login';
-    
+
         return redirect()->route($redirectRoute);
     }
-    
+
 
     public function dashboard()
     {
@@ -144,10 +143,6 @@ class AdminController extends Controller
 
         return redirect()->route('userdata')->with('success', 'Password changed successfully.');
 
-
-
-
-
         $user = Auth::user();
 
         if (!Hash::check($request->current_password, $user->password)) {
@@ -161,48 +156,114 @@ class AdminController extends Controller
         return redirect()->route('userdata')->with('success', 'Password changed successfully.');
     }
 
-    public function newheader(){
+    public function newheader()
+    {
         return view('admin.layout.main');
     }
-    public function user(){
-        return view('admin.user');
-    }
 
+
+
+    public function user()
+    {
+        $users = User::all();
+        return view('admin.user', ['data' => $users]);
+    }
     public function usersave(Request $request)
     {
         $validate = $request->validate([
-
-            'name' => 'required|string|max:100',  // validate krna form ko
-            'email' => 'required|email|unique:users',
+            'name' => 'required|string|max:100',
+            'email' => 'required|email|unique:agent',
             'password' => 'required|min:8',
-
+            'state' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'mobile_number' => 'required|string|max:20',
+            'commission'=> 'required|string', 
+            'commission_type' => 'required|in:fixed,percentage', // ENUM ke liye 'in' rule ka istemal kiya gaya hai
+             // ENUM ke liye 'in' rule ka istemal kiya gaya hai
         ]);
+        
 
-
-        $userdata = new User();
+        $userdata = new Agent();
         $userdata->name = $request->name;
         $userdata->email = $request->email;
-        $userdata->password = $request->password; // store kr raha hai yani database me data insert ho raha hai
-
+        $userdata->password = bcrypt($request->password); // Password ko encrypt karna mat bhoolen
+        $userdata->state = $request->state;
+        $userdata->city = $request->city;
+        $userdata->address = $request->address;
+        $userdata->mobile_number = $request->mobile_number;
+        $userdata->commission = $request->commission;
+        $userdata->commission_type = $request->commission_type;
+    
+        
         $userdata->save();
-
+        
+        session()->flash('success', 'User created successfully.');
         return redirect()->route('user');
     }
 
-    public function result(){
+    public function displayUsers()
+{
+    $users = User::all(); // Sabhi users ki data fetch karein
+
+    // return view('admin.user', ['data' => $users]);
+    return view('admin.user', ['data' => $users]);
+}
+// public function displayUsers()
+// {
+//     $users = User::all();
+//     dd($users); // Check karne ke liye
+//     // return view('admin.user', ['data' => $users]);
+// }
+
+
+public function useredit(string $id)
+{
+    $userdata = DB::table('users')->where('id', $id)->first();
+    return view('admin.useredit', ['data' => $userdata]);
+}
+
+public function userupdate(Request $request, $id)
+{
+    $USER = DB::table('users')->where('id', $id)->update([
+
+        'name' => $request->name,
+        'email' => $request->email,
+
+
+    ]);
+    return redirect()->route('admin.user')->with('success', 'update successfully.');
+    // ]);
+}
+public function userdelete(string $id)
+{
+    $userdata = DB::table('users')->where('id', $id)->delete();
+    return redirect()->route('admin.user');
+}
+
+
+
+
+
+    public function result()
+    {
         return view('admin.result');
     }
-    public function profile(){
+    public function profile()
+    {
         return view('admin.profile');
     }
 
-    public function  transaction(){
+    public function  transaction()
+    {
         return view('admin.transaction');
     }
-    public function  home(){
+    public function  home()
+    {
         return view('admin.home');
     }
-    public function  newhome(){
+    public function  newhome()
+    {
         return view('admin.layout.newhome');
     }
     // public function view(){

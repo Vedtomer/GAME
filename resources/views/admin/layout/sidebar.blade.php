@@ -36,13 +36,13 @@
                 {{-- <li class="app-sidebar__heading"></li> --}}
                 <li>
                     {{-- class="mm-active" --}}
-                    <a href="dashboard" class="mm-active">   
+                    <a href="{{route('admin.dashboard')}}" >   
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="home" >
+                    <a href="" >
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Home
                     </a>
@@ -56,7 +56,7 @@
                
               
                 <li>
-                    <a href="result">
+                    <a href="">
                         <i class="metismenu-icon pe-7s-diamond"></i>
                         Result
                         

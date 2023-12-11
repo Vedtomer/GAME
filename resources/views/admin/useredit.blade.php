@@ -1,16 +1,16 @@
 @extends('admin.layout.main')
 @section('section')
 
-@if(session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
+@if(session('error'))
+<div class="alert alert-danger">
+    {{ session('error') }}
 </div>
 @endif
       <div class="container">
         <div class="row">
             <div class="col-6">
                   
-        <form method="post" action="{{route('newupdate' , $data->id)}}" enctype="multipart/form-data">
+        <form method="post" action="{{route('userupdate' , $data->id)}}" enctype="multipart/form-data">
             @csrf
             <h1>form data</h1>
 
@@ -30,10 +30,11 @@
 
             
             <button type="submit" class="btn btn-primary">update</button>
-            <a class="btn btn-primary" href=" {{route('userdata') }} ">show all data</a>
+            {{-- <a class="btn btn-primary" href=" {{route('user') }} ">show all data</a> --}}
           </form>
             </div>
         </div>
       </div>
    
-      @endsection
+
+@endsection
