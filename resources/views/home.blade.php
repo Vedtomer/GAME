@@ -101,10 +101,10 @@
             letter-spacing: 4px;
             font: 100 30px consolas;
             overflow: hidden;
-   background-color: rgb(0, 0, 0); 
+   background-color: rgb(0, 0, 0);
         }
 
-     
+
 
         iframe {
             width: 100%;
@@ -128,7 +128,7 @@
             /* Darker container background color */
             padding: 10px;
             border-radius: 10px;
-          
+
             /* Box shadow for a subtle lift */
             font-size: 1.5em;
             /* Adjust the font size as needed */
@@ -153,7 +153,7 @@
         /* } */ */
         body {
     background-color: #c4c4c4;
-  
+
 }
 .fm {
     text-align: center;
@@ -198,7 +198,7 @@
     font-family: Montserrat, sans-serif;
     font-weight: 700;
     /* background-color: #4b4663; */
-    
+
 }
 
 
@@ -206,7 +206,7 @@
             background-color: #525173;;
             /* opacity: 0.8; */
             border-bottom: 2px solid rgb(9, 175, 244);
-            
+
         }
         .heading {
             background-color: #1a1a1a;
@@ -243,7 +243,7 @@
                 </div>
             </div>
 
-          
+
 
             <div class="heading py-4 mb-5 shadow-dark">
                 <div class="container text-center">
@@ -265,15 +265,15 @@
                             <tr>
                                 <td style="background-color: black; color:white; font-size:1.5rem;">60</td>
                                 @for ($i = 10; $i <= 61; $i++)
-                                 
-                                
+
+
                                     <td>{{ $i }}</td>
                                 @endfor
                             </tr>
                             <tr>
                                 <td style="background-color: black; color:white;font-size:1.5rem;">70</td>
                                 @for ($i = 10; $i <= 61; $i++)
-                              
+
                                     <td style="">{{ $i }}</td>
 
                                 @endfor
