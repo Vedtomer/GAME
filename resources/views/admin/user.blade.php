@@ -89,9 +89,9 @@
 
 
     <div class="add" style="display: flex; align-items: center;">
-        <h5 class="card-title">Table responsive</h5>
+        <h3 class="card-title">Agent List</h3>
         <div class="btns" style="margin-left: auto;">
-            <button id="openModalBtn" class="btn btn-secondary">Add User</button>
+            <button id="openModalBtn" class="btn btn-secondary">Add Agent</button>
         </div>
     </div>
     {{-- <div class="btns" style="margin-left: auto;">
@@ -117,7 +117,7 @@
 
                     @csrf
                     <div class="mb-3">
-                        <h3>ADD USER</h3>
+                        <h3>ADD AGENT</h3>
                 
                         <input type="text" class="form-control" name="name" placeholder="Enter username" required>
                     </div>
@@ -144,7 +144,7 @@
                         {{-- <label for="commission">Commission Type:</label> --}}
                         <select class="form-control" id="commission" name="commission_type" required>
                             <option value="" disabled selected>Commission Type</option>
-                            <option value="fix">Fixed</option>
+                            <option value="fixed">Fixed</option>
                             <option value="percentage">Percentage</option>
                         </select>
                     </div>
@@ -161,7 +161,7 @@
         </div>
 
 
-        <h2>user data</h2>
+        {{-- <h2>Agent data</h2> --}}
 
     </div>
 
@@ -172,7 +172,7 @@
     {{-- @if(count($data) > 0) --}}
 
     <div class="table-responsive">
-        <h2>User List</h2>
+        {{-- <h2>Agent List</h2> --}}
        @if(isset($data) && count($data) > 0)
             <table class="mb-0 table table-striped table-bordered">
                 <thead>
@@ -180,6 +180,13 @@
                         <th style="width: 5%" scope="col">ID</th>
                         <th style="width: 20%" scope="col">Name</th>
                         <th style="width: 20%" scope="col">Email</th>
+                        {{-- <th style="width: 20%" scope="col">password</th> --}}
+                        <th style="width: 20%" scope="col">state</th>
+                        <th style="width: 20%" scope="col">city</th>
+                        <th style="width: 20%" scope="col">address</th>
+                        <th style="width: 20%" scope="col">moblie-number</th>
+                        <th style="width: 20%" scope="col">comission</th>
+                        <th style="width: 20%" scope="col">comission-type</th>
                      
                         {{-- <th style="width: 10%" scope="col">View</th> --}}
                         <th style="width: 15%" scope="col">Action</th>
@@ -193,6 +200,13 @@
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
+                            {{-- <td>{{ $user->password }}</td> --}}
+                            <td>{{ $user->state }}</td>
+                            <td>{{ $user->city }}</td>
+                            <td>{{ $user->address }}</td>
+                            <td>{{ $user->mobile_number}}</td>
+                            <td>{{ $user->commission }}</td>
+                            <td>{{ $user->commission_type }}</td>
                             <td><a class="btn btn-success" href="{{route('useredit',$user->id)}}">Update</a></td>
                             {{-- <td><a class="btn btn-danger" href="{{route('userdelete',$user->id)}}">Delete</a></td> --}}
                             <!-- Add more columns as needed -->

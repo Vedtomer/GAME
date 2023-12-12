@@ -63,12 +63,24 @@ Route::prefix('admin')->group(function () {
 
         route::get('newhome', [AdminController::class, 'newhome']);
         route::get('main', [AdminController::class, 'newheader']);
-      
+        Route::get('excel', [AdminController::class, 'excel']);
+        // // Route::get('excel', [AdminController::class, 'excelfile']);
+        // Route::get('/import-excel', [AdminController::class,'importExcel']);
+        
 
-        Route::get('user', [AdminController::class, 'user'])->name('user');
+Route::get('/excel', [AdminController::class, 'showForm'])->name('show.upload.form');
+Route::post('/excel', [AdminController::class, 'uploadExcel'])->name('upload.excel');
+
+// Route::get('royalsundaram', [AdminController::class, 'royalsundaram']);
+Route::get('/royalsundaram', [AdminController::class,'royalsundaram'])->name('royalsundaram');
+// Route::get('shriramgi', [AdminController::class, 'shriramgi']);
+Route::get('/shriramgi', [AdminController::class,'shriramgi'])->name('shriramgi');
+
+
+        Route::get('user', [AdminController::class, 'user'])->name('admin.user');
         Route::post('user', [AdminController::class, 'usersave'])->name('user.save');
         // Route::get('user', [AdminController::class, 'displayUsers'])->name('user.list');
-        Route::get('admin/user', [AdminController::class, 'displayUsers'])->name('admin.user');
+        // Route::get('admin/user', [AdminController::class, 'displayUsers'])->name('admin.user');
 
         route::get('useredit/{id}', [AdminController::class, 'useredit'])->name('useredit');
         Route::post('userupdate/{id}', [AdminController::class, 'userupdate'])->name('userupdate');

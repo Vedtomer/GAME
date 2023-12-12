@@ -50,16 +50,33 @@
                 <li>
                     <a href="user">
                         <i class="metismenu-icon pe-7s-display2"></i>
-                        Users
+                        Agent
                     </a>
                 </li>
                
-              
+                <li>
+                    <a href="excel">
+                        <i class="metismenu-icon pe-7s-graph2"></i>
+                        Excel
+                    </a>
+                </li>
                 <li>
                     <a href="">
                         <i class="metismenu-icon pe-7s-diamond"></i>
                         Result
                         
+                    </a>
+                </li>
+                   <li>
+                    <a href="royalsundaram">
+                        <i class="metismenu-icon pe-7s-eyedropper">
+                        </i>Royalsundaram
+                    </a>
+                </li>
+                <li>
+                    <a href="shriramgi">
+                        <i class="metismenu-icon pe-7s-display2"></i>
+                        Shriramgi
                     </a>
                 </li>
                     {{-- <ul>
@@ -155,12 +172,7 @@
                 </li>
               
                 <li class="app-sidebar__heading"></li>
-                <li>
-                    <a href="">
-                        <i class="metismenu-icon pe-7s-display2"></i>
-                        Dashboard Boxes
-                    </a>
-                </li>
+             
                 {{-- <li class="app-sidebar__heading">Forms</li> --}}
                 <li>
                     <a href="">

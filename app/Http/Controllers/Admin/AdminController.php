@@ -1,15 +1,29 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Models\Agent;
 use App\Models\User;
-use App\Models\Admin;
+
+// use App\Models\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
+use DataTables;
+use App\Models\Shriramgi;
+use App\Models\Royalsundaram;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithStartRow;
+use App\Imports\ExcelImport1;
+use App\Imports\ExcelImport2;
+
+// use App\Imports\ExcelImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class AdminController extends Controller
 {
@@ -165,7 +179,7 @@ class AdminController extends Controller
 
     public function user()
     {
-        $users = User::all();
+        $users = Agent::all();
         return view('admin.user', ['data' => $users]);
     }
     public function usersave(Request $request)
@@ -198,17 +212,17 @@ class AdminController extends Controller
         
         $userdata->save();
         
-        session()->flash('success', 'User created successfully.');
-        return redirect()->route('user');
+        session()->flash('success', 'Agent created successfully.');
+        return redirect()->route('admin.user');
     }
 
-    public function displayUsers()
-{
-    $users = User::all(); // Sabhi users ki data fetch karein
+//     public function displayUsers()
+// {
+//     $users = Agent::all(); // Sabhi users ki data fetch karein
 
-    // return view('admin.user', ['data' => $users]);
-    return view('admin.user', ['data' => $users]);
-}
+//     // return view('admin.user', ['data' => $users]);
+//     return view('admin.user', ['data' => $users]);
+// }
 // public function displayUsers()
 // {
 //     $users = User::all();
@@ -219,16 +233,22 @@ class AdminController extends Controller
 
 public function useredit(string $id)
 {
-    $userdata = DB::table('users')->where('id', $id)->first();
+    $userdata = DB::table('agent')->where('id', $id)->first();
     return view('admin.useredit', ['data' => $userdata]);
 }
 
 public function userupdate(Request $request, $id)
 {
-    $USER = DB::table('users')->where('id', $id)->update([
+    $USER = DB::table('agent')->where('id', $id)->update([
 
         'name' => $request->name,
         'email' => $request->email,
+        'state' => $request->state,
+        'city' => $request->city,
+        'address' => $request->address,
+        'mobile_number' => $request->mobile_number,
+        'commission' => $request->commission,
+        'commission_type' => $request->commission_type,
 
 
     ]);
@@ -237,13 +257,151 @@ public function userupdate(Request $request, $id)
 }
 public function userdelete(string $id)
 {
-    $userdata = DB::table('users')->where('id', $id)->delete();
+    $userdata = DB::table('agent')->where('id', $id)->delete();
     return redirect()->route('admin.user');
 }
 
 
+    public function showForm()
+    {
+        return view('admin.excel');
+    }
+
+    // public function uploadExcel(Request $request)
+    // {
+    //     $request->validate([
+    //         'excelFile' => 'required|mimes:xlsx,xls',
+    //     ]);
+
+    //     // $file = $request->file('file');
+    //     $items = $request->file('excelFile')->store('temp');
+
+    //      Excel::import(new ExcelImport1, $items);
+    //     // Excel::import(new ExcelImport, 'path/to/your/excel/file.xlsx', null, \Maatwebsite\Excel\Excel::XLSX);
 
 
+    //     return redirect()->back()->with('success', 'Data imported successfully!');
+    // }
+
+    public function uploadExcel(Request $request)
+    {
+        $request->validate([
+            'excelFile' => 'required|mimes:xlsx,xls',
+            'importType' => 'required|in:ExcelImport1,ExcelImport2',
+        ]);
+    
+        
+    
+        // Decide which ExcelImport class to use based on the selected import type
+        if ($request->importType == 'ExcelImport1') {
+            $importClass = new ExcelImport1;
+        } elseif ($request->importType == 'ExcelImport2') {
+            $importClass = new ExcelImport2;
+        }
+    
+        // Store the uploaded file and import using the selected ExcelImport class
+        $items = $request->file('excelFile')->store('temp');
+        Excel::import($importClass, $items);
+    
+        return redirect()->back()->with('success', 'Data imported successfully!');
+    }
+
+
+// public function excel()
+// {
+//     return view('admin.excel');
+// }
+
+
+// public function importExcel()
+// {
+//     Excel::import(new ExcelImport, 'path/to/your/excel/file.xlsx');
+
+//     return redirect()->back()->with('success', 'Data imported successfully!');
+// }
+// public function excelfile(Request $request){
+//     $validatedData = $request->validate([
+        
+//         'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        
+//     ]);
+//     // dd($request->all());  
+//     $USER = new ();
+
+   
+//     $USER->image = $request->file('image')->store('public/storage');
+
+   
+//     $USER->save();
+//     // return $USER;
+//     return redirect()->route('into');
+// }
+
+public function royalsundaram(Request $request)
+{
+
+    if ($request->ajax()) {
+        $data = Royalsundaram::select('*');
+        return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+   
+                        $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+  
+                        return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+    }
+      
+    
+    return view('admin.royalsundaram');
+}
+
+public function shriramgi(Request $request)
+{
+    // $data = Shriramgi::select('shriramgi');
+    // return DataTables::of($data)->make(true);
+        // if ($request->ajax()) {
+        //     $data = Shriramgi::select('shriramgi');
+
+        //     return Datatables::of($data)
+
+        //             ->addIndexColumn()
+        //             ->addColumn('action', function($row){
+        //                     $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+        //                     return $btn;
+        //             })
+        //             ->rawColumns(['action'])
+        //             ->make(true);
+        // }
+        // return view('admin.shriramgi');
+
+
+
+
+
+
+
+
+        if ($request->ajax()) {
+            $data = Shriramgi::select('*');
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+       
+                            $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+      
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+          
+        return view('admin.shriramgi');
+    }
+
+    
 
     public function result()
     {

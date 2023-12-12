@@ -25,6 +25,40 @@
               <input type="email" class="form-control" name="email" value="{{$data->email}}" >
             </div>
             <br><br>
+            <div class="mb-3">
+              <label >State</label>
+              <input type="text" class="form-control" name="state" value="{{$data->state}}" >
+            </div>
+            <br><br>
+            <div class="mb-3">
+              <label >City</label>
+              <input type="text" class="form-control" name="city" value="{{$data->city}}" >
+            </div>
+            <br><br>
+            <div class="mb-3">
+              <label >Address</label>
+              <input type="text" class="form-control" name="address" value="{{$data->address}}" >
+            </div>
+            <br><br>
+            <div class="mb-3">
+              <label >Mobile - Number</label>
+              <input type="text" class="form-control" name="mobile_number" value="{{$data->mobile_number}}" >
+            </div>
+            <br><br>
+            <div class="mb-3">
+              <label >Commision</label>
+              <input type="text" class="form-control" name="commission" value="{{$data->commission}}" >
+            </div>
+            <br><br>
+            <div class="mb-3">
+              <label>Commision-Type</label>
+              <select class="form-control" name="commission_type">
+                  <option value="fixed" {{ $data->commission_type === 'fixed' ? 'selected' : '' }}>Fixed</option>
+                  <option value="percentage" {{ $data->commission_type === 'percentage' ? 'selected' : '' }}>Percentage</option>
+              </select>
+          </div>
+          
+            <br><br>
 
        
 
