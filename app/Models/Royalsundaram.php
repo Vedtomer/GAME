@@ -52,7 +52,8 @@ class Royalsundaram extends Model
         'vehicleage', 
         'vehicle_slab', 
         'business_type', 
-        'channel' 
+        'channel' ,
+        'agent_id' 
        
     ];
 }

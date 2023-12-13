@@ -36,7 +36,9 @@
                 <th>cust_name</th>
                 <th>insured_name</th>
                 <th>business_source</th>
+                {{-- <th>agent_id</th> --}}
                 <th width="100px">Action</th>
+                {{-- <th width="100px">Edit</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -68,12 +70,41 @@
                 { data: 'cust_name', name: 'cust_name' },
                 { data: 'insured_name', name: 'insured_name' },
                 { data: 'business_source', name: 'business_source' },
+                // { data: 'agent_id', name: 'agent-id' },
                 {data: 'action', name: 'action', orderable: false, searchable: false},
+
+            //     {
+            //     data: 'action', 
+            //     name: 'action', 
+            //     orderable: false, 
+            //     searchable: false
+            // },
+
+
+               
                 
             ]
+
+            
     });
       
   });
+
+
 </script>
+
+
 </html>
 {{-- @endsection --}}
+
+
+    {{-- @foreach ($dataa as $id => $user) --}}
+            {{-- <tr> --}}
+                {{-- <th>{{$user->id}}</th>
+                <td>{{$user->name}}</td>
+                <td>{{$user->email}}</td> --}}
+                {{-- <td><a class="btn btn-primary" href="{{route('newview',$user->id)}}">View</a></td> --}}
+                {{-- <td><a class="btn btn-success" href="{{route('shriramjiedit',$user->id)}}">Update</a></td> --}}
+                {{-- <td><a class="btn btn-danger" href="{{route('delete',$user->id)}}">Delete</a></td> --}}
+            {{-- </tr> --}}
+       {{-- @endforeach  --}}

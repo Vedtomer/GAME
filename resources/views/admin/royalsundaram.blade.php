@@ -42,6 +42,7 @@
                 <th>inceptiondate</th>
                 <th>expirydate</th>
                 <th>make</th>
+                <th>agent_id</th>
                 <th width="100px">Action</th>
             </tr>
         </thead>
@@ -74,6 +75,7 @@
                 { data: 'inceptiondate', name: 'inceptiondate' },
                 { data: 'expirydate', name: 'expirydate' },
                 { data: 'make', name: 'make' },
+                { data: 'agent_id', name: 'agent_id' },
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 
             ]

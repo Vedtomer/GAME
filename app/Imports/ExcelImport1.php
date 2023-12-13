@@ -2,12 +2,15 @@
 
 namespace App\Imports;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use App\Models\Royalsundaram;
+use Illuminate\Support\Facades\Log;
 
-class ExcelImport1 implements ToModel
+class ExcelImport1 implements ToModel , WithHeadingRow
 {
     public function model(array $row)
     {
+        Log:info($row);
         return new Royalsundaram([
      
 
@@ -53,8 +56,14 @@ class ExcelImport1 implements ToModel
         'vehicle_slab'=> $row['vehicle_slab'], 
         'business_type'=> $row['business_type'], 
         'channel'=> $row['channel'],
+        // 'agent_id'=> $row['agent_id'],
            
         ]);
+    }
+
+    public function headingRow(): int
+    {
+        return 1;
     }
     
 }

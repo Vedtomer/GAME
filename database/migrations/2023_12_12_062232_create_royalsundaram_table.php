@@ -55,8 +55,12 @@ return new class extends Migration
             $table->string('vehicle_slab')->nullable(); 
             $table->string('business_type')->nullable(); 
             $table->string('channel')->nullable(); 
-          
+            $table->unsignedBigInteger('agent_id')->nullable(); 
+
+            $table->foreign('agent_id')->references('id')->on('agent')->onDelete('set null');
             $table->timestamps();
+
+            
         });
     }
 

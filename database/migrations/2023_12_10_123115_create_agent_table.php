@@ -24,8 +24,31 @@ return new class extends Migration
             $table->tinyInteger('status')->default(1); 
             $table->string('commission'); 
             $table->enum('commission_type', ['fixed', 'percentage']);
+
+            $table->unsignedBigInteger('agent_id')->nullable(); 
+
+            $table->foreign('agent_id')->references('id')->on('agent')->onDelete('set null');
+          
             $table->timestamps();
         });
+
+
+        
+         // New foreign key column
+    // Schema::table('agent', function (Blueprint $table) {
+    //     $table->unsignedBigInteger('royalsundaram_id')->nullable(); 
+
+     
+    //     $table->foreign('royalsundaram_id')->references('id')->on('royalsundaram')->onDelete('set null');
+        
+    // }); 
+    // Schema::table('agent', function (Blueprint $table) {
+    //     $table->unsignedBigInteger('shriramgi_id')->nullable(); 
+
+     
+    //     $table->foreign('shriramgi_id')->references('id')->on('shriramgi')->onDelete('set null');
+        
+    // }); 
     }
 
     /**

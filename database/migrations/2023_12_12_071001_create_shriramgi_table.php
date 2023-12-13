@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('shriramgi', function (Blueprint $table) {
             $table->id();
+            $table->string('sno')->nullable(); 
+          
+            $table->string('proposal_no')->nullable(); 
+            $table->string('policy_no')->nullable(); 
+            $table->string('branch_code')->nullable(); 
+            $table->string('branch_name')->nullable(); 
+
+          
             $table->string('proposal_reg_date')->nullable(); 
             $table->string('policy_issuance_date')->nullable(); 
             $table->string('policy_start_date')->nullable(); 
@@ -46,6 +54,9 @@ return new class extends Migration
             $table->string('cgst_amount')->nullable(); 
 
             $table->string('net_premium')->nullable(); 
+            $table->unsignedBigInteger('agent_id')->nullable(); 
+
+            $table->foreign('agent_id')->references('id')->on('agent')->onDelete('set null');
           
             $table->timestamps();
         });

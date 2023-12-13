@@ -73,8 +73,12 @@ Route::post('/excel', [AdminController::class, 'uploadExcel'])->name('upload.exc
 
 // Route::get('royalsundaram', [AdminController::class, 'royalsundaram']);
 Route::get('/royalsundaram', [AdminController::class,'royalsundaram'])->name('royalsundaram');
+route::get('royalsundaramedit/{id}', [AdminController::class, 'royalsundaramedit'])->name('royalsundaramedit');
+Route::post('royalsundaramupdate/{id}', [AdminController::class, 'royalsundaramupdate'])->name('royalsundaramupdate');
 // Route::get('shriramgi', [AdminController::class, 'shriramgi']);
 Route::get('/shriramgi', [AdminController::class,'shriramgi'])->name('shriramgi');
+Route::get('shriramgiedit/{id}', [AdminController::class, 'shriramgiedit'])->name('shriramgiedit');
+Route::post('shriramgiupdate/{id}', [AdminController::class, 'shriramgiupdate'])->name('shriramgiupdate');
 
 
         Route::get('user', [AdminController::class, 'user'])->name('admin.user');

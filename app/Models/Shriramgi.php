@@ -48,7 +48,8 @@ class Shriramgi extends Model
         'sgst_amount',
         'cgst_amount',
 
-        'net_premium'
+        'net_premium',
+        'agent_id'
        
     ];
 }
