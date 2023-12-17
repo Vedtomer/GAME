@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" >
+                    <a href="/" >
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Home
                     </a>
@@ -72,18 +72,18 @@
                        
                     
                     {{-- </ul> --}}
-                    <li  >
+                <li  >
                         <a href="transaction">
                             <i class="metismenu-icon pe-7s-display2"></i>
                             Transaction
                         </a>
                     </li>
-                <li>
+                {{-- <li>
                     <a href="">
                         <i class="metismenu-icon pe-7s-car"></i>
-                        Components
+                        Components  --}}
                         {{-- <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> --}}
-                    </a>
+                    {{-- </a> --}}
                     {{-- <ul>
                         <li>
                             <a href="components-tabs.html">
@@ -152,7 +152,7 @@
                             </a>
                         </li>
                     </ul> --}}
-                </li>
+                {{-- </li>
               
                 <li class="app-sidebar__heading"></li>
                 <li>
@@ -160,9 +160,9 @@
                         <i class="metismenu-icon pe-7s-display2"></i>
                         Dashboard Boxes
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="app-sidebar__heading">Forms</li> --}}
-                <li>
+                {{-- <li>
                     <a href="">
                         <i class="metismenu-icon pe-7s-mouse">
                         </i>Forms Controls
@@ -179,22 +179,22 @@
                         <i class="metismenu-icon pe-7s-pendrive">
                         </i>Forms Validation
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="app-sidebar__heading">Charts</li> --}}
-                <li>
+                {{-- <li>
                     <a href="">
                         <i class="metismenu-icon pe-7s-graph2">
                         </i>ChartJS
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="app-sidebar__heading">PRO Version</li> --}}
-                <li>
+                {{-- <li>
                     <a href="https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/" target="_blank">
                         <i class="metismenu-icon pe-7s-graph2">
                         </i>
                         Upgrade to PRO
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>
