@@ -3,7 +3,7 @@
 // namespace App\Http\Controllers;
 namespace App\Http\Controllers\Agent;
 use App\Models\User;
-
+use App\Models\Result;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -184,9 +184,64 @@ class AgentController extends Controller
         return redirect()->route('user');
     }
 
-    public function result(){
-        return view('agent.result');
+    // public function result(){
+    //     return view('agent.result');
+    // }
+    public function result()
+    {
+        $users = Result::all();
+        return view('agent.result', ['data' => $users]);
     }
+    public function resultsave(Request $request)
+    {
+        $validate = $request->validate([
+            'number_70' => 'required|int|',
+            'number_60' => 'required||int:result',
+            'timesloat' => 'required|',
+        ]);
+
+        $userdata = new Result();
+        $userdata->number_70 = $request->number_70;
+        $userdata->number_60 = $request->number_60;
+        $userdata->timesloat = $request->timesloat;
+
+        $userdata->save();
+        session()->flash('success', 'User created successfully.');
+        return redirect()->route('result');
+    }
+
+    public function resultedit(string $id)
+    {
+        $userData = Result::find($id); 
+    
+        if (!$userData) {
+            // Handle the case where the record with the given ID is not found
+            abort(404);
+        }
+    
+        return view('agent.resultedit', ['data' => $userData]);
+    }
+
+public function resultupdate(Request $request, $id)
+{
+    // return $request;
+      $USER = DB::table('result')->where('id', $id)->update([
+       
+
+        'number_70' => $request->number_70,
+        'number_60' => $request->number_60,
+        'timesloat' => $request->timesloat,
+
+
+    ]);
+    return redirect()->route('result')->with('success', 'update successfully.');
+   
+}
+public function resultdelete(string $id)
+{
+    $userdata = DB::table('result')->where('id', $id)->delete();
+    return redirect()->route('result');
+}
     public function profile(){
         return view('agent.profile');
     }

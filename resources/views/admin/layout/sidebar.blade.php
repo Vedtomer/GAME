@@ -56,7 +56,7 @@
                
               
                 <li>
-                    <a href="">
+                    <a href="result">
                         <i class="metismenu-icon pe-7s-diamond"></i>
                         Result
                         

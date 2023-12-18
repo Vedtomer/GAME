@@ -98,7 +98,11 @@ Route::middleware('auth:agent')->group(function () {
     // route::get('main', [AgentController::class, 'newheader']);
     // route::get('user', [AgentController::class, 'user']);
     // route::post('user', [AgentController::class, 'usersave'])->name('agent.usersave');
-    // route::get('result', [AgentController::class, 'result']);
+    route::get('result', [AgentController::class, 'result'])->name('result');
+    Route::post('result', [AgentController::class, 'resultsave'])->name('result.save');
+    route::get('resultedit/{id}', [AgentController::class, 'resultedit'])->name('resultedit');
+    Route::post('resultupdate/{id}', [AgentController::class, 'resultupdate'])->name('resultupdate');
+    route::get('resultdelete/{id}', [AgentController::class, 'resultdelete'])->name('resultdelete');
     // route::get('profile', [AgentController::class, 'profile']);
     // Route::get('/header', [AgentController::class, 'header'])->name('agent.header');
     // Route::get('/change-password', [AgentController::class, 'showChangePasswordForm'])->name('agent.change-password');
