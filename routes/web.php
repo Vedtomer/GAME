@@ -27,6 +27,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+route::get("/",[AdminController::class,"home"]);
+
 
 
 
@@ -59,13 +61,14 @@ Route::prefix('admin')->group(function () {
         // route::get('newedit/{id}', [AdminController::class, 'edit'])->name('newedit');
         // Route::post('newupdate/{id}', [AdminController::class, 'newupdate'])->name('newupdate');
         // route::get('delete/{id}', [AdminController::class, 'delete'])->name('delete');
-        route::get('transaction', [AdminController::class, 'transaction']);
-
+        route::get('transaction', [AdminController::class, 'transaction'])->name('transaction');
+        // Route::match(['get', 'post'], 'transaction/{id}', [AdminController::class, 'transaction'])->name('transaction');
         route::get('newhome', [AdminController::class, 'newhome']);
         route::get('main', [AdminController::class, 'newheader']);
       
 
         Route::get('user', [AdminController::class, 'user'])->name('user');
+        Route::get('useradd', [AdminController::class, 'useradd'])->name('admin.useradd');
         Route::post('user', [AdminController::class, 'usersave'])->name('user.save');
         // Route::get('user', [AdminController::class, 'displayUsers'])->name('user.list');
         Route::get('admin/user', [AdminController::class, 'displayUsers'])->name('admin.user');
@@ -75,14 +78,23 @@ Route::prefix('admin')->group(function () {
         route::get('userdelete/{id}', [AdminController::class, 'userdelete'])->name('userdelete');
         // route::get('result', [AdminController::class, 'result']);
         route::get('result', [AdminController::class, 'result'])->name('admin.result');
+        Route::get('resultadd', [AdminController::class, 'resultadd'])->name('admin.resultadd');
         Route::post('result', [AdminController::class, 'resultsave'])->name('admin.result.save');
         route::get('resultedit/{id}', [AdminController::class, 'resultedit'])->name('admin.resultedit');
         Route::post('resultupdate/{id}', [AdminController::class, 'resultupdate'])->name('admin.resultupdate');
         route::get('resultdelete/{id}', [AdminController::class, 'resultdelete'])->name('admin.resultdelete');
         route::get('profile', [AdminController::class, 'profile']);
         Route::get('/header', [AdminController::class, 'header'])->name('admin.header');
-        Route::get('/change-password', [AdminController::class, 'showChangePasswordForm'])->name('change-password');
-Route::post('/change-password', [AdminController::class, 'changePassword'])->name('change.password');
+        Route::get('change-password/{id}', [AdminController::class, 'showChangePasswordForm'])->name('change-password');
+
+        // Handle the change password form submission (POST request)
+        Route::post('change-password', [AdminController::class, 'changePassword'])->name('change.password');
+
+        // Route::get('amount/{id}', [AdminController::class, 'amount'])->name('amount');
+        // Route::post('amount/{id}', [AdminController::class, 'amountsave'])->name('amountsave');
+        Route::match(['get', 'post'], 'amount/{id}', [AdminController::class, 'amount'])->name('amount');
+        Route::match(['get', 'post'], 'withdrawal/{id}', [AdminController::class, 'withdrawal'])->name('withdrawal');
+
     });
 });
 

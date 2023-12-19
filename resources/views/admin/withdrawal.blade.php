@@ -1,5 +1,5 @@
 @extends('admin.layout.main')
-@section('title', 'User Edit')
+@section('title', 'Amount')
 @section('section')
 
 @if(session('error'))
@@ -14,37 +14,37 @@
         <div class="row">
             <div class="col-12">
                   
-        <form method="post" action="{{route('userupdate' , $data->id)}}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('withdrawal', $id) }}" enctype="multipart/form-data">
             @csrf
-            {{-- <h1>form data</h1> --}}
 
             <div class="mb-8">
-                <label >name</label>
-                <input type="text" class="form-control" name="name" value="{{$data->name}}" >
+                <input type="hidden" class="form-control" name="user_id" value="" >
               </div>
-              <br><br>
+              <br>
 
             <div class="mb-8">
-              <label >username</label>
-              <input type="email" class="form-control" name="email" value="{{$data->email}}" >
+              <input type="hidden" class="form-control" name="withdrawal" value="withdrawal">
             </div>
             <br>
-
-       
-
+            <div class="mb-8">
             
+                <input type="text" class="form-control" name="amount" placeholder="withdrawal" >
+              </div>
+              <br>
             <div class="d-flex justify-content-center">
-              <!-- Centered button -->
-              <button type="submit" class="btn btn-primary mr-2">Update</button>
+              <button type="submit" class="btn btn-primary mr-2">Submit</button>
               <a href="{{ route('admin.user') }}" class="btn btn-info">Back</a>
           </div>
-            {{-- <a class="btn btn-primary" href=" {{route('user') }} ">show all data</a> --}}
           </form>
             </div>
         </div>
       </div>
+      
     </div> 
   </div>
+
+
+
       </div>
    
 

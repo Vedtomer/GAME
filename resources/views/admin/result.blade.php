@@ -1,4 +1,5 @@
 @extends('admin.layout.main')
+@section('title', 'Result')
 @section('section')
 
 <style>
@@ -12,7 +13,7 @@
         background-color: #fff;
         border-radius: 5px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    }
+            }
 
     /* Styles for the modal container */
     .modal-container {
@@ -89,9 +90,9 @@
 
 
     <div class="add" style="display: flex; align-items: center;">
-        <h5 class="card-title">Show Result</h5>
+        {{-- <h5 class="card-title">Show Result</h5> --}}
         <div class="btns" style="margin-left: auto;">
-            <button id="openModalBtn" class="btn btn-secondary">Add Result</button>
+            <a href="{{ route('admin.resultadd') }}" id="openModalBtn" class="btn btn-secondary">Add Result</a>
         </div>
     </div>
     {{-- <div class="btns" style="margin-left: auto;">
@@ -166,6 +167,22 @@
                           <option value="17:15">17:15</option>
                           <option value="17:30">17:30</option>
                           <option value="17:45">17:45</option>
+                          <option value="18:00">18:00</option>
+                          <option value="18:15">18:15</option>
+                          <option value="18:30">18:30</option>
+                          <option value="18:45">18:45</option>
+                          <option value="19:00">19:00</option>
+                          <option value="19:15">19:15</option>
+                          <option value="19:30">19:30</option>
+                          <option value="19:45">19:45</option>
+                          <option value="20:00">20:00</option>
+                          <option value="20:15">20:15</option>
+                          <option value="20:30">20:30</option>
+                          <option value="20:45">20:45</option>
+                          <option value="21:00">21:00</option>
+                          <option value="21:15">21:15</option>
+                          <option value="21:30">21:30</option>
+                         
                         </select>
                       </div>
                       
@@ -199,7 +216,7 @@
                      
                         {{-- <th style="width: 10%" scope="col">View</th> --}}
                         <th style="width: 15%" scope="col">Action</th>
-                        <th style="width: 15%" scope="col">Delete</th>
+                        {{-- <th style="width: 15%" scope="col">Delete</th> --}}
                         <!-- Adjust the widths as needed -->
                     </tr>
                 </thead>
@@ -210,8 +227,8 @@
                             <td>{{ $user->number_70 }}</td>
                             <td>{{ $user->number_60 }}</td>
                             <td>{{ $user->timesloat }}</td>
-                            <td><a class="btn btn-success" href="{{route('admin.resultedit',$user->id)}}">Update</a></td>
-                            <td><a class="btn btn-danger" href="{{route('admin.resultdelete',$user->id)}}">Delete</a></td>
+                            <td><a class="btn " href="{{route('admin.resultedit',$user->id)}}"><i class="fa fa-edit" style="font-size:24px"></i></a></td>
+                            {{-- <td><a class="btn btn-danger" href="{{route('admin.resultdelete',$user->id)}}">Delete</a></td> --}}
                             <!-- Add more columns as needed -->
                         </tr>
                     @endforeach
@@ -241,7 +258,7 @@
 
  
 
-    <script>
+    {{-- <script>
         // Function to open the modal
     function openModal() {
         document.getElementById("myModal").style.display = "flex";
@@ -254,6 +271,6 @@
 
     // Event listener for the open modal button
     document.getElementById("openModalBtn").addEventListener("click", openModal);
-    </script>
+    </script> --}}
 
     @endsection

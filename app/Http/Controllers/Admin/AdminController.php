@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 use App\Models\Result;
+use App\Models\Transaction;
+
 class AdminController extends Controller
 {
 
@@ -129,36 +131,52 @@ class AdminController extends Controller
 
 
 
-    public function showChangePasswordForm()
+    // public function showChangePasswordForm()
+    // {
+    //     return view('admin.change-password');
+    // }
+
+    // public function changePassword(Request $request)
+    // {
+    //     $request->validate([
+    //         'current_password' => 'required|',
+    //         'new_password' => 'required|min:8|confirmed',
+    //     ]);
+
+    //     return redirect()->route('userdata')->with('success', 'Password changed successfully.');
+
+    //     $user = Auth::user();
+
+    //     if (!Hash::check($request->current_password, $user->password)) {
+    //         return redirect()->back()->with('error', 'The current password is incorrect.');
+    //     }
+
+    //     $user->update([
+    //         'password' => bcrypt($request->new_password),
+    //     ]);
+
+    //     return redirect()->route('userdata')->with('success', 'Password changed successfully.');
+    // }
+    public function showChangePasswordForm($id)
     {
-        return view('admin.change-password');
+        $userdata = DB::table('users')->where('id', $id)->first();
+        return view('admin.change-password', ['data' => $userdata]);
     }
 
     public function changePassword(Request $request)
     {
         $request->validate([
-            'current_password' => 'required|',
-            'new_password' => 'required|min:8|confirmed',
+            'password' => 'required|min:8|confirmed',
         ]);
 
-        return redirect()->route('userdata')->with('success', 'Password changed successfully.');
+        $userId = $request->input('user_id');
+        $newPassword = $request->input('password');
 
-        $user = Auth::user();
-
-        if (!Hash::check($request->current_password, $user->password)) {
-            return redirect()->back()->with('error', 'The current password is incorrect.');
-        }
-
-        $user->update([
-            'password' => bcrypt($request->new_password),
+        DB::table('users')->where('id', $userId)->update([
+            'password' => Hash::make($newPassword),
         ]);
 
-        return redirect()->route('userdata')->with('success', 'Password changed successfully.');
-    }
-
-    public function newheader()
-    {
-        return view('admin.layout.main');
+        return redirect()->route('admin.user')->with('status', 'Password updated successfully!');
     }
 
 
@@ -168,6 +186,12 @@ class AdminController extends Controller
         $users = User::all();
         return view('admin.user', ['data' => $users]);
     }
+    public function useradd()
+    {
+      
+        return view('admin.useradd');
+    }
+    
     public function usersave(Request $request)
     {
         $validate = $request->validate([
@@ -233,6 +257,12 @@ public function userdelete(string $id)
     // {
     //     return view('admin.result');
     // }
+
+    public function resultadd()
+    {
+      
+        return view('admin.resultadd');
+    }
     public function result()
     {
         $users = Result::all();
@@ -292,14 +322,89 @@ public function resultdelete(string $id)
     {
         return view('admin.profile');
     }
+    
+    public function amount(Request $request, $id)
+    {
+        
+        if ($request->isMethod('post')) {
+            // Handle POST request (amountsave)
+            $validate = $request->validate([
+               
+                'amount' => 'required',
+            ]);
 
+            $userdata = new Transaction();
+            $userdata->user_id = $id;
+            $userdata->action = $request->add;
+
+            $userdata->amount = $request->amount;
+
+            $userdata->save();
+            session()->flash('success', 'User created successfully.');
+            return redirect()->route('admin.user');
+        }
+
+        // Handle GET request (showing the form)
+        $data = Transaction::all();
+        return view('admin.amount', ['data' => $data, 'id' => $id]);
+    }
+    public function withdrawal(Request $request, $id)
+    {
+        // return $request;
+        if ($request->isMethod('post')) {
+            // Handle POST request (amountsave)
+        //   return $request;
+            $validate =  $request->validate([
+               
+                'withdrawal' => 'required',
+            ]);
+
+            $userdata = new Transaction();
+            $userdata->user_id = $id;
+            $userdata->action = $request->withdrawal;
+
+            $userdata->amount = $request->amount;
+
+            $userdata->save();
+            session()->flash('success', 'User created successfully.');
+            return redirect()->route('admin.user');
+        }
+
+        // Handle GET request (showing the form)
+        $data = Transaction::all();
+        return view('admin.withdrawal', ['data' => $data, 'id' => $id]);
+    }
+    // public function amount($id)
+
+    // {
+    //     $Data = Transaction::all();
+    //     return view('admin.amount', ['data' => $Data]);
+    // }
+
+    // public function amountsave(Request $request)
+    // {
+    //     $validate = $request->validate([
+        
+    //         'amount' => 'required',
+    //     ]);
+
+    //     $userdata = new Transaction();
+    //     $userdata->amount = $request->amount;
+
+    //     $userdata->save();
+    //     session()->flash('success', 'User created successfully.');
+    //     return redirect()->route('admin.user');
+    // }
     public function  transaction()
     {
-        return view('admin.transaction');
+        $users = Transaction::all();
+        return view('admin.transaction', ['data' => $users]);
+        
     }
     public function  home()
     {
-        return view('admin.home');
+      $users = Result::wheredate('created_at', now()->toDateString())->get();
+        return view('home', ['data' => $users]);
     }
     public function  newhome()
     {

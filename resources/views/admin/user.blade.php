@@ -50,6 +50,7 @@
             top: 10px;
             right: 10px;
             font-size: 18px;
+            
         }
 
 
@@ -92,7 +93,7 @@
         <div class="add" style="display: flex; align-items: center;">
 
             <div class="btns" style="margin-left: auto;">
-                <button id="openModalBtn" class="btn btn-secondary">Add User</button>
+                <a href="useradd" id="openModalBtn" class="btn btn-secondary">Add User</a>
             </div>
         </div>
         {{-- <div class="btns" style="margin-left: auto;">
@@ -164,7 +165,10 @@
                             <th style="width: 20%" scope="col">Username</th>
 
                             {{-- <th style="width: 10%" scope="col">View</th> --}}
-                            <th style="width: 15%" scope="col">Action</th>
+                            <th style="width: 15% " scope="col">Amount</th>
+                            <th style="width: 15% " scope="col">Action</th>
+                           
+                            {{-- <th style="width: 15%" scope="col">Change Password</th> --}}
                             {{-- <th style="width: 15%" scope="col">Delete</th> --}}
                             <!-- Adjust the widths as needed -->
                         </tr>
@@ -175,10 +179,15 @@
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td><a class="btn btn-success" href="{{ route('useredit', $user->id) }}">Update</a></td>
+                                <td><a class="btn btn-primary" href="{{ route('amount', $user->id) }}">Add</a>
+                                    {{-- <td><a class="btn btn-danger" href="{{route('userdelete',$user->id)}}">Delete</a></td> --}}
+                                    <a class="btn btn-info" href="{{ route('withdrawal', $user->id) }}">withdrawal</a></td>
+                           
+                                <td><a class="btn " href="{{ route('useredit', $user->id) }}"><i class="fa fa-edit" style="font-size:24px"></i></a>
                                 {{-- <td><a class="btn btn-danger" href="{{route('userdelete',$user->id)}}">Delete</a></td> --}}
-                                <!-- Add more columns as needed -->
-                            </tr>
+                               <a class="btn " href="{{ route('change-password', $user->id) }}"><i class='fas fa-lock' style='font-size:24px'></i></a></td>
+                                <!-- Add more columns as needed --> 
+                             
                         @endforeach
                     </tbody>
                 </table>
@@ -206,7 +215,7 @@
 
 
 
-
+{{-- 
         <script>
             // Function to open the modal
             function openModal() {
@@ -220,6 +229,6 @@
 
             // Event listener for the open modal button
             document.getElementById("openModalBtn").addEventListener("click", openModal);
-        </script>
+        </script> --}}
 
     @endsection

@@ -59,7 +59,6 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         body {
-            /* background-image: url("https://designerapp.officeapps.live.com/designerapp/document.ashx?path=/fd37c62f99e15728/UserAssets/dalle-e2d02ac2-9126-41a9-8ddb-c8ab492d90480251700369109662118100.jpg&dcHint=IndiaCentral&fileToken=c8ba0579-377b-4fa1-950e-ed845c7c4678"); */
             background-image: url("{{ asset('images/WhatsApp Image 2023-12-07 at 1.14.57 PM.jpeg') }}");
             background-repeat: no-repeat;
             background-size: 100% 100%;
@@ -129,9 +128,7 @@
             padding: 10px;
             border-radius: 10px;
           
-            /* Box shadow for a subtle lift */
             font-size: 1.5em;
-            /* Adjust the font size as needed */
             color: white;
             margin-bottom: 15px;
 
@@ -161,12 +158,8 @@
 }
 .text {
     background-color: #333333;
-    /* padding: 8px;
-    padding-left: 4px;
-    padding-right: 4px; */
     margin: 5px;
     border-radius: 20px;
-    /* border: 1px solid rgb(9, 175, 244); */
     font-family: Montserrat, sans-serif;
     position: relative;
     margin-bottom: 0.75rem;
@@ -180,24 +173,16 @@
 
 }
 .texts{
-    /* box-shadow: 0 0 20px  #4b4663; */
     font-family: Montserrat, sans-serif;
     color: goldenrod;
     margin-bottom: 0.75rem;
-    /* font-size: 1.5rem; */
-    /* font-weight: 500; */
     text-transform: capitalize;
-    /* letter-spacing: 1.5px; */
-    /* line-height: 1.3; */
-    /* display: inline-block; */
-    /* color: #1e1e1e; */
     margin: 0;
     padding: 0px 0px 30px 0px;
     font-size: 26px;
     text-align: justify;
     font-family: Montserrat, sans-serif;
     font-weight: 700;
-    /* background-color: #4b4663; */
     
 }
 
@@ -242,9 +227,6 @@
                     <span id="currentTime">Next Draw : 08:40:PM</span>
                 </div>
             </div>
-
-          
-
             <div class="heading py-4 mb-5 shadow-dark">
                 <div class="container text-center">
                     <span class="text shadow-lg p-3">Today Lucky Draw</span>
@@ -254,29 +236,30 @@
                         <thead class="table-dark">
                             <tr>
                                 <th></th>
-                                @for ($i = 10; $i <= 61; $i++)
-                                    <th style="padding: 5px;">
-                                        {{ $i }}:{{ $i }}
-                                    </th>
-                                @endfor
+                                   @foreach($data as $user)
+                                   <th style="padding: 5px;">
+                                    {{$user->timesloat}}
+                                </th>
+                        @endforeach 
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td style="background-color: black; color:white; font-size:1.5rem;">60</td>
-                                @for ($i = 10; $i <= 61; $i++)
-                                 
-                                
-                                    <td>{{ $i }}</td>
-                                @endfor
+                                @foreach($data as $user)
+                                <td style="padding: 5px;">
+                                 {{$user->number_60}}
+                             </td>
+                     @endforeach 
                             </tr>
+
                             <tr>
                                 <td style="background-color: black; color:white;font-size:1.5rem;">70</td>
-                                @for ($i = 10; $i <= 61; $i++)
-                              
-                                    <td style="">{{ $i }}</td>
-
-                                @endfor
+                                @foreach($data as $user)
+                                <td style="padding: 5px;">
+                                 {{$user->number_70}}
+                             </td>
+                     @endforeach 
                             </tr>
                         </tbody>
                     </table>

@@ -43,7 +43,7 @@
                 </li>
                
                 <li>
-                    <a href="user">
+                    <a href="{{route('admin.user')}}">
                         <i class="metismenu-icon pe-7s-display2"></i>
                         Users
                     </a>
@@ -51,12 +51,18 @@
                
               
                 <li>
-                    <a href="result">
+                    <a href="{{route('admin.result')}}">
                         <i class="metismenu-icon pe-7s-diamond"></i>
                         Result
                         
                     </a>
                 </li>
+                {{-- <li>
+                    <a href="useradd">
+                        <i class="metismenu-icon pe-7s-display2"></i>
+                        </i>User Add
+                    </a>
+                </li> --}}
                     {{-- <ul>
                         <li>
                             <a href="elements-buttons-standard.html">
@@ -68,7 +74,7 @@
                     
                     {{-- </ul> --}}
                 <li  >
-                        <a href="transaction">
+                        <a href=" {{route('transaction')}}">
                             <i class="metismenu-icon pe-7s-display2"></i>
                             Transaction
                         </a>

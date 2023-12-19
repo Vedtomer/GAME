@@ -1,4 +1,5 @@
 @extends('admin.layout.main')
+@section('title', 'Admin ResultEdit')
 @section('section')
 
 
@@ -9,24 +10,27 @@
 </div>
 @endif
       <div class="container">
+        <div class="col-lg-7">
+          <div class="main-card mb-3 card">
+          <div class="card-body">
         <div class="row">
-            <div class="col-6">
+            <div class="col-12">
                   
         <form method="post" action="{{route('admin.resultupdate' , $data->id)}}" enctype="multipart/form-data">
             @csrf
-            <h1>form data</h1>
+            {{-- <h1>form data</h1> --}}
 
             <div class="mb-3">
                 <label >Number 70</label>
                 <input type="text" class="form-control" name="number_70" value="{{$data->number_70}}" >
               </div>
-              <br><br>
+              <br>
 
             <div class="mb-3">
               <label >Number 60</label>
               <input type="text" class="form-control" name="number_60" value="{{$data->number_60}}" >
             </div>
-            <br><br>
+            <br>
             <div class="form-group mb-3">
                 <label for="exampleDropdown">Select a time slot:</label>
                 <select class="form-control" id="exampleDropdown" name="timesloat">
@@ -67,19 +71,27 @@
                   <option value="17:15"{{ $data->timesloat == '17:15' ? 'selected' : '' }}>17:15</option>
                   <option value="17:30"{{ $data->timesloat == '17:30' ? 'selected' : '' }}>17:30</option>
                   <option value="17:45" {{ $data->timesloat == '17:45' ? 'selected' : '' }}>17:45</option>
+                  
                 </select>
                 </select>
               </div>
 
        
 
-            
-            <button type="submit" class="btn btn-primary">update</button>
+              <div class="d-flex justify-content-center">
+                <!-- Centered button -->
+                <button type="submit" class="btn btn-primary  mr-2">Update</button>
+                <a href="{{ route('admin.result') }}" class="btn btn-info">Back</a>
+            </div>
+            {{-- <button type="submit" class="btn btn-primary">update</button> --}}
             {{-- <a class="btn btn-primary" href=" {{route('user') }} ">show all data</a> --}}
           </form>
             </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
    
 
 @endsection
