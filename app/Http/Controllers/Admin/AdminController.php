@@ -111,7 +111,7 @@ class AdminController extends Controller
 
 
         ]);
-        return redirect()->route('userdata')->with('error', 'update successfully.');
+        return redirect()->route('admin.user')->with('error', 'update successfully.');
         // ]);
     }
 
@@ -216,7 +216,7 @@ public function userupdate(Request $request, $id)
 
 
     ]);
-    return redirect()->route('admin.user')->with('success', 'update successfully.');
+    return redirect()->route('user')->with('success', 'update successfully.');
     // ]);
 }
 public function userdelete(string $id)

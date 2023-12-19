@@ -52,13 +52,13 @@ Route::prefix('admin')->group(function () {
 
         Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
-        Route::get('/userdata', [AdminController::class, 'userdata'])->name('userdata');
-        Route::post('/userdata', [AdminController::class, 'userstore'])->name('userdata.store');
-        route::get('userdata/{id}', [AdminController::class, 'view'])->name('view');
-        route::get('newview/{id}', [AdminController::class, 'newview'])->name('newview');
-        route::get('newedit/{id}', [AdminController::class, 'edit'])->name('newedit');
-        Route::post('newupdate/{id}', [AdminController::class, 'newupdate'])->name('newupdate');
-        route::get('delete/{id}', [AdminController::class, 'delete'])->name('delete');
+        // Route::get('/userdata', [AdminController::class, 'userdata'])->name('userdata');
+        // Route::post('/userdata', [AdminController::class, 'userstore'])->name('userdata.store');
+        // route::get('userdata/{id}', [AdminController::class, 'view'])->name('view');
+        // route::get('newview/{id}', [AdminController::class, 'newview'])->name('newview');
+        // route::get('newedit/{id}', [AdminController::class, 'edit'])->name('newedit');
+        // Route::post('newupdate/{id}', [AdminController::class, 'newupdate'])->name('newupdate');
+        // route::get('delete/{id}', [AdminController::class, 'delete'])->name('delete');
         route::get('transaction', [AdminController::class, 'transaction']);
 
         route::get('newhome', [AdminController::class, 'newhome']);
