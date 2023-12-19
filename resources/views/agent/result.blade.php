@@ -91,7 +91,7 @@
     <div class="add" style="display: flex; align-items: center;">
         <h5 class="card-title">Show Result</h5>
         <div class="btns" style="margin-left: auto;">
-            <button id="openModalBtn" class="btn btn-secondary">Add Result</button>
+            {{-- <button id="openModalBtn" class="btn btn-secondary">Add Result</button> --}}
         </div>
     </div>
     {{-- <div class="btns" style="margin-left: auto;">
@@ -198,8 +198,8 @@
                         <th style="width: 20%" scope="col">timesloat</th>
                      
                         {{-- <th style="width: 10%" scope="col">View</th> --}}
-                        <th style="width: 15%" scope="col">Action</th>
-                        <th style="width: 15%" scope="col">Delete</th>
+                        {{-- <th style="width: 15%" scope="col">Action</th> --}}
+                        {{-- <th style="width: 15%" scope="col">Delete</th> --}}
                         <!-- Adjust the widths as needed -->
                     </tr>
                 </thead>
@@ -210,8 +210,8 @@
                             <td>{{ $user->number_70 }}</td>
                             <td>{{ $user->number_60 }}</td>
                             <td>{{ $user->timesloat }}</td>
-                            <td><a class="btn btn-success" href="{{route('resultedit',$user->id)}}">Update</a></td>
-                            <td><a class="btn btn-danger" href="{{route('resultdelete',$user->id)}}">Delete</a></td>
+                            {{-- <td><a class="btn btn-success" href="{{route('resultedit',$user->id)}}">Update</a></td> --}}
+                            {{-- <td><a class="btn btn-danger" href="{{route('resultdelete',$user->id)}}">Delete</a></td> --}}
                             <!-- Add more columns as needed -->
                         </tr>
                     @endforeach

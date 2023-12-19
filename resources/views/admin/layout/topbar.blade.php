@@ -61,6 +61,18 @@
             </ul>
         </div> --}}
         <div class="app-header-right">
+                <div class="wallet" style="display: flex; align-items: center;">
+               
+                <a href="" style="display: flex;">
+                    <i class='fas fa-wallet' style='font-size:24px'></i>
+                    
+                    <div class="box" style="margin-left: auto;">
+                        <h5><b> : 100</b></h5>
+                        
+                    </div>
+                </a>
+            </div>
+            
            
             
             

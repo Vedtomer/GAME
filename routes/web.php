@@ -73,7 +73,12 @@ Route::prefix('admin')->group(function () {
         route::get('useredit/{id}', [AdminController::class, 'useredit'])->name('useredit');
         Route::post('userupdate/{id}', [AdminController::class, 'userupdate'])->name('userupdate');
         route::get('userdelete/{id}', [AdminController::class, 'userdelete'])->name('userdelete');
-        route::get('result', [AdminController::class, 'result']);
+        // route::get('result', [AdminController::class, 'result']);
+        route::get('result', [AdminController::class, 'result'])->name('admin.result');
+        Route::post('result', [AdminController::class, 'resultsave'])->name('admin.result.save');
+        route::get('resultedit/{id}', [AdminController::class, 'resultedit'])->name('admin.resultedit');
+        Route::post('resultupdate/{id}', [AdminController::class, 'resultupdate'])->name('admin.resultupdate');
+        route::get('resultdelete/{id}', [AdminController::class, 'resultdelete'])->name('admin.resultdelete');
         route::get('profile', [AdminController::class, 'profile']);
         Route::get('/header', [AdminController::class, 'header'])->name('admin.header');
         Route::get('/change-password', [AdminController::class, 'showChangePasswordForm'])->name('change-password');

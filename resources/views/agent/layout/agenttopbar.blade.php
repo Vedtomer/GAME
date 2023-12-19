@@ -92,9 +92,24 @@
                 <div class="widget-content p-0">
                   
                     <div class="widget-content-wrapper">
-                        <div class="widget-content-left">
+                        <div class="widget-content-left header-user-info ml-3">
                             
-                            <div class="btn-group">
+
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="simpleDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
+                                class="btn-shadow mr-3 btn btn-dark">
+                                <i class="fa fa-star"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="simpleDropdown">
+                                    <!-- Dropdown items -->
+                                      <a href="change-password"><button type="button" tabindex="0"
+                                            class="dropdown-item">change password</button></a>
+                                            <a href="{{ URL::to(Auth::guard('admin')->check() ? 'admin/logout' : 'logout') }}">
+                                                <button type="button" tabindex="0" class="dropdown-item">Logout</button>
+                                            </a>
+                                </div>
+                            </div>
+                            {{-- <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
                                     <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
@@ -112,7 +127,7 @@
 
 
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         {{-- <div class="widget-content-left  ml-3 header-user-info">
                             <div class="widget-heading">
@@ -123,11 +138,11 @@
                             </div>
                         </div> --}}
                         <div class="widget-content-right header-user-info ml-3">
-                            <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
+                            {{-- <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
                                 class="btn-shadow mr-3 btn btn-dark">
                                 <i class="fa fa-star"></i>
 
-                            </button>
+                            </button> --}}
 
                             {{-- <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                 class="btn-shadow dropdown-toggle btn btn-info">

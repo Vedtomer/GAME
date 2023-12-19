@@ -240,7 +240,7 @@ public function resultupdate(Request $request, $id)
 public function resultdelete(string $id)
 {
     $userdata = DB::table('result')->where('id', $id)->delete();
-    return redirect()->route('result');
+    return redirect()->route('result')->with('error', 'Delete successfully.');
 }
     public function profile(){
         return view('agent.profile');

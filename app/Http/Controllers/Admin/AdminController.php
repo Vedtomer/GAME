@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
-
+use App\Models\Result;
 class AdminController extends Controller
 {
 
@@ -229,10 +229,65 @@ public function userdelete(string $id)
 
 
 
+    // public function result()
+    // {
+    //     return view('admin.result');
+    // }
     public function result()
     {
-        return view('admin.result');
+        $users = Result::all();
+        return view('admin.result', ['data' => $users]);
     }
+    public function resultsave(Request $request)
+    {
+        $validate = $request->validate([
+            'number_70' => 'required|int|',
+            'number_60' => 'required||int:result',
+            'timesloat' => 'required|',
+        ]);
+
+        $userdata = new Result();
+        $userdata->number_70 = $request->number_70;
+        $userdata->number_60 = $request->number_60;
+        $userdata->timesloat = $request->timesloat;
+
+        $userdata->save();
+        session()->flash('success', 'User created successfully.');
+        return redirect()->route('admin.result');
+    }
+
+    public function resultedit(string $id)
+    {
+        $userData = Result::find($id); 
+    
+        if (!$userData) {
+            // Handle the case where the record with the given ID is not found
+            abort(404);
+        }
+    
+        return view('admin.resultedit', ['data' => $userData]);
+    }
+
+public function resultupdate(Request $request, $id)
+{
+    // return $request;
+      $USER = DB::table('result')->where('id', $id)->update([
+       
+
+        'number_70' => $request->number_70,
+        'number_60' => $request->number_60,
+        'timesloat' => $request->timesloat,
+
+
+    ]);
+    return redirect()->route('admin.result')->with('success', 'update successfully.');
+   
+}
+public function resultdelete(string $id)
+{
+    $userdata = DB::table('result')->where('id', $id)->delete();
+    return redirect()->route('admin.result')->with('error', 'Delete successfully.');
+}
     public function profile()
     {
         return view('admin.profile');

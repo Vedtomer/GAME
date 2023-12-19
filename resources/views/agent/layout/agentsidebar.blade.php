@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" >
+                    <a href="/" >
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Home
                     </a>
