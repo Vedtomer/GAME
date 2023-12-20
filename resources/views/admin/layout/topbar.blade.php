@@ -101,7 +101,7 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="simpleDropdown">
                                     <!-- Dropdown items -->
-                                    <a href="change-password"><button type="button" tabindex="0"
+                                    <a href="adminchangepassword"><button type="button" tabindex="0"
                                             class="dropdown-item">change password</button></a>
                                     <a href="{{ URL::to(Auth::guard('admin')->check() ? 'admin/logout' : 'logout') }}">
                                         <button type="button" tabindex="0" class="dropdown-item">Logout</button>

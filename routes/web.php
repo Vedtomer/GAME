@@ -85,6 +85,10 @@ Route::prefix('admin')->group(function () {
         route::get('resultdelete/{id}', [AdminController::class, 'resultdelete'])->name('admin.resultdelete');
         route::get('profile', [AdminController::class, 'profile']);
         Route::get('/header', [AdminController::class, 'header'])->name('admin.header');
+        Route::get('adminchangepassword', [AdminController::class, 'adminshowChangePassword'])->name('admin.adminchangepassword');
+
+
+        Route::post('adminchangepassword', [AdminController::class, 'adminchangePassword'])->name('adminchange.password');
         Route::get('change-password/{id}', [AdminController::class, 'showChangePasswordForm'])->name('change-password');
 
         // Handle the change password form submission (POST request)

@@ -188,6 +188,33 @@ public function changePassword(Request $request)
     return redirect()->route('admin.user')->with('success', 'Password updated successfully!');
 }
 
+public function adminshowChangePassword()
+{
+    // $userdata = DB::table('admins')->where('id', $id)->first();
+    return view('admin.adminchangepassword');
+}
+
+public function adminchangePassword(Request $request)
+{
+    // return $request;
+    $request->validate([
+        'password' => 'required|min:8',
+        'confirm_password' => 'required|min:8',
+    ]);
+
+    $auth = Auth::user();
+    $newPassword = $request->input('password');
+    $confirm_password = $request->input('confirm_password');
+    if($newPassword === $confirm_password){
+        DB::table('admins')->where('id', $auth->id)->update([
+            'password' => Hash::make($newPassword),
+        ]);
+    }else{
+        return redirect()->back()->with('error', 'The  password is not match.');
+    }
+    return redirect()->route('admin.user')->with('success', 'Password updated successfully!');
+}
+
 
 
     public function user()
