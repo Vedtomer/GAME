@@ -327,33 +327,34 @@ public function resultdelete(string $id)
     {
         
         if ($request->isMethod('post')) {
-            // Handle POST request (amountsave)
-            $validate = $request->validate([
-               
+            $validate = $request->validate([   
                 'amount' => 'required',
             ]);
-
             $userdata = new Transaction();
             $userdata->user_id = $id;
             $userdata->action = $request->add;
-
             $userdata->amount = $request->amount;
+           
 
+            $user =User::where('id',$id)->first();
+            $amount=$user->balance+$request->amount;
+            $user->balance=floatval($amount);
+            $userdata->balance=$user->balance;
             $userdata->save();
-            session()->flash('success', 'User created successfully.');
+            $user->save();
+            session()->flash('success', 'Amount Added successfully.');
             return redirect()->route('admin.user');
         }
 
-        // Handle GET request (showing the form)
+        
         $data = Transaction::all();
         return view('admin.amount', ['data' => $data, 'id' => $id]);
     }
+
     public function withdrawal(Request $request, $id)
     {
-        // return $request;
         if ($request->isMethod('post')) {
-            // Handle POST request (amountsave)
-        //   return $request;
+       
             $validate =  $request->validate([
                
                 'withdrawal' => 'required',
@@ -365,8 +366,23 @@ public function resultdelete(string $id)
 
             $userdata->amount = $request->amount;
 
+           
+
+            $user =User::where('id',$id)->first();
+            $epsilon = 0.0001; // or any other small value
+if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
+    session()->flash('error', 'Insufficient balance.');
+    return redirect()->route('admin.user');
+}
+
+            $amount=$user->balance-$request->amount;
+
+            $user->balance=floatval($amount);
+            $userdata->balance=$user->balance;
             $userdata->save();
-            session()->flash('success', 'User created successfully.');
+            $user->save();
+            
+            session()->flash('success', 'Amount Debit successfully.');
             return redirect()->route('admin.user');
         }
 

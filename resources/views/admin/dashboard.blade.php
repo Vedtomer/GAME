@@ -1,7 +1,7 @@
 @extends('admin.layout.main')
 @section('section')
          <div class="row">
-                        <div class="col-md-6 col-xl-4">
+                        {{-- <div class="col-md-6 col-xl-4">
                             <div class="card mb-3 widget-content bg-midnight-bloom">
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
@@ -52,7 +52,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 @endsection
 

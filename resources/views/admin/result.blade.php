@@ -212,7 +212,7 @@
                         <th style="width: 5%" scope="col">ID</th>
                         <th style="width: 20%" scope="col">Number 70</th>
                         <th style="width: 20%" scope="col">Number 60</th>
-                        <th style="width: 20%" scope="col">timesloat</th>
+                        <th style="width: 20%" scope="col">Time</th>
                      
                         {{-- <th style="width: 10%" scope="col">View</th> --}}
                         <th style="width: 15%" scope="col">Action</th>

@@ -364,7 +364,7 @@
                                             <span></span>
                                             <td style="font-weight: bold;">
                                                 <span id="Span7"></span><br>
- {{-- <input type="text" id="initialValue" name="initialValue" required oninput="updateValues()"> --}}
+
  <input readonly name="t_r1" class="black-a" id="t_r1" value="A"
                                                     style="text-align: center;" maxlength="4" max="9999">
                                             </td>
@@ -429,13 +429,7 @@
                                             <td style="font-weight: bold; " class="QTY">
                                                 <span id="lbl_jdamt2">0.00</span>
                                             </td>
-                                            {{-- <td><span class="result" id="lbl_r2">19:15 </span></td>
-                                            <td>
-                                                <span class="result" id="ts11">6030</span>
-                                            </td>
-                                            <td>
-                                                <span class="result" id="ts12">7022</span>
-                                            </td> --}}
+                                         
 
                                             <td>
                                                 <span class="result" id="ts14"></span>
@@ -444,9 +438,7 @@
                                         <tr>
                                             <td style="font-weight: bold; ">
 
-                                                {{-- <span id="lbl_g2"><b>Mix</b> </span> --}}
-                                                {{-- <input name="chkgnames" id="chkgname4" onclick="selectSjodi(4);"
-                                                    type="checkbox"> --}}
+
 
 
                                             </td>
@@ -524,13 +516,7 @@
                                             <td style="font-weight: bold; " class="QTY">
                                                 <span id="lbl_jdamt4">0.00</span>
                                             </td>
-                                            {{-- <td><span class="result" id="lbl_r3">19:00 </span></td>
-                                            <td>
-                                                <span class="result" id="ts21">6012</span>
-                                            </td>
-                                            <td>
-                                                <span class="result" id="ts22">7039</span>
-                                            </td> --}}
+                                           
 
                                             <td>
                                                 <span class="result" id="ts24"></span>
@@ -612,14 +598,7 @@
                                             <td style="font-weight: bold; " class="QTY">
                                                 <span id="lbl_jdamt3">0.00</span>
                                             </td>
-                                            {{-- <td><span class="result" id="lbl_r4">18:45 </span></td>
-                                            <td>
-                                                <span class="result" id="ts31">6092</span>
-                                            </td>
-                                            <td>
-                                                <span class="result" id="ts32">7091</span>
-                                            </td>
-                                            --}}
+                                            
                                             <td>
                                                 <span class="result" id="ts34"></span>
                                             </td>
@@ -731,13 +710,7 @@
                                             <td style="font-weight: bold; " class="QTY">
                                                 <span id="lbl_jdamt5">0</span>
                                             </td>
-                                            {{-- <td><span class="result" id="lbl_r5">18:30 </span></td>
-                                            <td>
-                                                <span class="result" id="ts41">6025</span>
-                                            </td>
-                                            <td>
-                                                <span class="result" id="ts42">7027</span>
-                                            </td> --}}
+                                           
 
                                             <td>
                                                 <span class="result" id="ts44"></span>
@@ -853,13 +826,7 @@
                                             <td style="font-weight: bold; " class="QTY">
                                                 <span id="lbl_jdamt6">0</span>
                                             </td>
-                                            {{-- <td><span class="result" id="lbl_r6">18:15 </span></td>
-                                            <td>
-                                                <span class="result" id="ts51">6069</span>
-                                            </td>
-                                            <td>
-                                                <span class="result" id="ts52">7037</span>
-                                            </td> --}}
+                                          
 
                                             <td>
                                                 <span class="result" id="ts54"></span>
@@ -942,13 +909,7 @@
                                             <td style="font-weight: bold; " class="QTY">
                                                 <span id="lbl_jdamt7">0</span>
                                             </td>
-                                            {{-- <td><span class="result" id="lbl_r7">18:00 </span></td>
-                                            <td>
-                                                <span class="result" id="ts61">6040</span>
-                                            </td>
-                                            <td>
-                                                <span class="result" id="ts62">7045</span>
-                                            </td> --}}
+                                         
 
                                             <td>
                                                 <span class="result" id="ts64"></span>
@@ -1213,54 +1174,17 @@
                                             <td style="font-weight: bold; " class="QTY">
                                                 <span id="lbl_jdamt10">0</span>
                                             </td>
-                                            {{-- <td style="font-weight: bold;"><span class="result" id="lbl_r10">17:15
-                                                </span></td>
-
-                                            <td>
-                                                <span class="result" id="ts91">6057</span>
-                                            </td>
-                                            <td>
-                                                <span class="result" id="ts92">7009</span>
-                                            </td> --}}
+                                           
 
                                             <td>
                                                 <span class="result" id="ts94"></span>
                                             </td>
                                         </tr>
                                         <tr style="height: 40px; text-align:center;">
-  {{-- <td colspan="11">                                        {{-- <td colspan="11" style="text-align:center"> --}}
+
 
 </td>   
-{{-- 
-    
-                                                <button name="bt_clear" id="Button3" onclick="Result();"
-                                                    value="Clear">Result(F8)</button> --}}
-                                                {{-- <button name="bt_report" id="Button2" onclick="Report();"
-                                                    value="Report">Report(F4)</button> --}}
 
-
-                                                {{-- <button name="bt_cancel" id="bt_cancel" onclick="Cancel();"
-                                                    value="Login">Cancel(F10)</button> --}}
-                                                {{-- <button name="bt_cancel" id="Button5" onclick="Reprint();" value="Login"
-                                                    style="display: none;">Reprint(F2)</button> --}}
-                                            
-                                                {{-- <button name="bt_change" id="btnchange" onclick="Changepass();"
-                                                    value="Submit">Password</button> --}}
-                                            {{-- </td> --}}
-                                            {{-- <td style="text-align: right; font-weight: bold;">Total
-                                            </td>
-
-                                            <td style="font-weight: bold;">
-                                                <span id="lbl_jdqty">0</span>
-                                            </td>
-                                            <td style="font-weight: bold;">
-                                                <span id="lbl_jdamt">0.00</span>
-                                            </td> --}}
-
-                                          
-                                            {{-- <td colspan="3"> <input name="t_claim" id="t_claim"
-                                                    style=" font-weight: bold; font-size: 12px; width: 120px; display: none;"
-                                                    onkeyup="claimnew();" type="tel" min="0"></td> --}}
                                         </tr>
                                     </tbody>
                                 </table>
