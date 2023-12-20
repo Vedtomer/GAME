@@ -192,12 +192,15 @@
             /* opacity: 0.8; */
             border-bottom: 2px solid rgb(9, 175, 244);
             
+            
         }
         .heading {
             background-color: #1a1a1a;
             /* opacity: 0.8; */
             border-bottom: 2px solid rgb(9, 175, 244);
+            
         }
+
     </style>
 </head>
 
@@ -231,38 +234,49 @@
                 <div class="container text-center">
                     <span class="text shadow-lg p-3">Today Lucky Draw</span>
                 </div>
-                <div class="table-container table-responsive">
-                    <table class="table text-center  border-dark">
-                        <thead class="table-dark">
-                            <tr>
-                                <th></th>
-                                   @foreach($data as $user)
-                                   <th style="padding: 5px;">
-                                    {{$user->timesloat}}
-                                </th>
-                        @endforeach 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="background-color: black; color:white; font-size:1.5rem;">60</td>
-                                @foreach($data as $user)
+                <div class="table-container table-responsive ">
+                    @if(!count($data) > 0)
+                    <p class="text-center" >Today's result has not been declared.</p>
+                      
+                  @else
+                  <table class="table text-center  border-dark">
+                    <thead class="table-dark">
+                        <tr>
+                            <th></th>
+                               @foreach($data as $user)
+                               <th style="padding: 5px;">
+                                {{$user->timesloat}}
+                            </th>
+                    @endforeach 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background-color: black; color:white; font-size:1.5rem;">60</td>
+                            @forelse($data as $user)
                                 <td style="padding: 5px;">
-                                 {{$user->number_60}}
-                             </td>
-                     @endforeach 
-                            </tr>
+                                    {{$user->number_60}}
+                                </td>
+                            @empty
+                                <td colspan="" rowspan="2" class=" " >Wait For Today Result</td>
+                            @endforelse 
+                        </tr>
+                        
+                        
+                        
 
-                            <tr>
-                                <td style="background-color: black; color:white;font-size:1.5rem;">70</td>
-                                @foreach($data as $user)
-                                <td style="padding: 5px;">
-                                 {{$user->number_70}}
-                             </td>
-                     @endforeach 
-                            </tr>
-                        </tbody>
-                    </table>
+                        <tr>
+                            <td style="background-color: black; color:white;font-size:1.5rem;">70</td>
+                            @foreach($data as $user)
+                            <td style="padding: 5px;">
+                             {{$user->number_70}}
+                         </td>
+                 @endforeach 
+                        </tr>
+                    </tbody>
+                </table>
+                      
+                  @endif
                 </div>
             </div>
             <div class="shadow-dark">

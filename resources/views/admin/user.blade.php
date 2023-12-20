@@ -93,7 +93,7 @@
         <div class="add" style="display: flex; align-items: center;">
 
             <div class="btns" style="margin-left: auto;">
-                <a href="useradd" id="openModalBtn" class="btn btn-secondary">Add User</a>
+                <a href="{{ route('admin.useradd') }}" id="openModalBtn" class="btn btn-secondary">Add User</a>
             </div>
         </div>
         {{-- <div class="btns" style="margin-left: auto;">
@@ -181,9 +181,10 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->balance }}</td>
-                                <td><a class="btn btn-primary" href="{{ route('amount', $user->id) }}">Add</a>
+                                <td class="d-flex "><a class="btn btn-primary mr-2" href="{{ route('amount', $user->id) }}">Add</a>
                                     {{-- <td><a class="btn btn-danger" href="{{route('userdelete',$user->id)}}">Delete</a></td> --}}
-                                    <a class="btn btn-info" href="{{ route('withdrawal', $user->id) }}">withdrawal</a>
+                                    <a class="btn btn-info mr-2" href="{{ route('withdrawal', $user->id) }}">withdrawal</a>
+                                    <a class="btn btn-success mr-2" href="{{ route('transaction', $user->id) }}">Transaction</a>
                                 </td>
 
                                 <td><a class="btn " href="{{ route('useredit', $user->id) }}"><i class="fa fa-edit"
@@ -221,7 +222,7 @@
 
 
         {{-- 
-        <script>
+         <script>
             // Function to open the modal
             function openModal() {
                 document.getElementById("myModal").style.display = "flex";

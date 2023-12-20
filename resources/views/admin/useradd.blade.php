@@ -2,6 +2,11 @@
 @section('title', 'User Add')
 @section('section')
 
+{{-- @if(session('error'))
+<div class="alert alert-danger">
+    {{ session('error') }}
+</div>
+@endif --}}
 
 <div class="container">
   <div class="col-lg-7">
@@ -33,7 +38,7 @@
             <br>
             <div class="mb-3">
 
-                <input type="password" class="form-control" name="Confirm Password"
+                <input type="password" class="form-control" name="confirm_password"
                     placeholder="Enter Confirm password" required>
             </div>
 <br>

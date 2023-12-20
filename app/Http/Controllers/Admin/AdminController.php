@@ -157,27 +157,36 @@ class AdminController extends Controller
 
     //     return redirect()->route('userdata')->with('success', 'Password changed successfully.');
     // }
-    public function showChangePasswordForm($id)
-    {
-        $userdata = DB::table('users')->where('id', $id)->first();
-        return view('admin.change-password', ['data' => $userdata]);
-    }
+   public function showChangePasswordForm($id)
+{
+    $userdata = DB::table('users')->where('id', $id)->first();
+    return view('admin.change-password', ['data' => $userdata]);
+}
 
-    public function changePassword(Request $request)
-    {
-        $request->validate([
-            'password' => 'required|min:8|confirmed',
-        ]);
+public function changePassword(Request $request)
+{
+    $request->validate([
+        'password' => 'required|min:8',
+        'confirm_password' => 'required|min:8',
+    ]);
 
-        $userId = $request->input('user_id');
-        $newPassword = $request->input('password');
-
+    
+    $userId = $request->input('user_id');
+    $newPassword = $request->input('password');
+    $confirm_password = $request->input('confirm_password');
+    if($newPassword === $confirm_password){
         DB::table('users')->where('id', $userId)->update([
             'password' => Hash::make($newPassword),
         ]);
-
-        return redirect()->route('admin.user')->with('status', 'Password updated successfully!');
+    }else{
+        return redirect()->back()->with('error', 'The  password is not match.');
     }
+
+    // Assuming 'users' is your table name
+ 
+
+    return redirect()->route('admin.user')->with('success', 'Password updated successfully!');
+}
 
 
 
@@ -194,21 +203,37 @@ class AdminController extends Controller
     
     public function usersave(Request $request)
     {
-        $validate = $request->validate([
-            'name' => 'required|string|max:100',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8',
-        ]);
-
+        // $validate = $request->validate([
+        //     'name' => 'required|string|max:100',
+        //     'email' => 'required|email|unique:users',
+        //     'password' => 'required|min:8',
+        //     'confirm_password' => 'required|min:8|same:password',
+        // ]);
+        if(empty($request->name)){
+            return redirect()->back()->with('error' ,'name is required');
+        }
+        if(empty($request->email)){
+            return redirect()->back()->with('error' ,'email is required');
+        }
+        if(empty($request->password)){
+            return redirect()->back()->with('error' ,'password is required');
+        }
+        if($request->confirm_password != $request->password){
+            return redirect()->back()->with('error' ,'password is not match');
+        }
+        
+    
         $userdata = new User();
         $userdata->name = $request->name;
         $userdata->email = $request->email;
-        $userdata->password = $request->password;
-
+        $userdata->password = bcrypt($request->password);
+     
         $userdata->save();
         session()->flash('success', 'User created successfully.');
         return redirect()->route('user');
+    
     }
+    
 
     public function displayUsers()
 {
@@ -411,9 +436,16 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
     //     session()->flash('success', 'User created successfully.');
     //     return redirect()->route('admin.user');
     // }
-    public function  transaction()
+    public function  transaction($id=null)
     {
-        $users = Transaction::all();
+        if(empty($id)){
+
+            $users = Transaction::all();
+        }else{
+            $users = Transaction::where('user_id',$id)->get();
+        }
+      
+
         return view('admin.transaction', ['data' => $users]);
         
     }

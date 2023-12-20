@@ -22,7 +22,7 @@
               <br>
               <input type="hidden" name="user_id" value="{{ $data->id }}">
 
-              <input type="password" class="form-control" name="new_password" placeholder="Password" required>
+              <input type="password" class="form-control" name="password" placeholder="Password" required>
           </div>
           <br>
           <div class="mb-3">
