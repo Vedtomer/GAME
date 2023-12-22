@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Analytics Dashboard </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> @yield('title', 'Agent Dashboard')</title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
@@ -17,15 +19,10 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
 </head>
-
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         {{-- topbar start --}}
         @include('agent.layout.agenttopbar')
-     
-       
-       
-
         <div class="app-main">
             {{-- sidebar start --}}
             @include('agent.layout.agentsidebar')
@@ -40,7 +37,7 @@
                                     <i class="pe-7s-car icon-gradient bg-mean-fruit">
                                     </i>
                                 </div> --}}
-                                <div>Analytics Dashboard
+                                <div>@yield('title', 'Agent Dashboard')
                                     {{-- <div class="page-title-subheading">This is an example dashboard created using
                                         build-in elements and components.
                                     </div> --}}

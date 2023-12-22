@@ -2,7 +2,7 @@
 @section('title', 'Users List')
 @section('section')
 
-    <style>
+    {{-- <style>
         body {
             font-family: Arial, sans-serif;
         }
@@ -72,7 +72,7 @@
         .btn {
             border-radius: 0px;
         }
-    </style>
+    </style> --}}
 
 
 
@@ -85,7 +85,9 @@
             @endforeach
         @endif
     </div>
-    <div class="login-container">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
 
 
 
@@ -103,17 +105,17 @@
 
         {{-- <h5 class="card-title">Table responsive</h5> --}}
         <!-- Modal container -->
-        <div class="modal-container" id="myModal">
+        {{-- <div class="modal-container" id="myModal"> --}}
 
             <!-- Modal content -->
-            <div class="modal-content">
+            {{-- <div class="modal-content">
                 <!-- Close button -->
-                <span class="close-btn " onclick="closeModal()">&times;</span>
+                <span class="close-btn " onclick="closeModal()">&times;</span> --}}
 
 
                 <!-- Form inside the modal -->
 
-                <div class="container">
+                {{-- <div class="container">
 
                     <form action="{{ route('user.save') }}" method="post">
 
@@ -144,9 +146,9 @@
             </div>
 
 
-            <h2>user data</h2>
+            <h2>user data</h2> --}}
 
-        </div>
+        {{-- </div> --}}
 
         {{-- @php
     print_r($userdata);
@@ -202,6 +204,9 @@
             @endif
         </div>
 
+            </div>
+        </div>
+    </div>
 
         {{-- <th>{{$user->id}}</th>
                     <td>{{$user->name}}</td>

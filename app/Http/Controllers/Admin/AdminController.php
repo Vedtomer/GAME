@@ -230,12 +230,6 @@ public function adminchangePassword(Request $request)
     
     public function usersave(Request $request)
     {
-        // $validate = $request->validate([
-        //     'name' => 'required|string|max:100',
-        //     'email' => 'required|email|unique:users',
-        //     'password' => 'required|min:8',
-        //     'confirm_password' => 'required|min:8|same:password',
-        // ]);
         if(empty($request->name)){
             return redirect()->back()->with('error' ,'name is required');
         }
@@ -264,9 +258,7 @@ public function adminchangePassword(Request $request)
 
     public function displayUsers()
 {
-    $users = User::all(); // Sabhi users ki data fetch karein
-
-    // return view('admin.user', ['data' => $users]);
+    $users = User::all(); 
     return view('admin.user', ['data' => $users]);
 }
 // public function displayUsers()
@@ -300,10 +292,6 @@ public function userdelete(string $id)
     $userdata = DB::table('users')->where('id', $id)->delete();
     return redirect()->route('admin.user');
 }
-
-
-
-
 
     // public function result()
     // {
@@ -341,12 +329,9 @@ public function userdelete(string $id)
     public function resultedit(string $id)
     {
         $userData = Result::find($id); 
-    
         if (!$userData) {
-            // Handle the case where the record with the given ID is not found
             abort(404);
         }
-    
         return view('admin.resultedit', ['data' => $userData]);
     }
 
@@ -354,16 +339,11 @@ public function resultupdate(Request $request, $id)
 {
     // return $request;
       $USER = DB::table('result')->where('id', $id)->update([
-       
-
         'number_70' => $request->number_70,
         'number_60' => $request->number_60,
         'timesloat' => $request->timesloat,
-
-
     ]);
-    return redirect()->route('admin.result')->with('success', 'update successfully.');
-   
+    return redirect()->route('admin.result')->with('success', 'update successfully.');  
 }
 public function resultdelete(string $id)
 {
@@ -406,12 +386,9 @@ public function resultdelete(string $id)
     public function withdrawal(Request $request, $id)
     {
         if ($request->isMethod('post')) {
-       
             $validate =  $request->validate([
-               
                 'withdrawal' => 'required',
             ]);
-
             $userdata = new Transaction();
             $userdata->user_id = $id;
             $userdata->action = $request->withdrawal;
@@ -421,7 +398,7 @@ public function resultdelete(string $id)
            
 
             $user =User::where('id',$id)->first();
-            $epsilon = 0.0001; // or any other small value
+            $epsilon = 0.0001; 
 if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
     session()->flash('error', 'Insufficient balance.');
     return redirect()->route('admin.user');
@@ -437,8 +414,6 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
             session()->flash('success', 'Amount Debit successfully.');
             return redirect()->route('admin.user');
         }
-
-        // Handle GET request (showing the form)
         $data = Transaction::all();
         return view('admin.withdrawal', ['data' => $data, 'id' => $id]);
     }
@@ -466,13 +441,10 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
     public function  transaction($id=null)
     {
         if(empty($id)){
-
             $users = Transaction::all();
         }else{
             $users = Transaction::where('user_id',$id)->get();
         }
-      
-
         return view('admin.transaction', ['data' => $users]);
         
     }

@@ -43,7 +43,7 @@
                 </li>
                
                 <li>
-                    <a href="{{route('admin.user')}}">
+                    <a href="{{route('user')}}">
                         <i class="metismenu-icon pe-7s-display2"></i>
                         Users
                     </a>

@@ -12,6 +12,15 @@
 
         }
     </style>
+      <div class="errors">
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">
+                    {{ $error }}
+                </div>
+            @endforeach
+        @endif
+    </div>
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">

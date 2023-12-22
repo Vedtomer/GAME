@@ -81,20 +81,14 @@
                     <i class='fas fa-wallet' style='font-size:24px'></i>
                     
                     <div class="box" style="margin-left: auto;">
-                        <h5><b> : 100</b></h5>
-                        
+                       <h5><b>: {{ Auth::user()->balance > 0 ? Auth::user()->balance : 0 }}</b></h5> 
                     </div>
                 </a>
             </div>
-            
-            
             <div class="header-btn-lg pr-0">
                 <div class="widget-content p-0">
-                  
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left header-user-info ml-3">
-                            
-
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="simpleDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
                                 class="btn-shadow mr-3 btn btn-dark">

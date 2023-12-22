@@ -9,9 +9,6 @@ use App\Http\Controllers\Agent\AgentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\AdminController;
 // use App\Http\Controllers\AdminController;
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,18 +23,11 @@ use App\Http\Controllers\Admin\AdminController;
 Route::get('/', function () {
     return view('home');
 });
-
 route::get("/",[AdminController::class,"home"]);
-
-
-
-
 route::get('login', [LoginController::class, 'index']);
 route::get('dash', [LoginController::class, 'show']);
 route::get('user', [LoginController::class, 'usershow']);
-
 // route::get('/home', [AdminController::class, 'home']);
-
 route::get('table', [LoginController::class, 'table']);
 // Admin Routes
 Route::prefix('admin')->group(function () {
@@ -93,7 +83,6 @@ Route::prefix('admin')->group(function () {
 
         // Handle the change password form submission (POST request)
         Route::post('change-password', [AdminController::class, 'changePassword'])->name('change.password');
-
         // Route::get('amount/{id}', [AdminController::class, 'amount'])->name('amount');
         // Route::post('amount/{id}', [AdminController::class, 'amountsave'])->name('amountsave');
         Route::match(['get', 'post'], 'amount/{id}', [AdminController::class, 'amount'])->name('amount');
@@ -114,7 +103,7 @@ Route::middleware('auth:agent')->group(function () {
     // route::get('newedit/{id}', [AgentController::class, 'edit'])->name('agent.newedit');
     // Route::post('newupdate/{id}', [AgentController::class, 'newupdate'])->name('agent.newupdate');
     // route::get('delete/{id}', [AgentController::class, 'delete'])->name('agent.delete');
-    route::get('transaction', [AgentController::class, 'transaction']);
+    route::get('transaction/{id?}', [AgentController::class, 'transaction'])->name('agent.transaction');
     // route::get('home', [AgentController::class, 'home']);
     // route::get('main', [AgentController::class, 'newheader']);
     // route::get('user', [AgentController::class, 'user']);

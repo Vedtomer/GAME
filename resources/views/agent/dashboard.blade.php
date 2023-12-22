@@ -9,34 +9,23 @@
         float: right;
         margin-bottom: 8px;
     }
-
     .btn {
         border-radius: 0px;
     }
-
     td {
-        /* border: 1px solid black; */
         height: 80px;
         width: 100px;
-
     }
-
     th {
-        /* border: 1px solid black; */
         height: 2px;
         width: 10px;
-
-        /* text-align: center; */
-
     }
 
     input {
         height: 50px;
         width: 50px;
     }
-
     tr {
-        /* border: 1px solid black; */
     }
     .black-a{
         color: rgb(255, 255, 255);
@@ -45,9 +34,7 @@
     .caltable{
         margin-bottom: 0px;
         padding-bottom: 0px;
-
     }
-
     .buttons{
         margin-top: 0px;
         padding-top: 0px;
@@ -56,10 +43,8 @@
         justify-content: center;
         margin: 5px;
         padding: 10px;
-
     }
     .bb{
-        /* margin: 20px; */
         margin-left: 20px;
         padding: 5px;
         font-size: 20px;
@@ -73,13 +58,22 @@
         height: 50px;
         width: 150px; 
     } */
+    /* table{
+        /* border: 1px solid rgb(47, 255, 137); */
+        background-color: rgb(255 191 47 / 82%);
+        padding: 8px;
+        border-radius: 20px;
+    }
+    th , td , tr{
+        border: 1px solid;
+        text-align: center;
+    } */
 </style>
 <div class="col-lg-12">
     <div class="main-card mb-3 card">
         <div class="card-body">
             <div class="add" style="display: flex; align-items: center;">
                 {{-- <h5 class="card-title">TRANSACTION</h5> --}}
-
                 <div style="display: flex; ">
                     <ul style="list-style: none; " class="d-flex justify-content-between">
                         <button type="button" class="btn btn-secondary" style="margin-right: 300px; padding: 5px;">
@@ -97,19 +91,12 @@
                         <button type="button" class="btn btn-secondary" style="padding: 5px;">
                             DRAW TIME:
                         </button>
-
                     </ul>
                 </div>
-
                 <div class="btns" style="margin-left: auto;">
-
                 </div>
             </div>
-
-
             <div class="">
-
-
                 <table border="0">
                     <tbody>
                         {{-- <tr> --}}
@@ -120,42 +107,25 @@
                                             {{-- <td align="center"> --}}
                                                 <table class="timetable" width="99%">
                                                     <tbody>
-
                                                         <table
                                                             style="border: 0px currentColor; border-image: none; width: 100%;">
                                                             <tbody>
-
                                                             </tbody>
                                                         </table>
-
-
-
                                                         <table>
                                                             <tbody>
-
-                                                              
-
                                                                 &nbsp;&nbsp;&nbsp;&nbsp;
-
                                                             </tbody>
                                                         </table>
-
-
                                                     </tbody>
                                                 </table>
-
                                                 <table class="caltable" width="99%">
                                                     <tbody>
-
-
-
-
                                                     </tbody>
                                                 </table>
                                                 <table class="caltable">
                                                     <thead>
                                                         <tr>
-
                                                             <th></th>
                                                             <th></th>
                                                             <th></th>
@@ -189,17 +159,9 @@
                                                             <th><input readonly type="text" value="B"
                                                                     style="text-align: center; background-color:black;color:white;">
                                                             </th>
-
-
-
-
-
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
-
-
                                                         <td></td>
                                                         <td></td>
 
@@ -271,27 +233,20 @@
                                                             PTS.
                                                         </td>
                                                         <td style="font-weight: bold;">
-
-
-
                                         </tr>
                                         <tr>
                                             <td style="font-weight: bold;">
-
                                                 <span id="lbl_g0">60</span> <label name="chkgname" id="chkgname1"
                                                     onclick="selectSjodi(1);" type="checkbox">
-
                                             </td>
                                           
                                             <td style="font-weight: bold;">
                                                 <span id="Span15"></span><br>
-
                                                 <input name="t_r0" readonly type="tel" min="0" class="black-a" id="t_r0" value="A"
                                                     style="text-align: center;" maxlength="4" max="9999">
                                             </td>
                                             <td style="font-weight: bold;">
                                                 <span id="Span15"></span><br>
-                                           
 <input type="text" name="initialValue"  min="0" class="initialValue a" id="initialValue"
                                                     style="visibility: visible;"
                                                     onkeyup="javascript:jodiRArrowkey(0,event);javascript:jodiRCalc(0); updateOtherInputs();"
@@ -348,8 +303,6 @@
                                                 <span id="lbl_jdamt1"
                                                     style="width: 80px; display: inline-block;">0.00</span>
                                             </td>
-
-
                                             <td>
                                                 <span class="result" id="ts04"> </span>
                                             </td>
@@ -437,10 +390,6 @@
                                         </tr>
                                         <tr>
                                             <td style="font-weight: bold; ">
-
-
-
-
                                             </td>
 
                                             <td style="font-weight: bold;">
@@ -516,8 +465,6 @@
                                             <td style="font-weight: bold; " class="QTY">
                                                 <span id="lbl_jdamt4">0.00</span>
                                             </td>
-                                           
-
                                             <td>
                                                 <span class="result" id="ts24"></span>
                                             </td>
@@ -710,13 +657,10 @@
                                             <td style="font-weight: bold; " class="QTY">
                                                 <span id="lbl_jdamt5">0</span>
                                             </td>
-                                           
-
                                             <td>
                                                 <span class="result" id="ts44"></span>
                                             </td>
                                         </tr>
-
                                         <tr>
                                             <td style="font-weight: bold; ">
                                                 <table id="td1" style="display:none">
@@ -826,8 +770,6 @@
                                             <td style="font-weight: bold; " class="QTY">
                                                 <span id="lbl_jdamt6">0</span>
                                             </td>
-                                          
-
                                             <td>
                                                 <span class="result" id="ts54"></span>
                                             </td>
@@ -909,8 +851,6 @@
                                             <td style="font-weight: bold; " class="QTY">
                                                 <span id="lbl_jdamt7">0</span>
                                             </td>
-                                         
-
                                             <td>
                                                 <span class="result" id="ts64"></span>
                                             </td>
@@ -1181,10 +1121,7 @@
                                             </td>
                                         </tr>
                                         <tr style="height: 40px; text-align:center;">
-
-
 </td>   
-
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1224,24 +1161,13 @@ function updateValues(classval, value) {
 
  
    for (var i = 0; i < elementsA.length; i++) {
-    
        var currentValue = elementsA[i].value;
-
        currentValue = isNaN(parseFloat(currentValue)) ? 0 : parseFloat(currentValue);
-
-     
        value = isNaN(parseFloat(value)) ? 0 : parseFloat(value);
-
-   
        elementsA[i].value = currentValue + value;
-
-     
    }
 }
-
-
 updateValues("tum", "NayiValue");
-
 </script>
 
 @endsection

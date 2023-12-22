@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Agent;
 use App\Models\User;
 use App\Models\Result;
+use App\Models\Transaction;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AgentController extends Controller
 {
-    //login
     public function login(Request $request)
     {
           if (Auth::guard('agent')->check()) {
@@ -42,7 +42,7 @@ class AgentController extends Controller
     public function logout()
     {
         Auth::guard('agent')->logout();
-        return redirect()->route('login'); // Change 'admin.login' to 'login'
+        return redirect()->route('login');
     }
     
     public function dashboard()
@@ -69,7 +69,7 @@ class AgentController extends Controller
     {
         $validate = $request->validate([
 
-            'name' => 'required|string|max:100',  // validate krna form ko
+            'name' => 'required|string|max:100',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
 
@@ -79,7 +79,7 @@ class AgentController extends Controller
         $userdata = new User();
         $userdata->name = $request->name;
         $userdata->email = $request->email;
-        $userdata->password = $request->password; // store kr raha hai yani database me data insert ho raha hai
+        $userdata->password = $request->password;
 
         $userdata->save();
 
@@ -167,7 +167,7 @@ class AgentController extends Controller
     {
         $validate = $request->validate([
 
-            'name' => 'required|string|max:100',  // validate krna form ko
+            'name' => 'required|string|max:100',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
 
@@ -177,7 +177,7 @@ class AgentController extends Controller
         $userdata = new User();
         $userdata->name = $request->name;
         $userdata->email = $request->email;
-        $userdata->password = $request->password; // store kr raha hai yani database me data insert ho raha hai
+        $userdata->password = $request->password;
 
         $userdata->save();
 
@@ -215,7 +215,6 @@ class AgentController extends Controller
         $userData = Result::find($id); 
     
         if (!$userData) {
-            // Handle the case where the record with the given ID is not found
             abort(404);
         }
     
@@ -246,9 +245,29 @@ public function resultdelete(string $id)
         return view('agent.profile');
     }
 
-    public function  transaction(){
-        return view('agent.transaction');
+    // public function  transaction(){
+    //     return view('agent.transaction');
+    // }
+    // public function  transaction()
+    // {
+    //         // $users = Transaction::where('user_id',Auth::user())->get();
+    //         $users = Transaction::where('user_id', Auth::user())->get();
+    //         dd($users);
+     
+    //     return view('agent.transaction', ['data' => $users]);
+        
+    // }
+    public function transaction()
+{
+    $user = Auth::user();
+    if ($user) {
+        $transactions = Transaction::where('user_id', $user->id)->get();
+        return view('agent.transaction', ['data' => $transactions]);
+    } else {
+        return view('agent.user'); 
     }
+}
+
     public function  home(){
         return view('agent.homes');
     }

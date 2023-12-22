@@ -33,13 +33,19 @@
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
                 {{-- <li class="app-sidebar__heading"></li> --}}
-               
                 <li>
+                    {{-- class="mm-active" --}}
+                    <a href="{{route('dashboard')}}" >   
+                        <i class="metismenu-icon pe-7s-rocket"></i>
+                        Dashboard
+                    </a>
+                </li>
+                {{-- <li>
                     <a href="/" >
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Home
                     </a>
-                </li>
+                </li> --}}
                 
                
               
@@ -61,7 +67,7 @@
                     
                     {{-- </ul> --}}
                     <li  >
-                        <a href="transaction">
+                        <a href="{{route('agent.transaction')}}">
                             <i class="metismenu-icon pe-7s-display2"></i>
                             Transaction
                         </a>

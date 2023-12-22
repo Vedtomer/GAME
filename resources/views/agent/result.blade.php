@@ -1,8 +1,9 @@
 @extends('agent.layout.agentmain')
+@section('title', 'Agent Result')
 @section('section')
 
 <style>
-    body {
+    /* body {
         font-family: Arial, sans-serif;
     }
 
@@ -15,7 +16,7 @@
     }
 
     /* Styles for the modal container */
-    .modal-container {
+    /* .modal-container {
         display: none;
         position: fixed;
         top: 0;
@@ -25,35 +26,35 @@
         background: rgba(0, 0, 0, 0.5);
         justify-content: center;
         align-items: center;
-    }
+    } */
 
     /* Styles for the modal content */
-    .modal-content {
+    /* .modal-content {
         background: #fff;
         padding: 20px;
         border-radius: 5px;
         width: 300px;
         text-align: center;
-    }
+    } */
 
     /* Styles for the form inside the modal */
-    form {
+    /* form {
         display: flex;
         flex-direction: column;
-    }
+    } */
 
     /* Style for the close button */
-    .close-btn {
+    /* .close-btn {
         cursor: pointer;
         position: absolute;
         top: 10px;
         right: 10px;
         font-size: 18px;
-    }
+    } */
 
 
 
-    .w3-container.w3-teal h1 {
+    /* .w3-container.w3-teal h1 {
         display: block;
     }
 
@@ -69,8 +70,8 @@
 
     .btn {
         border-radius: 0px;
-    }
-</style>
+    } */
+</style> 
 
 
 
@@ -83,7 +84,9 @@
     @endforeach
     @endif
 </div>
-<div class="login-container">
+<div class="col-lg-12">
+    <div class="main-card mb-3 card">
+        <div class="card-body">
 
 
 
@@ -100,20 +103,20 @@
     </div> --}}
 
     {{-- <h5 class="card-title">Table responsive</h5> --}}
-    <!-- Modal container -->
+    {{-- <!-- Modal container -->
     <div class="modal-container" id="myModal">
 
         <!-- Modal content -->
         <div class="modal-content">
             <!-- Close button -->
             <span class="close-btn " onclick="closeModal()">&times;</span>
-        
+         --}}
 
             <!-- Form inside the modal -->
 
-            <div class="container">
+            {{-- <div class="container"> --}}
               
-                <form action="{{ route('result.save') }}" method="post">
+                {{-- <form action="{{ route('result.save') }}" method="post">
 
                     @csrf
                     <div class="mb-3">
@@ -128,7 +131,7 @@
                    
                     <div class="form-group">
                         {{-- <label for="exampleDropdown">Select an option:</label> --}}
-                        <select class="form-control" id="exampleDropdown" name="timesloat">
+                        {{-- <select class="form-control" id="exampleDropdown" name="timesloat">
                             <option value="" selected>Select timesloat</option>
                           <option value="9:00" >9:00</option>
                           <option value="9:15">9:15</option>
@@ -173,12 +176,12 @@
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-            </div>
-        </div>
+            </div> --}}
+        {{-- </div>
 
 
 
-    </div>
+    </div> --}}
 
     {{-- @php
     print_r($userdata);
@@ -221,6 +224,9 @@
             <p>No users found.</p>
         @endif
     </div>
+        </div>
+    </div>
+</div>
     
     
                     {{-- <th>{{$user->id}}</th>

@@ -8,7 +8,7 @@
 </div>
 @endif
       <div class="container">
-        <div class="row">
+        <div class="row ">
             <div class="col-6">
                   
         <form method="post" action="{{route('resultupdate' , $data->id)}}" enctype="multipart/form-data">
