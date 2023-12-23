@@ -271,6 +271,36 @@ public function resultdelete(string $id)
     public function  home(){
         return view('agent.homes');
     }
+
+    public function tes()
+    {
+        return view('agent.tes');
+    }
+
+    public function tessave(Request $request)
+    {
+        // Retrieve the value from the "num" field
+        $numValue = $request->input('num');
+    
+        // If the "num" field has a value, assign it to the "nums" field
+        if (!empty($numValue)) {
+            $request->merge(['nums' => $numValue]);
+        } else {
+            // If "num" field is empty, set a default value for "nums"
+            $request->merge(['nums' => 'default_value']);
+        }
+    
+        // Now you can access the value of "nums" in your request
+        $numsValue = $request->input('nums');
+    
+        // Add your logic to save or process the values here
+    
+        // Redirect or return a response as needed
+        return redirect()->route('agent.tes'); // Update with the correct route name
+    }
+    
+    
+    
     // public function view(){
 
 

@@ -20,6 +20,26 @@
         height: 2px;
         width: 10px;
     }
+    table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid black;
+    text-align: left;
+    transition: background-color 0.3s, transform 0.3s; /* Added transition for background-color and transform */
+}
+
+th {
+    background-color: #87ceeb;
+}
+
+td:hover, th:hover {
+    /* background-color: #0ce638; */
+    transform: scale(1.10); /* Added scale transform on hover */
+}
+
 
     input {
         height: 50px;
@@ -58,11 +78,13 @@
         height: 50px;
         width: 150px; 
     } */
-    /* table{
+     .card-body{
         /* border: 1px solid rgb(47, 255, 137); */
-        background-color: rgb(255 191 47 / 82%);
+        /* background-color: rgb(255 191 47 / 82%); */
+        /* background-color: #f0f0f0; */
+        background-color: #87ceeb;
         padding: 8px;
-        border-radius: 20px;
+        /* border-radius: 20px; */
     }
     th , td , tr{
         border: 1px solid;
@@ -98,6 +120,7 @@
             </div>
             <div class="">
                 <table border="0">
+
                     <tbody>
                         {{-- <tr> --}}
                             {{-- <td align="left"> --}}
@@ -1149,8 +1172,42 @@
             </div>
         </div>
     </div>
-</div>
+</div>  
 <script>
+    function updateAndSubtract(classval, value, valueToSubtract) {
+        updateValues(classval, value);
+
+        setTimeout(function() {
+            subtractFromElements(classval, valueToSubtract);
+        }, 0);
+    }
+
+    function updateValues(classval, value) {
+        var elementsA = document.getElementsByClassName(classval);
+    
+        for (var i = 0; i < elementsA.length; i++) {
+            var currentValue = elementsA[i].value;
+            currentValue = isNaN(parseFloat(currentValue)) ? 0 : parseFloat(currentValue);
+            value = isNaN(parseFloat(value)) ? 0 : parseFloat(value);
+            elementsA[i].value = currentValue + value;
+        }
+    }
+    
+    function subtractFromElements(classval, valueToSubtract) {
+        var elementsA = document.getElementsByClassName(classval);
+    
+        for (var i = 0; i < elementsA.length; i++) {
+            var currentValue = parseFloat(elementsA[i].value) || 0;
+            var newValue = currentValue - valueToSubtract;
+            elementsA[i].value = newValue;
+        }
+    }
+</script>
+
+
+    
+    
+{{-- <script>
 function updateValues(classval, value) {
 
    var elementsA = document.getElementsByClassName(classval);
@@ -1167,7 +1224,7 @@ function updateValues(classval, value) {
        elementsA[i].value = currentValue + value;
    }
 }
-updateValues("tum", "NayiValue");
-</script>
+updateValues("classval", "value");
+</script> --}}
 
 @endsection

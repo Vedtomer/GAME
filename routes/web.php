@@ -109,6 +109,9 @@ Route::middleware('auth:agent')->group(function () {
     // route::get('user', [AgentController::class, 'user']);
     // route::post('user', [AgentController::class, 'usersave'])->name('agent.usersave');
     route::get('result', [AgentController::class, 'result'])->name('result');
+    Route::get('tes', [AgentController::class, 'tes'])->name('agent.tes');
+    Route::post('tes', [AgentController::class, 'tessave'])->name('tessave');
+    
     Route::post('result', [AgentController::class, 'resultsave'])->name('result.save');
     route::get('resultedit/{id}', [AgentController::class, 'resultedit'])->name('resultedit');
     Route::post('resultupdate/{id}', [AgentController::class, 'resultupdate'])->name('resultupdate');
