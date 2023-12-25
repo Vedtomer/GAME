@@ -38,14 +38,14 @@
                     {{-- class="mm-active" --}}
                     <a href="{{route('admin.dashboard')}}" >   
                         <i class="metismenu-icon pe-7s-rocket"></i>
-                        Dashboard
+                        <b > Dashboard </b>
                     </a>
                 </li>
                
                 <li>
                     <a href="{{route('user')}}">
                         <i class="metismenu-icon pe-7s-display2"></i>
-                        Users
+                        <b> Users </b>
                     </a>
                 </li>
                
@@ -53,7 +53,7 @@
                 <li>
                     <a href="{{route('admin.result')}}">
                         <i class="metismenu-icon pe-7s-diamond"></i>
-                        Result
+                       <b> Result </b>
                         
                     </a>
                 </li>
@@ -76,7 +76,7 @@
                 <li  >
                         <a href=" {{route('transaction')}}">
                             <i class="metismenu-icon pe-7s-display2"></i>
-                            Transaction
+                         <b> Transaction </b>
                         </a>
                     </li>
                 {{-- <li>

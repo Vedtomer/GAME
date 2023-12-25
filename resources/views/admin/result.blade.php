@@ -1,9 +1,9 @@
 @extends('admin.layout.main')
 @section('title', 'Result')
 @section('section')
-<div class="col-lg-12">
-    <div class="main-card mb-3 card">
-        <div class="card-body">
+{{-- <div class="col-lg-12"> --}}
+    <div class="main-card card">
+        {{-- <div class="card-body"> --}}
 
 
             <div class="add" style="display: flex; align-items: center;">
@@ -182,5 +182,5 @@
     </script> --}}
         </div>
     </div>
-</div>
+{{-- </div> --}}
     @endsection
