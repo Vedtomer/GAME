@@ -24,7 +24,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            /* height: 100vh; */
+
             margin: 0;
         }
 
@@ -120,7 +121,7 @@
             }
         }
 
-        @if(session('error'))
+        @if (session('error'))
             toastr.error("{{ session('error') }}");
         @endif
 
