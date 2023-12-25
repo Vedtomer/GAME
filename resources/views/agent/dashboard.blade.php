@@ -1,4 +1,5 @@
 @extends('agent.layout.agentmain')
+@section('title', 'Purchase Ticket')
 @section('section')
     <style>
         table {
@@ -58,6 +59,12 @@
             font-size: 16px;
             font-weight: bold;
         }
+
+         input:focus {
+            outline: none;
+            /* Remove outline on focus */
+            /* Add additional styles for the focused state if needed */
+        }
     </style>
 
     <form>
@@ -68,7 +75,7 @@
                     if ($i == -1) {
                         echo '<td></td><td></td>';
                     } else {
-                        echo "<th class=yellow><span for='input_top_{$i}'>B </span><br><input type='text' id='input_top_{$i}' name='input_top_{$i}' onkeypress='allowOnlyNumbers(event)' oninput='updateInputs{$i}()' class='input-box'></th>";
+                        echo "<th class=yellow><span for='input_top_{$i}'>B </span><br><input type='tel' id='input_top_{$i}' name='input_top_{$i}' onkeypress='allowOnlyNumbers(event)' oninput='updateInputs{$i}()' class='input-box'></th>";
                     }
                 
                     if ($i == 9) {
@@ -91,13 +98,13 @@
                             echo '<th class=gradient-container></th>';
                         }
                 
-                        echo "<th class=yellow><span for='A{$i}'>A</span><br><input type='text' id='A{$i}' name='A{$i}' onkeypress='allowOnlyNumbers(event)' oninput='updateInputA{$i}()' class='input-box'></th>";
+                        echo "<th class=yellow><span for='A{$i}'>A</span><br><input type='tel' id='A{$i}' name='A{$i}' onkeypress='allowOnlyNumbers(event)' oninput='updateInputA{$i}()' class='input-box'></th>";
                     }
                 
                     $defaultspan = $j;
                     $defaultName = $j;
                 
-                    echo "<th class=main-input><span for='{$defaultName}'>{$defaultspan}</span><br><input type='text' id='input{$i}' name='{$defaultName}' onkeypress='allowOnlyNumbers(event)' oninput='updateQty()' class='input-box'></th>";
+                    echo "<th class=main-input><span for='{$defaultName}'>{$defaultspan}</span><br><input type='tel' id='input{$i}' name='{$defaultName}' onkeypress='allowOnlyNumbers(event)' oninput='updateQty()' class='input-box'></th>";
                 
                     if (($i + 1) % 10 === 0) {
                         echo "<th class=gradient-container ><span  id='qty{$i}' name='qty{$i}'>0</span></th>";
@@ -108,10 +115,10 @@
                 
                     if ($i == 99) {
                         echo "<tr>
-                                                                                                                                                                                                    <th colspan=11><div class=submit><button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary'>Submit </button><button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning'>Clear </button></div></th>
-                                                                                                                                                                                                     <th><span for='qty{$i}'>Total</span></th>
-                                                                                                                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
-                                                                                                                                                                                                 <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
+                                                                                                                                                                                                                    <th colspan=11><div class=submit><button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary'>Submit </button><button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning'>Clear </button></div></th>
+                                                                                                                                                                                                                     <th><span for='qty{$i}'>Total</span></th>
+                                                                                                                                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
+                                                                                                                                                                                                                 <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
                     }
                     $j++;
                 }
