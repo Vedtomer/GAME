@@ -10,6 +10,12 @@
             .card-body {
                 padding: 2px !important;
             }
+
+            th,
+            td {
+                border: 1px solid;
+
+            }
         }
 
         table {
@@ -19,7 +25,7 @@
 
         th,
         td {
-            /* border: 1px solid; */
+            border: 1px solid;
             text-align: center;
         }
 
@@ -139,10 +145,10 @@
                                 
                                     if ($i == 99) {
                                         echo "<tr>
-                                                                                                                                                                                                                                                                                                                                                                                    <th colspan=11><div class=submit><button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary'>Submit </button><button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning'>Clear </button></div></th>
-                                                                                                                                                                                                                                                                                                                                                                                     <th><span for='qty{$i}'>Total</span></th>
-                                                                                                                                                                                                                                                                                                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
-                                                                                                                                                                                                                                                                                                                                                                                 <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
+                                                                                                                                                                                                                                                                                                                                                                                                                    <th colspan=11><div class=submit><button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary'>Submit </button><button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning'>Clear </button></div></th>
+                                                                                                                                                                                                                                                                                                                                                                                                                     <th><span for='qty{$i}'>Total</span></th>
+                                                                                                                                                                                                                                                                                                                                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
+                                                                                                                                                                                                                                                                                                                                                                                                                 <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
                                     }
                                     $j++;
                                 }
