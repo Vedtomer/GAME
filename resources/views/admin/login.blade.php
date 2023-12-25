@@ -24,8 +24,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            /* height: 100vh; */
             margin: 0;
+            margin-top: 250px;
         }
 
         .login-container {
@@ -77,13 +78,14 @@
         @media (max-width: 576px) {
             .login-container {
                 padding: 20px;
+                
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="login-container">
+    <div class="login-container m-3">
         <h2 class="text-center">Login</h2>
         <form action="" method="POST">
             @csrf

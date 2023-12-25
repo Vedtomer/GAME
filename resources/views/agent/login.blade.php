@@ -24,8 +24,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            /* height: 100vh; */
             margin: 0;
+            margin-top: 250px;
         }
         .login-container {
             min-width: 500px;

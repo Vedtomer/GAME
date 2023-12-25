@@ -85,7 +85,7 @@
             @endforeach
         @endif
     </div>
-    <div class="col-lg-12">
+    <div class="col-lg-12 p-1">
         <div class="main-card mb-3 card">
             <div class="card-body">
 
