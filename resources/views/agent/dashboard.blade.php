@@ -24,6 +24,10 @@
                 border: 1px solid;
 
             }
+
+            .input-box {
+                width: 34px !important;
+            }
         }
 
         table {
@@ -136,7 +140,7 @@
                                             echo '<th class=gradient-container></th>';
                                         }
                                 
-                                        echo "<th class=yellow><span for='A{$i}'>A</span><br><input type='tel' id='A{$i}' name='A{$i}' onkeypress='allowOnlyNumbers(event)' oninput='updateInputA{$i}()' class='input-box'></th>";
+                                        echo "<th class=yellow><span for='A{$i}'> A</span><br><input type='tel' id='A{$i}' name='A{$i}' onkeypress='allowOnlyNumbers(event)' oninput='updateInputA{$i}()' class='input-box'></th>";
                                     }
                                 
                                     $defaultspan = $j;
@@ -153,10 +157,10 @@
                                 
                                     if ($i == 99) {
                                         echo "<tr>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th colspan=11><div class=submit><button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary'>Submit </button><button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning'>Clear </button></div></th>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <th><span for='qty{$i}'>Total</span></th>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
+                                                                                                                                                                                                                                                                                                        <th colspan=11><div class=submit><button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary'>Submit </button><button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning'>Clear </button></div></th>
+                                                                                                                                                                                                                                                                                                            <th><span for='qty{$i}'>Total</span></th>
+                                                                                                                                                                                                                                                                                                        <th><span  id='tqty' name='tqty'>0</span></th>
+                                                                                                                                                                                                                                                                                                        <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
                                     }
                                     $j++;
                                 }
