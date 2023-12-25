@@ -117,9 +117,16 @@ Route::middleware('auth:agent')->group(function () {
     Route::post('resultupdate/{id}', [AgentController::class, 'resultupdate'])->name('resultupdate');
     route::get('resultdelete/{id}', [AgentController::class, 'resultdelete'])->name('resultdelete');
     // route::get('profile', [AgentController::class, 'profile']);
+
     // Route::get('/header', [AgentController::class, 'header'])->name('agent.header');
     // Route::get('/change-password', [AgentController::class, 'showChangePasswordForm'])->name('agent.change-password');
     // Route::post('/change-password', [AgentController::class, 'changePassword'])->name('agent.change.password');
+
+
+    Route::get('agentchangepassword', [AgentController::class, 'agentshowChangePassword'])->name('agent.agentchangepassword');
+
+
+    Route::post('agentchangepassword', [AgentController::class, 'agentchangePassword'])->name('agentchange.password');
 });
 
 

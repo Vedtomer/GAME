@@ -90,6 +90,22 @@
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left header-user-info ml-3">
                             <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="simpleDropdown"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button"
+                                    data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
+                                    class="btn-shadow mr-3 btn btn-dark">
+                                    <i class="pe-7s-power"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="simpleDropdown">
+                                    <!-- Dropdown items -->
+                                    <a href="agentchangepassword"><button type="button" tabindex="0"
+                                            class="dropdown-item">change password</button></a>
+                                            <a href="{{ URL::to(Auth::guard('admin')->check() ? 'admin/logout' : 'logout') }}">
+                                                <button type="button" tabindex="0" class="dropdown-item">Logout</button>
+                                            </a>
+                                </div>
+                            </div>
+                            {{-- <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="simpleDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
                                 class="btn-shadow mr-3 btn btn-dark">
                                 <i class="fa fa-star"></i>
@@ -102,7 +118,7 @@
                                                 <button type="button" tabindex="0" class="dropdown-item">Logout</button>
                                             </a>
                                 </div>
-                            </div>
+                            </div> --}}
                             {{-- <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
                                     <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">

@@ -322,4 +322,34 @@ public function resultdelete(string $id)
     //         return view('userdata', $data);
     //     }
     // }
+
+
+
+    public function agentshowChangePassword()
+{
+    // $userdata = DB::table('admins')->where('id', $id)->first();
+    return view('agent.agentchangepassword');
+}
+
+public function agentchangePassword(Request $request)
+{
+    // return $request;
+    $request->validate([
+        'password' => 'required|min:8',
+        'confirm_password' => 'required|min:8',
+    ]);
+
+    $auth = Auth::user();
+    $newPassword = $request->input('password');
+    $confirm_password = $request->input('confirm_password');
+    if($newPassword === $confirm_password){
+        DB::table('users')->where('id', $auth->id)->update([
+            'password' => Hash::make($newPassword),
+        ]);
+    }else{
+        return redirect()->back()->with('error', 'The  password is not match.');
+    }
+    return redirect()->route('result')->with('success', 'Password updated successfully!');
+}
+
 }
