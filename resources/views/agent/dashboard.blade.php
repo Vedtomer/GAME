@@ -3,9 +3,7 @@
 @section('section')
     <style>
         @media (max-width: 767px) {
-            * {
-                padding: 0px !important;
-            }
+           
 
             .card-body {
                 padding: 2px !important;
