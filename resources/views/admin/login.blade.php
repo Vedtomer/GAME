@@ -24,9 +24,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* height: 100vh; */
+            height: 100vh;
             margin: 0;
-            margin-top: 250px;
         }
 
         .login-container {
@@ -54,10 +53,7 @@
             text-align: center;
         }
 
-        .form-label {
-            font-size: 20px !important;
-        }
-
+        .form-label,
         .form-control {
             font-size: 20px !important;
         }
@@ -78,7 +74,6 @@
         @media (max-width: 576px) {
             .login-container {
                 padding: 20px;
-                
             }
         }
     </style>
