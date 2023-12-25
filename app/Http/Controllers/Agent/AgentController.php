@@ -45,12 +45,16 @@ class AgentController extends Controller
         return redirect()->route('login');
     }
     
-    public function dashboard()
+    public function dashboard($number=null)
     {
    
+        if(!$number){
+            $number=6000;
+        }
+        
         $agent = Auth::guard('agent')->user();
    
-        return view('agent.dashboard', compact('agent'));
+        return view('agent.dashboard', compact('agent','number'));
     }
     // public function dashboard(){
 

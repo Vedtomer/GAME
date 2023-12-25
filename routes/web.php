@@ -94,7 +94,7 @@ Route::prefix('admin')->group(function () {
 Route::match(['get', 'post'], '/login', [AgentController::class, 'login'])->name('login');
 Route::middleware('auth:agent')->group(function () {
     Route::get('/logout', [AgentController::class, 'logout'])->name('logout');
-    Route::get('dashboard', [AgentController::class, 'dashboard'])->name('dashboard');
+    Route::get('dashboard/{number?}', [AgentController::class, 'dashboard'])->name('dashboard');
   
     // Route::get('/userdata', [AgentController::class, 'userdata'])->name('agent.userdata');
     // Route::post('/userdata', [AgentController::class, 'userstore'])->name('agent.userdata.store');
