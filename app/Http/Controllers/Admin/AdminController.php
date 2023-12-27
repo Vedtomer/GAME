@@ -455,7 +455,8 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
     }
     public function  newhome()
     {
-        return view('admin.layout.newhome');
+        $users = Result::wheredate('created_at', now()->toDateString())->get();
+        return view('admin.layout.newhome', ['data' => $users]);
     }
     // public function view(){
 

@@ -325,7 +325,7 @@ public function resultdelete(string $id)
 
 
 
-    public function agentshowChangePassword()
+ public function agentshowChangePassword()
 {
     // $userdata = DB::table('admins')->where('id', $id)->first();
     return view('agent.agentchangepassword');
