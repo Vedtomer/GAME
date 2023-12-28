@@ -95,6 +95,7 @@ Route::match(['get', 'post'], '/login', [AgentController::class, 'login'])->name
 Route::middleware('auth:agent')->group(function () {
     Route::get('/logout', [AgentController::class, 'logout'])->name('logout');
     Route::get('dashboard/{number?}', [AgentController::class, 'dashboard'])->name('dashboard');
+    Route::post('dashboard/{number?}', [AgentController::class, 'savedashboard'])->name('savedashboard');
   
     // Route::get('/userdata', [AgentController::class, 'userdata'])->name('agent.userdata');
     // Route::post('/userdata', [AgentController::class, 'userstore'])->name('agent.userdata.store');

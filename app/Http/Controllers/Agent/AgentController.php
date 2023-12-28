@@ -5,11 +5,22 @@ namespace App\Http\Controllers\Agent;
 use App\Models\User;
 use App\Models\Result;
 use App\Models\Transaction;
-use App\Http\Controllers\Controller;
+use App\Models\TicketPurchase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+// use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+// use PHPUnit\Framework\Attributes\Ticket;
+// namespace App\Http\Controllers\Agent;
+// use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator;
+
+
+
+
 
 class AgentController extends Controller
 {
@@ -56,6 +67,33 @@ class AgentController extends Controller
    
         return view('agent.dashboard', compact('agent','number'));
     }
+
+    public function savedashboard(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'radioNumber' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json(['error' => $validator->errors()], 422);
+    }
+
+    for ($i = 0; $i < 100; $i += 10) {
+        $ticketNumber = $request->input_top_0 + $i;
+        $qty = $request->{'A' . $i};
+
+        if ($qty != null) { 
+            $ticketPurchase = new TicketPurchase();
+            $ticketPurchase->ticket_number = $ticketNumber;
+            $ticketPurchase->qty = $qty;
+            $ticketPurchase->save();
+        }
+    }
+
+    return redirect('/dashboard')->with('message', 'Data saved successfully');
+}
+
+    
     // public function dashboard(){
 
     //     return view('dashboard');

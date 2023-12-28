@@ -110,7 +110,8 @@
 
                 <div class="table-responsive">
 
-                    <form>
+                    <form action="{{ route('savedashboard') }}" method="post">
+                        @csrf
                         <table>
                             <tr>
                                 <?php
