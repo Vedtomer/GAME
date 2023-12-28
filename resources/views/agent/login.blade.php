@@ -77,10 +77,10 @@
     <div class="login-container">
         <h2 class="text-center">Login</h2>
         <form action="" method="POST">
-            @csrf
+            @csrf                                                          
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input type="text" class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3 position-relative">
                 <label for="password" class="form-label">Password</label>
