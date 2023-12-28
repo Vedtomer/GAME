@@ -466,7 +466,7 @@
         }
 
         td {
-            padding: 10px;
+            /* padding: 10px; */
             border-radius: 10px;
         }
 
@@ -604,7 +604,7 @@
         <table width="99%" border="0">
             <tbody>
                 <tr>
-                    <td style="width:20%">
+                    <td style="width:16%">
                         <table>
                             <tbody>
                                 <tr>
@@ -616,12 +616,12 @@
                                     <div>
                                         <tr>
                                             <td
-                                                style="background-image:url(desktop/currenttime_.png);background-repeat:no-repeat;background-size:200px 40px;background-position: center center;   width: 200px; height: 50px; background-color:rgb(39 146 133); border-radius:30px;">
+                                                style="background-image:url(desktop/currenttime_.png);background-repeat:no-repeat;background-size:200px 40px;background-position: center center;   width: 200px; height: 48px; background-color: rgb(39 146 133); border-radius:30px;">
                                                 <span id="RemainTime"
                                                     style="font-size: 12pt; font-weight: bold;display:none;color:Yellow ; ">00:14:34</span>
 
                                                 <span
-                                                    style="font-size: 18pt; font-weight: bold; color: Yellow; margin-top: 50px"
+                                                    style="font-size: 22pt; font-weight: bold; color: Yellow;"
                                                     id="NowTime">
                                                     <?php echo date('h:i:s A'); ?>
                                                 </span>
@@ -639,7 +639,7 @@
                         $currentDate = date('d/m/Y');
                         ?>
 
-                                            <span style="font-size: 24pt; font-weight: bold; color: Yellow"
+                                            <span style="font-size: 22pt; font-weight: bold; color: Yellow"
                                                 id="TodatyDate">
                                                 <?= $currentDate ?>
                                             </span>
@@ -650,9 +650,9 @@
                                     <tr>
                                     <tr>
                                         <td class="time-slot"
-                                            style="height: 50px; background-color:rgb(40, 117, 232); border-radius:30px;">
+                                            style="height: 48px; background-color:rgb(40, 117, 232); border-radius:30px;">
                                             <span
-                                                style="font-size: 19pt; font-weight: bold; color: Yellow; margin-top: 60px"
+                                                style="font-size: 22pt; font-weight: bold; color: Yellow; margin-top: 60px"
                                                 id="NextDrowTime"></span>
                                         </td>
                                     </tr>
@@ -718,10 +718,10 @@
                 <tbody>
                     <tr>
                         <td>
-                            <div style="overflow:auto;width:750px" id="dispres">
-                                <div class="divTable" style="overflow:auto;width:115.5%">
+                            <div style="overflow:auto;width:750px; height: 170px" id="dispres">
+                                <div class="divTable" style="overflow:auto;">
                                   
-                                    <div class="divTableRow">
+                                    <div class="divTableRow" style="">
                                         <div class="container1"> <img
                                             src="{{ asset('logo12_files/time_1.png') }}"
                                             style="width:60px;height:40px">
@@ -737,7 +737,7 @@
                                         </div>
                                         @endforeach
                                     </div>
-                                    <div class="divTableRow">
+                                    <div class="divTableRow" style="margin-bottom: 15px;">
                                         <div class="divTableCell1"><img src="{{ asset('logo12_files/601.png') }}"
                                                 style="height:50px;width:50px;background-color:transparent"></div>
                                       
