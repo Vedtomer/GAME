@@ -36,7 +36,7 @@
             <div class="d-flex justify-content-center">
                 <!-- Centered button -->
                 <button type="submit" class="btn btn-primary mr-2">submit</button>
-                <a href="{{ route('admin.user') }}" class="btn btn-info">Back</a>
+                <a href="{{ route('dashboard') }}" class="btn btn-info">Back</a>
             </div>
   
             {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}

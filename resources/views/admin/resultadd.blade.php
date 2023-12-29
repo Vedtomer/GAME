@@ -16,18 +16,21 @@
             <div class="mb-3">
                 {{-- <h3>ADD Result</h3> --}}
 
-                <input type="text" class="form-control" name="number_70" placeholder="Number 70" required>
+                <label for=""><b>Number 70</b></label>
+                <input type="text" class="form-control" name="number_70" placeholder="Enter Number" required>
             </div>
             
             <div class="mb-3">
 
-                <input type="text" class="form-control" name="number_60" placeholder="Number 60" required>
+              <label for=""><b>Number 60</b></label>
+                <input type="text" class="form-control" name="number_60" placeholder="Enter Number" required>
             </div>
            <br>
             <div class="form-group">
                 {{-- <label for="exampleDropdown">Select an option:</label> --}}
+                <label for=""><b>Select Times</b></label>
                 <select class="form-control" id="exampleDropdown" name="timesloat">
-                    <option value="" selected>Select timesloat</option>
+                    <option value="" selected>Select times</option>
                   <option value="9:00" >9:00</option>
                   <option value="9:15">9:15</option>
                   <option value="9:30">9:30</option>
