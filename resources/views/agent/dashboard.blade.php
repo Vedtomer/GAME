@@ -174,6 +174,55 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-12">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <div class="add" style="display: flex; align-items: center;">
+                        {{-- <h5 class="card-title">TRANSACTION</h5> --}}
+                        <div class="btns" style="margin-left: auto;">
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        @if(isset($data) && count($data) > 0)
+                        <h1 style="text-align: center">Ticket Purchase</h1>
+                        <table class="mb-0 table">
+                            <thead>
+                                <tr>
+                                    <th>S No</th>
+                                    {{-- <th>Username</th> --}}
+                                    <th>Ticket Number</th>
+                                    <th>QTY</th>
+                                    <th>Points</th>
+                                    <th>Result</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($data as $user)
+                                <tr>
+                                        <td><b>{{ $loop->index + 1 }}</b></td>
+                                        {{-- <td>{{ $user->user->name }}</td> --}}
+                                        {{-- <td>
+                                            <span
+                                                class=" {{ $user->action === 'add' ? 'badge badge-success ml-2' : 'badge badge-danger ml-2' }}">{{ $user->action }}</span>
+                                        </td> --}}
+                                        <td > <span style="background-color: rgb(255, 247, 0); border-radius: 30px;width: 50px; height: 1px; padding:6px;"><b>{{ $user->ticket_number }}</b></span></td>
+                                        <td><b>{{ $user->qty }}</b></td>
+                                        <td><b>{{ $user->points }}</b></td>
+                                        <td><b>{{ $user->result }}</b></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                       {{-- <div class="pag mt-4" style="float: right">
+                        {{ $data->links() }}
+                       </div> --}}
+                        @else
+                        <p>No Ticket Purchase</p>
+                    @endif
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <script>
             function redirectToDashboard(number) {

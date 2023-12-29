@@ -57,17 +57,22 @@ class AgentController extends Controller
         return redirect()->route('login');
     }
     
-    public function dashboard($number=null)
+    public function dashboard($number = null)
     {
-   
-        if(!$number){
-            $number=6000;
+        if (!$number) {
+            $number = 6000;
         }
-        
+    
         $agent = Auth::guard('agent')->user();
-   
-        return view('agent.dashboard', compact('agent','number'));
+    
+        // Use the query builder to apply conditions and pagination
+        $data = TicketPurchase::where('user_id', Auth::user()->id)
+        ->orderBy('id', 'desc')
+        ->paginate(10);
+    
+        return view('agent.dashboard', compact('agent', 'number', 'data'));
     }
+    
 
     public function savedashboard(Request $request)
 {
