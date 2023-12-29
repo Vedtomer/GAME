@@ -13,7 +13,7 @@
     <!-- Include Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
-    <title>Login Form</title>
+    <title>Login </title>
     <style>
         :root {
             --primary-color: #387f97;
@@ -88,8 +88,8 @@
         <form action="" method="POST">
             @csrf
             <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="text" class="form-control" id="email" name="email" required>
+                <label for="username" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="username" name="email" required>
             </div>
             <div class="mb-3 position-relative">
                 <label for="password" class="form-label">Password</label>

@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 // use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 // use PHPUnit\Framework\Attributes\Ticket;
 // namespace App\Http\Controllers\Agent;
@@ -70,30 +71,80 @@ class AgentController extends Controller
 
     public function savedashboard(Request $request)
 {
-    $validator = Validator::make($request->all(), [
-        'radioNumber' => 'required',
-    ]);
-
-    if ($validator->fails()) {
-        return response()->json(['error' => $validator->errors()], 422);
-    }
-
-    for ($i = 0; $i < 100; $i += 10) {
-        $ticketNumber = $request->input_top_0 + $i;
-        $qty = $request->{'A' . $i};
-
-        if ($qty != null) { 
-            $ticketPurchase = new TicketPurchase();
-            $ticketPurchase->ticket_number = $ticketNumber;
-            $ticketPurchase->qty = $qty;
-            $ticketPurchase->save();
-        }
-    }
-
-    return redirect('/dashboard')->with('message', 'Data saved successfully');
-}
 
     
+    $data = $request->all();
+    $balance = Auth::user()->balance;
+    $user_id = Auth::user()->id;
+    
+    // Check if the user's balance is zero or less than zero
+    if ($balance <= 0) {
+        return back()->with('error', 'Please recharge your account.');
+    }
+    
+    $totalPts = 0;
+    
+    foreach ($data as $key => $value) {
+        $keyInt = (int)$key;
+    
+        if (($keyInt >= 7000 && $keyInt <= 7099) || ($keyInt >= 6000 && $keyInt <= 6099)) {
+            if (!empty($value)) {
+                // Calculate points (pts) based on the given formula
+                $pts = (int)$value * 1.1;
+    
+                // Accumulate the total points
+                $totalPts += $pts;
+            }
+        }
+    }
+    
+    // Check if the total points exceed the user's balance
+    if ($totalPts > $balance) {
+        // Return with an error message
+        return back()->with('error', 'Insufficient points. Please recharge your account.');
+    }
+    
+    // Proceed to update or create records only if totalPts is within the balance
+    foreach ($data as $key => $value) {
+        $keyInt = (int)$key;
+    
+        if (($keyInt >= 7000 && $keyInt <= 7099) || ($keyInt >= 6000 && $keyInt <= 6099)) {
+            if (!empty($value)) {
+                // Calculate points (pts) based on the given formula
+                $pts = (int)$value * 1.1;
+    
+                // Deduct points from the user's balance
+                $balance -= $pts;
+    
+                // Update or create the record in the TicketPurchase model
+                DB::transaction(function () use ($keyInt, $value, $pts, $user_id) {
+                    $TicketPurchase = new TicketPurchase();
+                    $TicketPurchase->ticket_number = $keyInt;
+                    $TicketPurchase->qty = (int)$value;
+                    $TicketPurchase->points = $pts;
+                    $TicketPurchase->user_id = $user_id;
+                    $TicketPurchase->save();
+                });
+    
+                // Update the transaction table
+                DB::table('transaction')->insert([
+                    'user_id' => $user_id,
+                    'action' => 'purchase',
+                    'amount' => $pts,
+                    'balance' => $balance,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
+    }
+    
+    // Update the user's remaining balance after the purchase
+    Auth::user()->update(['balance' => $balance]);
+    
+    return back()->with('success', 'Ticket purchased successfully.');
+
+}
     // public function dashboard(){
 
     //     return view('dashboard');

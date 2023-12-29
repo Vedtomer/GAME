@@ -23,7 +23,7 @@ use App\Http\Controllers\Admin\AdminController;
 Route::get('/', function () {
     return view('home');
 });
-route::get("/",[AdminController::class,"home"]);
+route::get("/",[AdminController::class, 'newhome']);
 route::get('login', [LoginController::class, 'index']);
 route::get('dash', [LoginController::class, 'show']);
 route::get('user', [LoginController::class, 'usershow']);

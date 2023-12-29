@@ -24,6 +24,8 @@ class TicketPurchase extends Model
         'ticket_number',
         'qty',
         'total',
+        'user_id',
+        'points'
         // Add other fields you want to mass assign
     ];
 
