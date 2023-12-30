@@ -31,6 +31,7 @@ class Result extends Model
  
              $ticketPurchase->winning_amount=$winningAmount;
              $ticketPurchase->is_result_declared=1;
+             $ticketPurchase->result="WIN";
              $ticketPurchase->save();
         
             // Update the user table's balance column
