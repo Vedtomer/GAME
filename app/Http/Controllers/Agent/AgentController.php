@@ -359,7 +359,7 @@ public function resultdelete(string $id)
 {
     $user = Auth::user();
     if ($user) {
-        $transactions = Transaction::where('user_id', $user->id)->get();
+        $transactions = Transaction::where('user_id', $user->id)->orderBy('id','desc')->get();
         return view('agent.transaction', ['data' => $transactions]);
     } else {
         return view('agent.user'); 

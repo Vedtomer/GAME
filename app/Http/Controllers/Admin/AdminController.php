@@ -131,32 +131,7 @@ class AdminController extends Controller
 
 
 
-    // public function showChangePasswordForm()
-    // {
-    //     return view('admin.change-password');
-    // }
-
-    // public function changePassword(Request $request)
-    // {
-    //     $request->validate([
-    //         'current_password' => 'required|',
-    //         'new_password' => 'required|min:8|confirmed',
-    //     ]);
-
-    //     return redirect()->route('userdata')->with('success', 'Password changed successfully.');
-
-    //     $user = Auth::user();
-
-    //     if (!Hash::check($request->current_password, $user->password)) {
-    //         return redirect()->back()->with('error', 'The current password is incorrect.');
-    //     }
-
-    //     $user->update([
-    //         'password' => bcrypt($request->new_password),
-    //     ]);
-
-    //     return redirect()->route('userdata')->with('success', 'Password changed successfully.');
-    // }
+   
    public function showChangePasswordForm($id)
 {
     $userdata = DB::table('users')->where('id', $id)->first();
@@ -303,16 +278,20 @@ public function userdelete(string $id)
       
         return view('admin.resultadd');
     }
+
+
     public function result()
     {
         $users = Result::all();
         return view('admin.result', ['data' => $users]);
     }
+
+
     public function resultsave(Request $request)
     {
         $validate = $request->validate([
-            'number_70' => 'required|int|',
-            'number_60' => 'required||int:result',
+            // 'number_70' => 'required|int|',
+            // 'number_60' => 'required||int:result',
             'timesloat' => 'required|',
         ]);
 
@@ -321,9 +300,12 @@ public function userdelete(string $id)
         $userdata->number_60 = $request->number_60;
         $userdata->timesloat = $request->timesloat;
 
+     $userdata->update_user_result($request->number_60,$request->number_70);
+
         $userdata->save();
         session()->flash('success', 'User created successfully.');
         return redirect()->route('admin.result');
+
     }
 
     public function resultedit(string $id)
