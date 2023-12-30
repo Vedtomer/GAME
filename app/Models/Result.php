@@ -22,29 +22,28 @@ class Result extends Model
         ->whereIn('ticket_number', $numbers)
         ->get();
     
-        // Update each found instance with the generated numbers
         foreach ($ticketPurchases as $ticketPurchase) {
-           // $ticketNumbers = json_encode($numbers);
+            // $ticketNumbers = json_encode($numbers);
+         
+             // Calculate winning amount (assuming qty is a column in the TicketPurchase table)
+             $ticketPurchase=TicketPurchase::find($ticketPurchase->id);
+             $winningAmount = $ticketPurchase->qty * 11;
+ 
+             $ticketPurchase->winning_amount=$winningAmount;
+             $ticketPurchase->is_result_declared=1;
+             $ticketPurchase->save();
         
-            // Calculate winning amount (assuming qty is a column in the TicketPurchase table)
-            $ticketPurchase=TicketPurchase::find($ticketPurchase->id);
-            $winningAmount = $ticketPurchase->qty * 11;
-
-            $ticketPurchase->winning_amount=$winningAmount;
-            $ticketPurchase->is_result_declared=1;
-            $ticketPurchase->save();
-        
-            // Update user balance
-            DB::table('users')
-                ->where('id', $ticketPurchase->user_id)
-                ->update(['balance' => DB::raw('balance + ' . $winningAmount)]);
+            // Update the user table's balance column
+            $user = User::find($ticketPurchase->user_id);
+            $newBalance = $user->balance + $winningAmount;
+            $user->update(['balance' => $newBalance]);
         
             // Insert a new record into the 'transaction' table
             DB::table('transaction')->insert([
-                'user_id' => $ticketPurchase->user_id,
+                'user_id' => $user->id,
                 'action' => 'win',
                 'amount' => $winningAmount,
-                'balance' => DB::raw('balance + ' . $winningAmount),
+                'balance' => $newBalance,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
