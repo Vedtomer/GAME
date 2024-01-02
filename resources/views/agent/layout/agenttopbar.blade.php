@@ -1,3 +1,27 @@
+
+<style>
+    @media screen and (max-width: 767px) {
+        .amounts {
+            width: 200px;
+            padding: 5px;
+            font-size: 100px;
+            margin-top: 5px;
+        }
+        h5{
+            font-size: 20px;
+        }
+
+        .wallet a {
+            /* flex-direction: column; */
+            /* align-items: center; */
+        }
+
+        .box {
+            margin-left: 0;
+            /* margin-top: 5px; */
+        }
+    }
+</style>
 <div class="app-header header-shadow">
     <div class="app-header__logo">
         <div class="logo-src"></div>
@@ -26,6 +50,17 @@
             <button type="button" tabindex="0" class="dropdown-item"> <i class="pe-7s-power"></i></button>
         </a>
     </div>
+    <div class="amounts" style="width: 200px; position: fixed; top: 0;  margin-top: 5px; right: 0; padding: 10px;">
+        <div class="wallet" style="display: flex; align-items: center;">
+            <a href="#" style="display: flex;">
+                <i class='fas fa-wallet' style='font-size:24px'></i>
+                <div class="box" style="margin-left: auto;">
+                    <h5><b>: {{ Auth::user()->balance > 0 ? Auth::user()->balance : 0 }}</b></h5>
+                </div>
+            </a>
+        </div>
+    </div>
+    
     <div class="app-header__content">
         {{-- <div class="app-header-left">
             <div class="search-wrapper">
@@ -56,15 +91,9 @@
                 </li>
             </ul>
         </div> --}}
+     
         <div class="app-header-right">
-            <div class="wallet" style="display: flex; align-items: center;">
-                <a href="" style="display: flex;">
-                    <i class='fas fa-wallet' style='font-size:24px'></i>
-                    <div class="box" style="margin-left: auto;">
-                        <h5><b>: {{ Auth::user()->balance > 0 ? Auth::user()->balance : 0 }}</b></h5> 
-                    </div>
-                </a>
-            </div>
+           
             <div class="header-btn-lg pr-0">
                 <div class="widget-content p-0">
                     <div class="widget-content-wrapper">
