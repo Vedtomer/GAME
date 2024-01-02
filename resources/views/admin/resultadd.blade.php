@@ -3,10 +3,18 @@
 @section('section')
 
 
+
 <div class="container">
   <div class="col-lg-7">
     <div class="main-card mb-3 card">
     <div class="card-body">
+      @error('number_70')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
+
+@error('number_60')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
   <div class="row">
       <div class="col-12">
             

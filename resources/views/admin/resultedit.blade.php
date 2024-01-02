@@ -12,6 +12,13 @@
       <div class="container">
         <div class="col-lg-7">
           <div class="main-card mb-3 card">
+            @error('number_70')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
+
+@error('number_60')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
           <div class="card-body">
         <div class="row">
             <div class="col-12">
@@ -22,13 +29,13 @@
 
             <div class="mb-3">
                 <label >Number 70</label>
-                <input type="text" class="form-control" name="number_70" value="{{$data->number_70}}" >
+                <input type="text" class="form-control" name="number_70" value="{{$data->number_70}}" onkeypress="allowOnlyNumbers(event)" maxlength="2" >
               </div>
               <br>
 
             <div class="mb-3">
               <label >Number 60</label>
-              <input type="text" class="form-control" name="number_60" value="{{$data->number_60}}" >
+              <input type="text" class="form-control" name="number_60" value="{{$data->number_60}}" onkeypress="allowOnlyNumbers(event)" maxlength="2">
             </div>
             <br>
             <div class="form-group mb-3">
@@ -92,6 +99,15 @@
     </div>
   </div>
 </div>
-   
+<script>
+function allowOnlyNumbers(event) {
+  const charCode = (event.which) ? event.which : event.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 37 && charCode !== 39) {
+      event.preventDefault();
+  }
+ 
+}
+</script>
+
 
 @endsection

@@ -300,23 +300,26 @@ public function userdelete(string $id)
     public function resultsave(Request $request)
     {
         $validate = $request->validate([
-            // 'number_70' => 'required|int|',
-            // 'number_60' => 'required||int:result',
-            'timesloat' => 'required|',
+            'number_70' => 'required|max:2',
+            'number_60' => 'required|max:2',
+            'timesloat' => 'required',
+        ], [
+            'number_70.max' => 'The Number 70 field must not exceed 2 characters.',
+            'number_60.max' => 'The Number 60 field must not exceed 2 characters.',
         ]);
-
+    
         $userdata = new Result();
         $userdata->number_70 = $request->number_70;
         $userdata->number_60 = $request->number_60;
         $userdata->timesloat = $request->timesloat;
-
-     $userdata->update_user_result($request->number_60,$request->number_70);
-
+    
+        $userdata->update_user_result($request->number_60, $request->number_70);
+    
         $userdata->save();
         session()->flash('success', 'User created successfully.');
         return redirect()->route('admin.result');
-
     }
+    
 
     public function resultedit(string $id)
     {
@@ -337,6 +340,7 @@ public function resultupdate(Request $request, $id)
     ]);
     return redirect()->route('admin.result')->with('success', 'update successfully.');  
 }
+
 public function resultdelete(string $id)
 {
     $userdata = DB::table('result')->where('id', $id)->delete();

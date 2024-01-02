@@ -114,19 +114,14 @@
     }
 
     @media (max-width: 767px) {
-         .Purchase{
-            overflow-x: auto;
-        }
+       
 
         .Purchase {
             font-size: 25px;
-            font-weight: bold;
+            /* font-weight: bold; */
             color: rgb(16, 16, 16);
         }
     }
-    </style>
-    <style>
-       
     </style>
 <div style="display: flex; justify-content: space-between; align-items: center; overflow-x: auto; padding: 10px;">
 
@@ -229,7 +224,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-lg-12">
             <div class="main-card mb-3 card">
                 <div class="card-body">
@@ -326,31 +321,26 @@
                 var minutes = now.getMinutes();
                 var remainingMinutes = 15 - (minutes % 15);
         
-            
-                var nextDrawTime = new Date(now.getTime() + remainingMinutes * 60000); 
+                var nextDrawTime = new Date(now.getTime() + remainingMinutes * 60000);
         
-            
                 var hours = nextDrawTime.getHours();
                 var minutes = nextDrawTime.getMinutes();
                 var seconds = nextDrawTime.getSeconds();
                 var ampm = hours >= 12 ? 'P.M.' : 'A.M.';
         
-            
                 hours = hours % 12 || 12;
                 minutes = minutes < 10 ? '0' + minutes : minutes;
                 seconds = seconds < 10 ? '0' + seconds : seconds;
         
-                var nextDrawTimeString = hours + ':' + minutes + ':'  + ' ' + ampm;
+                var nextDrawTimeString = hours + ':' + minutes + ':' + ' ' + ampm;
         
-                
                 document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
             }
         
-        
             updateNextDrawTime();
         
-           
-            setInterval(updateNextDrawTime, 900000);
+            setInterval(updateNextDrawTime, 900000); // Update every 900,000 milliseconds (15 minutes)
         </script>
+        
         
     @endsection

@@ -1,4 +1,3 @@
-
 <style>
     @media screen and (max-width: 767px) {
         .amounts {
@@ -105,6 +104,7 @@
                                     data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
                                     class="btn-shadow mr-3 btn btn-dark">
                                     <i class="pe-7s-power"></i>
+                                    
                                 </button>
                                 <!-- Display three dots on smaller screens -->
                                 <button class="btn btn-secondary d-lg-none" type="button" id="simpleDropdownMobile"
