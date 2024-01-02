@@ -112,6 +112,18 @@
             font-size: 30px;
         }
     }
+
+    @media (max-width: 767px) {
+         .Purchase{
+            overflow-x: auto;
+        }
+
+        .Purchase {
+            font-size: 25px;
+            font-weight: bold;
+            color: rgb(16, 16, 16);
+        }
+    }
     </style>
     <style>
        
@@ -217,6 +229,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="col-lg-12">
             <div class="main-card mb-3 card">
                 <div class="card-body">
@@ -227,7 +240,7 @@
                     </div>
                     <div class="table-responsive">
                         @if(isset($data) && count($data) > 0)
-                        <h1 style="text-align: center">Ticket Purchase</h1>
+                        <h1 style="text-align: center" class="Purchase">Ticket Purchase</h1>
                         <table class="mb-0 table">
                             <thead>
                                 <tr>
@@ -236,7 +249,7 @@
                                     <th>Ticket Number</th>
                                     <th>QTY</th>
                                     <th>Points</th>
-                                    <th>Result</th>
+                                    <th>Date</th>
                                 </tr>
                             </thead>
                             <tbody>
