@@ -48,9 +48,9 @@
                             @foreach ($data as $user)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $user->user->name }}</td>
+                                    <td>{{ $user->user->email }}</td>
                                     <td>
-                                        <span class="{{ in_array($user->action, ['win', 'add']) ? 'badge badge-success ml-2' : 'badge badge-danger ml-2' }}">
+                                        <span class="{{ in_array($user->action, ['win', 'add']) ? 'badge ml-2' : 'badge badge-danger ml-2' }}">
                                             {{ $user->action }}
                                         </span>
                                         

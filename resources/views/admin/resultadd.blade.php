@@ -17,19 +17,23 @@
                 {{-- <h3>ADD Result</h3> --}}
 
                 <label for=""><b>Number 70</b></label>
-                <input type="text" class="form-control" name="number_70" placeholder="Enter Number" required>
+               
+                {{-- <input type="text" class="form-control" name="number_70" placeholder="Enter Number" required onkeypress="allowOnlyNumbers(event)"> --}}
+                <input type="text" class="form-control" name="number_70" placeholder="Enter Number" required onkeypress="allowOnlyNumbers(event)" maxlength="2">
+
+
             </div>
             
             <div class="mb-3">
 
               <label for=""><b>Number 60</b></label>
-                <input type="text" class="form-control" name="number_60" placeholder="Enter Number" required>
+                <input type="text" class="form-control" name="number_60" placeholder="Enter Number" required onkeypress="allowOnlyNumbers(event)" maxlength="2">
             </div>
-           <br>
+         
             <div class="form-group">
-                {{-- <label for="exampleDropdown">Select an option:</label> --}}
+ 
                 <label for=""><b>Select Times</b></label>
-                <select class="form-control" id="exampleDropdown" name="timesloat">
+                <select class="form-control" id="exampleDropdown" name="timesloat" required>
                     <option value="" selected>Select times</option>
                   <option value="9:00" >9:00</option>
                   <option value="9:15">9:15</option>
@@ -89,7 +93,7 @@
             
 
               <div class="d-flex justify-content-center">
-                <!-- Centered button -->
+        
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                 <a href="{{ route('admin.result') }}" class="btn btn-info">Back</a>
             </div>
@@ -100,4 +104,48 @@
 </div>
 </div>
 </div>
+
+<script>
+
+function allowOnlyNumbers(event) {
+  const charCode = (event.which) ? event.which : event.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 37 && charCode !== 39) {
+      event.preventDefault();
+  }
+ 
+}
+</script>
+
+
+
+      <script>
+   
+          var currentTime = new Date();
+          var currentHour = currentTime.getHours();
+          var currentMinute = currentTime.getMinutes();
+
+     
+          var formattedCurrentTime = currentHour * 60 + currentMinute;
+
+   
+          var dropdown = document.getElementById('exampleDropdown');
+          var options = dropdown.options;
+          var lastPastTimeIndex = -1;
+
+          for (var i = options.length - 1; i >= 0; i--) {
+              var optionValue = options[i].value;
+              var optionTime = parseInt(optionValue.split(':')[0]) * 60 + parseInt(optionValue.split(':')[1]);
+
+              if (optionValue !== "" && optionTime < formattedCurrentTime) {
+                  if (lastPastTimeIndex === -1) {
+                      lastPastTimeIndex = i;
+                  } else {
+                      dropdown.remove(i);
+                  }
+              }
+          }
+      </script>
+
+
+
         @endsection

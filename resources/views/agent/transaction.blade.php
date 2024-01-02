@@ -1,5 +1,5 @@
 @extends('agent.layout.agentmain')
-@section('title', 'Agent Transaction')
+@section('title', 'Transaction')
 @section('section')
 <style>
     .btns {

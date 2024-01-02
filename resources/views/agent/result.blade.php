@@ -1,5 +1,5 @@
 @extends('agent.layout.agentmain')
-@section('title', 'Agent Result')
+@section('title', 'Result')
 @section('section')
 
 <style>
@@ -198,7 +198,8 @@
                         <th style="width: 5%" scope="col">S No</th>
                         <th style="width: 20%" scope="col">Number 70</th>
                         <th style="width: 20%" scope="col">Number 60</th>
-                        <th style="width: 20%" scope="col">timesloat</th>
+                        <th style="width: 20%" scope="col">Time</th>
+                        <th style="width: 20%" scope="col">Date</th>
                      
                         {{-- <th style="width: 10%" scope="col">View</th> --}}
                         {{-- <th style="width: 15%" scope="col">Action</th> --}}
@@ -213,6 +214,8 @@
                             <td>{{ $user->number_70 }}</td>
                             <td>{{ $user->number_60 }}</td>
                             <td>{{ $user->timesloat }}</td>
+                            <td>{{ $user->created_at->format('d-m-Y') }}</td>
+
                             {{-- <td><a class="btn btn-success" href="{{route('resultedit',$user->id)}}">Update</a></td> --}}
                             {{-- <td><a class="btn btn-danger" href="{{route('resultdelete',$user->id)}}">Delete</a></td> --}}
                             <!-- Add more columns as needed -->

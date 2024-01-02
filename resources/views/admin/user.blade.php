@@ -3,6 +3,19 @@
 @section('section')
 
 
+<style>
+     @media screen and (max-width: 767px) {
+        .btn {
+            font-size: 15px; /* Font size for screens less than or equal to 767px */
+        }
+    .btn {
+        font-size: 10px;
+        /*  Default font size */
+    }
+
+   
+    }
+</style>
 
     <div class="errors">
         @if ($errors->any())
@@ -20,7 +33,7 @@
 
 
 
-        <div class="add" style="display: flex; align-items: center;">
+        <div class="add" style="display: flex; align-items: center; margin-bottom:8px;">
 
             <div class="btns" style="margin-left: auto;">
                 <a href="{{ route('admin.useradd') }}" id="openModalBtn" class="btn btn-secondary">Add User</a>

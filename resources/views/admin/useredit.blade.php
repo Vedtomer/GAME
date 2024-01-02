@@ -22,13 +22,13 @@
                 <label >name</label>
                 <input type="text" class="form-control" name="name" value="{{$data->name}}" >
               </div>
-              <br><br>
+              <br>
 
-            <div class="mb-8">
+            {{-- <div class="mb-8">
               <label >username</label>
-              <input type="email" class="form-control" name="email" value="{{$data->email}}" >
+              <input type="text" class="form-control" name="email" value="{{$data->email}}" >
             </div>
-            <br>
+            <br> --}}
 
        
 
@@ -36,7 +36,7 @@
             <div class="d-flex justify-content-center">
               <!-- Centered button -->
               <button type="submit" class="btn btn-primary mr-2">Update</button>
-              <a href="{{ route('admin.user') }}" class="btn btn-info">Back</a>
+              <a href="{{ route('user') }}" class="btn btn-info">Back</a>
           </div>
             {{-- <a class="btn btn-primary" href=" {{route('user') }} ">show all data</a> --}}
           </form>

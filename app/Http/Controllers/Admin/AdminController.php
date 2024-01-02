@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 use App\Models\Result;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -205,12 +206,21 @@ public function adminchangePassword(Request $request)
     
     public function usersave(Request $request)
     {
-        if(empty($request->name)){
-            return redirect()->back()->with('error' ,'name is required');
+        // if(empty($request->name)){
+        //     return redirect()->back()->with('error' ,'name is required');
+        // }
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|unique:users,email',
+            // other validation rules
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', 'user name not available')->withInput();
         }
-        if(empty($request->email)){
-            return redirect()->back()->with('error' ,'email is required');
-        }
+    
+        // if(empty($request->email)){
+        //     return redirect()->back()->with('error' ,'email is required');
+        // }
         if(empty($request->password)){
             return redirect()->back()->with('error' ,'password is required');
         }
@@ -357,7 +367,7 @@ public function resultdelete(string $id)
             $userdata->save();
             $user->save();
             session()->flash('success', 'Amount Added successfully.');
-            return redirect()->route('admin.user');
+            return redirect()->route('user');
         }
 
         
@@ -383,7 +393,7 @@ public function resultdelete(string $id)
             $epsilon = 0.0001; 
 if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
     session()->flash('error', 'Insufficient balance.');
-    return redirect()->route('admin.user');
+    return redirect()->route('user');
 }
 
             $amount=$user->balance-$request->amount;
@@ -394,7 +404,7 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
             $user->save();
             
             session()->flash('success', 'Amount Debit successfully.');
-            return redirect()->route('admin.user');
+            return redirect()->route('user');
         }
         $data = Transaction::all();
         return view('admin.withdrawal', ['data' => $data, 'id' => $id]);

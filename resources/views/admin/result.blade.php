@@ -6,7 +6,7 @@
         {{-- <div class="card-body"> --}}
 
 
-            <div class="add" style="display: flex; align-items: center;">
+            <div class="add" style="display: flex; align-items: center;margin-bottom:8px;">
                 {{-- <h5 class="card-title">Show Result</h5> --}}
                 <div class="btns" style="margin-left: auto;">
                     <a href="{{ route('admin.resultadd') }}" id="openModalBtn" class="btn btn-secondary">Add Result</a>

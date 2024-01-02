@@ -1,5 +1,5 @@
 @extends('admin.layout.main')
-@section('title', 'Amount')
+@section('title', 'Withdrawal Amount')
 @section('section')
 
 @if(session('error'))
@@ -28,12 +28,12 @@
             <br>
             <div class="mb-8">
             
-                <input type="text" class="form-control" name="amount" placeholder="withdrawal" >
+                <input type="text" class="form-control" name="amount" placeholder="withdrawal" onkeypress="allowOnlyNumbers(event)">
               </div>
               <br>
             <div class="d-flex justify-content-center">
               <button type="submit" class="btn btn-primary mr-2">Submit</button>
-              <a href="{{ route('admin.user') }}" class="btn btn-info">Back</a>
+              <a href="{{ route('user') }}" class="btn btn-info">Back</a>
           </div>
           </form>
             </div>
@@ -46,6 +46,15 @@
 
 
       </div>
-   
+      <script>
+
+        function allowOnlyNumbers(event) {
+          const charCode = (event.which) ? event.which : event.keyCode;
+          if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 37 && charCode !== 39) {
+              event.preventDefault();
+          }
+         
+        }
+        </script>
 
 @endsection
