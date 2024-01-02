@@ -287,7 +287,8 @@ class AgentController extends Controller
     // }
     public function result()
     {
-        $users = Result::all();
+        // $users = Result::all();
+        $users = Result::orderBy('created_at', 'desc')->get();
         return view('agent.result', ['data' => $users]);
     }
     public function resultsave(Request $request)

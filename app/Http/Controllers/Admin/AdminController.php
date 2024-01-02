@@ -194,7 +194,7 @@ public function adminchangePassword(Request $request)
 
     public function user()
     {
-        $users = User::all();
+        $users = User::orderBy('created_at', 'desc')->get();
         return view('admin.user', ['data' => $users]);
     }
     public function useradd()
@@ -282,7 +282,7 @@ public function userdelete(string $id)
 
     public function result()
     {
-        $users = Result::all();
+        $users = Result::orderBy('created_at', 'desc')->get();
         return view('admin.result', ['data' => $users]);
     }
 
@@ -423,7 +423,7 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
     public function  transaction($id=null)
     {
         if(empty($id)){
-            $users = Transaction::all();
+            $users = Transaction::orderBy('created_at', 'desc')->get();
         }else{
             $users = Transaction::where('user_id',$id)->get();
         }
