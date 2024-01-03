@@ -336,15 +336,15 @@
         
                 document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
         
-                var submitButton = document.getElementById('submitButton');
-                var drawStart = nextDrawTime.getTime() - 4 * 60 * 1000;
-                var drawEnd = nextDrawTime.getTime() + 4 * 60 * 1000;
+                // var submitButton = document.getElementById('submitButton');
+                // var drawStart = nextDrawTime.getTime() - 4 * 60 * 1000;
+                // var drawEnd = nextDrawTime.getTime() + 4 * 60 * 1000;
         
-                if (now.getTime() >= drawStart && now.getTime() <= drawEnd) {
-                    submitButton.disabled = true;
-                } else {
-                    submitButton.disabled = false;
-                }
+                // if (now.getTime() >= drawStart && now.getTime() <= drawEnd) {
+                //     submitButton.disabled = true;
+                // } else {
+                //     submitButton.disabled = false;
+                // }
         
                 // Reload the page when the next draw is due
                 if (now.getTime() >= nextDrawTime.getTime()) {

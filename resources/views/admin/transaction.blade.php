@@ -25,9 +25,9 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
 
-<div>
+{{-- <div>
     <input type="date" id="dateFilter" onchange="fetchData()">
-</div>
+</div> --}}
                 <div class="add" style="display: flex; align-items: center;">
                     {{-- <h5 class="card-title">TRANSACTION</h5> --}}
                     <div class="btns" style="margin-left: auto;">
@@ -75,7 +75,7 @@
         </div>
     </div>
    
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         fetchData(new Date().toISOString().split('T')[0]);
     });
@@ -125,5 +125,5 @@
             tableBody.innerHTML += row;
         });
     }
-</script>
+</script> --}}
 @endsection
