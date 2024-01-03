@@ -291,12 +291,14 @@ class AgentController extends Controller
         $users = Result::orderBy('created_at', 'desc')->get();
         return view('agent.result', ['data' => $users]);
     }
-    // अपने Controller में
+   
 public function getFilteredData(Request $request) {
     $date = $request->date;
     $data = Result::whereDate('created_at', $date)->get();
+    $dataTransaction = Transaction::whereDate('created_at', $date)->get();
 
-    return response()->json(['data' => $data]);
+    return response()->json(['data' => $data, 'dataTransaction' => $dataTransaction]);
+    // return response()->json(['data' => $data]);
 }
 
     public function resultsave(Request $request)

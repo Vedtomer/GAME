@@ -92,7 +92,7 @@
 
 
     <div class="add" style="display: flex; align-items: center;">
-        <h5 class="card-title">Show Result</h5>
+        {{-- <h5 class="card-title">Show Result</h5> --}}
         <div class="btns" style="margin-left: auto;">
             {{-- <button id="openModalBtn" class="btn btn-secondary">Add Result</button> --}}
         </div>
@@ -269,17 +269,20 @@
     document.getElementById("openModalBtn").addEventListener("click", openModal);
     </script>
 <script>
-    function fetchData() {
-        var selectedDate = document.getElementById('dateFilter').value;
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchData(new Date().toISOString().split('T')[0]);
+    });
+
+    function fetchData(date) {
+        var selectedDate = date || document.getElementById('dateFilter').value;
         if (!selectedDate) {
-            alert('select date');
+            alert('Select Date');
             return;
         }
-    
-        $.ajax({
-            url: '/get-filtered-data',
 
-            type: 'POST',
+        $.ajax({
+            url: '/get-filtered-data', 
+            type: 'GET',
             data: { date: selectedDate },
             success: function(response) {
                 updateTable(response.data);
@@ -289,16 +292,16 @@
             }
         });
     }
-    
+
     function updateTable(data) {
         var tableBody = document.querySelector('.table-responsive tbody');
         tableBody.innerHTML = ''; 
-    
+
         if (data.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="5">not data found</td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="5">Data not found</td></tr>';
             return;
         }
-    
+
         data.forEach(function(item, index) {
             var row = `<tr>
                 <td>${index + 1}</td>
@@ -310,6 +313,8 @@
             tableBody.innerHTML += row;
         });
     }
-    </script>
+
+
+</script>
     
     @endsection

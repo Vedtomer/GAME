@@ -209,7 +209,7 @@
                                 
                                     if ($i == 99) {
                                         echo "<tr>
-                                                                                                                                                                                                                                                                                                                                                                        <th colspan=11><div class=submit><button type=submit class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary'>Submit </button><button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning' id=reloadBtn>Clear </button></div></th>
+                                                                                                                                                                                                                                                                                                                                                                        <th colspan=11><div class=submit><button type=submit class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'>Submit </button><button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning' id=reloadBtn>Clear </button></div></th>
                                                                                                                                                                                                                                                                                                                                                                             <th><span for='qty{$i}'>Total</span></th>
                                                                                                                                                                                                                                                                                                                                                                         <th><span  id='tqty' name='tqty'>0</span></th>
                                                                                                                                                                                                                                                                                                                                                                         <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
@@ -332,15 +332,36 @@
                 minutes = minutes < 10 ? '0' + minutes : minutes;
                 seconds = seconds < 10 ? '0' + seconds : seconds;
         
-                var nextDrawTimeString = hours + ':' + minutes + ':' + ' ' + ampm;
+                var nextDrawTimeString = hours + ':' + minutes + ' ' + ampm;
         
                 document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
+        
+                var submitButton = document.getElementById('submitButton');
+                var drawStart = nextDrawTime.getTime() - 4 * 60 * 1000;
+                var drawEnd = nextDrawTime.getTime() + 4 * 60 * 1000;
+        
+                if (now.getTime() >= drawStart && now.getTime() <= drawEnd) {
+                    submitButton.disabled = true;
+                } else {
+                    submitButton.disabled = false;
+                }
+        
+                // Reload the page when the next draw is due
+                if (now.getTime() >= nextDrawTime.getTime()) {
+                    location.reload(true);
+                }
             }
         
             updateNextDrawTime();
         
-            setInterval(updateNextDrawTime, 900000);
+            setInterval(updateNextDrawTime, 900000); // 15 minutes interval
         </script>
+        
+        
+        
+        
+        
+        
         
         
         

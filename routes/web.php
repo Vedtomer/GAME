@@ -87,6 +87,12 @@ Route::prefix('admin')->group(function () {
         // Route::post('amount/{id}', [AdminController::class, 'amountsave'])->name('amountsave');
         Route::match(['get', 'post'], 'amount/{id}', [AdminController::class, 'amount'])->name('amount');
         Route::match(['get', 'post'], 'withdrawal/{id}', [AdminController::class, 'withdrawal'])->name('withdrawal');
+        
+
+        Route::get('/get-filtered-data', [AdminController::class, 'getFilteredDataForAdmin']);
+        // Route::get('/get-filtered-datas', [AdminController::class, 'getFilteredDataForAdmins']);
+        // Route::get('/admin/get-filtered-data', [AdminController::class, 'getFilteredData'])->name('admin.getFilteredData');
+
 
     });
 });
@@ -128,7 +134,7 @@ Route::middleware('auth:agent')->group(function () {
 
 
     Route::post('agentchangepassword', [AgentController::class, 'agentchangePassword'])->name('agentchange.password');
-    Route::post('/get-filtered-data', '[AgentController]@getFilteredData');
+    Route::get('/get-filtered-data', [AgentController::class ,'getFilteredData']);
 
 });
 

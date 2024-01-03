@@ -290,7 +290,27 @@ public function userdelete(string $id)
         return view('admin.result', ['data' => $users]);
     }
 
+    public function getFilteredDataForAdmin(Request $request) {
+        $date = $request->date;
+        $data = Result::whereDate('created_at', $date)->orderBy('created_at', 'desc')->get();
+        // $dataa = Transaction::whereDate('created_at', $date)->get();
+    
+        // return response()->json(['data' => $data]);
+        $dataTransaction = Transaction::whereDate('created_at', $date)->get();
 
+        return response()->json(['data' => $data, 'dataTransaction' => $dataTransaction]);
+    }
+ 
+    
+    
+    // public function getFilteredDataForAdmins(Request $request) {
+    //     $date = $request->date;
+    //     // $data = Result::whereDate('created_at', $date)->with('user')->get();
+    //     $dataTransaction = Transaction::whereDate('created_at', $date)->get();
+    
+    //     return response()->json(['data' => $data, 'dataTransaction' => $dataTransaction]);
+    // }
+    
     public function resultsave(Request $request)
     {
         $validate = $request->validate([

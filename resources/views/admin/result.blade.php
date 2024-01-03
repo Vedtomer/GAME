@@ -8,6 +8,9 @@
 
             <div class="add" style="display: flex; align-items: center;margin-bottom:8px;">
                 {{-- <h5 class="card-title">Show Result</h5> --}}
+                <div>
+                    <input type="date" id="dateFilter" onchange="fetchData()">
+                </div>
                 <div class="btns" style="margin-left: auto;">
                     <a href="{{ route('admin.resultadd') }}" id="openModalBtn" class="btn btn-secondary">Add Result</a>
                 </div>
@@ -113,6 +116,7 @@
         @endphp
         {{-- --}}
         {{-- @if(count($data) > 0) --}}
+     
     
         <div class="table-responsive">
             {{-- <h2>User List</h2> --}}
@@ -126,7 +130,10 @@
                             <th style="width: 20%" scope="col">Time</th>
                          
                             {{-- <th style="width: 10%" scope="col">View</th> --}}
-                            <th style="width: 15%" scope="col">Action</th>
+                         
+                            <th style="width: 15%" scope="col">Date</th>
+                               <th style="width: 15%" scope="col">Action</th>
+
                             {{-- <th style="width: 15%" scope="col">Delete</th> --}}
                             <!-- Adjust the widths as needed -->
                         </tr>
@@ -138,6 +145,8 @@
                                 <td>{{ $user->number_70 }}</td>
                                 <td>{{ $user->number_60 }}</td>
                                 <td>{{ $user->timesloat }}</td>
+                                {{-- <td>{{ $user->action }}</td> --}}
+                                <td>{{ $user->created_at->format('d-m-Y') }}</td>
                                 <td><a class="btn " href="{{route('admin.resultedit',$user->id)}}"><i class="fa fa-edit" style="font-size:24px"></i></a></td>
                                 {{-- <td><a class="btn btn-danger" href="{{route('admin.resultdelete',$user->id)}}">Delete</a></td> --}}
                                 <!-- Add more columns as needed -->
@@ -183,4 +192,56 @@
         </div>
     </div>
 {{-- </div> --}}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchData(new Date().toISOString().split('T')[0]);
+    });
+
+    function fetchData(date) {
+        var selectedDate = date || document.getElementById('dateFilter').value;
+        if (!selectedDate) {
+            alert('Select Date');
+            return;
+        }
+
+        $.ajax({
+            url: '/admin/get-filtered-data', 
+            type: 'GET',
+            data: { date: selectedDate },
+            success: function(response) {
+                updateTable(response.data);
+            },
+            error: function() {
+                alert('error');
+            }
+        });
+    }
+
+    function updateTable(data) {
+        var tableBody = document.querySelector('.table-responsive tbody');
+        tableBody.innerHTML = ''; 
+
+        if (data.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="5">Data not found</td></tr>';
+            return;
+        }
+
+        data.forEach(function (item, index) {
+    var row = `<tr>
+        <td>${index + 1}</td>
+        <td>${item.number_70}</td>
+        <td>${item.number_60}</td>
+        <td>${item.timesloat}</td>
+        <td>${new Date(item.created_at).toLocaleDateString('en-IN')}</td>
+        <td><a class="btn" href="/admin/resultedit/${item.id}"><i class="fa fa-edit" style="font-size:24px"></i></a></td>
+    </tr>`;
+    tableBody.innerHTML += row;
+});
+
+    }
+
+
+</script>
+
     @endsection
