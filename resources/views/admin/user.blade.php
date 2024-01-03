@@ -130,8 +130,9 @@
                                     <a class="btn btn-success mr-2" href="{{ route('transaction', $user->id) }}">Transaction</a>
                                 </td>
 
-                                <td><a class="btn " href="{{ route('useredit', $user->id) }}"><i class="fa fa-edit"
-                                            style="font-size:24px"></i></a>
+                                <td>
+                                    {{-- <a class="btn " href="{{ route('useredit', $user->id) }}"><i class="fa fa-edit"
+                                            style="font-size:24px"></i></a> --}}
                                     {{-- <td><a class="btn btn-danger" href="{{route('userdelete',$user->id)}}">Delete</a></td> --}}
                                     <a class="btn " href="{{ route('change-password', $user->id) }}"><i
                                             class='fas fa-lock' style='font-size:24px'></i></a>

@@ -189,8 +189,7 @@
     {{-- --}}
     {{-- @if(count($data) > 0) --}}
     <div>
-        <input type="date" id="dateFilter">
-        <button onclick="fetchData()">Search</button>
+        <input type="date" id="dateFilter" onchange="fetchData()">
     </div>
     <div class="table-responsive">
        
