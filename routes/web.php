@@ -128,6 +128,8 @@ Route::middleware('auth:agent')->group(function () {
 
 
     Route::post('agentchangepassword', [AgentController::class, 'agentchangePassword'])->name('agentchange.password');
+    Route::post('/get-filtered-data', '[AgentController]@getFilteredData');
+
 });
 
 

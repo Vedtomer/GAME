@@ -211,7 +211,7 @@ public function adminchangePassword(Request $request)
     ]);
 
     if ($validator->fails()) {
-        return redirect()->back()->withErrors(['user_name' => 'User name not available'])->withInput();
+        return redirect()->back()->withErrors(['email' => 'User name not available'])->withInput();
     }
 
     if (empty($request->password)) {

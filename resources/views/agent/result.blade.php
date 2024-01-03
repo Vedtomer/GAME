@@ -188,8 +188,13 @@
     @endphp
     {{-- --}}
     {{-- @if(count($data) > 0) --}}
-
+    <div>
+        <input type="date" id="dateFilter">
+        <button onclick="fetchData()">Search</button>
+    </div>
     <div class="table-responsive">
+       
+        
         {{-- <h2>User List</h2> --}}
        @if(isset($data) && count($data) > 0)
             <table class="mb-0 table table-striped table-bordered">
@@ -264,5 +269,48 @@
     // Event listener for the open modal button
     document.getElementById("openModalBtn").addEventListener("click", openModal);
     </script>
+<script>
+    function fetchData() {
+        var selectedDate = document.getElementById('dateFilter').value;
+        if (!selectedDate) {
+            alert('select date');
+            return;
+        }
+    
+        $.ajax({
+            url: '/get-filtered-data',
 
+            type: 'POST',
+            data: { date: selectedDate },
+            success: function(response) {
+                updateTable(response.data);
+            },
+            error: function() {
+                alert('error');
+            }
+        });
+    }
+    
+    function updateTable(data) {
+        var tableBody = document.querySelector('.table-responsive tbody');
+        tableBody.innerHTML = ''; 
+    
+        if (data.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="5">not data found</td></tr>';
+            return;
+        }
+    
+        data.forEach(function(item, index) {
+            var row = `<tr>
+                <td>${index + 1}</td>
+                <td>${item.number_70}</td>
+                <td>${item.number_60}</td>
+                <td>${item.timesloat}</td>
+                <td>${new Date(item.created_at).toLocaleDateString('en-IN')}</td>
+            </tr>`;
+            tableBody.innerHTML += row;
+        });
+    }
+    </script>
+    
     @endsection
