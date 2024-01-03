@@ -104,7 +104,7 @@
                     <thead>
                         <tr>
                             <th style="width: 5%" scope="col">Sr.No.</th>
-                            <th style="width: 20%" scope="col">Name</th>
+                            {{-- <th style="width: 20%" scope="col">Name</th> --}}
                             <th style="width: 20%" scope="col">Username</th>
                             <th style="width: 20%" scope="col">Balance</th>
 
@@ -121,7 +121,7 @@
                         @foreach ($data as $user)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $user->name }}</td>
+                                {{-- <td>{{ $user->name }}</td> --}}
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->balance }}</td>
                                 <td class="d-flex "><a class="btn btn-primary mr-2" href="{{ route('amount', $user->id) }}">Add</a>

@@ -339,8 +339,9 @@
         
             updateNextDrawTime();
         
-            setInterval(updateNextDrawTime, 900000); // Update every 900,000 milliseconds (15 minutes)
+            setInterval(updateNextDrawTime, 900000);
         </script>
+        
         
         
     @endsection

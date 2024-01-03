@@ -204,41 +204,35 @@ public function adminchangePassword(Request $request)
         return view('admin.useradd');
     }
     
-    public function usersave(Request $request)
-    {
-        // if(empty($request->name)){
-        //     return redirect()->back()->with('error' ,'name is required');
-        // }
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|unique:users,email',
-            // other validation rules
-        ]);
+   public function usersave(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'email' => 'required|unique:users,email',
+    ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->with('error', 'user name not available')->withInput();
-        }
-    
-        // if(empty($request->email)){
-        //     return redirect()->back()->with('error' ,'email is required');
-        // }
-        if(empty($request->password)){
-            return redirect()->back()->with('error' ,'password is required');
-        }
-        if($request->confirm_password != $request->password){
-            return redirect()->back()->with('error' ,'password is not match');
-        }
-        
-    
-        $userdata = new User();
-        $userdata->name = $request->name;
-        $userdata->email = $request->email;
-        $userdata->password = bcrypt($request->password);
-     
-        $userdata->save();
-        session()->flash('success', 'User created successfully.');
-        return redirect()->route('user');
-    
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors(['user_name' => 'User name not available'])->withInput();
     }
+
+    if (empty($request->password)) {
+        return redirect()->back()->withErrors(['password' => 'Password is required'])->withInput();
+    }
+
+    if ($request->confirm_password != $request->password) {
+        return redirect()->back()->withErrors(['password' => 'Password does not match'])->withInput();
+    }
+
+    $userdata = new User();
+    $userdata->name = $request->name;
+    $userdata->email = $request->email;
+    $userdata->password = bcrypt($request->password);
+
+    $userdata->save();
+
+    session()->flash('success', 'User created successfully.');
+    return redirect()->route('user');
+}
+
     
 
     public function displayUsers()
