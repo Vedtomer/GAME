@@ -54,6 +54,8 @@ Route::prefix('admin')->group(function () {
         route::get('transaction/{id?}', [AdminController::class, 'transaction'])->name('transaction');
         // Route::match(['get', 'post'], 'transaction/{id}', [AdminController::class, 'transaction'])->name('transaction');
         route::get('newhome', [AdminController::class, 'newhome']);
+        route::get('subhank', [AdminController::class, 'subhank'])->name('subhank');
+        Route::post('/get-filtered-data', [AdminController::class, 'getFilteredDataForAdmins']);
         route::get('main', [AdminController::class, 'newheader']);
       
 

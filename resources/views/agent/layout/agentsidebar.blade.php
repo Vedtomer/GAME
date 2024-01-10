@@ -37,7 +37,7 @@
                     {{-- class="mm-active" --}}
                     <a href="{{route('dashboard')}}" >   
                         <i class="metismenu-icon pe-7s-rocket"></i>
-                        Dashboard
+                         <b>Dashboard</b>
                     </a>
                 </li>
                 {{-- <li>
@@ -52,7 +52,7 @@
                 <li>
                     <a href="result">
                         <i class="metismenu-icon pe-7s-diamond"></i>
-                        Result
+                         <b>Result</b>
                         
                     </a>
                 </li>
@@ -69,7 +69,7 @@
                     <li  >
                         <a href="{{route('agent.transaction')}}">
                             <i class="metismenu-icon pe-7s-display2"></i>
-                            Transaction
+                             <b>Transaction</b>
                         </a>
                     </li>
               

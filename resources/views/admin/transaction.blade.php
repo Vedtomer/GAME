@@ -6,11 +6,6 @@
             float: right;
             margin-bottom: 8px;
         }
-
-        .btn {
-            border-radius: 0px;
-
-        }
     </style>
       <div class="errors">
         @if ($errors->any())
@@ -55,11 +50,12 @@
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $user->user->email }}</td>
                                     <td>
-                                        <span class="{{ in_array($user->action, ['win', 'add']) ? 'badge ml-2' : 'badge badge-danger ml-2' }}">
+                                        <span class="{{ in_array($user->action, ['win', 'add']) ? 'badge badge-success ml-2' : 'badge badge-danger ml-2' }}">
                                             {{ $user->action }}
                                         </span>
-                                        
                                     </td>
+                                    
+                                   
 
                                     <td>{{ $user->amount }}</td>
                                     <td>{{ $user->balance }}</td>

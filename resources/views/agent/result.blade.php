@@ -188,7 +188,7 @@
     @endphp
     {{-- --}}
     {{-- @if(count($data) > 0) --}}
-    <div>
+    <div class="mb-2">
         <input type="date" id="dateFilter" onchange="fetchData()">
     </div>
     <div class="table-responsive">
