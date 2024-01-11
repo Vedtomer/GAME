@@ -282,42 +282,47 @@
                                                 <div class="centered"> </div>
                                             </div>
                                             @foreach ($data as $user)
-                                                <div class="divTableCell1">
-                                                    <div class="container1"> <img
-                                                            src="{{ asset($user->id % 2 == 0 ? 'logo12_files/time_1.png' : 'logo12_files/time_2.png') }}"
-                                                            style="text-align: center;">
-                                                        <div class="centered" style="text-align: center;margin-left: 2px;margin-bottom: 2px; margin-top: -6px;font-size: 18px;" > {{ $user->timesloat }}
-                                                        </div>
+                                            <div class="divTableCell1">
+                                                <div class="container1">
+                                                    <img src="{{ asset($user->id % 2 == 0 ? 'logo12_files/time_1.png' : 'logo12_files/time_2.png') }}" style="text-align: center;">
+                                                    <div class="centered" style="text-align: center; margin-left: 2px; margin-bottom: 2px; margin-top: -6px; font-size: 18px;">
+                                                        {{ $user->timesloat }}
                                                     </div>
                                                 </div>
-                                            @endforeach
+                                            </div>
+                                        @endforeach
+                                        
+                                        
                                         </div>
                                         <div class="divTableRow" style="margin-bottom: 15px;margin-top: 10px;">
                                             <div class="divTableCell1"><img src="{{ asset('logo12_files/601.png') }}"
                                                     style="height:50px;width:50px;background-color:transparent"></div>
         
-                                                    @foreach ($data->sortBy('number_60') as $user)
+                                                    @foreach ($data as $user)
                                                     <div class="divTableCell1">
-                                                        <div class="container"> 
-                                                            <img src="https://www.goldwinrashi.com//desktoppng/rnum.png" style="width:60px;height:40px">
-                                                            <div class="centered1" style="font-size: 30px;">{{ $user->number_60 }}</div>
+                                                        <div class="container"> <img
+                                                                src="https://www.goldwinrashi.com//desktoppng/rnum.png"
+                                                                style="width:60px;height:40px">
+                                                            <div class="centered1" style="font-size: 30px; ">{{ $user->number_60 }}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 @endforeach
-                                                
-                                                </div>
-                                                <div class="divTableRow">
-                                                    <div class="divTableCell1"> 
-                                                        <img src="{{ asset('logo12_files/70gh.png') }}" style="height:50px;width:50px">
-                                                    </div>
-                                                    @foreach ($data->sortBy('number_70') as $user)
-                                                        <div class="divTableCell1">
-                                                            <div class="container"> 
-                                                                <img src="https://www.goldwinrashi.com//desktoppng/rnum.png" style="width:60px;height:40px">
-                                                                <div class="centered1" style="font-size: 30px;">{{ $user->number_70 }}</div>
+            
+                                            </div>
+                                            <div class="divTableRow">
+                                                <div class="divTableCell1"> <img src="{{ asset('logo12_files/70gh.png') }}"
+                                                        style="height:50px;width:50px"> </div>
+                                                @foreach ($data as $user)
+                                                    <div class="divTableCell1">
+                                                        <div class="container"> <img
+                                                                src="https://www.goldwinrashi.com//desktoppng/rnum.png"
+                                                                style="width:60px;height:40px">
+                                                            <div class="centered1" style="font-size: 30px">{{ $user->number_70 }}
                                                             </div>
                                                         </div>
-                                                    @endforeach
+                                                    </div>
+                                                @endforeach
                                                 </div>
                                                 
                                                 

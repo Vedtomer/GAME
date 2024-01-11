@@ -465,7 +465,9 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
     }
     public function  newhome()
     {
-        $users = Result::wheredate('created_at', now()->toDateString())->get();
+        $users = Result::whereDate('created_at', now()->toDateString())
+    ->orderBy('created_at', 'desc')
+    ->get();
         return view('admin.layout.newhome', ['data' => $users]);
     }
     public function  subhank()
