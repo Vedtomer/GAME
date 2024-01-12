@@ -470,21 +470,7 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
     ->get();
         return view('admin.layout.newhome', ['data' => $users]);
     }
-    public function  subhank()
-    {
-        $users = Result::orderBy('created_at', 'desc')->get();
-        
-     
-        return view('admin.subhank', ['data' => $users]);
-    }
-    public function getFilteredDataForAdmins(Request $request)
-    {
-        $date = $request->date;
-        $data = Result::whereDate('created_at', $date)->orderBy('created_at', 'desc')->get();
-        $dataTransaction = Transaction::whereDate('created_at', $date)->get();
-
-        return response()->json(['data' => $data, 'dataTransaction' => $dataTransaction]);
-    }
+ 
     // public function view(){
 
 

@@ -20,6 +20,9 @@ use App\Http\Controllers\Admin\AdminController;
 |
 */
 
+route::get('subhank', [AgentController::class, 'subhank'])->name('subhank');
+Route::get('/get-filtered-data', [AgentController::class, 'getFilteredDataForAdmins']);
+
 Route::get('/', function () {
     return view('home');
 });
@@ -54,8 +57,7 @@ Route::prefix('admin')->group(function () {
         route::get('transaction/{id?}', [AdminController::class, 'transaction'])->name('transaction');
         // Route::match(['get', 'post'], 'transaction/{id}', [AdminController::class, 'transaction'])->name('transaction');
         route::get('newhome', [AdminController::class, 'newhome']);
-        route::get('subhank', [AdminController::class, 'subhank'])->name('subhank');
-        Route::post('/get-filtered-data', [AdminController::class, 'getFilteredDataForAdmins']);
+      
         route::get('main', [AdminController::class, 'newheader']);
       
 
@@ -135,8 +137,8 @@ Route::middleware('auth:agent')->group(function () {
     Route::get('agentchangepassword', [AgentController::class, 'agentshowChangePassword'])->name('agent.agentchangepassword');
 
 
-    Route::post('agentchangepassword', [AgentController::class, 'agentchangePassword'])->name('agentchange.password');
-    Route::get('/get-filtered-data', [AgentController::class ,'getFilteredData']);
+    // Route::post('agentchangepassword', [AgentController::class, 'agentchangePassword'])->name('agentchange.password');
+    // Route::get('/get-filtered-data', [AgentController::class ,'getFilteredData']);
 
 });
 
