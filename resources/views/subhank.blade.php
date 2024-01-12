@@ -11,7 +11,7 @@
     
     <style>
          th{
-            border: 1px solid gray;
+            /* border: 1px solid gray; */
             font-weight: bold;
         }
         tr{
