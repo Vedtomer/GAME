@@ -42,16 +42,7 @@
   
     <div class="mb-2 mt-4 ml-4" style="display: flex; align-items: center; justify-content: flex-start; flex-wrap: nowrap; width: 100%;">
        
-        <div style="width: 35%">
-            <input type="date" id="dateFilter" onchange="fetchData()" style="flex: 0 0 auto;  ">
-        </div>
-        
-        <div style="width: 35%">
-            <img src="{{ asset('logo12_files/601.png') }}" style="height:50px;">
-        </div>
-        <div style="width: 10%" >
-            <img src="{{ asset('logo12_files/70gh.png') }}" style="height:50px; width:50px; flex: 0 0 auto; margin-left: 10px;">
-        </div>
+    
        
     </div>
     
@@ -68,6 +59,11 @@
             @if(isset($data) && count($data) > 0)
             <table class="table responsive" cellspacing="0" id="grda" style="width:100%;border-collapse:collapse;">
                 <thead>
+                    <tr>
+                        <th style="width: 10% ;text-align: center;" scope="col">                    <input type="date" id="dateFilter" onchange="fetchData()" style="flex: 0 0 auto;  "></th>
+                        <th style="width: 10%;text-align: center;" scope="col"><img src="{{ asset('logo12_files/601.png') }}" style="height:50px;"></th>
+                        <th style="width: 10%;text-align: center;" scope="col"> <img src="{{ asset('logo12_files/70gh.png') }}" style="height:50px; width:50px; flex: 0 0 auto; margin-left: 10px;"></th>
+                    </tr>
                     <tr>
                         <th style="width: 10% ;text-align: center;" scope="col">ShubhankTime</th>
                         <th style="width: 10%;text-align: center;" scope="col">60Shubhank</th>
