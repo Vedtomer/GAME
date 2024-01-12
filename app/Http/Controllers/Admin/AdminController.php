@@ -460,14 +460,19 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
     }
     public function  home()
     {
-      $users = Result::wheredate('created_at', now()->toDateString())->get();
+      $users = Result::
+      wheredate('created_at', now()->toDateString())->get();
         return view('home', ['data' => $users]);
     }
     public function  newhome()
     {
-        $users = Result::whereDate('created_at', now()->toDateString())
-    ->orderBy('created_at', 'desc')
-    ->get();
+        $currentTime = now()->format('H:i');
+  $users = Result::whereDate('created_at', now()->toDateString())
+            ->where('timesloat', '<=', $currentTime)
+            ->orderBy('timesloat', 'desc')
+            ->get();
+        
+    
         return view('admin.layout.newhome', ['data' => $users]);
     }
  

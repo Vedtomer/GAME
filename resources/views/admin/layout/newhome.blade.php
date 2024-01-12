@@ -19,8 +19,6 @@
             background-attachment: fixed;
         }
 
-
-
         .logo {
             background-image: url('{{ asset(' logo12_files/logo12.jpg') }}');
             background-repeat: no-repeat;
@@ -160,7 +158,6 @@
             padding: 20px;
             box-sizing: border-box;
             margin-right: 100px;
-
 
         }
 
@@ -325,15 +322,12 @@
                                                 <div class="container"> <img
                                                         src="https://www.goldwinrashi.com//desktoppng/rnum.png"
                                                         style="width:60px;height:40px">
-                                                    <div class="centered1" style="font-size: 30px">{{ $user->number_70
-                                                        }}
+                                                 <div class="centered1" style="font-size: 30px">{{ $user->number_70}}
                                                     </div>
                                                 </div>
                                             </div>
                                             @endforeach
                                         </div>
-
-
 
                                     </div>
                                 </div>
@@ -564,6 +558,6 @@
 </script>
 
 
-</table>
+
 
 </html>

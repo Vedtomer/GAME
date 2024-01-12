@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Storage;
 // namespace App\Http\Controllers\Agent;
 // use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Validator;
-
-
+use Carbon\Carbon;
+use Illuminate\Console\Scheduling\Schedule;
 
 
 
@@ -460,17 +460,61 @@ public function agentchangePassword(Request $request)
 
 public function  subhank()
 {
-    $users = Result::orderBy('created_at', 'desc')->get();
+    $currentTime = now()->format('H:i');
+    $users = Result::whereDate('created_at', now()->toDateString())
+              ->where('timesloat', '<=', $currentTime)
+              ->orderBy('timesloat', 'desc')
+              ->get();
     
  
     return view('subhank', ['data' => $users]);
 }
+
+
+
 public function getFilteredDataForAdmins(Request $request)
 {
     $date = $request->date;
-    $data = Result::whereDate('created_at', $date)->orderBy('created_at', 'desc')->get();
-    $dataTransaction = Transaction::whereDate('created_at', $date)->get();
 
-    return response()->json(['data' => $data, 'dataTransaction' => $dataTransaction]);
+    if ($date === Carbon::now()->format('Y-m-d')) {
+        $currentTime = now()->format('H:i');
+        $data = Result::whereDate('created_at', now()->toDateString())
+            ->where('timesloat', '<=', $currentTime)
+            ->orderBy('timesloat', 'desc')
+            ->get();
+    } else {
+        $data = Result::whereDate('created_at', $date)->orderBy('created_at', 'desc')->get();
+    }
+
+    return response()->json(['data' => $data]);
 }
+
+
+public function resultdeclared()
+{
+    for ($hour = 9; $hour <= 21; $hour++) {
+ 
+        for ($minute = 0; $minute < 60; $minute += 15) {
+    
+            $timeSlot = sprintf('%02d:%02d', $hour, $minute);
+
+            if ($timeSlot > '21:30') {
+                Log::info("Stopped creating entries after 20:30");
+                return true;
+            }
+
+            Result::create([
+                'number_70' => rand(1, 100),
+                'number_60' => rand(1, 100),
+                'timesloat' => $timeSlot,
+            ]);
+
+            Log::info("Result created for time slot: $timeSlot");
+        }
+    }
+
+    return true;
+}
+
+
 }

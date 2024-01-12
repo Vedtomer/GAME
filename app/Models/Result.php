@@ -10,6 +10,8 @@ class Result extends Model
 {
     use HasFactory;
     protected $table = 'result';
+    protected $fillable = ['number_70', 'number_60', 'timesloat'];
+    protected $guarded = [];
 
     public function update_user_result($number60, $number70)
     {

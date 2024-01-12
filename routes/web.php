@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\AdminController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('result-declared', [AgentController::class, 'resultdeclared'])->name('resultdeclared');
 route::get('subhank', [AgentController::class, 'subhank'])->name('subhank');
 Route::get('/get-filtered-data', [AgentController::class, 'getFilteredDataForAdmins']);
 
