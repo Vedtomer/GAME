@@ -29,7 +29,15 @@
 }
 
 @media (max-width: 767px) {
-       
+       th{
+        width: 80px;
+        font-size: 14px;
+        
+       }
+       img{
+        width: 40px;
+        height: 4px;
+       }
     }
 
     </style>
@@ -39,17 +47,6 @@
 
 <form method="post" action="{{ route('subhank') }}" id="form1">
     @csrf
-  
-    <div class="mb-2 mt-4 ml-4" style="display: flex; align-items: center; justify-content: flex-start; flex-wrap: nowrap; width: 100%;">
-       
-    
-       
-    </div>
-    
-    
-   
-    
-    
   
     <div id="Panel2" class="rounded_corners" border="0" style="overflow:auto;">
     <div id="div1" class="tableDiv">
@@ -61,8 +58,8 @@
                 <thead>
                     <tr>
                         <th style="width: 10% ;text-align: center;" scope="col">                    <input type="date" id="dateFilter" onchange="fetchData()" style="flex: 0 0 auto;  "></th>
-                        <th style="width: 10%;text-align: center;" scope="col"><img src="{{ asset('logo12_files/601.png') }}" style="height:50px;"></th>
-                        <th style="width: 10%;text-align: center;" scope="col"> <img src="{{ asset('logo12_files/70gh.png') }}" style="height:50px; width:50px; flex: 0 0 auto; margin-left: 10px;"></th>
+                        <th style="width: 10%;text-align: center;" scope="col"> <img src="{{ asset('logo12_files/601.png') }}" style="height:50px;"></th>
+                        <th style="width: 10%;text-align: center;" scope="col"> <img src="{{ asset('logo12_files/70gh.png') }}" style="height:50px;  flex: 0 0 auto; margin-left: 10px;"></th>
                     </tr>
                     <tr>
                         <th style="width: 10% ;text-align: center;" scope="col">ShubhankTime</th>
