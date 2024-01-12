@@ -10,14 +10,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     
     <style>
+         th{
+            border: 1px solid gray;
+            font-weight: bold;
+        }
         tr{
-            border: 1px solid;
+            border: 1px solid gray;
             font-weight: bold;
             font-size: 18px;
     
         }
         td{
-            border: 1px solid;
+            border: 1px solid gray;
             font-weight: bold;
         }
         .manage tbody tr td {
