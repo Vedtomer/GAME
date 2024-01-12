@@ -27,6 +27,11 @@
         .manage tbody tr td {
     text-align: center;
 }
+
+@media (max-width: 767px) {
+       
+    }
+
     </style>
   </head>
   <body>
@@ -34,12 +39,26 @@
 
 <form method="post" action="{{ route('subhank') }}" id="form1">
     @csrf
-    <div class="mb-2 mt-4 ml-4">
-        <input type="date" id="dateFilter" onchange="fetchData()">
-        <img src="{{ asset('logo12_files/601.png') }}" style="height:50px;width:50px;margin-left:28%">
-        <img src="{{ asset('logo12_files/70gh.png') }}" style="height:50px;width:50px;margin-left:28%">
+  
+    <div class="mb-2 mt-4 ml-4" style="display: flex; align-items: center; justify-content: flex-start; flex-wrap: nowrap; width: 100%;">
+       
+        <div style="width: 35%">
+            <input type="date" id="dateFilter" onchange="fetchData()" style="flex: 0 0 auto;  ">
+        </div>
         
+        <div style="width: 35%">
+            <img src="{{ asset('logo12_files/601.png') }}" style="height:50px;">
+        </div>
+        <div style="width: 10%" >
+            <img src="{{ asset('logo12_files/70gh.png') }}" style="height:50px; width:50px; flex: 0 0 auto; margin-left: 10px;">
+        </div>
+       
     </div>
+    
+    
+   
+    
+    
   
     <div id="Panel2" class="rounded_corners" border="0" style="overflow:auto;">
     <div id="div1" class="tableDiv">
