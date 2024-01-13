@@ -160,8 +160,22 @@
             margin-right: 100px;
 
         }
+   
+    /* Default styles for .mains */
+.mains {
+    margin-left: 100px;
+    margin-top: 100px;
+}
 
-        /* Additional styles for demo purposes */
+@media (max-width: 767px) {
+    .mains {
+        margin-left: 40px;
+        /* Additional styles for smaller screens if needed */
+    }
+}
+
+
+    
     </style>
 </head>
 
@@ -182,13 +196,9 @@
                         <div>
                             <div>
                                 <div>
-                                    <div
-                                        style="background-image:url(desktop/currenttime_.png);background-repeat:no-repeat;background-position: center center; background-color: rgb(39, 146, 133); border-radius:30px; white-space: nowrap; overflow: hidden;    margin-bottom: 20px;">
-                                        <span id="RemainTime"
-                                            style="font-size: 12pt; font-weight: bold; display: none; color: Yellow;">00:14:34</span>
-                                        <span style="font-size: 22pt; font-weight: bold; color: Yellow; " id="NowTime">
-                                            <?php echo date('h:i:s A'); ?>
-                                        </span>
+                                    <div style="background-image:url(desktop/currenttime_.png);background-repeat:no-repeat;background-position: center center; background-color: rgb(39, 146, 133);height:40px; border-radius:30px; white-space: nowrap; overflow: hidden; margin-bottom: 20px;">
+                                        <span id="RemainTime" style="font-size: 12pt; font-weight: bold; display: none; color: Yellow;"></span>
+                                        <span style="font-size: 22pt; font-weight: bold; color: Yellow;" id="NowTime"></span>
                                         <input name="hd_nextime" id="hd_nextime" type="hidden">
                                     </div>
 
@@ -252,8 +262,8 @@
         <div class="main">
 
             <div class="container">
-                <div style="margin-left: 100px; margin-top:100px;">
-                    <div style="">
+                <div class="mains">
+                    <div >
                         <div>
                             <div>
                                 <div colspan="2">
@@ -493,7 +503,7 @@
                         </div>
 
                         <iframe src="https://g2.ipcamlive.com/player/player.php?alias=5e5a05863bb0b" height="550px"
-                            autoplay="1" allow="autoplay" frameborder="0" style="width: 788px"></iframe>
+                            autoplay="1" allow="autoplay" frameborder="0" style="width: 788px; margin-top:10px;"></iframe>
 
                     </div>
                 </div>
@@ -519,9 +529,8 @@
 
         var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
 
-        // Update the content of the element with id "NowTime"
         document.getElementById('NowTime').innerText = currentTime;
-    }, 1000); // Update every 1000 milliseconds (1 second)
+    }, 1000); 
 </script>
 
 <script>
@@ -530,32 +539,79 @@
         var minutes = now.getMinutes();
         var remainingMinutes = 15 - (minutes % 15);
 
-        // Calculate the next draw time
-        var nextDrawTime = new Date(now.getTime() + remainingMinutes * 60000); // 60000 milliseconds in a minute
+        var nextDrawTime = new Date(now.getTime() + remainingMinutes * 60000);
 
-        // Format the time
         var hours = nextDrawTime.getHours();
         var minutes = nextDrawTime.getMinutes();
         var seconds = nextDrawTime.getSeconds();
         var ampm = hours >= 12 ? 'P.M.' : 'A.M.';
 
-        // Format single digits with leading zero
         hours = hours % 12 || 12;
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
 
         var nextDrawTimeString = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
 
-        // Update the content of the element with id "NextDrowTime"
         document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
     }
 
-    // Update the time initially
     updateNextDrawTime();
 
-    // Update the time every 15 minutes (900,000 milliseconds)
+
     setInterval(updateNextDrawTime, 900000);
 </script>
+
+{{-- <script>
+    function updateTime() {
+        var currentTime = new Date();
+        var closingTime = new Date();
+        closingTime.setHours(19, 55, 0); 
+
+        if (currentTime < closingTime) {
+            document.getElementById('RemainTime').style.display = 'inline-block';
+            document.getElementById('NowTime').innerText = currentTime.toLocaleTimeString('en-US', { hour12: true });
+        } else {
+            document.getElementById('RemainTime').style.display = 'none';
+            document.getElementById('NowTime').innerText = ''; // Hide time if after closing time
+        }
+    }
+
+    updateTime();
+
+    setInterval(updateTime, 1000);
+</script> --}}
+{{-- <script>
+    function reloadPage() {
+        setTimeout(function() {
+            location.reload();
+        }, 15 * 60 * 1000); 
+    }
+
+    reloadPage();
+</script> --}}
+
+<script>
+    var reloadCount = 0;
+
+    function reloadPage() {
+     
+        location.reload();
+        reloadCount++;
+
+  
+        if (reloadCount >= 3) {
+            clearInterval(reloadInterval);
+        }
+    }
+
+
+    var reloadInterval = setInterval(reloadPage, 5 * 60 * 1000);
+
+    window.addEventListener('beforeunload', function() {
+        clearInterval(reloadInterval);
+    });
+</script>
+
 
 
 

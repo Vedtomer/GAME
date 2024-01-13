@@ -504,8 +504,8 @@ public function resultdeclared()
             }
 
             Result::create([
-                'number_70' => rand(1, 100),
-                'number_60' => rand(1, 100),
+                'number_70' => rand(10, 99),
+                'number_60' => rand(10, 99),
                 'timesloat' => $timeSlot,
             ]);
 
