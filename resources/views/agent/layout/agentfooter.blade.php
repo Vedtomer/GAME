@@ -5,9 +5,7 @@
 <!-- Include Toastr JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script src="{{ asset('script.js') }}"></script>
-   <script src="path/to/jquery/jquery.min.js"></script>
-    <script src="path/to/popper/popper.min.js"></script>
-    <script src="path/to/bootstrap/js/bootstrap.min.js"></script>
+
 <script>
     @if(session('error'))
         toastr.error("{{ session('error') }}");

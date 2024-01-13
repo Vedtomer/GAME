@@ -23,6 +23,16 @@ use function Ramsey\Uuid\v1;
 
 class AgentController extends Controller
 {
+
+
+
+    public function ViewBarcode($barcod_id)
+    {
+        Barcode::with('ticketPurchases')->where('id', $barcod_id)->first();
+    }
+
+
+
     public function login(Request $request)
     {
         if (Auth::guard('agent')->check()) {
@@ -79,7 +89,7 @@ class AgentController extends Controller
 
         $currentDate = Carbon::now()->format('Y-m-d');
 
-        $data = Barcode::where('user_id', Auth::user()->id)
+        $data = Barcode::with('ticketPurchases')->where('user_id', Auth::user()->id)
             ->whereDate('created_at', $currentDate)
             ->orderBy('id', 'desc')
             ->get();
