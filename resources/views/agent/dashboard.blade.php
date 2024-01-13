@@ -212,16 +212,24 @@
                                 
                                     if ($i == 99) {
                                         echo "<tr>
-                                                                                                                                                                                                                                                                                                                                            <th colspan=11><div class=submit><button type=submit class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'>Submit </button> <button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning'>
-                                    <a href='/subhank' style='text-decoration: none; color: inherit;'>Result</a>
-                                </button>
-                                <button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning'>
-                                    <a href='/dashview' style='text-decoration: none; color: inherit;'>View</a>
-                                </button>
-                                 <button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning' id=reloadBtn>Clear </button></div></th>
-                                                                                                                                    <th><span for='qty{$i}'>Total</span></th>
-                                                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
-                                                                                                                                     <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
+                                                                                                                                                                                                                                                                                                            <th colspan=11><div class=submit><button type=submit class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'>Submit </button> 
+                                                                                                                                                                                                                                                                                                                <button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-secondary' id=reloadBtn>Clear </button>                                                                                                                                                                                                                                                                                                              <button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-success'>
+    <a href='/subhank' style='text-decoration: none; color: inherit;'>Result</a>
+</button>
+<button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-danger'>
+    <a href='/dashview' style='text-decoration: none; color: inherit;'>View</a>
+</button>
+<button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info'>
+    <a href='/agentchangepassword' style='text-decoration: none; color: inherit;'>password</a>
+</button>
+<button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning'>
+    <a href='' style='text-decoration: none; color: inherit;'>Cancel</a>
+</button>
+
+ </div></th>
+                                                                                                    <th><span for='qty{$i}'>Total</span></th>
+                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
+                                                                                                     <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
                                     }
                                     $j++;
                                 }
