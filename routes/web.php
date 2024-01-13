@@ -139,8 +139,9 @@ Route::middleware('auth:agent')->group(function () {
 
 
     Route::post('agentchangepassword', [AgentController::class, 'agentchangePassword'])->name('agentchange.password');
+    Route::post('cancel-ticket', [LoginController::class, 'canceltiket'])->name('canceltiket');
     // Route::get('/get-filtered-data', [AgentController::class ,'getFilteredData']);
-    Route::get('dashview', [AgentController::class, 'dashview'])->name('dashview');
+    Route::get('dashview', [LoginController::class, 'dashview'])->name('dashview');
 });
 
 
