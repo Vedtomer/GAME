@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\AdminController;
 */
 Route::get('result-declared', [AgentController::class, 'resultdeclared'])->name('resultdeclared');
 route::get('subhank', [AgentController::class, 'subhank'])->name('subhank');
+
 Route::get('/get-filtered-data', [AgentController::class, 'getFilteredDataForAdmins']);
 
 Route::get('/', function () {
@@ -139,7 +140,7 @@ Route::middleware('auth:agent')->group(function () {
 
     // Route::post('agentchangepassword', [AgentController::class, 'agentchangePassword'])->name('agentchange.password');
     // Route::get('/get-filtered-data', [AgentController::class ,'getFilteredData']);
-
+    Route::get('dashview', [AgentController::class, 'dashview'])->name('dashview');
 });
 
 

@@ -73,6 +73,21 @@ class AgentController extends Controller
         return view('agent.dashboard', compact('agent', 'number', 'data'));
     }
     
+    public function dashview(Request $request,$number = null ){
+      
+        if (!$number) {
+            $number = 6000;
+        }
+        $agent = Auth::guard('agent')->user();
+    
+ 
+        $data = TicketPurchase::where('user_id', Auth::user()->id)
+        ->orderBy('id', 'desc')
+        ->paginate(10);
+
+
+        return view('agent.dashview', compact('agent', 'number', 'data'));
+    }
 
     public function savedashboard(Request $request)
 {
