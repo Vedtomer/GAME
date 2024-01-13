@@ -95,55 +95,58 @@
             /* Remove outline on focus */
             /* Add additional styles for the focused state if needed */
         }
-        .custom-span{
-            /* font-size: 2px; !important  */
-        }
-        @media (min-width: 767px) {
-        .custom-td {
-            overflow-x: auto;
-        }
 
         .custom-span {
-            font-size: 30px;
-         
-            color: rgb(16, 16, 16);
+            /* font-size: 2px; !important  */
         }
-        .cust-span{
-            font-size: 30px;
-        }
-    }
 
-    @media (max-width: 767px) {
-       
+        @media (min-width: 767px) {
+            .custom-td {
+                overflow-x: auto;
+            }
 
-        .Purchase {
-            font-size: 25px;
-            /* font-weight: bold; */
-            color: rgb(16, 16, 16);
+            .custom-span {
+                font-size: 30px;
+
+                color: rgb(16, 16, 16);
+            }
+
+            .cust-span {
+                font-size: 30px;
+            }
         }
-    }
+
+        @media (max-width: 767px) {
+
+
+            .Purchase {
+                font-size: 25px;
+                /* font-weight: bold; */
+                color: rgb(16, 16, 16);
+            }
+        }
     </style>
-<div style="display: flex; justify-content: space-between; align-items: center; overflow-x: auto; padding: 10px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; overflow-x: auto; padding: 10px;">
 
-    <div>
-        <td class="custom-td" style="">
-            <span id="RemainTime" class="custom-span" style="display: none; ">00:14:34</span>
-            <span id="NowTime" class="custom-span"><?php echo date('h:i:s A'); ?></span>
-            <input name="hd_nextime" id="hd_nextime" type="hidden">
-        </td>
+        <div>
+            <td class="custom-td" style="">
+                <span id="RemainTime" class="custom-span" style="display: none; ">00:14:34</span>
+                <span id="NowTime" class="custom-span"><?php echo date('h:i:s A'); ?></span>
+                <input name="hd_nextime" id="hd_nextime" type="hidden">
+            </td>
+        </div>
+
+        <div>
+
+            <td class="time-slot custom-td" style="">
+                <div class="display:flex">
+                    <span class="cust-span" style="color: rgb(16, 16, 16); ">Next Draw :</span>
+                    <span id="NextDrowTime" class="custom-span" style="margin-top: 60px; "></span>
+                </div>
+            </td>
+        </div>
+
     </div>
-
-    <div>
-        
-        <td class="time-slot custom-td" style="">
-           <div class="display:flex">
-            <span  class="cust-span" style="color: rgb(16, 16, 16); ">Next Draw :</span>
-            <span id="NextDrowTime" class="custom-span" style="margin-top: 60px; "></span>
-           </div>
-        </td>
-    </div>
-
-</div>
 
 
 
@@ -209,16 +212,16 @@
                                 
                                     if ($i == 99) {
                                         echo "<tr>
-                                                                                                                                                                                                                                                                                                            <th colspan=11><div class=submit><button type=submit class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'>Submit </button> <button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning'>
-    <a href='/subhank' style='text-decoration: none; color: inherit;'>Result</a>
-</button>
-<button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning'>
-    <a href='/dashview' style='text-decoration: none; color: inherit;'>View</a>
-</button>
- <button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning' id=reloadBtn>Clear </button></div></th>
-                                                                                                    <th><span for='qty{$i}'>Total</span></th>
-                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
-                                                                                                     <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
+                                                                                                                                                                                                                                                                                                                                            <th colspan=11><div class=submit><button type=submit class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'>Submit </button> <button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning'>
+                                    <a href='/subhank' style='text-decoration: none; color: inherit;'>Result</a>
+                                </button>
+                                <button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning'>
+                                    <a href='/dashview' style='text-decoration: none; color: inherit;'>View</a>
+                                </button>
+                                 <button class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning' id=reloadBtn>Clear </button></div></th>
+                                                                                                                                    <th><span for='qty{$i}'>Total</span></th>
+                                                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
+                                                                                                                                     <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
                                     }
                                     $j++;
                                 }
@@ -231,7 +234,7 @@
             </div>
         </div>
 
-  
+
 
         <script>
             function redirectToDashboard(number) {
@@ -242,8 +245,8 @@
             }
 
             document.getElementById('reloadBtn').addEventListener('click', function() {
-        location.reload();
-    });
+                location.reload();
+            });
         </script>
 
         <script type="text/javascript" src="{{ asset('asset/js/purchase.js') }}"></script>
@@ -251,74 +254,73 @@
 
 
         <script>
-           
             setInterval(function() {
                 var now = new Date();
                 var hours = now.getHours();
                 var minutes = now.getMinutes();
                 var seconds = now.getSeconds();
                 var ampm = hours >= 12 ? 'P.M.' : 'A.M.';
-        
-          
+
+
                 hours = hours % 12 || 12;
                 minutes = minutes < 10 ? '0' + minutes : minutes;
                 seconds = seconds < 10 ? '0' + seconds : seconds;
-        
+
                 var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
-        
-          
+
+
                 document.getElementById('NowTime').innerText = currentTime;
-            }, 1000); 
+            }, 1000);
         </script>
-        
+
         <script>
             function updateNextDrawTime() {
                 var now = new Date();
                 var minutes = now.getMinutes();
                 var remainingMinutes = 15 - (minutes % 15);
-        
+
                 var nextDrawTime = new Date(now.getTime() + remainingMinutes * 60000);
-        
+
                 var hours = nextDrawTime.getHours();
                 var minutes = nextDrawTime.getMinutes();
                 var seconds = nextDrawTime.getSeconds();
                 var ampm = hours >= 12 ? 'P.M.' : 'A.M.';
-        
+
                 hours = hours % 12 || 12;
                 minutes = minutes < 10 ? '0' + minutes : minutes;
                 seconds = seconds < 10 ? '0' + seconds : seconds;
-        
+
                 var nextDrawTimeString = hours + ':' + minutes + ' ' + ampm;
-        
+
                 document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
-        
+
                 // var submitButton = document.getElementById('submitButton');
                 // var drawStart = nextDrawTime.getTime() - 4 * 60 * 1000;
                 // var drawEnd = nextDrawTime.getTime() + 4 * 60 * 1000;
-        
+
                 // if (now.getTime() >= drawStart && now.getTime() <= drawEnd) {
                 //     submitButton.disabled = true;
                 // } else {
                 //     submitButton.disabled = false;
                 // }
-        
+
                 // Reload the page when the next draw is due
                 if (now.getTime() >= nextDrawTime.getTime()) {
                     location.reload(true);
                 }
             }
-        
+
             updateNextDrawTime();
-        
+
             setInterval(updateNextDrawTime, 900000); // 15 minutes interval
         </script>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
     @endsection
