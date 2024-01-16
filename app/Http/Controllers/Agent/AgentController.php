@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Models\Barcode;
-
+// use Carbon\Carbon;
 use function Ramsey\Uuid\v1;
 
 class AgentController extends Controller
@@ -482,8 +482,44 @@ class AgentController extends Controller
         return view('subhank', ['data' => $users]);
     }
 
+    public function report(){
+    
+        // $data = Barcode::all();
+        return view('agent.report');
+    }
 
 
+
+    public function filtereddata(Request $request)
+{
+    $start_date = $request->input('start_date');
+    $end_date = $request->input('end_date');
+
+    $start_date = Carbon::parse($start_date)->startOfDay();
+    $end_date = Carbon::parse($end_date)->endOfDay();
+
+    $data = Barcode::whereBetween('created_at', [$start_date, $end_date])->get();
+  
+    $sumQty = $data->sum('qty');
+    $sumpoints = $data->sum('points');
+
+
+    $cancelCount = $data->where(function ($item) {
+        return strcasecmp($item->status, 'CANCEL') === 0;
+    })->count();
+    
+    $netAmt = $sumQty - $cancelCount;
+    $netplus = $netAmt * 1.1;
+
+    // $Claimqty = !empty($data[0]->winpoints) ? ($sumQty + $netplus) : $data[0]->winpoints;
+    $Claimqty = $data->filter(function ($item) {
+        return !empty($item->winpoints);
+    });
+    $sumQtyWinpoints = $Claimqty->sum('qty');
+
+    $Netpay =   $netplus - $data->sum('winpoints');
+    return view('agent.report', compact('data', 'start_date', 'end_date', 'sumQty', 'sumpoints', 'cancelCount', 'netAmt', 'netplus','sumQtyWinpoints', 'Netpay'));
+}
     public function getFilteredDataForAdmins(Request $request)
     {
         $date = $request->date;
@@ -495,7 +531,7 @@ class AgentController extends Controller
                 ->orderBy('timesloat', 'desc')
                 ->get();
         } else {
-            $data = Result::whereDate('created_at', $date)->orderBy('created_at', 'desc')->get();
+            $data = Result::whereDate('created_at', $date)->orderBy('timesloat', 'desc')->get();
         }
 
         return response()->json(['data' => $data]);
@@ -528,3 +564,4 @@ class AgentController extends Controller
         return true;
     }
 }
+

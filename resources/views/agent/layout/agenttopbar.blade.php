@@ -54,7 +54,12 @@
             <a href="#" style="display: flex;">
                 <i class='fas fa-wallet' style='font-size:24px'></i>
                 <div class="box" style="margin-left: auto;">
+                    @if(auth()->check())
                     <h5><b>: {{ Auth::user()->balance > 0 ? Auth::user()->balance : 0 }}</b></h5>
+                @else
+                    <h5><b>: 0</b></h5>
+                @endif
+                
                 </div>
             </a>
         </div>

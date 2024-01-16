@@ -292,7 +292,7 @@ public function userdelete(string $id)
 
     public function getFilteredDataForAdmin(Request $request) {
         $date = $request->date;
-        $data = Result::whereDate('created_at', $date)->orderBy('created_at', 'desc')->get();
+        $data = Result::whereDate('created_at', $date)->orderBy('timesloat', 'desc')->get();
         // $dataa = Transaction::whereDate('created_at', $date)->get();
     
         // return response()->json(['data' => $data]);

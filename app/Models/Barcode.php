@@ -9,7 +9,7 @@ use App\Models\TicketPurchase;
 class Barcode extends Model
 {
     use HasFactory;
-    protected $fillable = ['drawtime', 'requestid', 'qty', 'points', 'winpoints', 'status', 'barcode'];
+    protected $fillable = ['drawtime', 'requestid', 'qty', 'points', 'winpoints', 'status', 'barcode', 'updated_at', 'created_at'];
 
 
 

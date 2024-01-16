@@ -21,8 +21,10 @@ use App\Http\Controllers\Admin\AdminController;
 */
 Route::get('result-declared', [AgentController::class, 'resultdeclared'])->name('resultdeclared');
 route::get('subhank', [AgentController::class, 'subhank'])->name('subhank');
-
+route::get('report', [AgentController::class, 'report'])->name('report');
 Route::get('/get-filtered-data', [AgentController::class, 'getFilteredDataForAdmins']);
+// Route::get('/filtereddata',  [AgentController::class, 'filtereddata']);
+Route::get('/filtereddata', [AgentController::class, 'filtereddata'])->name('filtereddata');
 
 Route::get('/', function () {
     return view('home');
@@ -142,7 +144,7 @@ Route::middleware('auth:agent')->group(function () {
     Route::get('cancel-ticket', [LoginController::class, 'canceltiket'])->name('canceltiket');
     // Route::get('/get-filtered-data', [AgentController::class ,'getFilteredData']);
     Route::get('dashview', [AgentController::class, 'dashview'])->name('dashview');
-});
+  });
 
 
 
