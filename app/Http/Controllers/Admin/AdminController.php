@@ -188,7 +188,7 @@ public function adminchangePassword(Request $request)
     }else{
         return redirect()->back()->with('error', 'The  password is not match.');
     }
-    return redirect()->route('admin.user')->with('success', 'Password updated successfully!');
+    return redirect()->route('user')->with('success', 'Password updated successfully!');
 }
 
 
