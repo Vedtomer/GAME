@@ -95,6 +95,7 @@ class AgentController extends Controller
             ->get();
 
 
+        
         return view('agent.dashview', compact('agent', 'number', 'data'));
     }
 

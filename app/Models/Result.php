@@ -13,7 +13,7 @@ class Result extends Model
     protected $fillable = ['number_70', 'number_60', 'timesloat'];
     protected $guarded = [];
 
-    public function update_user_result($number60, $number70)
+    public function update_user_result()
     {
         $num70 = (int) "70" . $number70;
         $num60 = (int) "60" . $number60;
@@ -29,7 +29,7 @@ class Result extends Model
          
              // Calculate winning amount (assuming qty is a column in the TicketPurchase table)
              $ticketPurchase=TicketPurchase::find($ticketPurchase->id);
-             $winningAmount = $ticketPurchase->qty * 11;
+             $winningAmount = $ticketPurchase->qty * 10;
  
              $ticketPurchase->winning_amount=$winningAmount;
              $ticketPurchase->is_result_declared=1;

@@ -331,7 +331,27 @@
     </script>
 
 
+<script>
+    var reloadCount = 0;
 
+    function reloadPage() {
+     
+        location.reload();
+        reloadCount++;
+
+  
+        if (reloadCount >= 3) {
+            clearInterval(reloadInterval);
+        }
+    }
+
+
+    var reloadInterval = setInterval(reloadPage, 5 * 60 * 1000);
+
+    window.addEventListener('beforeunload', function() {
+        clearInterval(reloadInterval);
+    });
+</script>
 
 
 

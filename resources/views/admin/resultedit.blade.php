@@ -40,7 +40,7 @@
             <br>
             <div class="form-group mb-3">
                 <label for="exampleDropdown">Select a time slot:</label>
-                <select class="form-control" id="exampleDropdown" name="timesloat">
+                <select class="form-control" id="exampleDropdown" name="timesloat" required>
                     <option value="" {{ $data->timesloat == '' ? 'selected' : '' }}></option>
                     <option value="9:00" {{ $data->timesloat == '9:00' ? 'selected' : '' }}>9:00</option>
                   <option value="9:15"{{ $data->timesloat == '9:15' ? 'selected' : '' }}>9:15</option>

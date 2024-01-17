@@ -327,7 +327,7 @@ public function userdelete(string $id)
         $userdata->number_60 = $request->number_60;
         $userdata->timesloat = $request->timesloat;
     
-        $userdata->update_user_result($request->number_60, $request->number_70);
+        // $userdata->update_user_result($request->number_60, $request->number_70);
     
         $userdata->save();
         session()->flash('success', 'User created successfully.');
@@ -346,6 +346,21 @@ public function userdelete(string $id)
 
 public function resultupdate(Request $request, $id)
 {
+    $rules = [
+        'number_70' => 'required',
+        'number_60' => 'required',
+        'timesloat' => 'nullable', // 'nullable' allows the field to be optional
+    ];
+
+    // Validation messages
+    $messages = [
+        'number_70.required' => 'The number_70 field is required.',
+        'number_60.required' => 'The number_60 field is required.',
+        'timesloat' => 'The timesloat field is required.',
+    ];
+
+    // Validate the request
+    $request->validate($rules, $messages);
     // return $request;
       $USER = DB::table('result')->where('id', $id)->update([
         'number_70' => $request->number_70,
@@ -464,6 +479,25 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
       wheredate('created_at', now()->toDateString())->get();
         return view('home', ['data' => $users]);
     }
+
+    public function settlement(Request $request){
+    
+    $currentTime = now(); 
+ 
+    $userdata = Result::where('number_70', $request->number_70)
+    ->where('number_60', $request->number_60)->where('timesloat', '<=', $currentTime)
+    ->orderBy('timesloat', 'desc')->first();
+
+    if ($userdata) {
+    $userdata->update_user_result($request->number_60, $request->number_70);
+    $userdata->save();
+    
+    return true;
+    } else {
+         
+    return false;
+    }
+    }
     public function  newhome()
     {
         $currentTime = now()->format('H:i');
@@ -475,6 +509,7 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
     
         return view('admin.layout.newhome', ['data' => $users]);
     }
+
  
     // public function view(){
 

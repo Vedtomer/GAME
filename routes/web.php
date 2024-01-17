@@ -32,9 +32,9 @@ Route::get('/', function () {
 route::get("/",[AdminController::class, 'newhome']);
 route::get('login', [LoginController::class, 'index']);
 route::get('dash', [LoginController::class, 'show']);
-route::get('user', [LoginController::class, 'usershow']);
+// route::get('user', [LoginController::class, 'usershow']);
 // route::get('/home', [AdminController::class, 'home']);
-route::get('table', [LoginController::class, 'table']);
+// route::get('table', [LoginController::class, 'table']);
 // Admin Routes
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
@@ -101,6 +101,7 @@ Route::prefix('admin')->group(function () {
         // Route::get('/admin/get-filtered-data', [AdminController::class, 'getFilteredData'])->name('admin.getFilteredData');
 
 
+        Route::get('settlement', [AdminController::class, 'settlement'])->name('settlement');
     });
 });
 
@@ -143,7 +144,7 @@ Route::middleware('auth:agent')->group(function () {
     Route::post('agentchangepassword', [AgentController::class, 'agentchangePassword'])->name('agentchange.password');
     Route::get('cancel-ticket', [LoginController::class, 'canceltiket'])->name('canceltiket');
     // Route::get('/get-filtered-data', [AgentController::class ,'getFilteredData']);
-    Route::get('dashview', [AgentController::class, 'dashview'])->name('dashview');
+    Route::get('dashview/{number?}', [AgentController::class, 'dashview'])->name('dashview');
   });
 
 

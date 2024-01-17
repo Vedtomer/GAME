@@ -108,7 +108,7 @@
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button"
                                     data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
                                     class="btn-shadow mr-3 btn btn-dark">
-                                    <i class="pe-7s-power"></i>
+                                    <i class="pe-7s-power" id="logoutIcon"></i>
                                     
                                 </button>
                                 <!-- Display three dots on smaller screens -->
@@ -131,3 +131,13 @@
         
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var logoutIcon = document.getElementById('logoutIcon');
+    
+        logoutIcon.addEventListener('click', function () {
+            window.location.href = "{{ URL::to(Auth::guard('admin')->check() ? 'admin/logout' : 'logout') }}";
+        });
+    });
+    </script>

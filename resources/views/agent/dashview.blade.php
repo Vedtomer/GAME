@@ -2,7 +2,78 @@
 @section('title', 'View Purchase')
 @section('section')
 
+<style>
+.main{
+    border: 1px solid;
+    width: 300px;
+    text-align: center;
+    margin-bottom: 18px;
+    border-radius: 30px;
+    height: 250px;;
+}
+td{
+    font-weight: bolder;
+    color: black;
+}
+</style>
+<div class="table-container" style="overflow: auto; width: 296px; max-height: 240px;">
+<table style="display: none;" class="main">
+    <thead>
+     
+    </thead>
+    <tbody >
+        @if(count($data ?? []) > 0)
+        <tr>
+            <td colspan="2" style="text-align: center;"><h5><b>For Amusement Only</b></h5></td>
+        </tr>
+        
+        <tr>
+            <td ><b>Draw Time:</b> {{ $data[0]->drawtime }}</td>
+        </tr>
+        <tr>
+            <td><b>D.D.</b> {{ $data[0]->created_at->format('d-m-Y') }}</td>
+        </tr>
+        <tr>
+            <td><b>C.T.</b> {{ $data[0]->created_at->format('H:i:s') }}</td>
+        </tr>
+        <tr>
+            <td><b>Retailer Code.</b> {{ $data[0]->user_id}} </td>
+        </tr>
+        {{-- {{ $ticketPurchase->ticket_number }} --}}
+        <tr>
+            <td>
+                @if(count($data[0]->ticketPurchases) > 0)
+                    @foreach($data[0]->ticketPurchases as $ticketPurchase)
+                        {{ $ticketPurchase->ticket_number }} * {{ $ticketPurchase->qty }}
+                        @if (!$loop->last)
+                            , <!-- Add a comma between ticket numbers, excluding the last one -->
+                        @endif
+                    @endforeach
+                @endif
+            </td>
+        </tr>
+        
+        <tr>
+            <td><b>Retailer Code.</b> {{ $data[0]->created_at->format('H:i:s') }}</td>
+        </tr>
+        <tr>
+            <td><b>QTY.</b> {{ $data[0]->qty }} Total Pt. {{ $data[0]->points }}</td>
+        </tr>
+        {{-- <tr>
+            <td><b>Total Pt.</b> {{ $data[0]->points }}</td>
+        </tr> --}}
+        <tr>
+            <td><b>G.id :-</b> {{ $data[0]->requestid }}</td>
+        </tr>
+        @else
+        <tr>
+            <td colspan="2" style="text-align: center;"><p>No data available.</p></td>
+        </tr>
+        @endif
+    </tbody>
+</table>
 
+</div>
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
@@ -43,16 +114,16 @@
                                         <td><b>{{ $user->barcode }}</b></td>
                                         <td><b>{{ $user->status }}</b></td>
                                         <td><b>{{ $user->created_at->format('d-m-Y H:i') }}</b></td>
-                                        <td><button>View</button></td>
+                                        {{-- <td><button onclick="generateBarcode({{ json_encode($user) }})">view</button></td> --}}
 
+                                        <td><button onclick="toggleData()">View</button></td>
+                                        
 
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{-- <div class="pag mt-4" style="float: right">
-                {{ $data->links() }}
-               </div> --}}
+
                     @else
                         <p>No Ticket Purchase</p>
                     @endif
@@ -62,6 +133,37 @@
     </div>
 
 
+    <div id="barcodeContainer"></div>
+
+   <script>
+    function toggleData() {
+        var table = document.querySelector('table'); // Assuming there is only one table on the page
+
+        if (table.style.display === 'none' || table.style.display === '') {
+            table.style.display = '';
+        } else {
+            table.style.display = 'none';
+        }
+    }
+</script>
+<script>
+    function generateBarcode(barcodeValue) {
+            var containerElement = document.getElementById('barcodeContainer');
+
+            if (containerElement) {
+                // Clear previous barcode
+                containerElement.innerHTML = '';
+
+                // Generate new barcode
+                JsBarcode("#barcodeContainer", "1235", {
+                    format: "auto",
+                    displayValue: false
+                });
+            } else {
+                console.error('Target element not found.');
+            }
+        }
+</script>
 
 <script>
     function generateBarcode() {
