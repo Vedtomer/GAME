@@ -56,8 +56,11 @@
 
                 <tr>
                     <td>
-                        <label for="barcode{{ $data[0]->id }}" style="font-size: 18px;"><b>Date:</b> {{ $data[0]->created_at }}</label>
+                        <label for="barcode{{ $data[0]->id }}" style="font-size: 18px;">
+                            <b>Date:</b> {{ $start_date->format('m/d/Y') }} - {{ $end_date->format('m/d/Y') }}
+                        </label>
                     </td>
+                    
                 </tr>
 
                 <tr>
@@ -104,7 +107,7 @@
 
                 <tr>
                     <td>
-                        <label for="barcode{{ $data[0]->id }}" style="font-size: 18px;"><b>Claim pts:</b> {{ $data[0]->winpoints }}</label> 
+                        <label for="barcode{{ $data[0]->id }}" style="font-size: 18px;"><b>Claim pts:</b> {{ $winpoints }}</label> 
                     </td>
                 </tr>
 

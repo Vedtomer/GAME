@@ -513,6 +513,7 @@ class AgentController extends Controller
   
     $sumQty = $data->sum('qty');
     $sumpoints = $data->sum('points');
+    $winpoints = $data->sum('winpoints');
 
 
     $cancelCount = $data->where(function ($item) {
@@ -529,7 +530,7 @@ class AgentController extends Controller
     $sumQtyWinpoints = $Claimqty->sum('claimQty');
 
     $Netpay =   $netplus - $data->sum('winpoints');
-    return view('agent.report', compact('data', 'start_date', 'end_date', 'sumQty', 'sumpoints', 'cancelCount', 'netAmt', 'netplus','sumQtyWinpoints', 'Netpay'));
+    return view('agent.report', compact('data', 'start_date', 'end_date', 'sumQty', 'sumpoints', 'cancelCount', 'netAmt', 'netplus','sumQtyWinpoints', 'Netpay' ,'winpoints'));
 }
     public function getFilteredDataForAdmins(Request $request)
     {
