@@ -52,10 +52,10 @@ td{
                 @endif
             </td>
         </tr>
-        
+{{--         
         <tr>
             <td><b>Retailer Code.</b> {{ $data[0]->created_at->format('H:i:s') }}</td>
-        </tr>
+        </tr> --}}
         <tr>
             <td><b>QTY.</b> {{ $data[0]->qty }} Total Pt. {{ $data[0]->points }}</td>
         </tr>
