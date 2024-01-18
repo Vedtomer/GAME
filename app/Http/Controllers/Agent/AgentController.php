@@ -99,6 +99,16 @@ class AgentController extends Controller
 
     public function savedashboard(Request $request)
     {
+        $currentTime = now();
+        $startTime = now()->setHour(9)->setMinute(0)->setSecond(0); // Set your start time
+        $endTime = now()->setHour(21)->setMinute(30)->setSecond(0);   // Set your end time
+    
+        if ($currentTime >= $startTime && $currentTime <= $endTime) {
+       
+            if ($currentTime->minute % 15 === 0 && $currentTime->minute !== 0) {
+                return back()->with('error', 'Please wait for 1 minute');
+            }
+        }
 
 
         $data = $request->all();
@@ -112,6 +122,7 @@ class AgentController extends Controller
 
         $totalPts = 0;
         $totalQty = 0;
+
 
         foreach ($data as $key => $value) {
             $keyInt = (int)$key;

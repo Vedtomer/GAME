@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+
 class LoginController extends Controller
 {
     //
@@ -34,15 +35,37 @@ class LoginController extends Controller
     }
     public function canceltiket(Request $request)
     {
+        $currentTime = now();
         $agent = Auth::guard('agent')->user();
+    
+       $data = Barcode::where('user_id', $agent->id)
+            ->where('drawtime', '>=', $currentTime->format('H:i'))->where('status' , '!=' , 'CANCEL')
+            ->orderBy('id', 'desc')
+            ->first();
+    
+        if (!$data || $data->drawtime <= $currentTime->format('H:i')) {
+            return back()->with('error', 'Ticket Not Purchased');
+        }
+    
+        $points = $data->points;
+    
+        $newBalance = $agent->balance + $points;
+        $agent->update(['balance' => $newBalance]);
+    
+        DB::table('transaction')->insert([
+            'user_id' => $agent->id,
+            'action' => 'cancel',
+            'amount' => $points,
+            'balance' => $newBalance,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
-
-       $data = Barcode::where('user_id', $agent->id)->orderBy('id', 'desc')->first();
-
-
-       $data->status = 'CANCEL';
-       $data->save();
-        return back()->with('error','Ticket has been Canceel');
-        // return "hfghr";
+        $data->status = 'CANCEL';
+        $data->save();
+    
+        return back()->with('error', 'Ticket has been cancelled');
     }
+    
+    
 }
