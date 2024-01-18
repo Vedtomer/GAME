@@ -27,12 +27,15 @@ td{
             <td colspan="2" style="text-align: center;"><h5><b>For Amusement Only</b></h5></td>
         </tr>
         
-        <tr>
-            <td ><b>Draw Time:</b> {{ $data[0]->drawtime }}</td>
-        </tr>
+       
         <tr>
             <td><b>D.D.</b> {{ $data[0]->created_at->format('d-m-Y') }}</td>
         </tr>
+
+        <tr>
+            <td ><b>D.T.:</b> {{ $data[0]->drawtime }}</td>
+        </tr>
+
         <tr>
             <td><b>C.T.</b> {{ $data[0]->created_at->format('H:i:s') }}</td>
         </tr>
@@ -116,7 +119,7 @@ td{
                                         <td><b>{{ $user->created_at->format('d-m-Y H:i') }}</b></td>
                                         {{-- <td><button onclick="generateBarcode({{ json_encode($user) }})">view</button></td> --}}
 
-                                        <td><button onclick="toggleData()">View</button></td>
+                                        <td><button class="btn btn-info" onclick="toggleData()">View</button></td>
                                         
 
                                     </tr>
