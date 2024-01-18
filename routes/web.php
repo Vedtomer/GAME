@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\AdminController;
 |
 */
 Route::get('result-declared', [AgentController::class, 'resultdeclared'])->name('resultdeclared');
+Route::get('/settlement', [AdminController::class, 'settlement'])->name('settlement');
 route::get('subhank', [AgentController::class, 'subhank'])->name('subhank');
 route::get('report', [AgentController::class, 'report'])->name('report');
 Route::get('/get-filtered-data', [AgentController::class, 'getFilteredDataForAdmins']);
@@ -102,7 +103,7 @@ Route::prefix('admin')->group(function () {
 
 
         // Route::get('settlement', [AdminController::class, 'settlement'])->name('settlement');
-        Route::get('/settlement', [AdminController::class, 'settlement'])->name('settlement');
+        
     
     });
 });

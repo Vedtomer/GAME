@@ -499,7 +499,7 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
 ->first();
 
     if ($userdata) {
-   return $userdata->update_user_result($userdata->number_60, $userdata->number_70);
+   $userdata->update_user_result($userdata->number_60, $userdata->number_70);
 
     // $userdata->save();
     
