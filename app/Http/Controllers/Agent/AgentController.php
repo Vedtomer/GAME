@@ -72,7 +72,6 @@ class AgentController extends Controller
 
         $agent = Auth::guard('agent')->user();
 
-
         $data = TicketPurchase::where('user_id', Auth::user()->id)
             ->orderBy('id', 'desc')
             ->paginate(10);
@@ -90,8 +89,7 @@ class AgentController extends Controller
         $currentDate = Carbon::now()->format('Y-m-d');
 
         $data = Barcode::with('ticketPurchases')->where('user_id', Auth::user()->id)
-            ->whereDate('created_at', $currentDate)
-            ->orderBy('id', 'desc')
+        ->whereDate('created_at', $currentDate)->orderBy('id', 'desc')
             ->get();
 
 
@@ -168,8 +166,9 @@ class AgentController extends Controller
                     $balance -= $pts;
 
 
-                    DB::transaction(function () use ($keyInt, $value, $pts, $user_id, $savedId) {
+                    DB::transaction(function () use ($keyInt, $value, $pts, $user_id, $savedId, $drawtimeFormatted) {
                         $TicketPurchase = new TicketPurchase();
+                        $TicketPurchase->drawtime = $drawtimeFormatted;
                         $TicketPurchase->ticket_number = $keyInt;
                         $TicketPurchase->qty = (int)$value;
                         $TicketPurchase->points = $pts;
@@ -516,7 +515,7 @@ class AgentController extends Controller
     $Claimqty = $data->filter(function ($item) {
         return !empty($item->winpoints);
     });
-    $sumQtyWinpoints = $Claimqty->sum('qty');
+    $sumQtyWinpoints = $Claimqty->sum('claimQty');
 
     $Netpay =   $netplus - $data->sum('winpoints');
     return view('agent.report', compact('data', 'start_date', 'end_date', 'sumQty', 'sumpoints', 'cancelCount', 'netAmt', 'netplus','sumQtyWinpoints', 'Netpay'));

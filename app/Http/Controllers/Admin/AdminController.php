@@ -480,17 +480,25 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
         return view('home', ['data' => $users]);
     }
 
-    public function settlement(Request $request){
+    public function settlement(){
     
-    $currentTime = now(); 
+     $currentTime = now();
+
+        // Calculate the nearest time in 15-minute intervals
+        $nearestTime = floor($currentTime->minute / 15) * 15;
+        
+        // Adjust the time accordingly
+        $currentTime->minute = $nearestTime;
+        $nearestTimeIn24HourFormat = $currentTime->format('H:i');
+
  
-    $userdata = Result::where('number_70', $request->number_70)
-    ->where('number_60', $request->number_60)->where('timesloat', '<=', $currentTime)
+    $userdata = Result::where('timesloat', '<=', $nearestTimeIn24HourFormat)
     ->orderBy('timesloat', 'desc')->first();
 
     if ($userdata) {
-    $userdata->update_user_result($request->number_60, $request->number_70);
-    $userdata->save();
+    $userdata->update_user_result($userdata->number_60, $userdata->number_70);
+
+    // $userdata->save();
     
     return true;
     } else {

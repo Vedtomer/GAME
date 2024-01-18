@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\TicketPurchase;
 use Illuminate\Support\Facades\DB;
+use App\Models\Barcode;
 class Result extends Model
 {
     use HasFactory;
@@ -13,19 +14,21 @@ class Result extends Model
     protected $fillable = ['number_70', 'number_60', 'timesloat'];
     protected $guarded = [];
 
-    public function update_user_result()
+    public function update_user_result($number60,$number70)
     {
-        $num70 = (int) "70" . $number70;
+
         $num60 = (int) "60" . $number60;
+        $num70 = (int) "70" . $number70;
+       
         $numbers = [$num70, $num60];
-    
-        
+
+
         $ticketPurchases = TicketPurchase::where('is_result_declared', 0)
         ->whereIn('ticket_number', $numbers)
         ->get();
     
         foreach ($ticketPurchases as $ticketPurchase) {
-            // $ticketNumbers = json_encode($numbers);
+            
          
              // Calculate winning amount (assuming qty is a column in the TicketPurchase table)
              $ticketPurchase=TicketPurchase::find($ticketPurchase->id);
@@ -50,7 +53,22 @@ class Result extends Model
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+
+            // $barcode = Barcode::find()
+            // DB::table('barcodes')->insert([
+            //     'user_id' => $user->id,
+            //     'action' => 'win',
+            //     'amount' => $winningAmount,
+            //     'balance' => $newBalance,
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ]);
+            $barcode = Barcode::get();
+            $barcode->status = 'ACTIVE';
+
         }
+        $barcode = Barcode::find()
+
     }
     
 }

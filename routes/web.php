@@ -1,5 +1,5 @@
 <?php
-
+// namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Agent\AgentController;
@@ -101,7 +101,9 @@ Route::prefix('admin')->group(function () {
         // Route::get('/admin/get-filtered-data', [AdminController::class, 'getFilteredData'])->name('admin.getFilteredData');
 
 
-        Route::get('settlement', [AdminController::class, 'settlement'])->name('settlement');
+        // Route::get('settlement', [AdminController::class, 'settlement'])->name('settlement');
+        Route::get('/settlement', [AdminController::class, 'settlement'])->name('settlement');
+    
     });
 });
 
