@@ -492,11 +492,14 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
         $nearestTimeIn24HourFormat = $currentTime->format('H:i');
 
  
-    $userdata = Result::where('timesloat', '<=', $nearestTimeIn24HourFormat)
-    ->orderBy('timesloat', 'desc')->first();
+     
+     $userdata = Result::where('timesloat', '<=', $nearestTimeIn24HourFormat)
+->whereDate('created_at', $currentTime->toDateString())
+->orderBy('timesloat', 'desc')
+->first();
 
     if ($userdata) {
-    $userdata->update_user_result($userdata->number_60, $userdata->number_70);
+   return $userdata->update_user_result($userdata->number_60, $userdata->number_70);
 
     // $userdata->save();
     
