@@ -78,7 +78,7 @@
             </tbody>
         </table>
         @else
-        <p>No users found.</p>
+        <p>No data found.</p>
     @endif
         </div>
      </selectedrowstyle></div>                                             
