@@ -15,8 +15,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // Uncomment or modify the following line to schedule your command
-        $schedule->command(ResultDeclare::class)->daily();
-        $schedule->command(Settlement::class)->everyFifteenMinutes(); // Use the fully qualified class name
+      // Schedule ResultDeclare daily at 1:00 am
+      $schedule->command(ResultDeclare::class)->dailyAt('1:00');
+      // Schedule Settlement every 15 minutes between 8:00 am and 11:45 pm
+      $schedule->command(Settlement::class)->cron('0,15,30,45 8-23 * * *');
         // Other scheduled tasks can be added here using the $schedule instance
         // $schedule->command('inspire')->hourly();
     }
