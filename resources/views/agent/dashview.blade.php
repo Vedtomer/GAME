@@ -27,46 +27,45 @@ td{
             <td colspan="2" style="text-align: center;"><h5><b>For Amusement Only</b></h5></td>
         </tr>
         
-       
-        <tr>
-            <td><b>D.D.</b> {{ $data[0]->created_at->format('d-m-Y') }}</td>
+        {{-- <tr>
+            <td><b>D.D.</b><span id="exampleSpan"> {{ $data[0]->created_at->format('d-m-Y') }}</span></td>
         </tr>
 
         <tr>
-            <td ><b>D.T.:</b> {{ $data[0]->drawtime }}</td>
+            <td ><b>D.T.:</b> <span id="exampleSpan">{{ $data[0]->drawtime }}</span></td>
         </tr>
 
         <tr>
-            <td><b>C.T.</b> {{ $data[0]->created_at->format('H:i:s') }}</td>
+            <td><b>C.T.</b> <span id="exampleSpan">{{ $data[0]->created_at->format('H:i:s') }}</span></td>
         </tr>
         <tr>
-            <td><b>Retailer Code.</b> {{ $data[0]->user_id}} </td>
-        </tr>
-        {{-- {{ $ticketPurchase->ticket_number }} --}}
+            <td><b>Retailer Code.</b> <span id="exampleSpan">{{ $data[0]->user_id}}</span> </td>
+        </tr> --}}
+    
         <tr>
             <td>
+               <span id="exampleSpan">
                 @if(count($data[0]->ticketPurchases) > 0)
-                    @foreach($data[0]->ticketPurchases as $ticketPurchase)
-                        {{ $ticketPurchase->ticket_number }} * {{ $ticketPurchase->qty }}
-                        @if (!$loop->last)
-                            , <!-- Add a comma between ticket numbers, excluding the last one -->
-                        @endif
-                    @endforeach
-                @endif
+                {{-- @foreach($data[0]->ticketPurchases as $ticketPurchase) --}}
+                    {{-- {{$ticketPurchase->ticket_number }} * {{ $ticketPurchase->qty }} --}}
+                    {{-- @if (!$loop->last)
+                        , 
+                    @endif
+                @endforeach --}}
+            @endif
+               </span>
             </td>
         </tr>
-{{--         
-        <tr>
-            <td><b>Retailer Code.</b> {{ $data[0]->created_at->format('H:i:s') }}</td>
-        </tr> --}}
-        <tr>
-            <td><b>QTY.</b> {{ $data[0]->qty }} Total Pt. {{ $data[0]->points }}</td>
-        </tr>
+        {{-- <p><b>QTY. </b> ${user.ticketPurchase.ticket_number} <b>Total Pt. </b> ${user.ticketPurchase.qty}</p> --}}
+
         {{-- <tr>
-            <td><b>Total Pt.</b> {{ $data[0]->points }}</td>
+            <td><b>QTY.</b> <span id="qty">{{ $data[0]->qty }} Total Pt. {{ $data[0]->points }}</span></td>
         </tr> --}}
+   
         <tr>
-            <td><b>G.id :-</b> {{ $data[0]->requestid }}</td>
+            {{-- <td><b>G.id :-</b> <span id="exampleSpan"></span></td> --}}
+
+            
         </tr>
         @else
         <tr>
@@ -119,7 +118,10 @@ td{
                                         <td><b>{{ $user->created_at->format('d-m-Y H:i') }}</b></td>
                                         {{-- <td><button onclick="generateBarcode({{ json_encode($user) }})">view</button></td> --}}
 
-                                        <td><button class="btn btn-info" onclick="toggleData()">View</button></td>
+                                        <td>
+                                            <button class="btn btn-info" onclick="toggleData('{{ json_encode($user) }}')">View</button>
+                                        </td>
+                                        
                                         
 
                                     </tr>
@@ -138,17 +140,47 @@ td{
 
     <div id="barcodeContainer"></div>
 
-   <script>
-    function toggleData() {
-        var table = document.querySelector('table'); // Assuming there is only one table on the page
+    <script>
+        function toggleData(data) {
+            var table = document.querySelector('table');
+        var exampleSpan = document.getElementById('exampleSpan');
+
+        var user = JSON.parse(data);
 
         if (table.style.display === 'none' || table.style.display === '') {
             table.style.display = '';
+
+            // Update the content of the exampleSpan
+         let    ticketPurchases=user.ticket_purchases;
+
+var ticketNumberQtyString = ticketPurchases.map(ticketPurchase => `${ticketPurchase.ticket_number}*${ticketPurchase.qty}`).join(', ');
+
+// console.log(ticketNumberQtyString);
+            exampleSpan.innerHTML = `
+        
+            <p><b>D.D.:</b> ${new Date(user.created_at).toLocaleDateString('en-GB')}</p>
+            <p><b>D.T.:</b> ${user.drawtime}</p>
+            <p><b>C.T.</b> ${new Date(user.created_at).toLocaleTimeString('en-GB', { hour12: false })}</p>
+            <p><b>Retailer Code. </b> ${user.user_id}</p>
+           
+            <p> ${ticketNumberQtyString} </p>
+            <p><b>QTY. </b> ${user.qty} <b>Total Pt. </b> ${user.points}</p>
+            <p><b>G.id :-</b> ${user.requestid}</p>
+              
+             
+            `;
         } else {
             table.style.display = 'none';
         }
-    }
-</script>
+        console.log
+        }
+    </script>
+
+    {{--  --}}
+    {{-- <p><b>Winpoints:</b> ${user.winpoints}</p>
+                
+    <p><b>Barcode:</b> ${user.barcode}</p>
+    <p><b>Status:</b> ${user.status}</p> --}}
 <script>
     function generateBarcode(barcodeValue) {
             var containerElement = document.getElementById('barcodeContainer');
