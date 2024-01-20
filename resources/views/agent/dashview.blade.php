@@ -62,11 +62,15 @@ td{
             <td><b>QTY.</b> <span id="qty">{{ $data[0]->qty }} Total Pt. {{ $data[0]->points }}</span></td>
         </tr> --}}
    
-        <tr>
+        {{-- <tr> --}}
             {{-- <td><b>G.id :-</b> <span id="exampleSpan"></span></td> --}}
+           {{-- <td class="mb-5"> <span id=""></span> <img src="{{ asset('logo12_files/barcode19.png') }}" alt="Barcode Image" height="50px" width="200"></td> --}}
 
-            
-        </tr>
+        {{-- </tr>
+
+        <tr> --}}
+            {{-- <td><b>barcode</b> <span id="exampleSpan">{{ $data[0]->barcode}}</span> </td> --}}
+        {{-- </tr>  --}}
         @else
         <tr>
             <td colspan="2" style="text-align: center;"><p>No data available.</p></td>
@@ -166,6 +170,10 @@ var ticketNumberQtyString = ticketPurchases.map(ticketPurchase => `${ticketPurch
             <p> ${ticketNumberQtyString} </p>
             <p><b>QTY. </b> ${user.qty} <b>Total Pt. </b> ${user.points}</p>
             <p><b>G.id :-</b> ${user.requestid}</p>
+            <p> 
+  <img src="{{ asset('logo12_files/barcode19.png') }}" alt="Barcode Image" height="50px" width="200">
+</p>
+            <p> ${user.barcode}</p>
               
              
             `;

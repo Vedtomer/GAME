@@ -372,10 +372,12 @@
                                                 <div>
                                                     <span>
                                                         <a type="button"
-                                                            style="font-size: 36px; color: yellow; background-color: rgb(123, 0, 255); border-radius: 30px; text-decoration: none; padding: 0 15px;"
+                                                            style="font-size: 36px; border:1px solid; background: linear-gradient(to right, #ff6347, #4b0082); background-color: rgb(123, 0, 255); border-radius: 30px; text-decoration: none; padding: 0 15px;"
                                                             class="bgtime1" value="Shubhank" id="btnres"
                                                             onclick="Result()" href="{{route('subhank') }}">Shubhank</a>
                                                     </span>
+
+                                                    
                                                     <span
                                                         style="background-image: url(logo12_files/2.png); display: inline-block; width: 200px; height: 40px; background-repeat: no-repeat;margin-bottom:0px;"></span>
                                                     <span style="color: yellow;">Visitor: <span
