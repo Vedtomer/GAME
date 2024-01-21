@@ -104,7 +104,21 @@ class AgentController extends Controller
 
     public function savedashboard(Request $request)
     {
+
         $currentTime = now();
+        $ticketWindowOpenTime = now()->setTime(8, 45); // Set the opening time to 8:45 AM
+        $ticketWindowCloseTime = now()->setTime(21, 30); // Set the closing time to 9:30 PM
+    
+        // Check if the current time is within the ticket window
+        if ($currentTime->lt($ticketWindowOpenTime) || $currentTime->gte($ticketWindowCloseTime)) {
+            // Ticket window is not open
+            $openingTime = $ticketWindowOpenTime->format('h:i A');
+            return back()->with('error', "Ticket window is not open. Please try again after $openingTime.");
+        }
+    
+        
+
+      
         $startTime = now()->setHour(9)->setMinute(0)->setSecond(0); // Set your start time
         $endTime = now()->setHour(21)->setMinute(30)->setSecond(0);   // Set your end time
     
