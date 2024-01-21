@@ -219,9 +219,9 @@
                                         }
                                         echo "<th class=gradient-container ><span  id='qty{$i}' name='qty{$i}'>0</span></th>";
                                         echo "<th class=gradient-container><span  id='pts{$i}' name='pts{$i}'>0.00</span></th>";
-                                        echo "<th class='result'>" . ($data[$lastSetIndex]['timesloat'] ?? '--') . '</th>';
-                                        echo "<th class='result'>" . ($data[$lastSetIndex]['number_60'] ?? '--') . '</th>';
-                                        echo "<th class='result'>" . ($data[$lastSetIndex]['number_70'] ?? '--') . '</th>';
+                                        echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['timesloat'] ?? '--') . '</span></th>';
+echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['number_60'] ?? '--') . '</span></th>';
+echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['number_70'] ?? '--') . '</span></th>';
                                 
                                         echo '</tr><tr>';
                                     }
