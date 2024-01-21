@@ -150,6 +150,16 @@
             <div class="label">DRAW TIME</div>
             <span id="NextDrowTime" class="value"></span>
         </div>
+
+        <div class="info-box">
+            <div class="label">User Name</div>
+            <span id="" class="value">{{ Auth::guard('agent')->user()->email }}</span>
+        </div>
+
+        <div class="info-box">
+            <div class="label">Balance</div>
+            <span id="" class="value">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span>
+        </div>
     </div>
 
 
