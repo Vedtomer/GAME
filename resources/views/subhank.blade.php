@@ -53,7 +53,7 @@
     <selectedrowstyle backcolor="ActiveCaption">
         <div class="manage">
 
-            @if(isset($data) && count($data) > 0)
+           
             <table class="table responsive" cellspacing="0" id="grda" style="width:100%;border-collapse:collapse;">
                 <thead>
                     <tr>
@@ -68,6 +68,8 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if(isset($data) && count($data) > 0)
+
                  @foreach($data as $user)
                             <tr> 
                                 <td style="text-align: center;">{{ $user->timesloat }}</td>
@@ -75,11 +77,16 @@
                                 <td style="text-align: center;">{{ $user->number_70 }}</td>
                             </tr>
                         @endforeach
+
+                        @else
+                        <tr> 
+                           
+                            <td style="text-align: center;">No Data Found</td>
+                        </tr>
+                    @endif
             </tbody>
         </table>
-        @else
-        <p>No data found.</p>
-    @endif
+       
         </div>
      </selectedrowstyle></div>                                             
     </div>
