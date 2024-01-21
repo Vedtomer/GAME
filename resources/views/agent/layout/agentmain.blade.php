@@ -11,9 +11,62 @@
 
     <link rel="stylesheet" href="{{ asset('main.css') }}">
     <script src="{{ asset('script.js') }}"></script>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow-x: auto;
+            padding: 10px;
+        }
+
+        .info-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 2px solid;
+            padding: 5px;
+        }
+
+        .label {
+            margin-bottom: 5px;
+        }
+
+        .value {
+            display: inline-block;
+            font-weight: 900;
+            font-size: 16px;
+        }
+
+        /* Equal height for inner boxes */
+        .info-box {
+            flex: 1;
+        }
+
+        /* Smaller text on mobile */
+        @media (max-width: 768px) {
+            .value {
+                font-size: 12px;
+                /* Adjust as needed */
+            }
+
+            .label {
+                font-size: 10px;
+                font-weight: bolder
+            }
+
+            .info-box {
+
+                padding: 0px;
+            }
+
+        }
+    </style>
 
 </head>
+
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         {{-- topbar start --}}
@@ -21,7 +74,7 @@
         <div class="app-main">
             {{-- sidebar start --}}
             @include('agent.layout.agentsidebar')
-           
+
             {{-- sidebar end --}}
             <div class="app-main__outer">
                 <div class="app-main__inner">
@@ -48,7 +101,7 @@
                                         </span>
                                         Buttons
                                     </button> --}}
-                                    {{-- <div tabindex="-1" role="menu" aria-hidden="true"
+                            {{-- <div tabindex="-1" role="menu" aria-hidden="true"
                                         class="dropdown-menu dropdown-menu-right">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
@@ -88,7 +141,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div> --}} 
+                            </div> --}}
                         </div>
                     </div>
 
@@ -670,7 +723,7 @@
                         </div>
                     </div>
                     {{-- <div class="row"> --}}
-                        {{-- <div class="col-md-6 col-lg-3">
+                    {{-- <div class="col-md-6 col-lg-3">
                             <div class="card-shadow-danger mb-3 widget-chart widget-chart2 text-left card">
                                 <div class="widget-content">
                                     <div class="widget-content-outer">
@@ -762,7 +815,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> --}} 
+                    </div> --}}
                 </div>
                 {{-- <div class="app-wrapper-footer">
                     <div class="app-footer">
@@ -802,7 +855,7 @@
                     </div>
                 </div> --}}
             </div>
-           
+
         </div>
     </div>
     @include('agent.layout.agentfooter')

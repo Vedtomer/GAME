@@ -512,11 +512,17 @@ class AgentController extends Controller
         return view('subhank', ['data' => $users]);
     }
 
-    public function report(){
-    
-        // $data = Barcode::all();
-        return view('agent.report');
+    public function report() {
+        // Check if the agent is authenticated
+        if (Auth::guard('agent')->check()) {
+            // Agent is authenticated, proceed to the view
+            return view('agent.report');
+        } else {
+            // Agent is not authenticated, handle accordingly (e.g., redirect to login)
+            return redirect()->route('agent.login'); // Adjust the route name as needed
+        }
     }
+    
 
 
 

@@ -10,7 +10,7 @@
                 margin: -15px 0px 15px;
             }
 
-           
+
 
             .card-body {
                 padding: 2px !important;
@@ -31,7 +31,7 @@
         th.result {
             background-color: lemonchiffon;
             font-weight: 900;
-}
+        }
 
         table {
             border-collapse: collapse;
@@ -129,58 +129,6 @@
                 color: rgb(16, 16, 16);
             }
         }
-
-
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            overflow-x: auto;
-            padding: 10px;
-        }
-
-        .info-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            border: 2px solid;
-            padding: 5px;
-        }
-
-        .label {
-            margin-bottom: 5px;
-        }
-
-        .value {
-            display: inline-block;
-            font-weight: 900;
-            font-size: 16px;
-        }
-
-        /* Equal height for inner boxes */
-        .info-box {
-            flex: 1;
-        }
-
-        /* Smaller text on mobile */
-        @media (max-width: 768px) {
-            .value {
-                font-size: 12px;
-                /* Adjust as needed */
-            }
-
-            .label {
-                font-size: 10px;
-                font-weight: bolder
-            }
-
-            .info-box {
-
-                padding: 0px;
-            }
-
-        }
     </style>
     <div class="container">
         <div class="info-box">
@@ -207,7 +155,7 @@
 
 
 
-    <div >
+    <div>
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <div class="add" style="display: flex; align-items: center;">
@@ -232,12 +180,12 @@
                                 
                                     if ($i == 9) {
                                         echo "<th class=gradient-container><span for='input_top'>QTY.</span></th><th class=gradient-container><span for='input_top'>PTS.</span></th>
-                                        
-                                        <th class=result><span for='input_top'>Time</span></th>
-                                        <th class=result><span for='input_top'>60</span></th>
-                                        <th class=result><span for='input_top'>70</span></th>
-                                        
-                                        ";
+                                                                        
+                                                                        <th class=result><span for='input_top'>Time</span></th>
+                                                                        <th class=result><span for='input_top'>60</span></th>
+                                                                        <th class=result><span for='input_top'>70</span></th>
+                                                                        
+                                                                        ";
                                     }
                                 }
                                 ?>
@@ -266,40 +214,40 @@
                                     $lastSetIndex = $i % 10;
                                     if (($i + 1) % 10 === 0) {
                                         $lastSetIndex = $i % 9;
-                                        if($i ==99){
+                                        if ($i == 99) {
                                             $lastSetIndex = 9;
                                         }
                                         echo "<th class=gradient-container ><span  id='qty{$i}' name='qty{$i}'>0</span></th>";
                                         echo "<th class=gradient-container><span  id='pts{$i}' name='pts{$i}'>0.00</span></th>";
-                                       echo "<th class=result>".$data[$lastSetIndex]['timesloat']."</th>";
-                                       echo "<th class=result>".$data[$lastSetIndex]['number_60']."</th>";
-                                       echo "<th class=result>".$data[$lastSetIndex]['number_70']."</th>";
+                                        echo "<th class='result'>" . ($data[$lastSetIndex]['timesloat'] ?? '--') . '</th>';
+                                        echo "<th class='result'>" . ($data[$lastSetIndex]['number_60'] ?? '--') . '</th>';
+                                        echo "<th class='result'>" . ($data[$lastSetIndex]['number_70'] ?? '--') . '</th>';
                                 
                                         echo '</tr><tr>';
                                     }
                                 
                                     if ($i == 99) {
                                         echo "<tr>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <th colspan=11><div class=submit><button type=submit class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'> <b>Submit</b> </button> 
-                                                                                                                                                                <a class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' id=reloadBtn> <b>Clear</b> </a>                                                                                                  
-                                                                                                                                                                    <a href='/subhank' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-success' style='text-decoration: none; color: inherit;'> <b>Result</b></a>
-                                                                                                                                                                
-                                                                                                                                                                
-                                                                                                                                                                    <a href='/dashview' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-danger' style='text-decoration: none; color: inherit;'> <b>View</b></a>
-                                                                                                                                                                
-                                                                                                                                                                
-                                                                                                                                                                    <a href='/agentchangepassword' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>password</b></a>
-                                                                                                                                                                
-                                                                                                                                                                    <a href='/report' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>report</b></a>
-                                                                                                                                                                
-                                                                                                                                                                
-                                                                                                                                                                    <a href='/cancel-ticket' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning' style='text-decoration: none; color: inherit;'> <b>Cancel</b></a>
-                                                                                                                                                                
-                                                                                                                                                                
-                                                                                                                                                                 </div></th>
-                                                                                                                                                                                                                                                                    <th><span for='qty{$i}'>Total</span></th>
-                                                                                                                                                                                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
-                                                                                                                                                                                                                                                                     <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <th colspan=11><div class=submit><button type=submit class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'> <b>Submit</b> </button> 
+                                                                                                                                                                                                <a class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' id=reloadBtn> <b>Clear</b> </a>                                                                                                  
+                                                                                                                                                                                                    <a href='/subhank' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-success' style='text-decoration: none; color: inherit;'> <b>Result</b></a>
+                                                                                                                                                                                                
+                                                                                                                                                                                                
+                                                                                                                                                                                                    <a href='/dashview' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-danger' style='text-decoration: none; color: inherit;'> <b>View</b></a>
+                                                                                                                                                                                                
+                                                                                                                                                                                                
+                                                                                                                                                                                                    <a href='/agentchangepassword' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>password</b></a>
+                                                                                                                                                                                                
+                                                                                                                                                                                                    <a href='/report' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>report</b></a>
+                                                                                                                                                                                                
+                                                                                                                                                                                                
+                                                                                                                                                                                                    <a href='/cancel-ticket' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning' style='text-decoration: none; color: inherit;'> <b>Cancel</b></a>
+                                                                                                                                                                                                
+                                                                                                                                                                                                
+                                                                                                                                                                                                 </div></th>
+                                                                                                                                                                                                                                                                                                    <th><span for='qty{$i}'>Total</span></th>
+                                                                                                                                                                                                                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
+                                                                                                                                                                                                                                                                                                     <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
                                     }
                                     $j++;
                                 }
@@ -334,7 +282,5 @@
 
 
 
-        <script>
-       
-        </script>
+        <script></script>
     @endsection
