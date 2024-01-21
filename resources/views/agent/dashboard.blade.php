@@ -10,10 +10,7 @@
                 margin: -15px 0px 15px;
             }
 
-            .app-main .app-main__inner {
-                padding: 30px 0px 0;
-
-            }
+           
 
             .card-body {
                 padding: 2px !important;
