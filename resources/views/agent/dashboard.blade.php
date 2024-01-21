@@ -229,7 +229,13 @@
                                     }
                                 
                                     if ($i == 9) {
-                                        echo "<th class=gradient-container><span for='input_top'>QTY.</span></th><th class=gradient-container><span for='input_top'>PTS.</span></th>";
+                                        echo "<th class=gradient-container><span for='input_top'>QTY.</span></th><th class=gradient-container><span for='input_top'>PTS.</span></th>
+                                        
+                                        <th class=result><span for='input_top'>Time</span></th>
+                                        <th class=result><span for='input_top'>60</span></th>
+                                        <th class=result><span for='input_top'>70</span></th>
+                                        
+                                        ";
                                     }
                                 }
                                 ?>
@@ -255,10 +261,17 @@
                                     $defaultName = $j;
                                 
                                     echo "<th class=main-input><span for='{$defaultName}'>{$defaultspan}</span><br><input type='tel' id='input{$i}' name='{$defaultName}' onkeypress='allowOnlyNumbers(event)' oninput='updateQty()' class='input-box'></th>";
-                                
+                                    $lastSetIndex = $i % 10;
                                     if (($i + 1) % 10 === 0) {
+                                        $lastSetIndex = $i % 9;
+                                        if($i ==99){
+                                            $lastSetIndex = 9;
+                                        }
                                         echo "<th class=gradient-container ><span  id='qty{$i}' name='qty{$i}'>0</span></th>";
                                         echo "<th class=gradient-container><span  id='pts{$i}' name='pts{$i}'>0.00</span></th>";
+                                       echo "<th class=result>".$data[$lastSetIndex]['timesloat']."</th>";
+                                       echo "<th class=result>".$data[$lastSetIndex]['number_60']."</th>";
+                                       echo "<th class=result>".$data[$lastSetIndex]['number_70']."</th>";
                                 
                                         echo '</tr><tr>';
                                     }

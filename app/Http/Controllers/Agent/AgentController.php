@@ -66,16 +66,21 @@ class AgentController extends Controller
 
     public function dashboard($number = null)
     {
+
+
+
         if (!$number) {
             $number = 6000;
         }
 
         $agent = Auth::guard('agent')->user();
 
-        $data = TicketPurchase::where('user_id', Auth::user()->id)
-            ->orderBy('id', 'desc')
-            ->paginate(10);
-
+        $currentTime = now()->format('H:i');
+        $data = Result::whereDate('created_at', now()->toDateString())
+            ->where('timesloat', '<=', $currentTime)
+            ->orderBy('timesloat', 'desc')
+            ->get();
+        // return     $data;
         return view('agent.dashboard', compact('agent', 'number', 'data'));
     }
 

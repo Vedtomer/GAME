@@ -537,7 +537,6 @@ function updateNextDrawTimeAndReload() {
   seconds = seconds < 10 ? '0' + seconds : seconds;
 
   var nextDrawTimeString = hours + ':' + nextMinutes + ':' + '00' + ' ' + ampm;
-  console.log(nextDrawTimeString);
   document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
 
   // var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
