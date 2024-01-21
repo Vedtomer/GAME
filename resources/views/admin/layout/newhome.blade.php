@@ -3,6 +3,7 @@
 
 <head>
     <title>Golden Lucky Draw</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('homes.css') }}">
     <script src="{{ asset('homejs.js') }}"></script>
     <script src="{{ asset('home3.js') }}"></script>
