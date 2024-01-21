@@ -211,7 +211,7 @@
 
                                     <div style="font-size: 22pt; font-weight: bold; color: Yellow;height:40px"
                                         id="TodatyDate">
-                                     <span id="NowDate"></span>
+                                        <span id="NowDate"></span>
                                     </div>
                                 </div>
                             </div>
@@ -220,8 +220,7 @@
                             <div>
                                 <div class="time-slot"
                                     style="height: 38px; background-color:rgb(40, 117, 232); border-radius:30px;    margin-bottom: 20px;">
-                                    <div style="font-size: 22pt; font-weight: bold; color: Yellow; "
-                                        id="NextDrowTime">
+                                    <div style="font-size: 22pt; font-weight: bold; color: Yellow; " id="NextDrowTime">
                                         <span id="nextDraw"></span>
                                     </div>
                                 </div>
@@ -521,72 +520,92 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script>
+    
+    <script>
+        function updateCurrentTime() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+           
 
-function updateCurrentTime() {
-    var now = new Date();
-    var hours = now.getHours();
-    var minutes = now.getMinutes();
-    var seconds = now.getSeconds();
-    var ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12 || 12;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-    var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
-    document.getElementById('NowTime').innerText = currentTime;
+            var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
+                (now.getHours() === 21 && minutes <= 30);
+            if (isWithinInterval) {
+                var day = now.getDate();
+                var month = now.getMonth() + 1; // Months are 0-based
+                var year = now.getFullYear();
 
-    var isWithinInterval = (now.getHours() === 8 && minutes >= 30) || (now.getHours() > 8 && now.getHours() < 21) || (now.getHours() === 21 && minutes <= 30);
-    if (isWithinInterval) {
-        var day = now.getDate();
-        var month = now.getMonth() + 1; // Months are 0-based
-        var year = now.getFullYear();
+                var formattedDate = day + '/' + month + '/' + year;
+                document.getElementById('NowDate').innerText = formattedDate;
+                document.getElementById('NowTime').innerText = currentTime;
+            } else {
+                document.getElementById('NowDate').innerText = '';
+                document.getElementById('NowTime').innerText = "";
+            }
 
-        var formattedDate = day + '/' + month + '/' + year;
-        document.getElementById('NowDate').innerText = formattedDate;
-    } else {
-        document.getElementById('NowDate').innerText = '';
-    }
+            if (now.getHours() === 8 && minutes === 45) {
+                location.reload();
+            } else if (now.getHours() === 21 && minutes === 30) {
+                location.reload();
+            }
+        }
 
-    if (now.getHours()  === 8 && minutes === 30 ) {
-        location.reload();
-    } else if (now.getHours()  === 21 && minutes === 30) {
-        location.reload();
-    }
-}
+        setInterval(updateCurrentTime, 1000);
+        updateCurrentTime();
+    </script>
 
-setInterval(updateCurrentTime, 1000);
-updateCurrentTime();
-</script>
+    <script>
+        function updateNextDrawTimeAndReload() {
+            var now = new Date();
+            var minutes = now.getMinutes();
+            var remainingMinutes = 15 - (minutes % 15);
 
-<script>
-function updateNextDrawTimeAndReload() {
-    var now = new Date();
-    var minutes = now.getMinutes();
-    var remainingMinutes = 15 - (minutes % 15);
+            var nextDrawTime = new Date(now.getTime() + remainingMinutes * 60000);
 
-    var nextDrawTime = new Date(now.getTime() + remainingMinutes * 60000);
+            var hours = nextDrawTime.getHours();
+            var nextMinutes = nextDrawTime.getMinutes();
+            var seconds = nextDrawTime.getSeconds();
+            var ampm = hours >= 12 ? 'P.M.' : 'A.M.';
 
-    var hours = nextDrawTime.getHours();
-    var nextMinutes = nextDrawTime.getMinutes();
-    var seconds = nextDrawTime.getSeconds();
-    var ampm = hours >= 12 ? 'P.M.' : 'A.M.';
+            hours = hours % 12 || 12;
+            nextMinutes = nextMinutes < 10 ? '0' + nextMinutes : nextMinutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
 
-    hours = hours % 12 || 12;
-    nextMinutes = nextMinutes < 10 ? '0' + nextMinutes : nextMinutes;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
+            var nextDrawTimeString = hours + ':' + nextMinutes + ':' + '00' + ' ' + ampm;
+          
 
-    var nextDrawTimeString = hours + ':' + nextMinutes + ':' + '00' + ' ' + ampm;
+            var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
+                (now.getHours() === 21 && minutes <= 30);
+            if (isWithinInterval) {
+               
+                document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
+                
+            } else {
+                document.getElementById('NextDrowTime').innerText = '';
+            }
 
-    document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
 
-if (minutes % 15 === 0 && seconds === 00) {
-        location.reload();
-    }
-}
+            if (minutes % 15 == 0 && seconds == 00) {
+                location.reload();
+            }
+        }
 
-setInterval(updateNextDrawTimeAndReload, 1000);
-updateNextDrawTimeAndReload();
-</script>
+        setInterval(updateNextDrawTimeAndReload, 1000);
+        updateNextDrawTimeAndReload();
+
+
+
+
+
+        
+    </script>
+
 
 
 </body>
