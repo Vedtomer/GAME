@@ -28,6 +28,11 @@
             }
         }
 
+        th.result {
+            background-color: lemonchiffon;
+            font-weight: 900;
+}
+
         table {
             border-collapse: collapse;
             width: 100%;
