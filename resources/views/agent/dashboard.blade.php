@@ -202,7 +202,7 @@
 
 
 
-    <div class="col-lg-12">
+    <div >
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <div class="add" style="display: flex; align-items: center;">
