@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-   
+
 
     <link rel="stylesheet" href="{{ asset('homes.css') }}">
     <script src="{{ asset('homejs.js') }}"></script>
@@ -172,8 +172,6 @@
             margin-left: 40px;
             margin-top: 100px;
         }
-
-        
     </style>
 </head>
 
@@ -520,7 +518,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    
+
     <script>
         function updateCurrentTime() {
             var now = new Date();
@@ -532,21 +530,21 @@
             minutes = minutes < 10 ? '0' + minutes : minutes;
             seconds = seconds < 10 ? '0' + seconds : seconds;
             var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
-           
+
 
             var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
                 (now.getHours() === 21 && minutes <= 30);
-                var day = now.getDate();
-                var month = now.getMonth() + 1; // Months are 0-based
-                var year = now.getFullYear();
-                var formattedDate = day + '/' + month + '/' + year;
+            var day = now.getDate();
+            var month = now.getMonth() + 1; // Months are 0-based
+            var year = now.getFullYear();
+            var formattedDate = day + '/' + month + '/' + year;
             if (isWithinInterval) {
-                
 
-               
+
+
                 document.getElementById('NowDate').innerText = formattedDate;
                 document.getElementById('NowTime').innerText = currentTime;
-            }else if((now.getHours() >= 0 && now.getHours() < 8)){
+            } else if ((now.getHours() >= 0 && now.getHours() < 8) || (now.getHours() === 8 && minutes < 45)) {
                 document.getElementById('NowDate').innerText = formattedDate;
                 document.getElementById('NowTime').innerText = "00";
             } else {
@@ -554,9 +552,9 @@
                 document.getElementById('NowTime').innerText = "";
             }
 
-            if (now.getHours() === 8 && minutes === 45 && seconds==00) {
+            if (now.getHours() === 8 && minutes === 45 && seconds == 00) {
                 location.reload();
-            } else if (now.getHours() === 21 && minutes === 30 && seconds==00) {
+            } else if (now.getHours() === 21 && minutes === 30 && seconds == 00) {
                 location.reload();
             }
         }
@@ -583,17 +581,17 @@
             seconds = seconds < 10 ? '0' + seconds : seconds;
 
             var nextDrawTimeString = hours + ':' + nextMinutes + ':' + '00' + ' ' + ampm;
-          
+
 
             var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
                 (now.getHours() === 21 && minutes <= 30);
             if (isWithinInterval) {
-               
+
                 document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
-                
-            } else if((now.getHours() >= 0 && now.getHours() < 8)){
+
+            } else if ((now.getHours() >= 0 && now.getHours() < 8) ||  (now.getHours() === 8 && minutes < 45)) {
                 document.getElementById('NextDrowTime').innerText = '00';
-            }else{
+            } else {
                 document.getElementById('NextDrowTime').innerText = '';
             }
 
@@ -605,12 +603,6 @@
 
         setInterval(updateNextDrawTimeAndReload, 1000);
         updateNextDrawTimeAndReload();
-
-
-
-
-
-        
     </script>
 
 

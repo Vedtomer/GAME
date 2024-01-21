@@ -496,22 +496,20 @@ function updateCurrentTime() {
        var year = now.getFullYear();
   var formattedDate = day + '/' + month + '/' + year;
      document.getElementById('NowDate').innerText = formattedDate;
+      // document.getElementById('NowTime').innerText = currentTime;
+
+  var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
+      (now.getHours() === 21 && minutes <= 30);
+  if (isWithinInterval) {
+      
+     
       document.getElementById('NowTime').innerText = currentTime;
-
-  // var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
-  //     (now.getHours() === 21 && minutes <= 30);
-  // if (isWithinInterval) {
-  //     var day = now.getDate();
-  //     var month = now.getMonth() + 1; // Months are 0-based
-  //     var year = now.getFullYear();
-
-  //     var formattedDate = day + '/' + month + '/' + year;
-  //     document.getElementById('NowDate').innerText = formattedDate;
-  //     document.getElementById('NowTime').innerText = currentTime;
-  // } else {
-  //     document.getElementById('NowDate').innerText = '';
-  //     document.getElementById('NowTime').innerText = "";
-  // }
+  }else if ((now.getHours() >= 0 && now.getHours() < 8) ||  (now.getHours() === 8 && minutes < 45)) {
+    document.getElementById('NowTime').innerText = '00';
+} else {
+   
+      document.getElementById('NowTime').innerText = "";
+  }
 
   if (now.getHours() === 8 && minutes === 45 && seconds==00) {
       location.reload();
@@ -537,17 +535,19 @@ function updateNextDrawTimeAndReload() {
   seconds = seconds < 10 ? '0' + seconds : seconds;
 
   var nextDrawTimeString = hours + ':' + nextMinutes + ':' + '00' + ' ' + ampm;
-  document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
+ 
 
-  // var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
-  //     (now.getHours() === 21 && minutes <= 30);
-  // if (isWithinInterval) {
+  var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
+      (now.getHours() === 21 && minutes <= 30);
+  if (isWithinInterval) {
 
-  //     document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
+      document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
 
-  // } else {
-  //     document.getElementById('NextDrowTime').innerText = '';
-  // }
+  }else if ((now.getHours() >= 0 && now.getHours() < 8) ||  (now.getHours() === 8 && minutes < 45)) {
+    document.getElementById('NextDrowTime').innerText = '00';
+} else {
+      document.getElementById('NextDrowTime').innerText = '';
+  }
 
 
   if (minutes % 15 == 0 && seconds == 00) {
@@ -579,15 +579,17 @@ function updateRemainingTime() {
       document.getElementById('RemainingTime').innerText = remainingTimeString;
 
 
-  // var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
-  //     (now.getHours() === 21 && minutes <= 30);
-  // if (isWithinInterval) {
+  var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
+      (now.getHours() === 21 && minutes <= 30);
+  if (isWithinInterval) {
 
-  //     document.getElementById('RemainingTime').innerText = remainingTimeString;
+      document.getElementById('RemainingTime').innerText = remainingTimeString;
 
-  // } else {
-  //     document.getElementById('RemainingTime').innerText = '';
-  // }
+  }else if ((now.getHours() >= 0 && now.getHours() < 8) ||  (now.getHours() === 8 && minutes < 45)) {
+    document.getElementById('RemainingTime').innerText = '00';
+} else {
+      document.getElementById('RemainingTime').innerText = '';
+  }
 
 }
 
