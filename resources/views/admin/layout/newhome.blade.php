@@ -536,14 +536,19 @@
 
             var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
                 (now.getHours() === 21 && minutes <= 30);
-            if (isWithinInterval) {
                 var day = now.getDate();
                 var month = now.getMonth() + 1; // Months are 0-based
                 var year = now.getFullYear();
-
                 var formattedDate = day + '/' + month + '/' + year;
+            if (isWithinInterval) {
+                
+
+               
                 document.getElementById('NowDate').innerText = formattedDate;
                 document.getElementById('NowTime').innerText = currentTime;
+            }else if((now.getHours() >= 0 && now.getHours() < 8)){
+                document.getElementById('NowDate').innerText = formattedDate;
+                document.getElementById('NowTime').innerText = "00";
             } else {
                 document.getElementById('NowDate').innerText = '';
                 document.getElementById('NowTime').innerText = "";
@@ -586,7 +591,9 @@
                
                 document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
                 
-            } else {
+            } else if((now.getHours() >= 0 && now.getHours() < 8)){
+                document.getElementById('NextDrowTime').innerText = '00';
+            }else{
                 document.getElementById('NextDrowTime').innerText = '';
             }
 
