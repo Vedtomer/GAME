@@ -205,16 +205,6 @@
 
 
 
-    <div class="col-lg-12">
-        <div class="main-card mb-3 card">
-            <div class="card-body">
-                <div class="add" style="display: flex; align-items: center;">
-                    <div class="btns" style="margin-left: auto;">
-                    </div>
-                </div>
-
-
-                <div class="">
 
                     <form action="{{ route('savedashboard') }}" method="post">
                         @csrf
@@ -306,10 +296,7 @@
                         </table>
                     </form>
 
-                </div>
-            </div>
-        </div>
-
+              
 
 
         <script>
