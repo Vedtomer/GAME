@@ -478,3 +478,126 @@ function allowOnlyNumbers(event) {
       event.preventDefault();
   }
 }
+
+
+function updateCurrentTime() {
+  var now = new Date();
+  var hours = now.getHours();
+  var minutes = now.getMinutes();
+  var seconds = now.getSeconds();
+  var ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12 || 12;
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+  var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+
+
+  var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
+      (now.getHours() === 21 && minutes <= 30);
+  if (isWithinInterval) {
+      var day = now.getDate();
+      var month = now.getMonth() + 1; // Months are 0-based
+      var year = now.getFullYear();
+
+      var formattedDate = day + '/' + month + '/' + year;
+      document.getElementById('NowDate').innerText = formattedDate;
+      document.getElementById('NowTime').innerText = currentTime;
+  } else {
+      document.getElementById('NowDate').innerText = '';
+      document.getElementById('NowTime').innerText = "";
+  }
+
+  if (now.getHours() === 8 && minutes === 45) {
+      location.reload();
+  } else if (now.getHours() === 21 && minutes === 30) {
+      location.reload();
+  }
+}
+
+function updateNextDrawTimeAndReload() {
+  var now = new Date();
+  var minutes = now.getMinutes();
+  var remainingMinutes = 15 - (minutes % 15);
+
+  var nextDrawTime = new Date(now.getTime() + remainingMinutes * 60000);
+
+  var hours = nextDrawTime.getHours();
+  var nextMinutes = nextDrawTime.getMinutes();
+  var seconds = nextDrawTime.getSeconds();
+  var ampm = hours >= 12 ? 'P.M.' : 'A.M.';
+
+  hours = hours % 12 || 12;
+  nextMinutes = nextMinutes < 10 ? '0' + nextMinutes : nextMinutes;
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+
+  var nextDrawTimeString = hours + ':' + nextMinutes + ':' + '00' + ' ' + ampm;
+
+
+  var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
+      (now.getHours() === 21 && minutes <= 30);
+  if (isWithinInterval) {
+
+      document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
+
+  } else {
+      document.getElementById('NextDrowTime').innerText = '';
+  }
+
+
+  if (minutes % 15 == 0 && seconds == 00) {
+      location.reload();
+  }
+}
+
+function updateRemainingTime() {
+  const now = new Date();
+  var minutes = now.getMinutes();
+
+  // Calculate the next 15-minute interval
+  const next15Minutes = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now
+      .getMinutes() + (15 - (now.getMinutes() % 15)));
+
+  // Get the time difference in seconds
+  const remainingTimeInSeconds = Math.max(0, Math.floor((next15Minutes - now) / 1000));
+
+  // Format the remaining time as HH:MM:SS
+  const remainingHours = Math.floor(remainingTimeInSeconds / 3600);
+  const remainingMinutes = Math.floor((remainingTimeInSeconds % 3600) / 60);
+  const remainingSeconds = remainingTimeInSeconds % 60;
+  const remainingTimeString =
+      (remainingHours < 10 ? '0' : '') + remainingHours + ':' +
+      (remainingMinutes < 10 ? '0' : '') + remainingMinutes + ':' +
+      (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
+
+
+
+
+
+  var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
+      (now.getHours() === 21 && minutes <= 30);
+  if (isWithinInterval) {
+
+      document.getElementById('RemainingTime').innerText = remainingTimeString;
+
+  } else {
+      document.getElementById('RemainingTime').innerText = '';
+  }
+
+}
+
+// Call updateRemainingTime every second
+setInterval(updateRemainingTime, 1000);
+
+// Initial update
+updateRemainingTime();
+
+
+
+setInterval(function() {
+  updateCurrentTime();
+  updateNextDrawTimeAndReload();
+}, 1000);
+
+// Initial update
+updateCurrentTime();
+updateNextDrawTimeAndReload();
