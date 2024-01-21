@@ -553,9 +553,9 @@
                 document.getElementById('NowTime').innerText = "";
             }
 
-            if (now.getHours() === 8 && minutes === 45) {
+            if (now.getHours() === 8 && minutes === 45 && seconds==00) {
                 location.reload();
-            } else if (now.getHours() === 21 && minutes === 30) {
+            } else if (now.getHours() === 21 && minutes === 30 && seconds==00) {
                 location.reload();
             }
         }
