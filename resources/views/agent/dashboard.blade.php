@@ -214,7 +214,7 @@
                 </div>
 
 
-                <div class="table-responsive">
+                <div class="">
 
                     <form action="{{ route('savedashboard') }}" method="post">
                         @csrf
