@@ -161,22 +161,19 @@
             margin-right: 100px;
 
         }
-   
-    /* Default styles for .mains */
-.mains {
-    margin-left: 100px;
-    margin-top: 100px;
-}
 
-@media (max-width: 767px) {
-    .mains {
-        margin-left: 40px;
-        /* Additional styles for smaller screens if needed */
-    }
-}
+        /* Default styles for .mains */
+        .mains {
+            margin-left: 100px;
+            margin-top: 100px;
+        }
 
-
-    
+        @media (max-width: 767px) {
+            .mains {
+                margin-left: 40px;
+                /* Additional styles for smaller screens if needed */
+            }
+        }
     </style>
 </head>
 
@@ -197,9 +194,12 @@
                         <div>
                             <div>
                                 <div>
-                                    <div style="background-image:url(desktop/currenttime_.png);background-repeat:no-repeat;background-position: center center; background-color: rgb(39, 146, 133);height:40px; border-radius:30px; white-space: nowrap; overflow: hidden; margin-bottom: 20px;">
-                                        <span id="RemainTime" style="font-size: 12pt; font-weight: bold; display: none; color: Yellow;"></span>
-                                        <span style="font-size: 22pt; font-weight: bold; color: Yellow;" id="NowTime"></span>
+                                    <div
+                                        style="background-image:url(desktop/currenttime_.png);background-repeat:no-repeat;background-position: center center; background-color: rgb(39, 146, 133);height:40px; border-radius:30px; white-space: nowrap; overflow: hidden; margin-bottom: 20px;">
+                                        <span id="RemainTime"
+                                            style="font-size: 12pt; font-weight: bold; display: none; color: Yellow;"></span>
+                                        <span style="font-size: 22pt; font-weight: bold; color: Yellow;"
+                                            id="NowTime"></span>
                                         <input name="hd_nextime" id="hd_nextime" type="hidden">
                                     </div>
 
@@ -208,12 +208,11 @@
                             <div>
                                 <div
                                     style="background-image:url(desktop/date_.png);background-repeat:no-repeat; background-position: center center;  width: 232px; max-height: 48px; background-color:rgb(73, 208, 232); border-radius:30px; margin-bottom: 20px; overflow: hidden;">
-                                    <?php
-                                            $currentDate = date('d/m/Y');
-                                            ?>
-                                    <span style="font-size: 22pt; font-weight: bold; color: Yellow" id="TodatyDate">
-                                        <?= $currentDate ?>
-                                    </span>
+
+                                    <div style="font-size: 22pt; font-weight: bold; color: Yellow;height:40px"
+                                        id="TodatyDate">
+                                     <span id="NowDate"></span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -221,8 +220,10 @@
                             <div>
                                 <div class="time-slot"
                                     style="height: 38px; background-color:rgb(40, 117, 232); border-radius:30px;    margin-bottom: 20px;">
-                                    <span style="font-size: 22pt; font-weight: bold; color: Yellow; margin-top: 60px"
-                                        id="NextDrowTime"></span>
+                                    <div style="font-size: 22pt; font-weight: bold; color: Yellow; "
+                                        id="NextDrowTime">
+                                        <span id="nextDraw"></span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -264,7 +265,7 @@
 
             <div class="container">
                 <div class="mains">
-                    <div >
+                    <div>
                         <div>
                             <div>
                                 <div colspan="2">
@@ -294,16 +295,16 @@
                                                 <div class="centered"> </div>
                                             </div>
                                             @foreach ($data as $user)
-                                            <div class="divTableCell1">
-                                                <div class="container1">
-                                                    <img src="{{ asset($user->id % 2 == 0 ? 'logo12_files/time_1.png' : 'logo12_files/time_2.png') }}"
-                                                        style="text-align: center;">
-                                                    <div class="centered"
-                                                        style="text-align: center; margin-left: 2px; margin-bottom: 2px; margin-top: -6px; font-size: 18px;">
-                                                        {{ $user->timesloat }}
+                                                <div class="divTableCell1">
+                                                    <div class="container1">
+                                                        <img src="{{ asset($user->id % 2 == 0 ? 'logo12_files/time_1.png' : 'logo12_files/time_2.png') }}"
+                                                            style="text-align: center;">
+                                                        <div class="centered"
+                                                            style="text-align: center; margin-left: 2px; margin-bottom: 2px; margin-top: -6px; font-size: 18px;">
+                                                            {{ $user->timesloat }}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             @endforeach
 
 
@@ -313,15 +314,15 @@
                                                     style="height:50px;width:50px;background-color:transparent"></div>
 
                                             @foreach ($data as $user)
-                                            <div class="divTableCell1">
-                                                <div class="container"> <img
-                                                        src="https://www.goldwinrashi.com//desktoppng/rnum.png"
-                                                        style="width:60px;height:40px">
-                                                    <div class="centered1" style="font-size: 30px; ">{{ $user->number_60
-                                                        }}
+                                                <div class="divTableCell1">
+                                                    <div class="container"> <img
+                                                            src="https://www.goldwinrashi.com//desktoppng/rnum.png"
+                                                            style="width:60px;height:40px">
+                                                        <div class="centered1" style="font-size: 30px; ">
+                                                            {{ $user->number_60 }}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             @endforeach
 
                                         </div>
@@ -329,14 +330,15 @@
                                             <div class="divTableCell1"> <img src="{{ asset('logo12_files/70gh.png') }}"
                                                     style="height:50px;width:50px"> </div>
                                             @foreach ($data as $user)
-                                            <div class="divTableCell1">
-                                                <div class="container"> <img
-                                                        src="https://www.goldwinrashi.com//desktoppng/rnum.png"
-                                                        style="width:60px;height:40px">
-                                                 <div class="centered1" style="font-size: 30px">{{ $user->number_70}}
+                                                <div class="divTableCell1">
+                                                    <div class="container"> <img
+                                                            src="https://www.goldwinrashi.com//desktoppng/rnum.png"
+                                                            style="width:60px;height:40px">
+                                                        <div class="centered1" style="font-size: 30px">
+                                                            {{ $user->number_70 }}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             @endforeach
                                         </div>
 
@@ -375,10 +377,11 @@
                                                         <a type="button"
                                                             style="font-size: 36px; border:1px solid; background: linear-gradient(to right, #ff6347, #4b0082); background-color: rgb(123, 0, 255); border-radius: 30px; text-decoration: none; padding: 0 15px;"
                                                             class="bgtime1" value="Shubhank" id="btnres"
-                                                            onclick="Result()" href="{{route('subhank') }}">Shubhank</a>
+                                                            onclick="Result()"
+                                                            href="{{ route('subhank') }}">Shubhank</a>
                                                     </span>
 
-                                                    
+
                                                     <span
                                                         style="background-image: url(logo12_files/2.png); display: inline-block; width: 200px; height: 40px; background-repeat: no-repeat;margin-bottom:0px;"></span>
                                                     <span style="color: yellow;">Visitor: <span
@@ -506,7 +509,8 @@
                         </div>
 
                         <iframe src="https://g2.ipcamlive.com/player/player.php?alias=5e5a05863bb0b" height="550px"
-                            autoplay="1" allow="autoplay" frameborder="0" style="width: 788px; margin-top:10px;"></iframe>
+                            autoplay="1" allow="autoplay" frameborder="0"
+                            style="width: 788px; margin-top:10px;"></iframe>
 
                     </div>
                 </div>
@@ -516,107 +520,75 @@
     </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</body>
-<script>
-    // Update the time every second
-    setInterval(function() {
-        var now = new Date();
-        var hours = now.getHours();
-        var minutes = now.getMinutes();
-        var seconds = now.getSeconds();
-        var ampm = hours >= 12 ? 'P.M.' : 'A.M.';
-
-        hours = hours % 12 || 12;
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-
-        var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
-
-        document.getElementById('NowTime').innerText = currentTime;
-    }, 1000); 
-</script>
 
 <script>
-    function updateNextDrawTime() {
-        var now = new Date();
-        var minutes = now.getMinutes();
-        var remainingMinutes = 15 - (minutes % 15);
 
-        var nextDrawTime = new Date(now.getTime() + remainingMinutes * 60000);
+function updateCurrentTime() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+    document.getElementById('NowTime').innerText = currentTime;
 
-        var hours = nextDrawTime.getHours();
-        var minutes = nextDrawTime.getMinutes();
-        var seconds = nextDrawTime.getSeconds();
-        var ampm = hours >= 12 ? 'P.M.' : 'A.M.';
+    var isWithinInterval = (now.getHours() === 8 && minutes >= 30) || (now.getHours() > 8 && now.getHours() < 21) || (now.getHours() === 21 && minutes <= 30);
+    if (isWithinInterval) {
+        var day = now.getDate();
+        var month = now.getMonth() + 1; // Months are 0-based
+        var year = now.getFullYear();
 
-        hours = hours % 12 || 12;
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-
-        var nextDrawTimeString = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
-
-        document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
+        var formattedDate = day + '/' + month + '/' + year;
+        document.getElementById('NowDate').innerText = formattedDate;
+    } else {
+        document.getElementById('NowDate').innerText = '';
     }
 
-    updateNextDrawTime();
-
-
-    setInterval(updateNextDrawTime, 900000);
-</script>
-
-{{-- <script>
-    function updateTime() {
-        var currentTime = new Date();
-        var closingTime = new Date();
-        closingTime.setHours(19, 55, 0); 
-
-        if (currentTime < closingTime) {
-            document.getElementById('RemainTime').style.display = 'inline-block';
-            document.getElementById('NowTime').innerText = currentTime.toLocaleTimeString('en-US', { hour12: true });
-        } else {
-            document.getElementById('RemainTime').style.display = 'none';
-            document.getElementById('NowTime').innerText = ''; // Hide time if after closing time
-        }
-    }
-
-    updateTime();
-
-    setInterval(updateTime, 1000);
-</script> --}}
-{{-- <script>
-    function reloadPage() {
-        setTimeout(function() {
-            location.reload();
-        }, 15 * 60 * 1000); 
-    }
-
-    reloadPage();
-</script> --}}
-
-<script>
-    var reloadCount = 0;
-
-    function reloadPage() {
-     
+    if (now.getHours()  === 8 && minutes === 30 ) {
         location.reload();
-        reloadCount++;
-
-  
-        if (reloadCount >= 3) {
-            clearInterval(reloadInterval);
-        }
+    } else if (now.getHours()  === 21 && minutes === 30) {
+        location.reload();
     }
+}
 
+setInterval(updateCurrentTime, 1000);
+updateCurrentTime();
+</script>
 
-    var reloadInterval = setInterval(reloadPage, 5 * 60 * 1000);
+<script>
+function updateNextDrawTimeAndReload() {
+    var now = new Date();
+    var minutes = now.getMinutes();
+    var remainingMinutes = 15 - (minutes % 15);
 
-    window.addEventListener('beforeunload', function() {
-        clearInterval(reloadInterval);
-    });
+    var nextDrawTime = new Date(now.getTime() + remainingMinutes * 60000);
+
+    var hours = nextDrawTime.getHours();
+    var nextMinutes = nextDrawTime.getMinutes();
+    var seconds = nextDrawTime.getSeconds();
+    var ampm = hours >= 12 ? 'P.M.' : 'A.M.';
+
+    hours = hours % 12 || 12;
+    nextMinutes = nextMinutes < 10 ? '0' + nextMinutes : nextMinutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    var nextDrawTimeString = hours + ':' + nextMinutes + ':' + '00' + ' ' + ampm;
+
+    document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
+
+if (minutes % 15 === 0 && seconds === 00) {
+        location.reload();
+    }
+}
+
+setInterval(updateNextDrawTimeAndReload, 1000);
+updateNextDrawTimeAndReload();
 </script>
 
 
-
-
+</body>
 
 </html>
