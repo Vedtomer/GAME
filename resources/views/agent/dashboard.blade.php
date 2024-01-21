@@ -164,9 +164,20 @@
         /* Smaller text on mobile */
         @media (max-width: 768px) {
             .value {
-                font-size: 14px;
+                font-size: 12px;
                 /* Adjust as needed */
             }
+
+            .label {
+                font-size: 10px;
+                font-weight: bolder
+            }
+
+            .info-box {
+
+                padding: 0px;
+            }
+
         }
     </style>
     <div class="container">
@@ -254,26 +265,26 @@
                                 
                                     if ($i == 99) {
                                         echo "<tr>
-                                                                                                                                                                                                                                                                                                                                                                                                                                            <th colspan=11><div class=submit><button type=submit class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'> <b>Submit</b> </button> 
-                                                                                                                                <a class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' id=reloadBtn> <b>Clear</b> </a>                                                                                                  
-                                                                                                                                    <a href='/subhank' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-success' style='text-decoration: none; color: inherit;'> <b>Result</b></a>
-                                                                                                                                
-                                                                                                                                
-                                                                                                                                    <a href='/dashview' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-danger' style='text-decoration: none; color: inherit;'> <b>View</b></a>
-                                                                                                                                
-                                                                                                                                
-                                                                                                                                    <a href='/agentchangepassword' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>password</b></a>
-                                                                                                                                
-                                                                                                                                    <a href='/report' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>report</b></a>
-                                                                                                                                
-                                                                                                                                
-                                                                                                                                    <a href='/cancel-ticket' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning' style='text-decoration: none; color: inherit;'> <b>Cancel</b></a>
-                                                                                                                                
-                                                                                                                                
-                                                                                                                                 </div></th>
-                                                                                                                                                                                                                                    <th><span for='qty{$i}'>Total</span></th>
-                                                                                                                                                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
-                                                                                                                                                                                                                                     <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <th colspan=11><div class=submit><button type=submit class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'> <b>Submit</b> </button> 
+                                                                                                                                                                <a class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' id=reloadBtn> <b>Clear</b> </a>                                                                                                  
+                                                                                                                                                                    <a href='/subhank' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-success' style='text-decoration: none; color: inherit;'> <b>Result</b></a>
+                                                                                                                                                                
+                                                                                                                                                                
+                                                                                                                                                                    <a href='/dashview' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-danger' style='text-decoration: none; color: inherit;'> <b>View</b></a>
+                                                                                                                                                                
+                                                                                                                                                                
+                                                                                                                                                                    <a href='/agentchangepassword' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>password</b></a>
+                                                                                                                                                                
+                                                                                                                                                                    <a href='/report' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>report</b></a>
+                                                                                                                                                                
+                                                                                                                                                                
+                                                                                                                                                                    <a href='/cancel-ticket' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning' style='text-decoration: none; color: inherit;'> <b>Cancel</b></a>
+                                                                                                                                                                
+                                                                                                                                                                
+                                                                                                                                                                 </div></th>
+                                                                                                                                                                                                                                                                    <th><span for='qty{$i}'>Total</span></th>
+                                                                                                                                                                                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
+                                                                                                                                                                                                                                                                     <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
                                     }
                                     $j++;
                                 }
@@ -385,7 +396,7 @@
 
                 // Calculate the next 15-minute interval
                 const next15Minutes = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now
-                .getMinutes() + (15 - (now.getMinutes() % 15)));
+                    .getMinutes() + (15 - (now.getMinutes() % 15)));
 
                 // Get the time difference in seconds
                 const remainingTimeInSeconds = Math.max(0, Math.floor((next15Minutes - now) / 1000));
