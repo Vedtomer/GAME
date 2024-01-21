@@ -393,6 +393,7 @@
 
             function updateRemainingTime() {
                 const now = new Date();
+                var minutes = now.getMinutes();
 
                 // Calculate the next 15-minute interval
                 const next15Minutes = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now
@@ -409,6 +410,7 @@
                     (remainingHours < 10 ? '0' : '') + remainingHours + ':' +
                     (remainingMinutes < 10 ? '0' : '') + remainingMinutes + ':' +
                     (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
+
 
 
 
