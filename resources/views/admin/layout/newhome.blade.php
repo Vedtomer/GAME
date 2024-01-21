@@ -3,11 +3,12 @@
 
 <head>
     <title>Golden Lucky Draw</title>
-    {{-- <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
+   
+
     <link rel="stylesheet" href="{{ asset('homes.css') }}">
     <script src="{{ asset('homejs.js') }}"></script>
     <script src="{{ asset('home3.js') }}"></script>
@@ -168,16 +169,11 @@
 
         /* Default styles for .mains */
         .mains {
-            margin-left: 100px;
+            margin-left: 40px;
             margin-top: 100px;
         }
 
-        @media (max-width: 767px) {
-            .mains {
-                margin-left: 40px;
-                /* Additional styles for smaller screens if needed */
-            }
-        }
+        
     </style>
 </head>
 
