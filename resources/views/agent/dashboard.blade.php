@@ -128,45 +128,29 @@
             }
         }
     </style>
-    <div style="display: flex; justify-content: space-between; align-items: center; overflow-x: auto; padding: 10px;">
+   <div style="display: flex; justify-content: space-between; align-items: center; overflow-x: auto; padding: 10px;">
 
-        <div
-            style="display: flex; flex-direction: column; align-items: center; text-align: center;border:2px solid;padding: 5px;">
-            <div style="margin-bottom: 5px;">Date</div>
-            <span id="NowDate" style="display: inline-block;font-weight:900">
-
-            </span>
-        </div>
-
-        <div
-            style="display: flex; flex-direction: column; align-items: center; text-align: center;border:2px solid;padding: 5px;">
-            <div style="margin-bottom: 5px;">CURRENT TIME</div>
-            <span id="NowTime" style="display: inline-block;font-weight:900">
-
-            </span>
-        </div>
-
-
-        <div
-            style="display: flex; flex-direction: column; align-items: center; text-align: center;border:2px solid;padding: 5px;">
-            <div style="margin-bottom: 5px;">REMAINING TIME</div>
-            <span id="RemainingTime" style="display: inline-block;font-weight:900">
-
-            </span>
-        </div>
-
-        <div
-            style="display: flex; flex-direction: column; align-items: center; text-align: center;border:2px solid;padding: 5px;">
-            <div style="margin-bottom: 5px;">DRAW TIME</div>
-            <span id="NextDrowTime" style="display: inline-block;font-weight:900">
-
-            </span>
-        </div>
-
-
-
-
+    <div style="flex: 1; max-width: 200px; display: flex; flex-direction: column; align-items: center; text-align: center; border: 2px solid; padding: 5px;">
+        <div style="margin-bottom: 5px;">Date</div>
+        <span id="NowDate" style="display: inline-block; font-weight: 900;"></span>
     </div>
+
+    <div style="flex: 1; max-width: 200px; display: flex; flex-direction: column; align-items: center; text-align: center; border: 2px solid; padding: 5px;">
+        <div style="margin-bottom: 5px;">CURRENT TIME</div>
+        <span id="NowTime" style="display: inline-block; font-weight: 900;"></span>
+    </div>
+
+    <div style="flex: 1; max-width: 200px; display: flex; flex-direction: column; align-items: center; text-align: center; border: 2px solid; padding: 5px;">
+        <div style="margin-bottom: 5px;">REMAINING TIME</div>
+        <span id="RemainingTime" style="display: inline-block; font-weight: 900;"></span>
+    </div>
+
+    <div style="flex: 1; max-width: 200px; display: flex; flex-direction: column; align-items: center; text-align: center; border: 2px solid; padding: 5px;">
+        <div style="margin-bottom: 5px;">DRAW TIME</div>
+        <span id="NextDrowTime" style="display: inline-block; font-weight: 900;"></span>
+    </div>
+
+</div>
 
 
 
