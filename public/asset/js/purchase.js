@@ -491,21 +491,27 @@ function updateCurrentTime() {
   seconds = seconds < 10 ? '0' + seconds : seconds;
   var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
 
-
-  var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
-      (now.getHours() === 21 && minutes <= 30);
-  if (isWithinInterval) {
-      var day = now.getDate();
+  var day = now.getDate();
       var month = now.getMonth() + 1; // Months are 0-based
-      var year = now.getFullYear();
-
-      var formattedDate = day + '/' + month + '/' + year;
-      document.getElementById('NowDate').innerText = formattedDate;
+       var year = now.getFullYear();
+  var formattedDate = day + '/' + month + '/' + year;
+     document.getElementById('NowDate').innerText = formattedDate;
       document.getElementById('NowTime').innerText = currentTime;
-  } else {
-      document.getElementById('NowDate').innerText = '';
-      document.getElementById('NowTime').innerText = "";
-  }
+
+  // var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
+  //     (now.getHours() === 21 && minutes <= 30);
+  // if (isWithinInterval) {
+  //     var day = now.getDate();
+  //     var month = now.getMonth() + 1; // Months are 0-based
+  //     var year = now.getFullYear();
+
+  //     var formattedDate = day + '/' + month + '/' + year;
+  //     document.getElementById('NowDate').innerText = formattedDate;
+  //     document.getElementById('NowTime').innerText = currentTime;
+  // } else {
+  //     document.getElementById('NowDate').innerText = '';
+  //     document.getElementById('NowTime').innerText = "";
+  // }
 
   if (now.getHours() === 8 && minutes === 45 && seconds==00) {
       location.reload();
@@ -531,17 +537,18 @@ function updateNextDrawTimeAndReload() {
   seconds = seconds < 10 ? '0' + seconds : seconds;
 
   var nextDrawTimeString = hours + ':' + nextMinutes + ':' + '00' + ' ' + ampm;
+  console.log(nextDrawTimeString);
+  document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
 
+  // var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
+  //     (now.getHours() === 21 && minutes <= 30);
+  // if (isWithinInterval) {
 
-  var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
-      (now.getHours() === 21 && minutes <= 30);
-  if (isWithinInterval) {
+  //     document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
 
-      document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
-
-  } else {
-      document.getElementById('NextDrowTime').innerText = '';
-  }
+  // } else {
+  //     document.getElementById('NextDrowTime').innerText = '';
+  // }
 
 
   if (minutes % 15 == 0 && seconds == 00) {
@@ -570,18 +577,18 @@ function updateRemainingTime() {
       (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
 
 
-
-
-
-  var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
-      (now.getHours() === 21 && minutes <= 30);
-  if (isWithinInterval) {
-
       document.getElementById('RemainingTime').innerText = remainingTimeString;
 
-  } else {
-      document.getElementById('RemainingTime').innerText = '';
-  }
+
+  // var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
+  //     (now.getHours() === 21 && minutes <= 30);
+  // if (isWithinInterval) {
+
+  //     document.getElementById('RemainingTime').innerText = remainingTimeString;
+
+  // } else {
+  //     document.getElementById('RemainingTime').innerText = '';
+  // }
 
 }
 
