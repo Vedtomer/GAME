@@ -127,30 +127,70 @@
                 color: rgb(16, 16, 16);
             }
         }
+
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow-x: auto;
+            padding: 10px;
+        }
+
+        .info-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 2px solid;
+            padding: 5px;
+        }
+
+        .label {
+            margin-bottom: 5px;
+        }
+
+        .value {
+            display: inline-block;
+            font-weight: 900;
+            font-size: 16px;
+        }
+
+        /* Equal height for inner boxes */
+        .info-box {
+            flex: 1;
+        }
+
+        /* Smaller text on mobile */
+        @media (max-width: 768px) {
+            .value {
+                font-size: 14px;
+                /* Adjust as needed */
+            }
+        }
     </style>
-   <div style="display: flex; justify-content: space-between; align-items: center; overflow-x: auto; padding: 10px;">
+    <div class="container">
+        <div class="info-box">
+            <div class="label">Date</div>
+            <span id="NowDate" class="value"></span>
+        </div>
 
-    <div style="flex: 1; max-width: 200px; display: flex; flex-direction: column; align-items: center; text-align: center; border: 2px solid; padding: 5px;">
-        <div style="margin-bottom: 5px;">Date</div>
-        <span id="NowDate" style="display: inline-block; font-weight: 900;"></span>
+        <div class="info-box">
+            <div class="label">CURRENT TIME</div>
+            <span id="NowTime" class="value"></span>
+        </div>
+
+        <div class="info-box">
+            <div class="label">REMAINING TIME</div>
+            <span id="RemainingTime" class="value"></span>
+        </div>
+
+        <div class="info-box">
+            <div class="label">DRAW TIME</div>
+            <span id="NextDrowTime" class="value"></span>
+        </div>
     </div>
 
-    <div style="flex: 1; max-width: 200px; display: flex; flex-direction: column; align-items: center; text-align: center; border: 2px solid; padding: 5px;">
-        <div style="margin-bottom: 5px;">CURRENT TIME</div>
-        <span id="NowTime" style="display: inline-block; font-weight: 900;"></span>
-    </div>
-
-    <div style="flex: 1; max-width: 200px; display: flex; flex-direction: column; align-items: center; text-align: center; border: 2px solid; padding: 5px;">
-        <div style="margin-bottom: 5px;">REMAINING TIME</div>
-        <span id="RemainingTime" style="display: inline-block; font-weight: 900;"></span>
-    </div>
-
-    <div style="flex: 1; max-width: 200px; display: flex; flex-direction: column; align-items: center; text-align: center; border: 2px solid; padding: 5px;">
-        <div style="margin-bottom: 5px;">DRAW TIME</div>
-        <span id="NextDrowTime" style="display: inline-block; font-weight: 900;"></span>
-    </div>
-
-</div>
 
 
 
@@ -214,26 +254,26 @@
                                 
                                     if ($i == 99) {
                                         echo "<tr>
-                                                                                                                                                                                                                                                                                                                                                                                                            <th colspan=11><div class=submit><button type=submit class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'> <b>Submit</b> </button> 
-                                                                                                <a class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' id=reloadBtn> <b>Clear</b> </a>                                                                                                  
-                                                                                                    <a href='/subhank' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-success' style='text-decoration: none; color: inherit;'> <b>Result</b></a>
-                                                                                                
-                                                                                                
-                                                                                                    <a href='/dashview' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-danger' style='text-decoration: none; color: inherit;'> <b>View</b></a>
-                                                                                                
-                                                                                                
-                                                                                                    <a href='/agentchangepassword' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>password</b></a>
-                                                                                                
-                                                                                                    <a href='/report' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>report</b></a>
-                                                                                                
-                                                                                                
-                                                                                                    <a href='/cancel-ticket' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning' style='text-decoration: none; color: inherit;'> <b>Cancel</b></a>
-                                                                                                
-                                                                                                
-                                                                                                 </div></th>
-                                                                                                                                                                                                    <th><span for='qty{$i}'>Total</span></th>
-                                                                                                                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
-                                                                                                                                                                                                     <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
+                                                                                                                                                                                                                                                                                                                                                                                                                                            <th colspan=11><div class=submit><button type=submit class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'> <b>Submit</b> </button> 
+                                                                                                                                <a class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' id=reloadBtn> <b>Clear</b> </a>                                                                                                  
+                                                                                                                                    <a href='/subhank' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-success' style='text-decoration: none; color: inherit;'> <b>Result</b></a>
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                    <a href='/dashview' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-danger' style='text-decoration: none; color: inherit;'> <b>View</b></a>
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                    <a href='/agentchangepassword' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>password</b></a>
+                                                                                                                                
+                                                                                                                                    <a href='/report' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>report</b></a>
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                    <a href='/cancel-ticket' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning' style='text-decoration: none; color: inherit;'> <b>Cancel</b></a>
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                 </div></th>
+                                                                                                                                                                                                                                    <th><span for='qty{$i}'>Total</span></th>
+                                                                                                                                                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
+                                                                                                                                                                                                                                     <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
                                     }
                                     $j++;
                                 }
@@ -279,15 +319,15 @@
                 minutes = minutes < 10 ? '0' + minutes : minutes;
                 seconds = seconds < 10 ? '0' + seconds : seconds;
                 var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
-               
-    
+
+
                 var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
                     (now.getHours() === 21 && minutes <= 30);
                 if (isWithinInterval) {
                     var day = now.getDate();
                     var month = now.getMonth() + 1; // Months are 0-based
                     var year = now.getFullYear();
-    
+
                     var formattedDate = day + '/' + month + '/' + year;
                     document.getElementById('NowDate').innerText = formattedDate;
                     document.getElementById('NowTime').innerText = currentTime;
@@ -295,102 +335,100 @@
                     document.getElementById('NowDate').innerText = '';
                     document.getElementById('NowTime').innerText = "";
                 }
-    
+
                 if (now.getHours() === 8 && minutes === 45) {
                     location.reload();
                 } else if (now.getHours() === 21 && minutes === 30) {
                     location.reload();
                 }
             }
-    
-           
-           
         </script>
-    
+
         <script>
             function updateNextDrawTimeAndReload() {
                 var now = new Date();
                 var minutes = now.getMinutes();
                 var remainingMinutes = 15 - (minutes % 15);
-    
+
                 var nextDrawTime = new Date(now.getTime() + remainingMinutes * 60000);
-    
+
                 var hours = nextDrawTime.getHours();
                 var nextMinutes = nextDrawTime.getMinutes();
                 var seconds = nextDrawTime.getSeconds();
                 var ampm = hours >= 12 ? 'P.M.' : 'A.M.';
-    
+
                 hours = hours % 12 || 12;
                 nextMinutes = nextMinutes < 10 ? '0' + nextMinutes : nextMinutes;
                 seconds = seconds < 10 ? '0' + seconds : seconds;
-    
+
                 var nextDrawTimeString = hours + ':' + nextMinutes + ':' + '00' + ' ' + ampm;
-              
-    
+
+
                 var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
                     (now.getHours() === 21 && minutes <= 30);
                 if (isWithinInterval) {
-                   
+
                     document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
-                    
+
                 } else {
                     document.getElementById('NextDrowTime').innerText = '';
                 }
-    
-    
+
+
                 if (minutes % 15 == 0 && seconds == 00) {
                     location.reload();
                 }
             }
-    
+
             function updateRemainingTime() {
-  const now = new Date();
+                const now = new Date();
 
-  // Calculate the next 15-minute interval
-  const next15Minutes = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes() + (15 - (now.getMinutes() % 15)));
+                // Calculate the next 15-minute interval
+                const next15Minutes = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now
+                .getMinutes() + (15 - (now.getMinutes() % 15)));
 
-  // Get the time difference in seconds
-  const remainingTimeInSeconds = Math.max(0, Math.floor((next15Minutes - now) / 1000));
+                // Get the time difference in seconds
+                const remainingTimeInSeconds = Math.max(0, Math.floor((next15Minutes - now) / 1000));
 
-  // Format the remaining time as HH:MM:SS
-  const remainingHours = Math.floor(remainingTimeInSeconds / 3600);
-  const remainingMinutes = Math.floor((remainingTimeInSeconds % 3600) / 60);
-  const remainingSeconds = remainingTimeInSeconds % 60;
-  const remainingTimeString =
-    (remainingHours < 10 ? '0' : '') + remainingHours + ':' +
-    (remainingMinutes < 10 ? '0' : '') + remainingMinutes + ':' +
-    (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
+                // Format the remaining time as HH:MM:SS
+                const remainingHours = Math.floor(remainingTimeInSeconds / 3600);
+                const remainingMinutes = Math.floor((remainingTimeInSeconds % 3600) / 60);
+                const remainingSeconds = remainingTimeInSeconds % 60;
+                const remainingTimeString =
+                    (remainingHours < 10 ? '0' : '') + remainingHours + ':' +
+                    (remainingMinutes < 10 ? '0' : '') + remainingMinutes + ':' +
+                    (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
 
 
-  
 
-  var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
+
+                var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
                     (now.getHours() === 21 && minutes <= 30);
                 if (isWithinInterval) {
-                   
+
                     document.getElementById('RemainingTime').innerText = remainingTimeString;
-                    
+
                 } else {
                     document.getElementById('RemainingTime').innerText = '';
                 }
 
-}
+            }
 
-// Call updateRemainingTime every second
-setInterval(updateRemainingTime, 1000);
+            // Call updateRemainingTime every second
+            setInterval(updateRemainingTime, 1000);
 
-// Initial update
-updateRemainingTime();
+            // Initial update
+            updateRemainingTime();
 
-    
-    
-        setInterval(function() {
+
+
+            setInterval(function() {
+                updateCurrentTime();
+                updateNextDrawTimeAndReload();
+            }, 1000);
+
+            // Initial update
             updateCurrentTime();
             updateNextDrawTimeAndReload();
-        }, 1000);
-    
-        // Initial update
-        updateCurrentTime();
-        updateNextDrawTimeAndReload();
         </script>
     @endsection
