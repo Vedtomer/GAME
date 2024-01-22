@@ -32,7 +32,7 @@
                             <th>Amount</th>
                             <th>Balance</th>
                             <th>Date</th>
-                            <th>Date</th>
+                            <th>Time</th>
                         </tr>
                     </thead>
                     <tbody>
