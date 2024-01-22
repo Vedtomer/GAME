@@ -203,27 +203,31 @@
                 <span id="" class="value pr-2">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span>
                 <div class="dropdown">
                     <button onclick="toggleDropdown()" class="dropbtn">Select Times</button>
-                    <div id="myDropdown" id="exampleDropdown" class="dropdown-content">
+                    <div class="dropdown-content" id="dropdown">
                         <?php
-                        // Get the current time
-                        $currentTime = new DateTime();
-                        $currentHour = (int)$currentTime->format('G');
-                        $currentMinutes = (int)$currentTime->format('i');
+                        // Get current time
+                        $currentHour = date('G');
+                        $currentMinute = ceil(date('i') / 15) * 15; // Round up to the nearest 15 minutes
                     
-                        // Calculate the starting time (round up to the next quarter hour)
-                        $startHour = ceil($currentHour + ($currentMinutes / 60));
-                        $startHour = min($startHour, 21); // Ensure it doesn't go beyond 21:00
+                        // Set end time (21:30)
+                        $endHour = 21;
+                        $endMinute = 30;
                     
-                        // Generate checkboxes from the starting time to 21:30
-                        while ($startHour <= 21) {
-                            $formattedTime = sprintf('%02d:%02d', $startHour, $currentMinutes);
-                            echo "<label><input type='checkbox' value='$formattedTime'>$formattedTime</label>\n";
+                        // Generate checkboxes
+                        for ($hour = $currentHour; $hour <= $endHour; $hour++) {
+                            for ($minute = ($hour == $currentHour) ? $currentMinute : 0; $minute < 60; $minute += 15) {
+                                $time = sprintf("%02d:%02d", $hour, $minute);
+                                echo '<label><input type="checkbox" value="' . $time . '"> ' . $time . '</label>' . PHP_EOL;
                     
-                            // Increment by 15 minutes
-                            $startHour += 0.25;
+                                // Break the loop if the end time is reached
+                                if ($hour == $endHour && $minute == $endMinute) {
+                                    break 2;
+                                }
+                            }
                         }
                         ?>
                     </div>
+                    
                   </div>
             </td>
             <td></td>
@@ -335,7 +339,7 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
             </div>
         </div>
     </div>
-<script>
+{{-- <script>
     // Set up Select2 on the timeSelect element
     $(document).ready(function() {
         $('.js-example-basic-single').select2();
@@ -345,7 +349,7 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
         var dropdown = document.getElementById("myDropdown");
         dropdown.classList.toggle("show");
     }
-</script>
+</script> --}}
 
     <script>
         function validateForm() {
