@@ -32,6 +32,7 @@
                             <th>Amount</th>
                             <th>Balance</th>
                             <th>Date</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,6 +48,7 @@
                                 <td>{{ $user->amount }}</td>
                                 <td>{{ $user->balance }}</td>
                                 <td>{{ $user->created_at->format('d-m-Y') }}</td>
+                                <td>{{ $user->created_at->format('H:i A') }}</td>
                             </tr>
                         @endforeach
                     </tbody>
