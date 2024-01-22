@@ -49,7 +49,7 @@
             <button type="button" tabindex="0" class="dropdown-item"> <i class="pe-7s-power"></i></button>
         </a>
     </div>
-    <div class="amounts" style="width: 200px; position: fixed; top: 0;  margin-top: 5px; right: 0; padding: 10px;">
+    {{-- <div class="amounts" style="width: 200px; position: fixed; top: 0;  margin-top: 5px; right: 0; padding: 10px;">
         <div class="wallet" style="display: flex; align-items: center;">
             <a href="#" style="display: flex;">
                 <i class='fas fa-wallet' style='font-size:24px'></i>
@@ -61,7 +61,7 @@
                 </div>
             </a>
         </div>
-    </div>
+    </div> --}}
     
     <div class="app-header__content">
         {{-- <div class="app-header-left">
