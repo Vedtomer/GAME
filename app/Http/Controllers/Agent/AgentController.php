@@ -148,16 +148,19 @@ class AgentController extends Controller
 
             if (($keyInt >= 7000 && $keyInt <= 7099) || ($keyInt >= 6000 && $keyInt <= 6099)) {
                 if (!empty($value)) {
-
+ $notempty = true;
                     $pts = (int)$value * 1.1;
 
 
                     $totalPts += $pts;
                     $totalQty += $value;
                 }
+
             }
         }
-
+if(empty($notempty)){
+    return back()->with('error', 'Please Purchase at least One Ticket');
+}
 
         if ($totalPts > $balance) {
 
