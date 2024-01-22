@@ -133,6 +133,46 @@
             border-bottom: 8px solid black;
         }
     }
+    /* Add your styles here */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown-content label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.dropdown-content input {
+  margin-right: 8px;
+}
+
+.dropdown-content input, .dropbtn {
+  cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 </style>
 <table class="table  table-striped">
     <thead>
@@ -159,7 +199,33 @@
             <td><span id="NowTime" class="value"></span></td>
             <td><span id="RemainingTime" class="value"></span></td>
             <td><span id="NextDrowTime" class="value"></span></td>
-            <td><span id="" class="value">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span></td>
+            <td >
+                <span id="" class="value pr-2">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span>
+                <div class="dropdown">
+                    <button onclick="toggleDropdown()" class="dropbtn">Select Times</button>
+                    <div id="myDropdown" id="exampleDropdown" class="dropdown-content">
+                        <?php
+                        // Get the current time
+                        $currentTime = new DateTime();
+                        $currentHour = (int)$currentTime->format('G');
+                        $currentMinutes = (int)$currentTime->format('i');
+                    
+                        // Calculate the starting time (round up to the next quarter hour)
+                        $startHour = ceil($currentHour + ($currentMinutes / 60));
+                        $startHour = min($startHour, 21); // Ensure it doesn't go beyond 21:00
+                    
+                        // Generate checkboxes from the starting time to 21:30
+                        while ($startHour <= 21) {
+                            $formattedTime = sprintf('%02d:%02d', $startHour, $currentMinutes);
+                            echo "<label><input type='checkbox' value='$formattedTime'>$formattedTime</label>\n";
+                    
+                            // Increment by 15 minutes
+                            $startHour += 0.25;
+                        }
+                        ?>
+                    </div>
+                  </div>
+            </td>
             <td></td>
             <td></td>
         </tr>
@@ -269,7 +335,17 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
             </div>
         </div>
     </div>
+<script>
+    // Set up Select2 on the timeSelect element
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
 
+    function toggleDropdown() {
+        var dropdown = document.getElementById("myDropdown");
+        dropdown.classList.toggle("show");
+    }
+</script>
 
     <script>
         function validateForm() {
@@ -299,7 +375,33 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
 
 
 
+    <script>
+   
+        var currentTime = new Date();
+        var currentHour = currentTime.getHours();
+        var currentMinute = currentTime.getMinutes();
 
+   
+        var formattedCurrentTime = currentHour * 60 + currentMinute;
+
+ 
+        var dropdown = document.getElementById('exampleDropdown');
+        var options = dropdown.options;
+        var lastPastTimeIndex = -1;
+
+        for (var i = options.length - 1; i >= 0; i--) {
+            var optionValue = options[i].value;
+            var optionTime = parseInt(optionValue.split(':')[0]) * 60 + parseInt(optionValue.split(':')[1]);
+
+            if (optionValue !== "" && optionTime < formattedCurrentTime) {
+                if (lastPastTimeIndex === -1) {
+                    lastPastTimeIndex = i;
+                } else {
+                    dropdown.remove(i);
+                }
+            }
+        }
+    </script>
 
 
 
