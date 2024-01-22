@@ -128,43 +128,37 @@
                 /* font-weight: bold; */
                 color: rgb(16, 16, 16);
             }
+            tr{
+                border-bottom: 8px solid black;
+            }
         }
     </style>
-    <div class="container">
-        <div class="info-box">
-            <div class="label">Date</div>
-            <span id="NowDate" class="value"></span>
-        </div>
-
-        <div class="info-box">
-            <div class="label">CURRENT TIME</div>
-            <span id="NowTime" class="value"></span>
-        </div>
-
-        <div class="info-box">
-            <div class="label">REMAINING TIME</div>
-            <span id="RemainingTime" class="value"></span>
-        </div>
-
-        <div class="info-box">
-            <div class="label">DRAW TIME</div>
-            <span id="NextDrowTime" class="value"></span>
-        </div>
-
-        <div class="info-box">
-            <div class="label">User Name</div>
-            <span id="" class="value">{{ Auth::guard('agent')->user()->email }}</span>
-        </div>
-
-        <div class="info-box">
-            <div class="label">Balance</div>
-            <span id="" class="value">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span>
-        </div>
-    </div>
-
-
-
-
+        <table class="table  table-striped">
+            <thead>
+              <tr>
+                <td scope="col" style="color: blue; font-size:18px;">Date</td>
+                <td scope="col" style="color: blue; font-size:18px">CURRENT TIME</td>
+                <td scope="col" style="color: blue; font-size:18px">REMAINING TIME</td>
+                <td scope="col" style="color: blue; font-size:18px">DRAW TIME</td>
+                {{-- <td style="color: blue; font-size:18px">User Name</td> --}}
+                <td><span id="" class="value">{{ Auth::guard('agent')->user()->email }}</span></td>
+                {{-- <td style="color: blue; font-size:18px">Balance</td> --}}
+                <td style="width: 160px;"><b>.....</b></td>
+                <td><button style="height: 34px"> <a style="padding: 0px;" href="{{ URL::to('logout') }}" class="dropdown-item">Logout</a></button></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                   <td> <span id="NowDate" class="value"></span></td>
+                    <td><span id="NowTime" class="value"></span></td>
+                    <td><span id="RemainingTime" class="value"></span></td>
+                    <td><span id="NextDrowTime" class="value"></span></td>
+                    <td><span id="" class="value">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
     <div>
         <div class="main-card mb-3 card">
             <div class="card-body">

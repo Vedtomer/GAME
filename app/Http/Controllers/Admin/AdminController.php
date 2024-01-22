@@ -45,13 +45,9 @@ class AdminController extends Controller
 
     public function logout()
     {
-        $guard = Auth::getDefaultDriver(); // Get the default guard
-
-        Auth::guard($guard)->logout();
-
-        $redirectRoute = ($guard == 'admin') ? 'admin.login' : 'agent.login';
-
-        return redirect()->route($redirectRoute);
+        Auth::guard('admin')->logout();
+        // dd('Logout successful'); // Add this line for debugging
+        return redirect()->route('admin.login');
     }
 
 

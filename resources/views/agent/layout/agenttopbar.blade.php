@@ -118,7 +118,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="simpleDropdownMobile">
                                     <!-- Dropdown items -->
                                     <a href="agentchangepassword" class="dropdown-item">Change Password</a>
-                                    <a href="{{ URL::to(Auth::guard('admin')->check() ? 'admin/logout' : 'logout') }}" class="dropdown-item">Logout</a>
+                                     <a  href="{{ URL::to('logout') }}" class="dropdown-item">Logout</a>
                                 </div>
                             </div>
                         </div>
