@@ -32,7 +32,7 @@ class Result extends Model
 
             // Calculate winning amount (assuming qty is a column in the TicketPurchase table)
             $ticketPurchase = TicketPurchase::find($ticketPurchase->id);
-            $winningAmount = $ticketPurchase->qty * 10;
+            $winningAmount = $ticketPurchase->qty * 100;
 
             $ticketPurchase->winning_amount = $winningAmount;
             $ticketPurchase->is_result_declared = 1;
