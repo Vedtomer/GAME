@@ -99,7 +99,7 @@
             <div class="header-btn-lg pr-0">
                 <div class="widget-content p-0">
                     <div class="widget-content-wrapper">
-                        <div class="widget-content-left header-user-info ml-3">
+                        <div class="widget-content-right header-user-info ml-3">
                             <div class="dropdown">
                                 <!-- Display button only on larger screens -->
                                 <button class="btn btn-secondary dropdown-toggle d-none d-lg-inline-block" type="button" id="simpleDropdown"
@@ -130,7 +130,7 @@
     </div>
 </div>
 
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function () {
         var logoutIcon = document.getElementById('logoutIcon');
     
@@ -138,4 +138,4 @@
             window.location.href = "{{ URL::to(Auth::guard('admin')->check() ? 'admin/logout' : 'logout') }}";
         });
     });
-    </script>
+    </script> --}}
