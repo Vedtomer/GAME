@@ -1,184 +1,186 @@
 @extends('agent.layout.agentmain')
 @section('title', 'Purchase Ticket')
 @section('section')
-    <style>
-        @media (max-width: 767px) {
+<style>
+    @media (max-width: 767px) {
 
 
-            .app-page-title {
-                padding: 15px;
-                margin: -15px 0px 15px;
-            }
-
-
-
-            .card-body {
-                padding: 2px !important;
-            }
-
-            th,
-            td {
-                border: 1px solid;
-
-            }
-
-            .input-box {
-                width: 34px !important;
-                min-width: 100%;
-            }
+        .app-page-title {
+            padding: 15px;
+            margin: -15px 0px 15px;
         }
 
-        th.result {
-            background-color: lemonchiffon;
-            font-weight: 900;
-        }
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
+
+        .card-body {
+            padding: 2px !important;
         }
 
         th,
         td {
             border: 1px solid;
-            text-align: center;
+
         }
 
         .input-box {
-            /* height: 100%; */
-            width: 100%;
-            height: 34px;
-            text-align: center;
-            font-size: 16px;
-            font-weight: bold;
+            width: 34px !important;
+            min-width: 100%;
         }
+    }
 
-        th {
-            background-color: #f2f2f2;
-        }
+    th.result {
+        background-color: lemonchiffon;
+        font-weight: 900;
+    }
 
-        .gradient-container {
-            background: rgb(211, 251, 155);
-            border: 1px solid;
-            /* // #FFD700, #FFA07A, #87CEFA, #98FB98); */
-            /* You can add more colors and adjust the angles as needed */
-        }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-        .yellow input {
-            background: rgb(255, 216, 0);
-            ;
-        }
+    th,
+    td {
+        border: 1px solid;
+        text-align: center;
+    }
 
-        .main-input input {
-            background: <?php echo $number == 7000 ? 'rgb(243, 180, 185)' : 'rgb(237, 227, 166)';
-            ?>;
-        }
+    .input-box {
+        /* height: 100%; */
+        width: 100%;
+        height: 34px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+    }
 
-        input {
+    th {
+        background-color: #f2f2f2;
+    }
 
-            border: 1px solid <?php echo $number == 7000 ? 'rgb(243, 180, 185)' : 'rgb(237, 227, 166)';
-            ?>;
+    .gradient-container {
+        background: rgb(211, 251, 155);
+        border: 1px solid;
+        /* // #FFD700, #FFA07A, #87CEFA, #98FB98); */
+        /* You can add more colors and adjust the angles as needed */
+    }
 
-        }
+    .yellow input {
+        background: rgb(255, 216, 0);
+        ;
+    }
 
-        .submit {
-            margin: 10px
-        }
+    .main-input input {
+        background: <?php echo $number ==7000 ? 'rgb(243, 180, 185)': 'rgb(237, 227, 166)';
+        ?>;
+    }
 
-        .btn {
-            border-radius: 0px !important;
-        }
+    input {
 
-        span {
-            font-size: 16px;
-            /* font-weight: bold; */
-        }
+        border: 1px solid <?php echo $number ==7000 ? 'rgb(243, 180, 185)': 'rgb(237, 227, 166)';
+        ?>;
 
-        input:focus {
-            outline: none;
-            /* Remove outline on focus */
-            /* Add additional styles for the focused state if needed */
+    }
+
+    .submit {
+        margin: 10px
+    }
+
+    .btn {
+        border-radius: 0px !important;
+    }
+
+    span {
+        font-size: 16px;
+        /* font-weight: bold; */
+    }
+
+    input:focus {
+        outline: none;
+        /* Remove outline on focus */
+        /* Add additional styles for the focused state if needed */
+    }
+
+    .custom-span {
+        /* font-size: 2px; !important  */
+    }
+
+    @media (min-width: 767px) {
+        .custom-td {
+            overflow-x: auto;
         }
 
         .custom-span {
-            /* font-size: 2px; !important  */
+            font-size: 30px;
+
+            color: rgb(16, 16, 16);
         }
 
-        @media (min-width: 767px) {
-            .custom-td {
-                overflow-x: auto;
-            }
+        .cust-span {
+            font-size: 30px;
+        }
+    }
 
-            .custom-span {
-                font-size: 30px;
+    @media (max-width: 767px) {
 
-                color: rgb(16, 16, 16);
-            }
 
-            .cust-span {
-                font-size: 30px;
-            }
+        .Purchase {
+            font-size: 25px;
+            /* font-weight: bold; */
+            color: rgb(16, 16, 16);
         }
 
-        @media (max-width: 767px) {
-
-
-            .Purchase {
-                font-size: 25px;
-                /* font-weight: bold; */
-                color: rgb(16, 16, 16);
-            }
-            tr{
-                border-bottom: 8px solid black;
-            }
-            
-          td{
-          
-          }
+        tr {
+            border-bottom: 8px solid black;
         }
-    </style>
-        <table class="table  table-striped">
-            <thead>
-              <tr>
-                <td scope="col" style=" font-size:18px;border-top: 1px solid black;"><b style="color: blue;">Date</b></td>
-                <td scope="col" style="font-size:18px;border-top: 1px solid black;"><b style="color: blue;">CURRENT TIME</b></td>
-                <td scope="col" style=" font-size:18px;border-top: 1px solid black;"><b style="color: blue;">REMAINING TIME</b></td>
-                <td scope="col" style="font-size:18px;border-top: 1px solid black;"><b style="color: blue;">DRAW TIME</b></td>
-                {{-- <td style="color: blue; font-size:18px">User Name</td> --}}
-                <td style="border-top: 1px solid black;"><span id=""  class="value">{{ Auth::guard('agent')->user()->email }}</span></td>
-                {{-- <td style="color: blue; font-size:18px">Balance</td> --}}
-                <td style="width: 160px; border-top: 1px solid black;"><b>.....</b></td>
-                <td style="border-top: 1px solid black;"><button style="height: 34px"> <a style="padding: 0px;" href="{{ URL::to('logout') }}" class="dropdown-item">Logout</a></button></td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                   <td> <span id="NowDate" class="value"></span></td>
-                    <td><span id="NowTime" class="value"></span></td>
-                    <td><span id="RemainingTime" class="value"></span></td>
-                    <td><span id="NextDrowTime" class="value"></span></td>
-                    <td><span id="" class="value">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-    <div>
-        <div class="main-card mb-3 card">
-            <div class="card-body">
-                <div class="add" style="display: flex; align-items: center;">
-                    <div class="btns" style="margin-left: auto;">
-                    </div>
+    }
+</style>
+<table class="table  table-striped">
+    <thead>
+        <tr>
+            <td scope="col" style=" font-size:18px;border-top: 1px solid black;"><b style="color: blue;">Date</b></td>
+            <td scope="col" style="font-size:18px;border-top: 1px solid black;"><b style="color: blue;">CURRENT TIME</b>
+            </td>
+            <td scope="col" style=" font-size:18px;border-top: 1px solid black;"><b style="color: blue;">REMAINING
+                    TIME</b></td>
+            <td scope="col" style="font-size:18px;border-top: 1px solid black;"><b style="color: blue;">DRAW TIME</b>
+            </td>
+            {{-- <td style="color: blue; font-size:18px">User Name</td> --}}
+            <td style="border-top: 1px solid black;"><span id="" class="value">{{ Auth::guard('agent')->user()->email
+                    }}</span></td>
+            {{-- <td style="color: blue; font-size:18px">Balance</td> --}}
+            <td style="width: 160px; border-top: 1px solid black;"><b>.....</b></td>
+            <td style="border-top: 1px solid black;"><button style="height: 34px"> <a style="padding: 0px;"
+                        href="{{ URL::to('logout') }}" class="dropdown-item">Logout</a></button></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> <span id="NowDate" class="value"></span></td>
+            <td><span id="NowTime" class="value"></span></td>
+            <td><span id="RemainingTime" class="value"></span></td>
+            <td><span id="NextDrowTime" class="value"></span></td>
+            <td><span id="" class="value">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <div class="add" style="display: flex; align-items: center;">
+                <div class="btns" style="margin-left: auto;">
                 </div>
+            </div>
 
 
-                <div class="">
+            <div class="">
 
-                    <form action="{{ route('savedashboard') }}" method="post">
-                        @csrf
-                        <table>
-                            <tr>
-                                <?php
+                <form action="{{ route('savedashboard') }}" method="post">
+                    @csrf
+                    <table>
+                        <tr>
+                            <?php
                                 for ($i = -1; $i < 10; $i++) {
                                     if ($i == -1) {
                                         echo '<td></td><td></td>';
@@ -197,10 +199,10 @@
                                     }
                                 }
                                 ?>
-                            </tr>
+                        </tr>
 
-                            <tr>
-                                <?php
+                        <tr>
+                            <?php
                                 $j = $number;
                                 for ($i = 0; $i < 100; $i++) {
                                     if ($i == 0 || $i == 10 || $i == 20 || $i == 30 || $i == 40 || $i == 50 || $i == 60 || $i == 70 || $i == 80 || $i == 90) {
@@ -236,7 +238,7 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
                                 
                                     if ($i == 99) {
                                         echo "<tr>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <th colspan=11><div class=submit><button type=submit class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'> <b>Submit</b> </button> 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <th colspan=11><div class=submit><button type=submit id='submitButton' onclick='validateForm()' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'> <b>Submit</b> </button> 
                                                                                                                                                                                                 <a class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' id=reloadBtn> <b>Clear</b> </a>                                                                                                  
                                                                                                                                                                                                     <a href='/subhank' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-success' style='text-decoration: none; color: inherit;'> <b>Result</b></a>
                                                                                                                                                                                                 
@@ -260,18 +262,29 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
                                     $j++;
                                 }
                                 ?>
-                            </tr>
-                        </table>
-                    </form>
+                        </tr>
+                    </table>
+                </form>
 
-                </div>
             </div>
         </div>
+    </div>
 
 
+    <script>
+        function validateForm() {
+            
+                var inputValue = document.getElementById('inputField').value;
 
-        <script>
-            function redirectToDashboard(number) {
+                if (inputValue.trim() === '') {
+                    // Display an error message
+                    alert('Error: Please enter a value before submitting.');
+                    return false; // Prevent form submission
+                }
+            }
+    </script>
+    <script>
+        function redirectToDashboard(number) {
                 var url = '{{ route('dashboard', ':number') }}';
                 url = url.replace(':number', number);
                 window.location.href = url;
@@ -280,15 +293,15 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
             document.getElementById('reloadBtn').addEventListener('click', function() {
                 location.reload();
             });
-        </script>
+    </script>
 
-        <script type="text/javascript" src="{{ asset('asset/js/purchase.js') }}"></script>
-
-
+    <script type="text/javascript" src="{{ asset('asset/js/purchase.js') }}"></script>
 
 
 
 
 
-        <script></script>
+
+
+    <script></script>
     @endsection
