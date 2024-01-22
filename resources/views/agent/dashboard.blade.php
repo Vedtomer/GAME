@@ -131,21 +131,24 @@
             tr{
                 border-bottom: 8px solid black;
             }
+            
+          td{
           
+          }
         }
     </style>
         <table class="table  table-striped">
             <thead>
               <tr>
-                <td scope="col" style=" font-size:18px;"><b style="color: blue;">Date</b></td>
-                <td scope="col" style="font-size:18px"><b style="color: blue;">CURRENT TIME</b></td>
-                <td scope="col" style=" font-size:18px"><b style="color: blue;">REMAINING TIME</b></td>
-                <td scope="col" style="font-size:18px"><b style="color: blue;">DRAW TIME</b></td>
+                <td scope="col" style=" font-size:18px;border-top: 1px solid black;"><b style="color: blue;">Date</b></td>
+                <td scope="col" style="font-size:18px;border-top: 1px solid black;"><b style="color: blue;">CURRENT TIME</b></td>
+                <td scope="col" style=" font-size:18px;border-top: 1px solid black;"><b style="color: blue;">REMAINING TIME</b></td>
+                <td scope="col" style="font-size:18px;border-top: 1px solid black;"><b style="color: blue;">DRAW TIME</b></td>
                 {{-- <td style="color: blue; font-size:18px">User Name</td> --}}
-                <td><span id="" class="value">{{ Auth::guard('agent')->user()->email }}</span></td>
+                <td style="border-top: 1px solid black;"><span id=""  class="value">{{ Auth::guard('agent')->user()->email }}</span></td>
                 {{-- <td style="color: blue; font-size:18px">Balance</td> --}}
-                <td style="width: 160px;"><b>.....</b></td>
-                <td><button style="height: 34px"> <a style="padding: 0px;" href="{{ URL::to('logout') }}" class="dropdown-item">Logout</a></button></td>
+                <td style="width: 160px; border-top: 1px solid black;"><b>.....</b></td>
+                <td style="border-top: 1px solid black;"><button style="height: 34px"> <a style="padding: 0px;" href="{{ URL::to('logout') }}" class="dropdown-item">Logout</a></button></td>
               </tr>
             </thead>
             <tbody>
