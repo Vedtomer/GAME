@@ -105,6 +105,8 @@ class AgentController extends Controller
     public function savedashboard(Request $request)
     {
 
+       
+
         $currentTime = now();
         $ticketWindowOpenTime = now()->setTime(8, 45); // Set the opening time to 8:45 AM
         $ticketWindowCloseTime = now()->setTime(21, 30); // Set the closing time to 9:30 PM
@@ -169,13 +171,17 @@ if(empty($notempty)){
 
         $currentTime = strtotime(date("H:i"));
         $drawtime = ceil($currentTime / (15 * 60)) * (15 * 60);
-        $drawtimeFormatted = date("H:i", $drawtime);
+       
+        if(empty($data['timeslots'])){
+            $data['timeslots'][0] = date("H:i", $drawtime);
+        }
 
         // $drawtimeFormatted now contains the formatted drawtime like 9:15, 9:30, 9:45, 10:00, etc.
 
-
+        foreach ($data['timeslots'] as  $timeslots) {
+           
         $barcode = new Barcode();
-        $barcode->drawtime = $drawtimeFormatted;
+        $barcode->drawtime = $timeslots;
         $barcode->user_id = $user_id;
         $barcode->requestid = mt_rand(100000000000, 999999999999);
         $barcode->qty = $totalQty;
@@ -184,7 +190,7 @@ if(empty($notempty)){
         $barcode->barcode = mt_rand(1000000000000, 9999999999999);
         $barcode->save();
         $savedId = $barcode->id;
-
+       
 
 
         foreach ($data as $key => $value) {
@@ -199,9 +205,9 @@ if(empty($notempty)){
                     $balance -= $pts;
 
 
-                    DB::transaction(function () use ($keyInt, $value, $pts, $user_id, $savedId, $drawtimeFormatted) {
+                    DB::transaction(function () use ($keyInt, $value, $pts, $user_id, $savedId, $timeslots) {
                         $TicketPurchase = new TicketPurchase();
-                        $TicketPurchase->drawtime = $drawtimeFormatted;
+                        $TicketPurchase->drawtime = $timeslots;
                         $TicketPurchase->ticket_number = $keyInt;
                         $TicketPurchase->qty = (int)$value;
                         $TicketPurchase->points = $pts;
@@ -223,7 +229,7 @@ if(empty($notempty)){
             }
         }
 
-
+    }
         Auth::user()->update(['balance' => $balance]);
 
         return back()->with('success', 'Ticket purchased successfully.');

@@ -264,6 +264,7 @@ body {
 }
 
 </style>
+<form action="{{ route('savedashboard') }}" method="post">
 <table class="table  table-striped">
     <thead>
         <tr>
@@ -290,7 +291,7 @@ body {
             <td><span id="RemainingTime" class="value"></span></td>
             <td><span id="NextDrowTime" class="value"></span></td>
             <td>
-                {{-- <span id="" class="value pr-2 mr-4">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span> --}}
+          
                 <div class="dropdown">
                     <div class="dropdown" data-control="checkbox-dropdown" id="exampleDropdown">
                         <label class="dropdown-label">Select</label>
@@ -301,208 +302,208 @@ body {
                           </a>
                           
                           <label class="dropdown-option" >
-                            <input type="checkbox" name="dropdown-group" value="9:00"> 9:00
+                            <input type="checkbox" name="timeslots[]" value="9:00"> 9:00
                            
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="9:15">9:15
+                            <input type="checkbox" name="timeslots[]" value="9:15">9:15
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="9:30">9:30
+                            <input type="checkbox" name="timeslots[]" value="9:30">9:30
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="9:45">9:45
+                            <input type="checkbox" name="timeslots[]" value="9:45">9:45
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="10:00">10:00
+                            <input type="checkbox" name="timeslots[]" value="10:00">10:00
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="10:15">10:15
+                            <input type="checkbox" name="timeslots[]" value="10:15">10:15
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="10:30">10:30
+                            <input type="checkbox" name="timeslots[]" value="10:30">10:30
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="10:45">10:45
+                            <input type="checkbox" name="timeslots[]" value="10:45">10:45
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="11:00">11:00
+                            <input type="checkbox" name="timeslots[]" value="11:00">11:00
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="11:15">11:15
+                            <input type="checkbox" name="timeslots[]" value="11:15">11:15
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="11:30">11:30
+                            <input type="checkbox" name="timeslots[]" value="11:30">11:30
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="11:45">11:45
+                            <input type="checkbox" name="timeslots[]" value="11:45">11:45
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="12:00">12:00
+                            <input type="checkbox" name="timeslots[]" value="12:00">12:00
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="12:15">12:15
+                            <input type="checkbox" name="timeslots[]" value="12:15">12:15
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="12:30">12:30
+                            <input type="checkbox" name="timeslots[]" value="12:30">12:30
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="12:45">12:45
+                            <input type="checkbox" name="timeslots[]" value="12:45">12:45
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="13:00">13:00
+                            <input type="checkbox" name="timeslots[]" value="13:00">13:00
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="13:15">13:15
+                            <input type="checkbox" name="timeslots[]" value="13:15">13:15
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="13:30">13:30
+                            <input type="checkbox" name="timeslots[]" value="13:30">13:30
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="13:45">13:45
+                            <input type="checkbox" name="timeslots[]" value="13:45">13:45
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="14:00">14:00
+                            <input type="checkbox" name="timeslots[]" value="14:00">14:00
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="14:15">14:15
+                            <input type="checkbox" name="timeslots[]" value="14:15">14:15
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="14:30">14:30
+                            <input type="checkbox" name="timeslots[]" value="14:30">14:30
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="14:45">14:45
+                            <input type="checkbox" name="timeslots[]" value="14:45">14:45
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="15:00">15:00
+                            <input type="checkbox" name="timeslots[]" value="15:00">15:00
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="15:15">15:15
+                            <input type="checkbox" name="timeslots[]" value="15:15">15:15
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="15:30">15:30
+                            <input type="checkbox" name="timeslots[]" value="15:30">15:30
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="15:45">15:45
+                            <input type="checkbox" name="timeslots[]" value="15:45">15:45
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="16:00">16:00
+                            <input type="checkbox" name="timeslots[]" value="16:00">16:00
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="16:15">16:15
+                            <input type="checkbox" name="timeslots[]" value="16:15">16:15
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="16:30">16:30
+                            <input type="checkbox" name="timeslots[]" value="16:30">16:30
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="16:45">16:45
+                            <input type="checkbox" name="timeslots[]" value="16:45">16:45
                           </label>
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="17:00">17:00
+                            <input type="checkbox" name="timeslots[]" value="17:00">17:00
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="17:15">17:15
+                            <input type="checkbox" name="timeslots[]" value="17:15">17:15
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="17:30">17:30
+                            <input type="checkbox" name="timeslots[]" value="17:30">17:30
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="17:45">17:45
+                            <input type="checkbox" name="timeslots[]" value="17:45">17:45
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="18:00">18:00
+                            <input type="checkbox" name="timeslots[]" value="18:00">18:00
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="18:15">18:15
+                            <input type="checkbox" name="timeslots[]" value="18:15">18:15
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="18:30">18:30
+                            <input type="checkbox" name="timeslots[]" value="18:30">18:30
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="18:45">18:45
+                            <input type="checkbox" name="timeslots[]" value="18:45">18:45
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="19:00">19:00
+                            <input type="checkbox" name="timeslots[]" value="19:00">19:00
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="19:15">19:15
+                            <input type="checkbox" name="timeslots[]" value="19:15">19:15
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="19:30">19:30
+                            <input type="checkbox" name="timeslots[]" value="19:30">19:30
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="19:45">19:45
+                            <input type="checkbox" name="timeslots[]" value="19:45">19:45
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="20:00">20:00
+                            <input type="checkbox" name="timeslots[]" value="20:00">20:00
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="20:15">20:15
+                            <input type="checkbox" name="timeslots[]" value="20:15">20:15
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="20:30">20:30
+                            <input type="checkbox" name="timeslots[]" value="20:30">20:30
                           </label> 
                           
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="20:45">20:45
+                            <input type="checkbox" name="timeslots[]" value="20:45">20:45
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="21:00">21:00
+                            <input type="checkbox" name="timeslots[]" value="21:00">21:00
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="21:15">21:15
+                            <input type="checkbox" name="timeslots[]" value="21:15">21:15
                           </label>  
 
                           <label class="dropdown-option">
-                            <input type="checkbox" name="dropdown-group" value="21:30">21:30
+                            <input type="checkbox" name="timeslots[]" value="21:30">21:30
                           </label>  
                         </div>
                       </div>
@@ -527,7 +528,7 @@ body {
 
             <div class="">
 
-                <form action="{{ route('savedashboard') }}" method="post">
+               
                     @csrf
                     <table>
                         <tr>
