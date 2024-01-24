@@ -30,12 +30,12 @@ body {
   color: #333;
 
   .dropdown-list {
-    padding: 12px;
+    /* padding: 12px; */
     background: #fff;
     position: absolute;
     top: 30px;
-    left: 2px;
-    right: 2px;
+    /* left: 1px;
+    right: 1px; */
     box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .15);
     transform-origin: 50% 0;
     transform: scale(1, 0);
@@ -279,7 +279,7 @@ body {
             <td style="border-top: 1px solid black;"><span id="" class="value">{{ Auth::guard('agent')->user()->email
                     }}</span></td>
             {{-- <td style="color: blue; font-size:18px">Balance</td> --}}
-            <td style="width: 160px; border-top: 1px solid black;"><b>.....</b></td>
+            <td style="width: 160px; border-top: 1px solid black;"><b><span id="" class="value pr-2 mr-4">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span></b></td>
             <td style="border-top: 1px solid black;"><button style="height: 34px"> <a style="padding: 0px;"
                         href="{{ URL::to('logout') }}" class="dropdown-item">Logout</a></button></td>
         </tr>
@@ -291,7 +291,7 @@ body {
             <td><span id="RemainingTime" class="value"></span></td>
             <td><span id="NextDrowTime" class="value"></span></td>
             <td>
-                <span id="" class="value pr-2 mr-4">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span>
+                {{-- <span id="" class="value pr-2 mr-4">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span> --}}
                 <div class="dropdown">
                     <div class="dropdown" data-control="checkbox-dropdown">
                         <label class="dropdown-label">Select</label>
