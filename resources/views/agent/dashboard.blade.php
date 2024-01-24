@@ -294,15 +294,15 @@ body {
             <td>
                 {{-- <span id="" class="value pr-2 mr-4">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span> --}}
                 <div class="dropdown">
-                    <div class="dropdown" data-control="checkbox-dropdown">
+                    <div class="dropdown" data-control="checkbox-dropdown" id="exampleDropdown">
                         <label class="dropdown-label">Select</label>
                         
-                        <div class="dropdown-list">
+                        <div class="dropdown-list" id="timeDropdownList">
                           <a href="#" data-toggle="check-all" class="dropdown-option">
                             Check All  
                           </a>
                           
-                          <label class="dropdown-option">
+                          <label class="dropdown-option" >
                             <input type="checkbox" name="dropdown-group" value="9:00"> 9:00
                            
                           </label>
@@ -622,7 +622,34 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
             </div>
         </div>
     </div>
-  
+    <script type="text/javascript" src="{{ asset('asset/js/purchase.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the current time
+            var currentTime = new Date();
+            var currentHours = currentTime.getHours();
+            var currentMinutes = currentTime.getMinutes();
+    
+            // Convert current time to a numerical value (e.g., 0945)
+            var currentTimeValue = currentHours * 100 + currentMinutes;
+    
+            // Get all checkbox elements
+            var checkboxes = document.querySelectorAll('#timeDropdownList input[type="checkbox"]');
+    
+            // Loop through checkboxes and remove past times
+            checkboxes.forEach(function (checkbox) {
+                var checkboxValue = parseInt(checkbox.value.replace(':', ''), 10);
+                if (checkboxValue < currentTimeValue) {
+                    checkbox.parentElement.remove();
+                }
+            });
+        });
+    </script>
+    
+    
+    
+    
+    
 <script>
  (function($) {
   var CheckboxDropdown = function(el) {
@@ -657,7 +684,7 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
   
   CheckboxDropdown.prototype.updateStatus = function() {
     var checked = this.$el.find(':checked');
-    
+    // console.log(checked.length);
     this.areAllChecked = false;
     this.$checkAll.html('Select All');
     
@@ -675,8 +702,9 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
     else {
       this.$label.html(checked.length + ' Selected');
     }
+    updateQty();
   };
-  
+
   CheckboxDropdown.prototype.onCheckAll = function(checkAll) {
     if(!this.areAllChecked || checkAll) {
       this.areAllChecked = true;
@@ -716,6 +744,7 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
     new CheckboxDropdown(checkboxesDropdowns[i]);
   }
 })(jQuery);
+
 </script>
 
     <script>
@@ -742,7 +771,7 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
             });
     </script>
 
-    <script type="text/javascript" src="{{ asset('asset/js/purchase.js') }}"></script>
+   
 
 
 

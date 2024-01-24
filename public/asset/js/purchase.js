@@ -255,20 +255,30 @@ function updateInputA0() {
       sum += inputVal;
     }
     document.getElementById("qty99").innerText = sum;
-    var pts9Value = sum * 1.1;
+    var selectedCheckboxes = document.querySelectorAll('#timeDropdownList input[type="checkbox"]:checked');
+    var selectedCheckboxesLength = selectedCheckboxes.length;
+    
+    if (selectedCheckboxesLength === 0) {
+        selectedCheckboxesLength = 1;
+    }
+    
+    // console.log('Number of selected checkboxes (adjusted):', selectedCheckboxesLength);
+    
+    var pts9Value = sum * 1.1 * selectedCheckboxesLength;
+
     document.getElementById("pts99").innerText = pts9Value.toFixed(2);
   
-    updateTotalQty();
+    updateTotalQty(selectedCheckboxesLength);
   }
   
-  function updateTotalQty() {
+  function updateTotalQty(selectedCheckboxesLength) {
     var totalQty = 0;
     for (let i = 9; i <= 99; i += 10) {
       var qtyVal = parseInt(document.getElementById("qty" + i).innerText) || 0;
       totalQty += qtyVal;
     }
-    document.getElementById("tqty").innerText = totalQty;
-    updateTotalPoints(totalQty);
+    document.getElementById("tqty").innerText = totalQty * selectedCheckboxesLength;
+    updateTotalPoints(totalQty * selectedCheckboxesLength);
   }
   
   function updateTotalPoints(totalQty) {
