@@ -21,7 +21,7 @@ a {
 }
 
 body {
-  margin: 40px;
+  /* margin: 40px; */
 }
 
 .dropdown {
