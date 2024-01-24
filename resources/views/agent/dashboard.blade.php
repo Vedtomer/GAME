@@ -46,9 +46,10 @@ body {
   
   .dropdown-option {
     display: block;
-    /* padding: 8px 12px; */
+    padding: 0px 4px;
     opacity: 0;
     transition: opacity .15s ease-in-out;
+    font-size: 16px;
   }
   
   .dropdown-label {
@@ -658,10 +659,10 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
     var checked = this.$el.find(':checked');
     
     this.areAllChecked = false;
-    this.$checkAll.html('Check All');
+    this.$checkAll.html('Select All');
     
     if(checked.length <= 0) {
-      this.$label.html('Select Options');
+      this.$label.html('Select');
     }
     else if(checked.length === 1) {
       this.$label.html(checked.parent('label').text());
@@ -669,7 +670,7 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
     else if(checked.length === this.$inputs.length) {
       this.$label.html('All Selected');
       this.areAllChecked = true;
-      this.$checkAll.html('Uncheck All');
+      this.$checkAll.html('UnSelectAll');
     }
     else {
       this.$label.html(checked.length + ' Selected');
