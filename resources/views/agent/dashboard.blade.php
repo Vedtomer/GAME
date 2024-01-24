@@ -10,6 +10,88 @@
 <!-- Include Select2 JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <style>
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #379937;
+}
+
+body {
+  margin: 40px;
+}
+
+.dropdown {
+  position: relative;
+  font-size: 14px;
+  color: #333;
+
+  .dropdown-list {
+    padding: 12px;
+    background: #fff;
+    position: absolute;
+    top: 30px;
+    left: 2px;
+    right: 2px;
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .15);
+    transform-origin: 50% 0;
+    transform: scale(1, 0);
+    transition: transform .15s ease-in-out .15s;
+    max-height: 66vh;
+    overflow-y: scroll;
+  }
+  
+  .dropdown-option {
+    display: block;
+    /* padding: 8px 12px; */
+    opacity: 0;
+    transition: opacity .15s ease-in-out;
+  }
+  
+  .dropdown-label {
+    display: block;
+    height: 30px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    line-height: 1;
+    cursor: pointer;
+    width: 140px;
+    
+    &:before {
+      content: '▼';
+      float: right;
+    }
+  }
+  
+  &.on {
+   .dropdown-list {
+      transform: scale(1, 1);
+      transition-delay: 0s;
+      
+      .dropdown-option {
+        opacity: 1;
+        transition-delay: .2s;
+      }
+    }
+    
+    .dropdown-label:before {
+      content: '▲';
+    }
+  }
+  
+  [type="checkbox"] {
+    position: relative;
+    top: -1px;
+    margin-right: 4px;
+  }
+}
+
+
+
     @media (max-width: 767px) {
 
 
@@ -145,6 +227,7 @@
 .dropdown {
   position: relative;
   display: inline-block;
+  z-index: 1;
 }
 
 .dropbtn {
@@ -208,87 +291,223 @@
             <td><span id="RemainingTime" class="value"></span></td>
             <td><span id="NextDrowTime" class="value"></span></td>
             <td>
-                <span id="" class="value pr-2">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span>
+                <span id="" class="value pr-2 mr-4">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span>
                 <div class="dropdown">
-                    {{-- <button onclick="toggleDropdown()" class="dropbtn">Select Times</button>
-                    <div class="dropdown-content" id="dropdown">
-                        <select class="js-example-basic-multiple" multiple="multiple" style="width: 100%;">
-                            <?php
-                
-                            // $currentHour = date('G');
-                            // $currentMinute = ceil(date('i') / 15) * 15; 
-                            // $endHour = 21;
-                            // $endMinute = 30;
-                    
-                            // for ($hour = $currentHour; $hour <= $endHour; $hour++) {
-                            //     for ($minute = ($hour == $currentHour) ? $currentMinute : 0; $minute < 60; $minute += 15) {
-                            //         $time = sprintf("%02d:%02d", $hour, $minute);
-                            //         echo '<option value="' . $time . '">' . $time . '</option>' . PHP_EOL;
-                            //         if ($hour == $endHour && $minute == $endMinute) {
-                            //             break 2;
-                            //         }
-                            //     }
-                            // }
-                            ?>
-                        </select>
-                    </div> --}}
-                    {{-- <label for=""><b>Select Times</b></label> --}}
-                    <button onclick="toggleDropdown()" class="dropbtn"></button>
-                <select class="form-control js-example-basic-multiple"  multiple="multiple" style="width: 100%;" id="exampleDropdown" name="timesloat" required>
-                    {{-- <option value="" selected>Select times</option> --}}
-                  <option value="9:00" >9:00</option>
-                  <option value="9:15">9:15</option>
-                  <option value="9:30">9:30</option>
-                  <option value="9:45">9:45</option>
-                  <option value="10:00">10:00</option>
-                  <option value="10:15">10:15</option>
-                  <option value="10:30">10:30</option>
-                  <option value="10:45">10:45</option>
-                  <option value="11:00">11:00</option>
-                  <option value="11:15">11:15</option>
-                  <option value="11:30">11:30</option>
-                  <option value="11:45">11:45</option>
-                  <option value="12:00">12:00</option>
-                  <option value="12:15">12:15</option>
-                  <option value="12:30">12:30</option>
-                  <option value="12:45">12:45</option>
-                  <option value="13:00">13:00</option>
-                  <option value="13:15">13:15</option>
-                  <option value="13:30">13:30</option>
-                  <option value="13:45">13:45</option>
-                  <option value="14:00">14:00</option>
-                  <option value="14:15">14:15</option>
-                  <option value="14:30">14:30</option>
-                  <option value="14:45">14:45</option>
-                  <option value="15:00">15:00</option>
-                  <option value="15:15">15:15</option>
-                  <option value="15:30">15:30</option>
-                  <option value="15:45">15:45</option>
-                  <option value="16:00">16:00</option>
-                  <option value="16:15">16:15</option>
-                  <option value="16:30">16:30</option>
-                  <option value="16:45">16:45</option>
-                  <option value="17:00">17:00</option>
-                  <option value="17:15">17:15</option>
-                  <option value="17:30">17:30</option>
-                  <option value="17:45">17:45</option>
-                  <option value="18:00">18:00</option>
-                  <option value="18:15">18:15</option>
-                  <option value="18:30">18:30</option>
-                  <option value="18:45">18:45</option>
-                  <option value="19:00">19:00</option>
-                  <option value="19:15">19:15</option>
-                  <option value="19:30">19:30</option>
-                  <option value="19:45">19:45</option>
-                  <option value="20:00">20:00</option>
-                  <option value="20:15">20:15</option>
-                  <option value="20:30">20:30</option>
-                  <option value="20:45">20:45</option>
-                  <option value="21:00">21:00</option>
-                  <option value="21:15">21:15</option>
-                  <option value="21:30">21:30</option>
-                 
-                </select>
+                    <div class="dropdown" data-control="checkbox-dropdown">
+                        <label class="dropdown-label">Select</label>
+                        
+                        <div class="dropdown-list">
+                          <a href="#" data-toggle="check-all" class="dropdown-option">
+                            Check All  
+                          </a>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="9:00"> 9:00
+                           
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="9:15">9:15
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="9:30">9:30
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="9:45">9:45
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="10:00">10:00
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="10:15">10:15
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="10:30">10:30
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="10:45">10:45
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="11:00">11:00
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="11:15">11:15
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="11:30">11:30
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="11:45">11:45
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="12:00">12:00
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="12:15">12:15
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="12:30">12:30
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="12:45">12:45
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="13:00">13:00
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="13:15">13:15
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="13:30">13:30
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="13:45">13:45
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="14:00">14:00
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="14:15">14:15
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="14:30">14:30
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="14:45">14:45
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="15:00">15:00
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="15:15">15:15
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="15:30">15:30
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="15:45">15:45
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="16:00">16:00
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="16:15">16:15
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="16:30">16:30
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="16:45">16:45
+                          </label>
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="17:00">17:00
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="17:15">17:15
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="17:30">17:30
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="17:45">17:45
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="18:00">18:00
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="18:15">18:15
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="18:30">18:30
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="18:45">18:45
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="19:00">19:00
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="19:15">19:15
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="19:30">19:30
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="19:45">19:45
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="20:00">20:00
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="20:15">20:15
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="20:30">20:30
+                          </label> 
+                          
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="20:45">20:45
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="21:00">21:00
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="21:15">21:15
+                          </label>  
+
+                          <label class="dropdown-option">
+                            <input type="checkbox" name="dropdown-group" value="21:30">21:30
+                          </label>  
+                        </div>
+                      </div>
+                    {{-- </div> --}}
            
                     
                   </div>
@@ -402,20 +621,101 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
             </div>
         </div>
     </div>
-    <script>
-        // Initialize Select2 for multi-select
-        $(document).ready(function() {
-            $('.js-example-basic-multiple').select2({
-                placeholder: 'Select times', // Specify a placeholder text
-                allowClear: true, // Option to clear the selected values
-            });
-        });
+  
+<script>
+ (function($) {
+  var CheckboxDropdown = function(el) {
+    var _this = this;
+    this.isOpen = false;
+    this.areAllChecked = false;
+    this.$el = $(el);
+    this.$label = this.$el.find('.dropdown-label');
+    this.$checkAll = this.$el.find('[data-toggle="check-all"]').first();
+    this.$inputs = this.$el.find('[type="checkbox"]');
     
-        // Add your toggleDropdown function here
-        function toggleDropdown() {
-            // Implement your toggle logic
+    this.onCheckBox();
+    
+    this.$label.on('click', function(e) {
+      e.preventDefault();
+      _this.toggleOpen();
+    });
+    
+    this.$checkAll.on('click', function(e) {
+      e.preventDefault();
+      _this.onCheckAll();
+    });
+    
+    this.$inputs.on('change', function(e) {
+      _this.onCheckBox();
+    });
+  };
+  
+  CheckboxDropdown.prototype.onCheckBox = function() {
+    this.updateStatus();
+  };
+  
+  CheckboxDropdown.prototype.updateStatus = function() {
+    var checked = this.$el.find(':checked');
+    
+    this.areAllChecked = false;
+    this.$checkAll.html('Check All');
+    
+    if(checked.length <= 0) {
+      this.$label.html('Select Options');
+    }
+    else if(checked.length === 1) {
+      this.$label.html(checked.parent('label').text());
+    }
+    else if(checked.length === this.$inputs.length) {
+      this.$label.html('All Selected');
+      this.areAllChecked = true;
+      this.$checkAll.html('Uncheck All');
+    }
+    else {
+      this.$label.html(checked.length + ' Selected');
+    }
+  };
+  
+  CheckboxDropdown.prototype.onCheckAll = function(checkAll) {
+    if(!this.areAllChecked || checkAll) {
+      this.areAllChecked = true;
+      this.$checkAll.html('Uncheck All');
+      this.$inputs.prop('checked', true);
+    }
+    else {
+      this.areAllChecked = false;
+      this.$checkAll.html('Check All');
+      this.$inputs.prop('checked', false);
+    }
+    
+    this.updateStatus();
+  };
+  
+  CheckboxDropdown.prototype.toggleOpen = function(forceOpen) {
+    var _this = this;
+    
+    if(!this.isOpen || forceOpen) {
+       this.isOpen = true;
+       this.$el.addClass('on');
+      $(document).on('click', function(e) {
+        if(!$(e.target).closest('[data-control]').length) {
+         _this.toggleOpen();
         }
-    </script>
+      });
+    }
+    else {
+      this.isOpen = false;
+      this.$el.removeClass('on');
+      $(document).off('click');
+    }
+  };
+  
+  var checkboxesDropdowns = document.querySelectorAll('[data-control="checkbox-dropdown"]');
+  for(var i = 0, length = checkboxesDropdowns.length; i < length; i++) {
+    new CheckboxDropdown(checkboxesDropdowns[i]);
+  }
+})(jQuery);
+</script>
 
     <script>
         function validateForm() {
