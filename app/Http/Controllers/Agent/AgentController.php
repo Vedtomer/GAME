@@ -362,14 +362,20 @@ if(empty($notempty)){
 
     public function result()
     {
-
-        $users = Result::orderBy('created_at', 'desc')->get();
-        return view('agent.result', ['data' => $users]);
+      
+        $currentTime = now()->format('H:i');
+        $data = Result::whereDate('created_at', now()->toDateString())
+            ->where('timesloat', '<=', $currentTime)
+            ->orderBy('timesloat', 'desc')
+            ->get();
+    
+        return view('agent.result', ['data' => $data]);
     }
 
     public function getFilteredData(Request $request)
     {
         $date = $request->date;
+        
         $data = Result::whereDate('created_at', $date)->get();
         $dataTransaction = Transaction::whereDate('created_at', $date)->get();
 
