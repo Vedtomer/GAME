@@ -34,8 +34,8 @@ body {
     background: #fff;
     position: absolute;
     top: 30px;
-    /* left: 1px;
-    right: 1px; */
+    left: 1px;
+    right: 1px;
     box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .15);
     transform-origin: 50% 0;
     transform: scale(1, 0);
