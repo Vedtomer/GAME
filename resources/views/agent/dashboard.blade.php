@@ -60,7 +60,7 @@ body {
     padding: 6px 12px;
     line-height: 1;
     cursor: pointer;
-    width: 140px;
+    width: 120px;
     
     &:before {
       content: '▼';
