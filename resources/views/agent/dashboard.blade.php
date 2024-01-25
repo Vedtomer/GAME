@@ -717,7 +717,7 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
     this.$inputs.prop('checked', false);
   }
 
-  // this.updateStatus();
+  updateQty();
 };
 
         
