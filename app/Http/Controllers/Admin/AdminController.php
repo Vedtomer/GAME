@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
+use App\Models\Result;
+use App\Models\Transaction;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -111,7 +114,7 @@ class AdminController extends Controller
 
 
         ]);
-        return redirect()->route('userdata')->with('error', 'update successfully.');
+        return redirect()->route('admin.user')->with('error', 'update successfully.');
         // ]);
     }
 
@@ -129,84 +132,112 @@ class AdminController extends Controller
 
 
 
-    public function showChangePasswordForm()
-    {
-        return view('admin.change-password');
-    }
+   
+   public function showChangePasswordForm($id)
+{
+    $userdata = DB::table('users')->where('id', $id)->first();
+    return view('admin.change-password', ['data' => $userdata]);
+}
 
-    public function changePassword(Request $request)
-    {
-        $request->validate([
-            'current_password' => 'required|',
-            'new_password' => 'required|min:8|confirmed',
+public function changePassword(Request $request)
+{
+    $request->validate([
+        'password' => 'required|min:8',
+        'confirm_password' => 'required|min:8',
+    ]);
+
+    
+    $userId = $request->input('user_id');
+    $newPassword = $request->input('password');
+    $confirm_password = $request->input('confirm_password');
+    if($newPassword === $confirm_password){
+        DB::table('users')->where('id', $userId)->update([
+            'password' => Hash::make($newPassword),
         ]);
+    }else{
+        return redirect()->back()->with('error', 'The  password is not match.');
+    }
 
-        return redirect()->route('userdata')->with('success', 'Password changed successfully.');
+    // Assuming 'users' is your table name
+ 
 
-        $user = Auth::user();
+    return redirect()->route('admin.user')->with('success', 'Password updated successfully!');
+}
 
-        if (!Hash::check($request->current_password, $user->password)) {
-            return redirect()->back()->with('error', 'The current password is incorrect.');
-        }
+public function adminshowChangePassword()
+{
+    // $userdata = DB::table('admins')->where('id', $id)->first();
+    return view('admin.adminchangepassword');
+}
 
-        $user->update([
-            'password' => bcrypt($request->new_password),
+public function adminchangePassword(Request $request)
+{
+    // return $request;
+    $request->validate([
+        'password' => 'required|min:8',
+        'confirm_password' => 'required|min:8',
+    ]);
+
+    $auth = Auth::user();
+    $newPassword = $request->input('password');
+    $confirm_password = $request->input('confirm_password');
+    if($newPassword === $confirm_password){
+        DB::table('admins')->where('id', $auth->id)->update([
+            'password' => Hash::make($newPassword),
         ]);
-
-        return redirect()->route('userdata')->with('success', 'Password changed successfully.');
+    }else{
+        return redirect()->back()->with('error', 'The  password is not match.');
     }
-
-    public function newheader()
-    {
-        return view('admin.layout.main');
-    }
+    return redirect()->route('user')->with('success', 'Password updated successfully!');
+}
 
 
 
     public function user()
     {
-        $users = User::all();
+        $users = User::orderBy('created_at', 'desc')->get();
         return view('admin.user', ['data' => $users]);
     }
-    public function usersave(Request $request)
+    public function useradd()
     {
-        $validate = $request->validate([
-            'name' => 'required|string|max:100',
-            'email' => 'required|email|unique:agent',
-            'password' => 'required|min:8',
-            'state' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'mobile_number' => 'required|string|max:20',
-            'commission'=> 'required|string', 
-            'commission_type' => 'required|in:fixed,percentage', // ENUM ke liye 'in' rule ka istemal kiya gaya hai
-             // ENUM ke liye 'in' rule ka istemal kiya gaya hai
-        ]);
-        
-
-        $userdata = new Agent();
-        $userdata->name = $request->name;
-        $userdata->email = $request->email;
-        $userdata->password = bcrypt($request->password); // Password ko encrypt karna mat bhoolen
-        $userdata->state = $request->state;
-        $userdata->city = $request->city;
-        $userdata->address = $request->address;
-        $userdata->mobile_number = $request->mobile_number;
-        $userdata->commission = $request->commission;
-        $userdata->commission_type = $request->commission_type;
-    
-        
-        $userdata->save();
-        
-        session()->flash('success', 'User created successfully.');
-        return redirect()->route('user');
+      
+        return view('admin.useradd');
     }
+    
+   public function usersave(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'email' => 'required|unique:users,email',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors(['email' => 'User name not available'])->withInput();
+    }
+
+    if (empty($request->password)) {
+        return redirect()->back()->withErrors(['password' => 'Password is required'])->withInput();
+    }
+
+    if ($request->confirm_password != $request->password) {
+        return redirect()->back()->withErrors(['password' => 'Password does not match'])->withInput();
+    }
+
+    $userdata = new User();
+    $userdata->name = $request->name;
+    $userdata->email = $request->email;
+    $userdata->password = bcrypt($request->password);
+
+    $userdata->save();
+
+    session()->flash('success', 'User created successfully.');
+    return redirect()->route('user');
+}
+
+    
 
     public function displayUsers()
 {
-    $users = User::all(); // Sabhi users ki data fetch karein
-
-    // return view('admin.user', ['data' => $users]);
+    $users = User::all(); 
     return view('admin.user', ['data' => $users]);
 }
 // public function displayUsers()
@@ -232,7 +263,7 @@ public function userupdate(Request $request, $id)
 
 
     ]);
-    return redirect()->route('admin.user')->with('success', 'update successfully.');
+    return redirect()->route('user')->with('success', 'update successfully.');
     // ]);
 }
 public function userdelete(string $id)
@@ -241,31 +272,256 @@ public function userdelete(string $id)
     return redirect()->route('admin.user');
 }
 
+    // public function result()
+    // {
+    //     return view('admin.result');
+    // }
 
-
+    public function resultadd()
+    {
+      
+        return view('admin.resultadd');
+    }
 
 
     public function result()
     {
-        return view('admin.result');
+        $users = Result::orderBy('created_at', 'desc')->get();
+        return view('admin.result', ['data' => $users]);
     }
+
+    public function getFilteredDataForAdmin(Request $request) {
+        $date = $request->date;
+        $data = Result::whereDate('created_at', $date)->orderBy('timesloat', 'desc')->get();
+        // $dataa = Transaction::whereDate('created_at', $date)->get();
+    
+        // return response()->json(['data' => $data]);
+        $dataTransaction = Transaction::whereDate('created_at', $date)->get();
+
+        return response()->json(['data' => $data, 'dataTransaction' => $dataTransaction]);
+    }
+ 
+    
+    
+    // public function getFilteredDataForAdmins(Request $request) {
+    //     $date = $request->date;
+    //     // $data = Result::whereDate('created_at', $date)->with('user')->get();
+    //     $dataTransaction = Transaction::whereDate('created_at', $date)->get();
+    
+    //     return response()->json(['data' => $data, 'dataTransaction' => $dataTransaction]);
+    // }
+    
+    public function resultsave(Request $request)
+    {
+        $validate = $request->validate([
+            'number_70' => 'required|max:2',
+            'number_60' => 'required|max:2',
+            'timesloat' => 'required',
+        ], [
+            'number_70.max' => 'The Number 70 field must not exceed 2 characters.',
+            'number_60.max' => 'The Number 60 field must not exceed 2 characters.',
+        ]);
+    
+        $userdata = new Result();
+        $userdata->number_70 = $request->number_70;
+        $userdata->number_60 = $request->number_60;
+        $userdata->timesloat = $request->timesloat;
+    
+        // $userdata->update_user_result($request->number_60, $request->number_70);
+    
+        $userdata->save();
+        session()->flash('success', 'User created successfully.');
+        return redirect()->route('admin.result');
+    }
+    
+
+    public function resultedit(string $id)
+    {
+        $userData = Result::find($id); 
+        if (!$userData) {
+            abort(404);
+        }
+        return view('admin.resultedit', ['data' => $userData]);
+    }
+
+public function resultupdate(Request $request, $id)
+{
+    $rules = [
+        'number_70' => 'required',
+        'number_60' => 'required',
+        'timesloat' => 'nullable', // 'nullable' allows the field to be optional
+    ];
+
+    // Validation messages
+    $messages = [
+        'number_70.required' => 'The number_70 field is required.',
+        'number_60.required' => 'The number_60 field is required.',
+        'timesloat' => 'The timesloat field is required.',
+    ];
+
+    // Validate the request
+    $request->validate($rules, $messages);
+    // return $request;
+      $USER = DB::table('result')->where('id', $id)->update([
+        'number_70' => $request->number_70,
+        'number_60' => $request->number_60,
+        'timesloat' => $request->timesloat,
+    ]);
+    return redirect()->route('admin.result')->with('success', 'update successfully.');  
+}
+
+public function resultdelete(string $id)
+{
+    $userdata = DB::table('result')->where('id', $id)->delete();
+    return redirect()->route('admin.result')->with('error', 'Delete successfully.');
+}
     public function profile()
     {
         return view('admin.profile');
     }
-
-    public function  transaction()
+    
+    public function amount(Request $request, $id)
     {
-        return view('admin.transaction');
+        
+        if ($request->isMethod('post')) {
+            $validate = $request->validate([   
+                'amount' => 'required',
+            ]);
+            $userdata = new Transaction();
+            $userdata->user_id = $id;
+            $userdata->action = $request->add;
+            $userdata->amount = $request->amount;
+           
+
+            $user =User::where('id',$id)->first();
+            $amount=$user->balance+$request->amount;
+            $user->balance=floatval($amount);
+            $userdata->balance=$user->balance;
+            $userdata->save();
+            $user->save();
+            session()->flash('success', 'Amount Added successfully.');
+            return redirect()->route('user');
+        }
+
+        
+        $data = Transaction::all();
+        return view('admin.amount', ['data' => $data, 'id' => $id]);
+    }
+
+    public function withdrawal(Request $request, $id)
+    {
+        if ($request->isMethod('post')) {
+            $validate =  $request->validate([
+                'withdrawal' => 'required',
+            ]);
+            $userdata = new Transaction();
+            $userdata->user_id = $id;
+            $userdata->action = $request->withdrawal;
+
+            $userdata->amount = $request->amount;
+
+           
+
+            $user =User::where('id',$id)->first();
+            $epsilon = 0.0001; 
+if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
+    session()->flash('error', 'Insufficient balance.');
+    return redirect()->route('user');
+}
+
+            $amount=$user->balance-$request->amount;
+
+            $user->balance=floatval($amount);
+            $userdata->balance=$user->balance;
+            $userdata->save();
+            $user->save();
+            
+            session()->flash('success', 'Amount Debit successfully.');
+            return redirect()->route('user');
+        }
+        $data = Transaction::all();
+        return view('admin.withdrawal', ['data' => $data, 'id' => $id]);
+    }
+    // public function amount($id)
+
+    // {
+    //     $Data = Transaction::all();
+    //     return view('admin.amount', ['data' => $Data]);
+    // }
+
+    // public function amountsave(Request $request)
+    // {
+    //     $validate = $request->validate([
+        
+    //         'amount' => 'required',
+    //     ]);
+
+    //     $userdata = new Transaction();
+    //     $userdata->amount = $request->amount;
+
+    //     $userdata->save();
+    //     session()->flash('success', 'User created successfully.');
+    //     return redirect()->route('admin.user');
+    // }
+    public function  transaction($id=null)
+    {
+        if(empty($id)){
+            $users = Transaction::orderBy('created_at', 'desc')->get();
+        }else{
+            $users = Transaction::where('user_id',$id)->get();
+        }
+        return view('admin.transaction', ['data' => $users]);
+        
     }
     public function  home()
     {
-        return view('admin.home');
+      $users = Result::
+      wheredate('created_at', now()->toDateString())->get();
+        return view('home', ['data' => $users]);
+    }
+
+    public function settlement(){
+    
+     $currentTime = now();
+
+        // Calculate the nearest time in 15-minute intervals
+        $nearestTime = floor($currentTime->minute / 15) * 15;
+        
+        // Adjust the time accordingly
+        $currentTime->minute = $nearestTime;
+        $nearestTimeIn24HourFormat = $currentTime->format('H:i');
+
+ 
+     
+     $userdata = Result::where('timesloat', '<=', $nearestTimeIn24HourFormat)
+->whereDate('created_at', $currentTime->toDateString())
+->orderBy('timesloat', 'desc')
+->first();
+
+    if ($userdata) {
+   $userdata->update_user_result($userdata->number_60, $userdata->number_70);
+
+    // $userdata->save();
+    
+    return true;
+    } else {
+         
+    return false;
+    }
     }
     public function  newhome()
     {
-        return view('admin.layout.newhome');
+        $currentTime = now()->format('H:i');
+  $users = Result::whereDate('created_at', now()->toDateString())
+            ->where('timesloat', '<=', $currentTime)
+            ->orderBy('timesloat', 'desc')
+            ->get();
+        
+    
+        return view('admin.layout.newhome', ['data' => $users]);
     }
+
+ 
     // public function view(){
 
 

@@ -35,29 +35,24 @@
                 {{-- <li class="app-sidebar__heading"></li> --}}
                 <li>
                     {{-- class="mm-active" --}}
-                    <a href="dashboard" class="mm-active">   
+                    <a href="{{route('dashboard')}}" >   
                         <i class="metismenu-icon pe-7s-rocket"></i>
-                        Dashboard
+                         <b>Dashboard</b>
                     </a>
                 </li>
-                <li>
-                    <a href="" >
+                {{-- <li>
+                    <a href="/" >
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Home
                     </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="metismenu-icon pe-7s-display2"></i>
-                        Users
-                    </a>
-                </li>
+                </li> --}}
+                
                
               
                 <li>
-                    <a href="">
+                    <a href="result">
                         <i class="metismenu-icon pe-7s-diamond"></i>
-                        Result
+                         <b>Result</b>
                         
                     </a>
                 </li>
@@ -72,9 +67,9 @@
                     
                     {{-- </ul> --}}
                     <li  >
-                        <a href="transaction">
+                        <a href="{{route('agent.transaction')}}">
                             <i class="metismenu-icon pe-7s-display2"></i>
-                            Transaction
+                             <b>Transaction</b>
                         </a>
                     </li>
               

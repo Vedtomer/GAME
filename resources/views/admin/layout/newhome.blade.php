@@ -1,328 +1,617 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
+    <title>Golden Lucky Draw</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap Demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('homes.css') }}">
+    <script src="{{ asset('homejs.js') }}"></script>
+    <script src="{{ asset('home3.js') }}"></script>
+    <script src="{{ asset('home4.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('homes2.css') }}">
+
     <style>
         body {
-            background-image: url("{{ asset('images/WhatsApp Image 2023-12-07 at 1.14.57 PM.jpeg') }}");
-            background-repeat: no-repeat;
+            margin: 0;
+            /* font-family: Tahoma; */
+            background-image: url('{{ asset(' logo12_files/background.png') }}');
             background-size: cover;
             background-position: center;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
             background-attachment: fixed;
         }
 
-        .number-container,
-        .video-container,
-        .table-container {
-            margin: 15px; /* Adjust margin as needed */
-        }
-
-        .number-container {
-            background-color: #000000;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 1.5em;
-            color: white;
-        }
-
-        .shadow-dark {
-            color: white;
-            border: 1px solid rgb(9, 175, 244);
-            box-shadow: 0 0 1px rgb(2, 213, 255);
-        }
-
-        iframe {
-            width: 100%;
-            height: 300px; /* Adjust height as needed */
-        }
-
-        .text {
-            font-size: 2rem;
-        }
-        User
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap Demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <style>
-        body {
-            /* background-image: url("https://designerapp.officeapps.live.com/designerapp/document.ashx?path=/fd37c62f99e15728/UserAssets/dalle-e2d02ac2-9126-41a9-8ddb-c8ab492d90480251700369109662118100.jpg&dcHint=IndiaCentral&fileToken=c8ba0579-377b-4fa1-950e-ed845c7c4678"); */
-            background-image: url("{{ asset('images/WhatsApp Image 2023-12-07 at 1.14.57 PM.jpeg') }}");
+        .logo {
+            background-image: url('{{ asset(' logo12_files/logo12.jpg') }}');
             background-repeat: no-repeat;
-            background-size: 100% 100%;
-            background-position: center;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-
-            background-attachment: fixed;
-            font-family: Montserrat, sans-serif;
-
+            background-position: center top;
+            background-size: cover;
+            width: 200px;
+            height: 250px;
         }
 
-        /* Dark Gold Background */
-        body {}
-
-        /* Text Color */
-        code {
-            color: #FFFFFF;
-            /* or #CCCCCC for a lighter gray */
+        .current-time {
+            background-image: url(desktop/currenttime_.png);
+            background-repeat: no-repeat;
+            background-size: 200px 40px;
+            background-position: center center;
+            width: 200px;
+            height: 50px;
+            background-color: rgb(39, 146, 133);
+            border-radius: 30px;
+            margin-top: 10px;
         }
 
-
-
-
-
-        a {
-            display: inline-block;
-            background-color: #000000;
-            margin: 5px;
-
-            /* Adjust margin as needed */
-            position: relative;
-            padding: 5px;
- box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.4);
-            color: #CCCCCC;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font: 100 30px consolas;
-            overflow: hidden;
-   background-color: rgb(0, 0, 0); 
+        #NowTime {
+            font-size: 18pt;
+            font-weight: bold;
+            color: yellow;
+            margin-top: 10px;
+            display: block;
         }
 
-     
+        #TodatyDate {
+            font-size: 24pt;
+            font-weight: bold;
+            color: yellow;
+        }
 
-        iframe {
+        #NextDrowTime {
+            font-size: 19pt;
+            font-weight: bold;
+            color: yellow;
+            margin-top: 10px;
+        }
+
+        .marquee-container {
             width: 100%;
-            height: 491px;
+            overflow: hidden;
         }
 
-
-        td {
-            border: 2px solid rgb(9, 175, 244);
-            font-family: Montserrat, sans-serif;
-            font-size: 1.2rem;
-        }
-        th {
-            border: 2px solid rgb(9, 175, 244);
-            font-family: Montserrat, sans-serif;
-            font-size: 1.5rem;
+        .marquee {
+            font-size: xx-large;
+            margin-top: 10px;
+            background-color: white;
+            font-family: Tahoma;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
         }
 
-        .number-container {
-            background-color: #000000;
-            /* Darker container background color */
-            padding: 10px;
-            border-radius: 10px;
-          
-            /* Box shadow for a subtle lift */
-            font-size: 1.5em;
-            /* Adjust the font size as needed */
-            color: white;
-            margin-bottom: 15px;
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .image-container {
+            background-image: url('{{ asset(' logo12_files/17.png') }}');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+        }
+
+        .divTable {
+            width: 100%;
+            overflow: auto;
+        }
+
+        .divTableRow {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .divTableCell1 {
+            flex: 0 0 auto;
+            width: 60px;
+            height: 40px;
+            margin-right: 10px;
+            margin-top: 10px;
+
 
         }
 
-        .shadow-dark {
-            color: white;
-            border: 1px solid rgb(9, 175, 244);
-            box-shadow: 0 0 5px  rgb(2, 213, 255);
+        /* .container1 img {
+            width: 100%;
+            height: 100%;
+        } */
+
+        .divTableCell1 img {
+            width: 100%;
+            height: 100%;
         }
 
-        /* .text {
-            background-color: #333333;
-            /* font-size: 2em; */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 2em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            color: white;
-        /* } */ */
-        body {
-    background-color: #c4c4c4;
-  
-}
-.fm {
-    text-align: center;
-    font-family: Montserrat, sans-serif;
-}
-.text {
-    background-color: #333333;
-    /* padding: 8px;
-    padding-left: 4px;
-    padding-right: 4px; */
-    margin: 5px;
-    border-radius: 20px;
-    /* border: 1px solid rgb(9, 175, 244); */
-    font-family: Montserrat, sans-serif;
-    position: relative;
-    margin-bottom: 0.75rem;
-    font-size: 1rem;
-    font-weight: 700;
-    text-transform: capitalize;
-    letter-spacing: 1.5px;
-    line-height: 1.3;
-    display: inline-block;
-    z-index: 0;
+        .centered {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 5px;
 
-}
-.texts{
-    /* box-shadow: 0 0 20px  #4b4663; */
-    font-family: Montserrat, sans-serif;
-    color: goldenrod;
-    margin-bottom: 0.75rem;
-    /* font-size: 1.5rem; */
-    /* font-weight: 500; */
-    text-transform: capitalize;
-    /* letter-spacing: 1.5px; */
-    /* line-height: 1.3; */
-    /* display: inline-block; */
-    /* color: #1e1e1e; */
-    margin: 0;
-    padding: 0px 0px 30px 0px;
-    font-size: 26px;
-    text-align: justify;
-    font-family: Montserrat, sans-serif;
-    font-weight: 700;
-    /* background-color: #4b4663; */
-    
-}
-
-
-        .heading-t{
-            background-color: #525173;;
-            opacity: 0.8;
-            border-bottom: 2px solid rgb(9, 175, 244);
-            
-        }
-        .heading {
-            background-color: #1a1a1a;
-            opacity: 0.9;
-            border-bottom: 2px solid rgb(9, 175, 244);
         }
 
-        body {
-        overflow: hidden; /* Hide scroll bars caused by the video */
-        margin: 0; /* Remove default margin */
-    }
+        .divTableCell1 .centered {
+            font-size: 16px;
+        }
 
-    #video-background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        z-index: -1; /* Place the video behind other elements */
-    }
+        /* Container for main and said divs */
+        .container {
+            display: flex;
+            text-align: left;
+        }
+
+        /* Main content div */
+        .main {
+            flex: 1;
+            /* Take remaining space */
+            padding: 20px;
+            box-sizing: border-box;
+
+        }
+
+        /* Said div */
+        .said {
+            width: 300px;
+            /* Set the width as needed */
+            padding: 20px;
+            box-sizing: border-box;
+            margin-right: 100px;
+
+        }
+
+        /* Default styles for .mains */
+        .mains {
+            margin-left: 100px;
+            margin-top: 100px;
+        }
+
+        @media (max-width: 767px) {
+            .mains {
+                margin-left: 40px;
+                /* Additional styles for smaller screens if needed */
+            }
+        }
     </style>
 </head>
 
-<body>
-    <video id="video-background" autoplay muted loop>
-        <!-- Update the source with the correct path to your video -->
-        <source src="/stock-footage-zodiac-horoscope-astrological-sun-signs-on-a-spinning-wheel-or-chakra-seamless-looping-animated.webm" type="video/webm">
-        <!-- Add more source elements for different video formats if needed -->
-        Your browser does not support the video tag.
-    </video>
-
-    <div class="heading-t p-4">
-
-        <div class="container text-center">
-            <span class="texts p-3">Your Lucky Number Prediction Slip Will be Eligible For Lucky Draw</span>
-        </div>
-        <div class="table-responsive">
-
-        </div>
-    </div>
-
+<body style="background-image: url('{{ asset('logo12_files/background.png') }}');"
+    data-new-gr-c-s-check-loaded="14.1147.0" data-gr-ext-installed="">
     <div class="container">
-        <div class="shadow-lg pt-0 mt-5">
+        <div class="said">
+            <div class="container" border="0">
+                <div>
 
-            <div class="d-md-flex justify-content-between fm">
-                <div class="number-container shadow-dark">
-                    <span id="currentTime" style="text-align: center">Time:</span>
-                </div>
-                <div class="number-container shadow-dark">
-                    <span>Date : 6/12/2023</span>
-                </div>
-                <div class="number-container shadow-dark">
-                    <span id="currentTime">Next Draw : 08:40:PM</span>
-                </div>
-            </div>
+                    <div class="sidebar">
 
-          
+                        <div>
+                            <div
+                                style="background-image: url('{{ asset('logo12_files/logo.png') }}');background-repeat:no-repeat;background-position: center top; height: 190px;    margin-bottom: 20px;">
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div
+                                        style="background-image:url(desktop/currenttime_.png);background-repeat:no-repeat;background-position: center center; background-color: rgb(39, 146, 133);height:40px; border-radius:30px; white-space: nowrap; overflow: hidden; margin-bottom: 20px;">
+                                        <span id="RemainTime"
+                                            style="font-size: 12pt; font-weight: bold; display: none; color: Yellow;"></span>
+                                        <span style="font-size: 22pt; font-weight: bold; color: Yellow;"
+                                            id="NowTime"></span>
+                                        <input name="hd_nextime" id="hd_nextime" type="hidden">
+                                    </div>
 
-            <div class="heading py-4 mb-5 shadow-dark">
-                <div class="container text-center">
-                    <span class="text shadow-lg p-3">Today Lucky Draw</span>
-                </div>
-                <div class="table-container table-responsive">
-                    <table class="table text-center  border-dark">
-                        <thead class="table-dark">
-                            <tr>
-                                <th></th>
-                                @for ($i = 10; $i <= 61; $i++)
-                                    <th style="padding: 5px;">
-                                        {{ $i }}:{{ $i }}
-                                    </th>
-                                @endfor
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="background-color: black; color:white; font-size:1.5rem;">60</td>
-                                @for ($i = 10; $i <= 61; $i++)
-                                 
-                                
-                                    <td>{{ $i }}</td>
-                                @endfor
-                            </tr>
-                            <tr>
-                                <td style="background-color: black; color:white;font-size:1.5rem;">70</td>
-                                @for ($i = 10; $i <= 61; $i++)
-                              
-                                    <td style="">{{ $i }}</td>
+                                </div>
+                            </div>
+                            <div>
+                                <div
+                                    style="background-image:url(desktop/date_.png);background-repeat:no-repeat; background-position: center center;  width: 232px; max-height: 48px; background-color:rgb(73, 208, 232); border-radius:30px; margin-bottom: 20px; overflow: hidden;">
 
-                                @endfor
-                            </tr>
-                        </tbody>
-                    </table>
+                                    <div style="font-size: 22pt; font-weight: bold; color: Yellow;height:40px"
+                                        id="TodatyDate">
+                                        <span id="NowDate"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <div class="time-slot"
+                                    style="height: 38px; background-color:rgb(40, 117, 232); border-radius:30px;    margin-bottom: 20px;">
+                                    <div style="font-size: 22pt; font-weight: bold; color: Yellow; " id="NextDrowTime">
+                                        <span id="nextDraw"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div>
+                            <div
+                                style="background-image: url('{{ asset('logo12_files/bracelet.png') }}');background-repeat:no-repeat;background-size:150px 150px;background-position: center center;   width: 150px; height: 150px;     margin-bottom: 20px;">
+                            </div>
+                        </div>
+
+
+                        <div style="margin-bottom: 20px;">
+                            <div
+                                style="width: 230px; height: 30px; color: Yellow; font-size: 24px; margin-bottom: 20px;">
+                                FREE GIFT...FREE GIFT For First 70 Lucky Voucher Winner GIFT
+                            </div>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">
+                            <div
+                                style="background-image: url('{{ asset('logo12_files/ring.png') }}'); background-repeat: no-repeat; background-size: 150px 150px; background-position: center center; width: 150px; height: 380px;">
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <div style="width: 230px; height: 30px;color:Yellow;font-size:24px; margin-bottom: 20px; ">
+
+                                FREE GIFT...FREE GIFT For First 60 Lucky Voucher Winner
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-            <div class="shadow-dark">
-                <iframe src="https://g2.ipcamlive.com/player/player.php?alias=5e5a05863bb0b" allowfullscreen></iframe>
             </div>
 
         </div>
+        <div class="main">
+
+            <div class="container">
+                <div class="mains">
+                    <div>
+                        <div>
+                            <div>
+                                <div colspan="2">
+                                    <marquee
+                                        style="font-size: xx-large; margin-top: 10px; background-color: white; font-family: Tahoma; font-weight: bold;">
+                                        For Lucky Shubhank Contact on <span style="font-weight: bold;">022.0000000 "
+                                            0000000000,0000000,000000000"</span>, For Trade Enquiry please Contact on
+                                        000000000
+                                    </marquee>
+                                    <div
+                                        style="background-image: url('{{ asset('logo12_files/17.png') }}'); background-repeat: no-repeat; background-size: 750px 100px; width: 750px; height: 100px; margin: 0;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div>
+
+                                <div style="overflow:auto;width:750px; height: 224px" id="dispres">
+                                    <div class="divTable" style="overflow:auto;">
+
+                                        <div class="divTableRow" style="">
+                                            <div class="container1"> <img src="{{ asset('logo12_files/time_1.png') }}"
+                                                    style="margin-top: 9px;height:46px; margin-right:10px">
+                                                <div class="centered"> </div>
+                                            </div>
+                                            @foreach ($data as $user)
+                                                <div class="divTableCell1">
+                                                    <div class="container1">
+                                                        <img src="{{ asset($user->id % 2 == 0 ? 'logo12_files/time_1.png' : 'logo12_files/time_2.png') }}"
+                                                            style="text-align: center;">
+                                                        <div class="centered"
+                                                            style="text-align: center; margin-left: 2px; margin-bottom: 2px; margin-top: -6px; font-size: 18px;">
+                                                            {{ $user->timesloat }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+
+
+                                        </div>
+                                        <div class="divTableRow" style="margin-bottom: 15px;margin-top: 10px;">
+                                            <div class="divTableCell1"><img src="{{ asset('logo12_files/601.png') }}"
+                                                    style="height:50px;width:50px;background-color:transparent"></div>
+
+                                            @foreach ($data as $user)
+                                                <div class="divTableCell1">
+                                                    <div class="container"> <img
+                                                            src="https://www.goldwinrashi.com//desktoppng/rnum.png"
+                                                            style="width:60px;height:40px">
+                                                        <div class="centered1" style="font-size: 30px; ">
+                                                            {{ $user->number_60 }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+
+                                        </div>
+                                        <div class="divTableRow">
+                                            <div class="divTableCell1"> <img src="{{ asset('logo12_files/70gh.png') }}"
+                                                    style="height:50px;width:50px"> </div>
+                                            @foreach ($data as $user)
+                                                <div class="divTableCell1">
+                                                    <div class="container"> <img
+                                                            src="https://www.goldwinrashi.com//desktoppng/rnum.png"
+                                                            style="width:60px;height:40px">
+                                                        <div class="centered1" style="font-size: 30px">
+                                                            {{ $user->number_70 }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <span id="spredic1" class="blinking" style="font-size:24px;color:Yellow;display:none">
+                        Please Enter <br> Lucky No <br> &amp; know Astrological Prediction <br>
+                        Lucky Coupon Winner <br> will Get a Pooja Bracelet
+
+                    </span><span id="spredic2" style="font-size:24px;display:none;color:Yellow;">
+
+                    </span>
+
+                    <div>
+
+
+                        <div>
+                            <div>
+                                <div>
+
+
+
+                                    <span style="font-size:24px; color:Yellow;">Due to Technical issue Live View is Not
+                                        Available </span>
+
+
+                                    <div>
+                                        <div style="margin-bottom: 6px">
+                                            <div>
+                                                <div>
+                                                    <span>
+                                                        <a type="button"
+                                                            style="font-size: 36px; border:1px solid; background: linear-gradient(to right, #ff6347, #4b0082); background-color: rgb(123, 0, 255); border-radius: 30px; text-decoration: none; padding: 0 15px;"
+                                                            class="bgtime1" value="Shubhank" id="btnres"
+                                                            onclick="Result()"
+                                                            href="{{ route('subhank') }}">Shubhank</a>
+                                                    </span>
+
+
+                                                    <span
+                                                        style="background-image: url(logo12_files/2.png); display: inline-block; width: 200px; height: 40px; background-repeat: no-repeat;margin-bottom:0px;"></span>
+                                                    <span style="color: yellow;">Visitor: <span
+                                                            id="visitcount">27869034</span></span>
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+                                    </div>
+
+                                    {{-- img code start --}}
+                                    <div>
+                                        <table class="caltable" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="3"
+                                                        style="background-image:url(logo12_files/image_1_1.png);background-repeat:no-repeat;background-position: center top;background-size:750px 120px;   width: 750px; height: 120px;">
+                                                    </td>
+
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td
+                                                        style="background-image:url(logo12_files/image_1_4.png);background-repeat:no-repeat;background-position: center top;background-size:250px 120px;   width: 250px; height: 120px;">
+                                                        <br>
+                                                        <img src="logo12_files/60small.png"
+                                                            style="height:100px;width:100px;margin-left:70PX">
+                                                        <br>
+                                                        <img src="logo12_files/70gh.png"
+                                                            style="height:100px;width:100px;margin-left:70PX">
+
+                                                    </td>
+
+                                                    <td
+                                                        style="background-image:url(logo12_files/image_1_4.png);background-repeat:no-repeat;background-position: center top;background-size:250px 120px;   width: 250px; height: 120px;">
+                                                        <table>
+                                                            <tbody>
+                                                                <tr>
+
+
+                                                                    <td style="text-align:center;">
+
+                                                                        <input type="text"
+                                                                            style="width:35px;height:40px; border-color:Blue;text-align:center;font-size:larger;font-weight:bold;margin-left:10px;"
+                                                                            id="t_1" maxlength="1">
+                                                                        <br><br>
+                                                                        <br><br>
+                                                                        <input type="text"
+                                                                            style="width:35px;height:40px;border-color:Blue;text-align:center;font-size:larger;font-weight:bold;margin-left:10px;"
+                                                                            id="Text1" maxlength="1">
+                                                                    </td>
+                                                                    <td style="text-align:center;">
+
+                                                                        <input type="text"
+                                                                            style="width:35px;height:40px;border-color:Blue;text-align:center;font-size:larger;font-weight:bold;margin-left:10px;"
+                                                                            id="t_2" maxlength="1">
+                                                                        <br><br>
+                                                                        <br><br>
+                                                                        <input type="text"
+                                                                            style="width:35px;height:40px;border-color:Blue;text-align:center;font-size:larger;font-weight:bold;margin-left:10px;"
+                                                                            id="Text2" maxlength="1">
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td
+                                                        style="background-image:url(logo12_files/image_1_4.png);background-repeat:no-repeat;background-position: center top;background-size:250px 120px;   width: 250px; height: 120px;">
+
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td
+                                                        style="background-image:url(logo12_files/image_2_0.png);background-repeat:no-repeat;background-position: center top;background-size:100% 100%;   width: 250px; height: 120px;">
+                                                    </td>
+                                                    <td
+                                                        style="background-image:url(logo12_files/image_1_4.png);background-repeat:no-repeat;background-position: center top;background-size:250px 120px;   width: 250px; height: 120px;">
+                                                        <span id="tcode">Verify OTP</span>
+
+                                                    </td>
+                                                    <td
+                                                        style="background-image:url(logo12_files/image_1_4.png);background-repeat:no-repeat;background-position: center top;background-size:250px 120px;   width: 250px; height: 120px;">
+                                                        <br><br>
+                                                        <input type="text"
+                                                            style="width:100px; height:30px; border-color:Blue;margin-left:-50px;font-size:larger;font-weight:bold;"
+                                                            id="t_3" maxlength="6">
+                                                        <input type="button" class="divCells8"
+                                                            style="color:rgb(153, 0, 255);margin-left:10px;font-size:12px;font-weight:bold;background-color:rgb(43, 162, 226); border-radius: 30px"
+                                                            onclick="calc()" id="t_4"
+                                                            value="Click here for Predication">
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td
+                                                        style="background-image:url(logo12_files/image_2_1.png);background-repeat:no-repeat;background-position: center top;background-size:100% 100%;   width: 250px; height: 120px;">
+                                                    </td>
+                                                    <td
+                                                        style="background-image:url(logo12_files/image_1_4.png);background-repeat:no-repeat;background-position: center top;background-size:250px 120px;   width: 250px; height: 120px;">
+
+                                                    </td>
+
+                                                    <td
+                                                        style="background-image:url(logo12_files/image_1_4.png);background-repeat:no-repeat;background-position: center top;background-size:250px 120px;   width: 250px; height: 120px;">
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        {{-- img code end --}}
+                                        {{-- video code --}}
+
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <iframe src="https://g2.ipcamlive.com/player/player.php?alias=5e5a05863bb0b" height="550px"
+                            autoplay="1" allow="autoplay" frameborder="0"
+                            style="width: 788px; margin-top:10px;"></iframe>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+    
     <script>
-        function updateDateTime() {
-            var currentTime = new Date();
-            document.getElementById('currentTime').innerText = ' Time : ' + currentTime.toLocaleTimeString();
+        function updateCurrentTime() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+           
+
+            var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
+                (now.getHours() === 21 && minutes <= 30);
+            if (isWithinInterval) {
+                var day = now.getDate();
+                var month = now.getMonth() + 1; // Months are 0-based
+                var year = now.getFullYear();
+
+                var formattedDate = day + '/' + month + '/' + year;
+                document.getElementById('NowDate').innerText = formattedDate;
+                document.getElementById('NowTime').innerText = currentTime;
+            } else {
+                document.getElementById('NowDate').innerText = '';
+                document.getElementById('NowTime').innerText = "";
+            }
+
+            if (now.getHours() === 8 && minutes === 45 && seconds==00) {
+                location.reload();
+            } else if (now.getHours() === 21 && minutes === 30 && seconds==00) {
+                location.reload();
+            }
         }
 
-        setInterval(updateDateTime, 1000);
-        updateDateTime();
+        setInterval(updateCurrentTime, 1000);
+        updateCurrentTime();
     </script>
+
+    <script>
+        function updateNextDrawTimeAndReload() {
+            var now = new Date();
+            var minutes = now.getMinutes();
+            var remainingMinutes = 15 - (minutes % 15);
+
+            var nextDrawTime = new Date(now.getTime() + remainingMinutes * 60000);
+
+            var hours = nextDrawTime.getHours();
+            var nextMinutes = nextDrawTime.getMinutes();
+            var seconds = nextDrawTime.getSeconds();
+            var ampm = hours >= 12 ? 'P.M.' : 'A.M.';
+
+            hours = hours % 12 || 12;
+            nextMinutes = nextMinutes < 10 ? '0' + nextMinutes : nextMinutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            var nextDrawTimeString = hours + ':' + nextMinutes + ':' + '00' + ' ' + ampm;
+          
+
+            var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
+                (now.getHours() === 21 && minutes <= 30);
+            if (isWithinInterval) {
+               
+                document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
+                
+            } else {
+                document.getElementById('NextDrowTime').innerText = '';
+            }
+
+
+            if (minutes % 15 == 0 && seconds == 00) {
+                location.reload();
+            }
+        }
+
+        setInterval(updateNextDrawTimeAndReload, 1000);
+        updateNextDrawTimeAndReload();
+
+
+
+
+
+        
+    </script>
+
+
+
 </body>
 
 </html>

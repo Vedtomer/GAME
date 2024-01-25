@@ -24,12 +24,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            /* height: 100vh; */
+
             margin: 0;
         }
 
         .login-container {
-            min-width: 500px;
+            max-width: 500px;
+            width: 100%;
             padding: 40px;
             background-color: #fff;
             border-radius: 5px;
@@ -41,7 +43,6 @@
             background-color: var(--primary-color);
             border-color: var(--primary-color);
             font-size: 20px !important;
-            /* Increase button font size */
         }
 
         .btn-primary:hover {
@@ -53,21 +54,15 @@
             text-align: center;
         }
 
-        /* Increase font size for labels and form inputs */
-        .form-label {
-            font-size: 20px !important;
-        }
-
+        .form-label,
         .form-control {
             font-size: 20px !important;
         }
 
-        /* Increase font size for the Login heading */
         h2 {
             font-size: 24px;
         }
 
-        /* Increase font size for the password toggle button */
         .password-toggle {
             position: absolute;
             top: 50%;
@@ -75,15 +70,18 @@
             transform: translateY(4%);
             cursor: pointer;
             font-size: 24px;
-            /* Increase font size */
         }
 
-        /* Increase font size for the logo */
+        @media (max-width: 576px) {
+            .login-container {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div class="login-container">
+    <div class="login-container m-3">
         <h2 class="text-center">Login</h2>
         <form action="" method="POST">
             @csrf
@@ -95,7 +93,7 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
                 <span class="password-toggle" id="password-toggle" onclick="togglePassword()">
-                    <i class="fas fa-eye"></i> <!-- Font Awesome icon for showing the password -->
+                    <i class="fas fa-eye"></i>
                 </span>
             </div>
             <div class="center-btn">
@@ -111,38 +109,30 @@
 
     <script>
         function togglePassword() {
-                const passwordInput = document.getElementById("password");
-                const passwordToggle = document.getElementById("password-toggle");
-    
-                if (passwordInput.type === "password") {
-                    passwordInput.type = "text";
-                    passwordToggle.innerHTML = '<i class="fas fa-eye-slash"></i>'; // Font Awesome icon for hiding the password
-                } else {
-                    passwordInput.type = "password";
-                    passwordToggle.innerHTML = '<i class="fas fa-eye"></i>'; // Font Awesome icon for showing the password
-                }
+            const passwordInput = document.getElementById("password");
+            const passwordToggle = document.getElementById("password-toggle");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                passwordToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                passwordInput.type = "password";
+                passwordToggle.innerHTML = '<i class="fas fa-eye"></i>';
             }
-    
-        @if(session('error'))
+        }
+
+        @if (session('error'))
             toastr.error("{{ session('error') }}");
-            @endif
-    
+        @endif
 
-    <!-- Initialize Toastr -->
-    
         $(document).ready(function() {
-                toastr.options = {
-                    "positionClass": "toast-top-right", // Adjust the position as needed
-                    "closeButton": true,
-                    "progressBar": true
-                };
-            });
+            toastr.options = {
+                "positionClass": "toast-top-right",
+                "closeButton": true,
+                "progressBar": true
+            };
+        });
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
-    <!-- Include Toastr JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </body>
 
 </html>
