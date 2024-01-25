@@ -38,16 +38,19 @@ class LoginController extends Controller
         $currentTime = now();
         $agent = Auth::guard('agent')->user();
     
-       $data = Barcode::where('user_id', $agent->id)
+      $data = Barcode::where('user_id', $agent->id)
             ->where('drawtime', '>=', $currentTime->format('H:i'))->where('status' , '!=' , 'CANCEL')
-            ->orderBy('id', 'desc')
-            ->first();
+            ->orderBy('id', 'desc')->where('is_result_declared',0)
+            ->get();
     
-        if (!$data || $data->drawtime <= $currentTime->format('H:i')) {
+        if (count($data) == 0) {
             return back()->with('error', 'Ticket Not Purchased');
         }
     
-        $points = $data->points;
+foreach( $data as $record){
+
+
+        $points = $record->points;
     
         $newBalance = $agent->balance + $points;
         $agent->update(['balance' => $newBalance]);
@@ -61,9 +64,9 @@ class LoginController extends Controller
             'updated_at' => now(),
         ]);
 
-        $data->status = 'CANCEL';
-        $data->save();
-    
+        $record->status = 'CANCEL';
+        $record->save();
+    }
         return back()->with('error', 'Ticket has been cancelled');
     }
     
