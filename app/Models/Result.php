@@ -25,7 +25,7 @@ class Result extends Model
 
         $currentTime = now();
 
-     $ticketPurchases = TicketPurchase::where('is_result_declared', 0)->where('drawtime' , '<=',$currentTime->format('H:i'))->whereIn('ticket_number', $numbers)->get();
+     $ticketPurchases = TicketPurchase::where('is_result_declared', 0)->where('drawtime' ,$currentTime->format('H:i'))->whereIn('ticket_number', $numbers)->get();
 
         foreach ($ticketPurchases as $ticketPurchase) {
 
