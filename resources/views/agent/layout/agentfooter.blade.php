@@ -5,7 +5,7 @@
 <!-- Include Toastr JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script src="{{ asset('script.js') }}"></script>
-
+<script type="text/javascript" src="{{ asset('asset/js/purchase.js') }}"></script>
 <script>
     @if(session('error'))
         toastr.error("{{ session('error') }}");

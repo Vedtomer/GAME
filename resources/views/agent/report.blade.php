@@ -8,12 +8,39 @@
             width: 400px;
             text-align: center;
         }
+        th{
+            border: 1px solid;
+        }
     </style>
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th style="text-align: center;">Created Date</th>
+                        <th style="text-align: center;">Time</th>
+                        <th style="text-align: center;">Contact</th>
+                        <th style="text-align: center;">Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      <tr>
+                        @if(Auth::guard('agent')->check())
+                        <td scope="row">{{ Auth::guard('agent')->user()->created_at->format('Y-m-d') }}</td>
+                        <td>{{ Auth::guard('agent')->user()->created_at->format('H:i A') }}</td>
+                        <td>{{ Auth::guard('agent')->user()->email }}</td>
+                        <td>{{ Auth::guard('agent')->user()->balance }}</td>
+                        @else
+                        <p>Agent not authenticated.</p>
+                    @endif
+                      </tr>
+                   
+                    </tbody>
+                  </table>
 
-                @if(Auth::guard('agent')->check())
+                {{-- @if(Auth::guard('agent')->check())
                 <div class="container">
                     <div class="info-box">
                         <div class="label">Created Date</div>
@@ -37,7 +64,7 @@
                 </div>
             @else
                 <p>Agent not authenticated.</p>
-            @endif
+            @endif --}}
 
 
                 <form action="{{ route('filtereddata') }}" method="get">
@@ -60,10 +87,8 @@
                 
 
                 <div class="col-lg-6">
-
                     <table>
                         <thead>
-
                         </thead>
                         <tbody>
                             @if (count($data ?? []) > 0)
@@ -79,8 +104,6 @@
                                         </label>
                                     </td>
                                 </tr>
-
-
                                 <tr>
                                     <td>
                                         <label for="barcode{{ $data[0]->id }}" style="font-size: 18px;">
@@ -88,40 +111,31 @@
                                             {{ $end_date->format('m/d/Y') }}
                                         </label>
                                     </td>
-
                                 </tr>
-
                                 <tr>
                                     <td>
                                         <label for="qty{{ $data[0]->id }}" style="font-size: 18px;"><b> Ticket Qty:</b>
                                             {{ $sumQty }}</label>
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         <label for="cancelCount" style="font-size: 18px;"><b>Cancel Qty:</b>
                                             {{ $cancelCount }}</label>
                                     </td>
                                 </tr>
-
-
                                 <tr>
                                     <td>
                                         <label for="cancelCount" style="font-size: 18px;"><b>Net Qty:</b>
                                             {{ $netAmt }}</label>
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         <label for="cancelCount" style="font-size: 18px;"><b>Net Pts:</b>
                                             {{ $netplus }}</label>
                                     </td>
                                 </tr>
-
-
-
                                 <tr>
                                     <td>
                                         <label for="barcode{{ $data[0]->id }}"
@@ -134,14 +148,12 @@
                                             {{ $sumQtyWinpoints }}</label>
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         <label for="barcode{{ $data[0]->id }}" style="font-size: 18px;"><b>Claim Pts:</b>
                                             {{ $winpoints }}</label>
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         <label for="barcode{{ $data[0]->id }}" style="font-size: 18px;"><b>Net Pay:</b>

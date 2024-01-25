@@ -54,7 +54,7 @@ class Result extends Model
                 'updated_at' => now(),
             ]);
 
-            $barcode = Barcode::where('id', $ticketPurchase->barcode_id)->where('status', 'ACTIVE')->first();
+            $barcode = Barcode::where('id', $ticketPurchase->barcode_id)->where('status', 'ACTIVE')->where('is_result_declared' , 0)->first();
 
             if ($barcode) {
                 // Get the existing values
@@ -69,6 +69,7 @@ class Result extends Model
                 $barcode->update([
                     'claimQty' => $newClaimQty,
                     'winpoints' => $newWinpoints,
+                    'is_result_declared' => 1 ,
                 ]);
             }
 
