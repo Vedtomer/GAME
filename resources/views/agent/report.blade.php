@@ -15,6 +15,9 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
+                <div class="btns mb-2" style="margin-right: auto;">
+                    <a href="{{ route('dashboard') }}" class="btn btn-info">Back</a>
+                </div>
                 <table class="table">
                     <thead>
                       <tr>

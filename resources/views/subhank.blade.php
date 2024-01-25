@@ -44,7 +44,10 @@
   </head>
   <body>
 
-
+    <div class="btns mb-2" style="margin-right: auto;">
+                   
+        <a href="{{ route('dashboard') }}" class="btn btn-info">Back</a>
+    </div>
 <form method="post" action="{{ route('subhank') }}" id="form1">
     @csrf
   
