@@ -255,20 +255,30 @@ function updateInputA0() {
       sum += inputVal;
     }
     document.getElementById("qty99").innerText = sum;
-    var pts9Value = sum * 1.1;
+    var selectedCheckboxes = document.querySelectorAll('#timeDropdownList input[type="checkbox"]:checked');
+    var selectedCheckboxesLength = selectedCheckboxes.length;
+    
+    if (selectedCheckboxesLength === 0) {
+        selectedCheckboxesLength = 1;
+    }
+    
+    // console.log('Number of selected checkboxes (adjusted):', selectedCheckboxesLength);
+    
+    var pts9Value = sum * 1.1 * selectedCheckboxesLength;
+
     document.getElementById("pts99").innerText = pts9Value.toFixed(2);
   
-    updateTotalQty();
+    updateTotalQty(selectedCheckboxesLength);
   }
   
-  function updateTotalQty() {
+  function updateTotalQty(selectedCheckboxesLength) {
     var totalQty = 0;
     for (let i = 9; i <= 99; i += 10) {
       var qtyVal = parseInt(document.getElementById("qty" + i).innerText) || 0;
       totalQty += qtyVal;
     }
-    document.getElementById("tqty").innerText = totalQty;
-    updateTotalPoints(totalQty);
+    document.getElementById("tqty").innerText = totalQty * selectedCheckboxesLength;
+    updateTotalPoints(totalQty * selectedCheckboxesLength);
   }
   
   function updateTotalPoints(totalQty) {
@@ -491,19 +501,23 @@ function updateCurrentTime() {
   seconds = seconds < 10 ? '0' + seconds : seconds;
   var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
 
+  var day = now.getDate();
+      var month = now.getMonth() + 1; // Months are 0-based
+       var year = now.getFullYear();
+  var formattedDate = day + '/' + month + '/' + year;
+     document.getElementById('NowDate').innerText = formattedDate;
+      // document.getElementById('NowTime').innerText = currentTime;
 
   var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
       (now.getHours() === 21 && minutes <= 30);
   if (isWithinInterval) {
-      var day = now.getDate();
-      var month = now.getMonth() + 1; // Months are 0-based
-      var year = now.getFullYear();
-
-      var formattedDate = day + '/' + month + '/' + year;
-      document.getElementById('NowDate').innerText = formattedDate;
+      
+     
       document.getElementById('NowTime').innerText = currentTime;
-  } else {
-      document.getElementById('NowDate').innerText = '';
+  }else if ((now.getHours() >= 0 && now.getHours() < 8) ||  (now.getHours() === 8 && minutes < 45)) {
+    document.getElementById('NowTime').innerText = '00';
+} else {
+   
       document.getElementById('NowTime').innerText = "";
   }
 
@@ -531,7 +545,7 @@ function updateNextDrawTimeAndReload() {
   seconds = seconds < 10 ? '0' + seconds : seconds;
 
   var nextDrawTimeString = hours + ':' + nextMinutes + ':' + '00' + ' ' + ampm;
-
+ 
 
   var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
       (now.getHours() === 21 && minutes <= 30);
@@ -539,7 +553,9 @@ function updateNextDrawTimeAndReload() {
 
       document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
 
-  } else {
+  }else if ((now.getHours() >= 0 && now.getHours() < 8) ||  (now.getHours() === 8 && minutes < 45)) {
+    document.getElementById('NextDrowTime').innerText = '00';
+} else {
       document.getElementById('NextDrowTime').innerText = '';
   }
 
@@ -570,7 +586,7 @@ function updateRemainingTime() {
       (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
 
 
-
+      document.getElementById('RemainingTime').innerText = remainingTimeString;
 
 
   var isWithinInterval = (now.getHours() === 8 && minutes >= 45) || (now.getHours() > 8 && now.getHours() < 21) ||
@@ -579,7 +595,9 @@ function updateRemainingTime() {
 
       document.getElementById('RemainingTime').innerText = remainingTimeString;
 
-  } else {
+  }else if ((now.getHours() >= 0 && now.getHours() < 8) ||  (now.getHours() === 8 && minutes < 45)) {
+    document.getElementById('RemainingTime').innerText = '00';
+} else {
       document.getElementById('RemainingTime').innerText = '';
   }
 
@@ -601,3 +619,180 @@ setInterval(function() {
 // Initial update
 updateCurrentTime();
 updateNextDrawTimeAndReload();
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the current time
+    var currentTime = new Date();
+    var currentHours = currentTime.getHours();
+    var currentMinutes = currentTime.getMinutes();
+
+    // Convert current time to a numerical value (e.g., 0945)
+    var currentTimeValue = currentHours * 100 + currentMinutes;
+
+    // Get all checkbox elements
+    var checkboxes = document.querySelectorAll('#timeDropdownList input[type="checkbox"]');
+
+    // Loop through checkboxes and remove past times
+    checkboxes.forEach(function (checkbox) {
+        var checkboxValue = parseInt(checkbox.value.replace(':', ''), 10);
+        if (checkboxValue < currentTimeValue) {
+            checkbox.parentElement.remove();
+        }
+    });
+});
+
+
+
+
+
+
+
+(function($) {
+var CheckboxDropdown = function(el) {
+  var _this = this;
+  this.isOpen = false;
+  this.areAllChecked = false;
+  this.$el = $(el);
+  this.$label = this.$el.find('.dropdown-label');
+  this.$checkAll = this.$el.find('[data-toggle="check-all"]').first();
+  this.$inputs = this.$el.find('[type="checkbox"]');
+  
+  this.onCheckBox();
+  
+  this.$label.on('click', function(e) {
+    e.preventDefault();
+    _this.toggleOpen();
+  });
+  
+  this.$checkAll.on('click', function(e) {
+    e.preventDefault();
+    _this.onCheckAll();
+  });
+  
+  this.$inputs.on('change', function(e) {
+    _this.onCheckBox();
+  });
+};
+
+CheckboxDropdown.prototype.onCheckBox = function() {
+  this.updateStatus();
+};
+
+CheckboxDropdown.prototype.updateStatus = function() {
+  var checked = this.$el.find(':checked');
+  console.log(checked.length, this.areAllChecked);
+
+  this.areAllChecked = false;
+  this.$checkAll.html('Select All');
+  
+  if (checked.length <= 0) {
+    this.$label.html('Select');
+  } else if (checked.length === 1) {
+    this.$label.html(checked.parent('label').text());
+  } else if (checked.length === this.$inputs.length) {
+    console.log("All selected");
+    this.$label.html('All Selected');
+    this.areAllChecked = true;
+    this.$checkAll.html('Uncheck All');
+  } else {
+    this.$label.html(checked.length + ' Selected');
+  }
+  updateQty();
+};
+
+CheckboxDropdown.prototype.onCheckAll = function(checkAll) {
+console.log(this.areAllChecked);
+
+// Toggle the state of areAllChecked
+this.areAllChecked = !this.areAllChecked;
+
+if (this.areAllChecked || checkAll) {
+this.$checkAll.html('Uncheck All');
+this.$inputs.prop('checked', true);
+} else {
+this.$checkAll.html('Select All');
+this.$inputs.prop('checked', false);
+}
+
+updateQty();
+};
+
+
+CheckboxDropdown.prototype.toggleOpen = function(forceOpen) {
+  var _this = this;
+  
+  if (!this.isOpen || forceOpen) {
+     this.isOpen = true;
+     this.$el.addClass('on');
+    $(document).on('click', function(e) {
+      if (!$(e.target).closest('[data-control]').length) {
+       _this.toggleOpen();
+      }
+    });
+  } else {
+    this.isOpen = false;
+    this.$el.removeClass('on');
+    $(document).off('click');
+  }
+};
+
+var checkboxesDropdowns = document.querySelectorAll('[data-control="checkbox-dropdown"]');
+for (var i = 0, length = checkboxesDropdowns.length; i < length; i++) {
+  new CheckboxDropdown(checkboxesDropdowns[i]);
+}
+})(jQuery);
+
+
+
+
+function validateForm() {
+    
+        var inputValue = document.getElementById('inputField').value;
+
+        if (inputValue.trim() === '') {
+            // Display an error message
+            alert('Error: Please enter a value before submitting.');
+            return false; // Prevent form submission
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+var currentTime = new Date();
+var currentHour = currentTime.getHours();
+var currentMinute = currentTime.getMinutes();
+
+
+var formattedCurrentTime = currentHour * 60 + currentMinute;
+
+
+var dropdown = document.getElementById('exampleDropdown');
+var options = dropdown.options;
+var lastPastTimeIndex = -1;
+
+for (var i = options.length - 1; i >= 0; i--) {
+    var optionValue = options[i].value;
+    var optionTime = parseInt(optionValue.split(':')[0]) * 60 + parseInt(optionValue.split(':')[1]);
+
+    if (optionValue !== "" && optionTime < formattedCurrentTime) {
+        if (lastPastTimeIndex === -1) {
+            lastPastTimeIndex = i;
+        } else {
+            dropdown.remove(i);
+        }
+    }
+}
+
+
+
+

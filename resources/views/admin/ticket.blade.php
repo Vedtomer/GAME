@@ -1,5 +1,5 @@
-@extends('agent.layout.agentmain')
-@section('title', 'View Purchase')
+@extends('admin.layout.main')
+@section('title', 'Ticket')
 @section('section')
 <style>
 .main{
@@ -44,11 +44,6 @@ td{
         <div class="main-card mb-3 card">
             <div class="card-body">
 
-                <div class="btns mb-2" style="margin-right: auto;">
-                   
-                    <a href="{{ route('dashboard') }}" class="btn btn-info">Back</a>
-                </div>
-
                 <div class="add" style="display: flex; align-items: center;">
                     <div class="btns" style="margin-left: auto;">
                     </div>
@@ -59,6 +54,7 @@ td{
                         <table class="mb-0 table">
                             <thead>
                                 <tr>
+                                    
                                     <th>Draw Time</th>
                                     <th>Qty</th>
                                     <th>Points</th>
@@ -74,6 +70,7 @@ td{
                             <tbody>
                                 @foreach ($data as $user)
                                     <tr>
+                                    
                                         <td><b>{{ $user->drawtime }}</b></td>
                                         <td><b>{{ $user->qty }}</b></td>
                                         <td><b>{{ $user->points }}</b></td>

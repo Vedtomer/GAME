@@ -66,16 +66,21 @@ class AgentController extends Controller
 
     public function dashboard($number = null)
     {
+
+
+
         if (!$number) {
             $number = 6000;
         }
 
         $agent = Auth::guard('agent')->user();
 
-        $data = TicketPurchase::where('user_id', Auth::user()->id)
-            ->orderBy('id', 'desc')
-            ->paginate(10);
-
+        $currentTime = now()->format('H:i');
+        $data = Result::whereDate('created_at', now()->toDateString())
+            ->where('timesloat', '<=', $currentTime)
+            ->orderBy('timesloat', 'desc')
+            ->get();
+        // return     $data;
         return view('agent.dashboard', compact('agent', 'number', 'data'));
     }
 
@@ -99,7 +104,23 @@ class AgentController extends Controller
 
     public function savedashboard(Request $request)
     {
+
+       
+
         $currentTime = now();
+        $ticketWindowOpenTime = now()->setTime(8, 45); // Set the opening time to 8:45 AM
+        $ticketWindowCloseTime = now()->setTime(21, 30); // Set the closing time to 9:30 PM
+    
+        // Check if the current time is within the ticket window
+        if ($currentTime->lt($ticketWindowOpenTime) || $currentTime->gte($ticketWindowCloseTime)) {
+            // Ticket window is not open
+            $openingTime = $ticketWindowOpenTime->format('h:i A');
+            return back()->with('error', "Ticket window is not open. Please try again after $openingTime.");
+        }
+    
+        
+
+      
         $startTime = now()->setHour(9)->setMinute(0)->setSecond(0); // Set your start time
         $endTime = now()->setHour(21)->setMinute(30)->setSecond(0);   // Set your end time
     
@@ -129,16 +150,19 @@ class AgentController extends Controller
 
             if (($keyInt >= 7000 && $keyInt <= 7099) || ($keyInt >= 6000 && $keyInt <= 6099)) {
                 if (!empty($value)) {
-
+ $notempty = true;
                     $pts = (int)$value * 1.1;
 
 
                     $totalPts += $pts;
                     $totalQty += $value;
                 }
+
             }
         }
-
+if(empty($notempty)){
+    return back()->with('error', 'Please Purchase at least One Ticket');
+}
 
         if ($totalPts > $balance) {
 
@@ -147,13 +171,17 @@ class AgentController extends Controller
 
         $currentTime = strtotime(date("H:i"));
         $drawtime = ceil($currentTime / (15 * 60)) * (15 * 60);
-        $drawtimeFormatted = date("H:i", $drawtime);
+       
+        if(empty($data['timeslots'])){
+            $data['timeslots'][0] = date("H:i", $drawtime);
+        }
 
         // $drawtimeFormatted now contains the formatted drawtime like 9:15, 9:30, 9:45, 10:00, etc.
 
-
+        foreach ($data['timeslots'] as  $timeslots) {
+           
         $barcode = new Barcode();
-        $barcode->drawtime = $drawtimeFormatted;
+        $barcode->drawtime = $timeslots;
         $barcode->user_id = $user_id;
         $barcode->requestid = mt_rand(100000000000, 999999999999);
         $barcode->qty = $totalQty;
@@ -162,7 +190,7 @@ class AgentController extends Controller
         $barcode->barcode = mt_rand(1000000000000, 9999999999999);
         $barcode->save();
         $savedId = $barcode->id;
-
+       
 
 
         foreach ($data as $key => $value) {
@@ -177,9 +205,9 @@ class AgentController extends Controller
                     $balance -= $pts;
 
 
-                    DB::transaction(function () use ($keyInt, $value, $pts, $user_id, $savedId, $drawtimeFormatted) {
+                    DB::transaction(function () use ($keyInt, $value, $pts, $user_id, $savedId, $timeslots) {
                         $TicketPurchase = new TicketPurchase();
-                        $TicketPurchase->drawtime = $drawtimeFormatted;
+                        $TicketPurchase->drawtime = $timeslots;
                         $TicketPurchase->ticket_number = $keyInt;
                         $TicketPurchase->qty = (int)$value;
                         $TicketPurchase->points = $pts;
@@ -201,7 +229,7 @@ class AgentController extends Controller
             }
         }
 
-
+    }
         Auth::user()->update(['balance' => $balance]);
 
         return back()->with('success', 'Ticket purchased successfully.');
@@ -340,14 +368,20 @@ class AgentController extends Controller
 
     public function result()
     {
-
-        $users = Result::orderBy('created_at', 'desc')->get();
-        return view('agent.result', ['data' => $users]);
+      
+        $currentTime = now()->format('H:i');
+        $data = Result::whereDate('created_at', now()->toDateString())
+            ->where('timesloat', '<=', $currentTime)
+            ->orderBy('timesloat', 'desc')
+            ->get();
+    
+        return view('agent.result', ['data' => $data]);
     }
 
     public function getFilteredData(Request $request)
     {
         $date = $request->date;
+        
         $data = Result::whereDate('created_at', $date)->get();
         $dataTransaction = Transaction::whereDate('created_at', $date)->get();
 
@@ -493,11 +527,17 @@ class AgentController extends Controller
         return view('subhank', ['data' => $users]);
     }
 
-    public function report(){
-    
-        // $data = Barcode::all();
-        return view('agent.report');
+    public function report() {
+        // Check if the agent is authenticated
+        if (Auth::guard('agent')->check()) {
+            // Agent is authenticated, proceed to the view
+            return view('agent.report');
+        } else {
+            // Agent is not authenticated, handle accordingly (e.g., redirect to login)
+            return redirect()->route('agent.login'); // Adjust the route name as needed
+        }
     }
+    
 
 
 

@@ -25,14 +25,14 @@ class Result extends Model
 
         $currentTime = now();
 
-     $ticketPurchases = TicketPurchase::where('is_result_declared', 0)->where('drawtime' , '<=',$currentTime->format('H:i'))->whereIn('ticket_number', $numbers)->get();
+     $ticketPurchases = TicketPurchase::where('is_result_declared', 0)->where('drawtime' ,$currentTime->format('H:i'))->whereIn('ticket_number', $numbers)->get();
 
         foreach ($ticketPurchases as $ticketPurchase) {
 
 
             // Calculate winning amount (assuming qty is a column in the TicketPurchase table)
             $ticketPurchase = TicketPurchase::find($ticketPurchase->id);
-            $winningAmount = $ticketPurchase->qty * 10;
+            $winningAmount = $ticketPurchase->qty * 100;
 
             $ticketPurchase->winning_amount = $winningAmount;
             $ticketPurchase->is_result_declared = 1;
@@ -54,7 +54,7 @@ class Result extends Model
                 'updated_at' => now(),
             ]);
 
-            $barcode = Barcode::where('id', $ticketPurchase->barcode_id)->where('status', 'ACTIVE')->first();
+            $barcode = Barcode::where('id', $ticketPurchase->barcode_id)->where('status', 'ACTIVE')->where('is_result_declared' , 0)->first();
 
             if ($barcode) {
                 // Get the existing values
@@ -69,6 +69,7 @@ class Result extends Model
                 $barcode->update([
                     'claimQty' => $newClaimQty,
                     'winpoints' => $newWinpoints,
+                    'is_result_declared' => 1 ,
                 ]);
             }
 

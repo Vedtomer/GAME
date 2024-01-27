@@ -50,7 +50,7 @@
                
               
                 <li>
-                    <a href="result">
+                    <a href="{{route('result')}}">
                         <i class="metismenu-icon pe-7s-diamond"></i>
                          <b>Result</b>
                         
