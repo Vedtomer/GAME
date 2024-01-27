@@ -438,27 +438,7 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
         $data = Transaction::all();
         return view('admin.withdrawal', ['data' => $data, 'id' => $id]);
     }
-    // public function amount($id)
-
-    // {
-    //     $Data = Transaction::all();
-    //     return view('admin.amount', ['data' => $Data]);
-    // }
-
-    // public function amountsave(Request $request)
-    // {
-    //     $validate = $request->validate([
-        
-    //         'amount' => 'required',
-    //     ]);
-
-    //     $userdata = new Transaction();
-    //     $userdata->amount = $request->amount;
-
-    //     $userdata->save();
-    //     session()->flash('success', 'User created successfully.');
-    //     return redirect()->route('admin.user');
-    // }
+  
     public function  transaction($id=null)
     {
         if(empty($id)){

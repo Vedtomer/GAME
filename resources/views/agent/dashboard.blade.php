@@ -537,7 +537,7 @@ body {
                                     if ($i == -1) {
                                         echo '<td></td><td></td>';
                                     } else {
-                                        echo "<th class=yellow><span for='input_top_{$i}'>B </span><br><input type='tel' id='input_top_{$i}' name='input_top_{$i}' onkeypress='allowOnlyNumbers(event)' oninput='updateInputs{$i}()' class='input-box'></th>";
+                                        echo "<th class=yellow><span for='input_top_{$i}'>B </span><br><input type='tel' maxlength='4' id='input_top_{$i}' name='input_top_{$i}' onkeypress='allowOnlyNumbers(event)' oninput='updateInputs{$i}()' class='input-box'></th>";
                                     }
                                 
                                     if ($i == 9) {
@@ -559,20 +559,20 @@ body {
                                 for ($i = 0; $i < 100; $i++) {
                                     if ($i == 0 || $i == 10 || $i == 20 || $i == 30 || $i == 40 || $i == 50 || $i == 60 || $i == 70 || $i == 80 || $i == 90) {
                                         if ($i == 0) {
-                                            echo "<th class=gradient-container><span for='radio60'>60</span><input type='radio' name='radioNumber' value='60' id='radio60' class='' onclick='redirectToDashboard(6000)' " . ($number == 6000 ? 'checked' : '') . '></th>';
+                                            echo "<th class=gradient-container><span for='radio60'>60</span><input type='radio' maxlength='4' name='radioNumber' value='60' id='radio60' class='' onclick='redirectToDashboard(6000)' " . ($number == 6000 ? 'checked' : '') . '></th>';
                                         } elseif ($i == 10) {
-                                            echo "<th class=gradient-container><span for='radio70'>70</span><input type='radio' name='radioNumber' value='70' id='radio70' class='' onclick='redirectToDashboard(7000)' " . ($number == 7000 ? 'checked' : '') . '></th>';
+                                            echo "<th class=gradient-container><span for='radio70'>70</span><input type='radio' maxlength='4' name='radioNumber' value='70' id='radio70' class='' onclick='redirectToDashboard(7000)' " . ($number == 7000 ? 'checked' : '') . '></th>';
                                         } else {
                                             echo '<th class=gradient-container></th>';
                                         }
                                 
-                                        echo "<th class=yellow><span for='A{$i}'> A</span><br><input type='tel' id='A{$i}' name='A{$i}' onkeypress='allowOnlyNumbers(event)' oninput='updateInputA{$i}()' class='input-box'></th>";
+                                        echo "<th class=yellow><span for='A{$i}'> A</span><br><input type='tel' id='A{$i}' maxlength='4' name='A{$i}' onkeypress='allowOnlyNumbers(event)' oninput='updateInputA{$i}()' class='input-box'></th>";
                                     }
                                 
                                     $defaultspan = $j;
                                     $defaultName = $j;
                                 
-                                    echo "<th class=main-input><span for='{$defaultName}'>{$defaultspan}</span><br><input type='tel' id='input{$i}' name='{$defaultName}' onkeypress='allowOnlyNumbers(event)' oninput='updateQty()' class='input-box'></th>";
+                                    echo "<th class=main-input><span for='{$defaultName}'>{$defaultspan}</span><br><input type='tel' maxlength='4' id='input{$i}' name='{$defaultName}' onkeypress='allowOnlyNumbers(event)' oninput='updateQty()' class='input-box'></th>";
                                     $lastSetIndex = $i % 10;
                                     if (($i + 1) % 10 === 0) {
                                         $lastSetIndex = $i % 9;
