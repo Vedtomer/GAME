@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 use App\Models\Result;
+use Carbon\Carbon;
 use App\Models\Transaction;
+use App\Models\Barcode;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -497,7 +499,32 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
         return view('admin.layout.newhome', ['data' => $users]);
     }
 
- 
+
+    
+    public function ticket(Request $request, $number = null)
+    {
+        // $agent = Auth::guard('agent')->user();
+        // $currentDate = Carbon::now()->format('Y-m-d');
+        $data = Barcode::with('ticketPurchases')->orderBy('id', 'desc')->get();
+        return view('admin.ticket', compact( 'number', 'data'));
+    }
+
+    
+    // public function ticket(Request $request, $number = null)
+    // {
+
+    //     // $data = Barcode::with('ticketPurchases')->orderBy('id', 'desc')
+    //     //     ->get();
+
+    //     $data = DB::table('barcodes')
+    //     ->join('Ticket_purchase', 'barcodes.id', '=', 'Ticket_purchase.barcode_id')
+    //     ->select('barcodes.*', 'Ticket_purchase.ticket_number', 'Ticket_purchase.qty')
+    //     ->get();
+    
+    
+   
+    //     return view('admin.ticket', compact('data'));
+    // }
     // public function view(){
 
 

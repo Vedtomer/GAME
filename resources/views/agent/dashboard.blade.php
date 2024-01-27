@@ -524,11 +524,7 @@ body {
                 <div class="btns" style="margin-left: auto;">
                 </div>
             </div>
-
-
             <div class="">
-
-               
                     @csrf
                     <table>
                         <tr>
@@ -543,9 +539,9 @@ body {
                                     if ($i == 9) {
                                         echo "<th class=gradient-container><span for='input_top'>QTY.</span></th><th class=gradient-container><span for='input_top'>PTS.</span></th>
                                                                         
-                                                                        <th class=result><span for='input_top'>Time</span></th>
-                                                                        <th class=result><span for='input_top'>60</span></th>
-                                                                        <th class=result><span for='input_top'>70</span></th>
+                                       <th class=result><span for='input_top'>Time</span></th>
+                                       <th class=result><span for='input_top'>60</span></th>
+                                       <th class=result><span for='input_top'>70</span></th>
                                                                         
                                                                         ";
                                     }
@@ -590,26 +586,17 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
                                 
                                     if ($i == 99) {
                                         echo "<tr>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <th colspan=11><div class=submit><button type=submit id='submitButton' onclick='validateForm()' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'> <b>Submit</b> </button> 
-                                                                                                                                                                                                <a class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' id=reloadBtn> <b>Clear</b> </a>                                                                                                  
-                                                                                                                                                                                                    <a href='/subhank' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-success' style='text-decoration: none; color: inherit;'> <b>Result</b></a>
-                                                                                                                                                                                                
-                                                                                                                                                                                                
-                                                                                                                                                                                                    <a href='/dashview' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-danger' style='text-decoration: none; color: inherit;'> <b>View</b></a>
-                                                                                                                                                                                                
-                                                                                                                                                                                                
-                                                                                                                                                                                                    <a href='/agentchangepassword' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>password</b></a>
-                                                                                                                                                                                                
-                                                                                                                                                                                                    <a href='/report' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>report</b></a>
-                                                                                                                                                                                                
-                                                                                                                                                                                                
-                                                                                                                                                                                                    <a href='/cancel-ticket' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning' style='text-decoration: none; color: inherit;'> <b>Cancel</b></a>
-                                                                                                                                                                                                
-                                                                                                                                                                                                
-                                                                                                                                                                                                 </div></th>
-                                                                                                                                                                                                                                                                                                    <th><span for='qty{$i}'>Total</span></th>
-                                                                                                                                                                                                                                                                                                    <th><span  id='tqty' name='tqty'>0</span></th>
-                                                                                                                                                                                                                                                                                                     <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
+                                                                                                                               <th colspan=11><div class=submit><button type=submit id='submitButton' onclick='validateForm()' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-primary' id='submitButton'> <b>Submit</b> </button> 
+ <a class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' id=reloadBtn> <b>Clear</b> </a>                                                                                                  
+<a href='/subhank' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-success' style='text-decoration: none; color: inherit;'> <b>Result</b></a>
+ <a href='/dashview' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-danger' style='text-decoration: none; color: inherit;'> <b>View</b></a>
+ <a href='/agentchangepassword' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>password</b></a>
+ <a href='/report' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-info' style='text-decoration: none; color: inherit;'> <b>report</b></a>
+ <a href='/cancel-ticket' class='mb-2 mr-2 btn-hover-shine btn-square btn btn-warning' style='text-decoration: none; color: inherit;'> <b>Cancel</b></a>
+ </div></th>
+ <th><span for='qty{$i}'>Total</span></th>
+ <th><span  id='tqty' name='tqty'>0</span></th>
+ <th><span  id='tpts' name='tpts'>0.00</span></th> </tr>";
                                     }
                                     $j++;
                                 }

@@ -101,7 +101,7 @@ Route::prefix('admin')->group(function () {
         // Route::get('/get-filtered-datas', [AdminController::class, 'getFilteredDataForAdmins']);
         // Route::get('/admin/get-filtered-data', [AdminController::class, 'getFilteredData'])->name('admin.getFilteredData');
 
-
+        Route::match(['get', 'post'], 'ticket', [AdminController::class, 'ticket'])->name('ticket');
         // Route::get('settlement', [AdminController::class, 'settlement'])->name('settlement');
         
     

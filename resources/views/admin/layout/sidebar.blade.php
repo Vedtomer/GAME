@@ -79,6 +79,12 @@
                          <b> Transaction </b>
                         </a>
                     </li>
+                    <li>
+                        <a href=" {{route('ticket')}}">
+                            <i class="metismenu-icon pe-7s-pendrive">
+                            </i><b>Ticket</b>
+                        </a>
+                    </li>
                 {{-- <li>
                     <a href="">
                         <i class="metismenu-icon pe-7s-car"></i>
