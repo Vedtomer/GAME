@@ -49,19 +49,21 @@ td{
                     </div>
                 </div>
                 <div class="table-responsive">
+                 <div class="mb-2">
+                    <input type="date" id="dateFilter" onchange="fetchData()">
+                 </div>
                     @if (isset($data) && count($data) > 0)
-
                         <table class="mb-0 table">
                             <thead>
                                 <tr>
-                                    
+                                    <th>User Name</th>
+                                    <th>Email</th>
                                     <th>Draw Time</th>
                                     <th>Qty</th>
                                     <th>Points</th>
                                     <th>WinPoints</th>
                                     <th>Requestid</th>
                                     <th>Barcode</th>
-
                                     <th>Status</th>
                                     <th>Datetime</th>
                                     <th>View</th>
@@ -70,7 +72,8 @@ td{
                             <tbody>
                                 @foreach ($data as $user)
                                     <tr>
-                                    
+                                        <td><b>{{ $user->user->name }}</b></td>
+                                        <td><b>{{ $user->user->email }}</b></td>
                                         <td><b>{{ $user->drawtime }}</b></td>
                                         <td><b>{{ $user->qty }}</b></td>
                                         <td><b>{{ $user->points }}</b></td>
@@ -132,97 +135,17 @@ var ticketNumberQtyString = ticketPurchases.map(ticketPurchase => `${ticketPurch
         }
         console.log
         }
-    </script>
-
-<script>
-    function generateBarcode(barcodeValue) {
-            var containerElement = document.getElementById('barcodeContainer');
-            if (containerElement) {
-                containerElement.innerHTML = '';
-                JsBarcode("#barcodeContainer", "1235", {
-                    format: "auto",
-                    displayValue: false
-                });
-            } else {
-                console.error('Target element not found.');
-            }
-        }
-</script>
-
-<script>
-    function generateBarcode() {
-        var barcodeValue = Math.floor(Math.random() * 1000000000).toString();
-        document.getElementById('barcode').innerHTML = '';
-        JsBarcode("#barcode", barcodeValue, {
-            format: "CODE128",  
-            displayValue: true
-        });
+        function fetchData() {
+        var selectedDate = document.getElementById('dateFilter').value;
+        window.location.href = "{{ route('ticket') }}" + "?date=" + selectedDate;
     }
-</script>
-
-    <script>
-        function redirectToDashboard(number) {
-            var url = '{{ route('dashboard', ':number') }}';
-            url = url.replace(':number', number);
-            window.location.href = url;
-        }
-
-        document.getElementById('reloadBtn').addEventListener('click', function() {
-            location.reload();
-        });
     </script>
 
-    <script type="text/javascript" src="{{ asset('asset/js/purchase.js') }}"></script>
-
-    <script>
-        setInterval(function() {
-            var now = new Date();
-            var hours = now.getHours();
-            var minutes = now.getMinutes();
-            var seconds = now.getSeconds();
-            var ampm = hours >= 12 ? 'P.M.' : 'A.M.';
 
 
-            hours = hours % 12 || 12;
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
+  
 
-            var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
-
-
-            document.getElementById('NowTime').innerText = currentTime;
-        }, 1000);
-    </script>
-
-    <script>
-        function updateNextDrawTime() {
-            var now = new Date();
-            var minutes = now.getMinutes();
-            var remainingMinutes = 15 - (minutes % 15);
-
-            var nextDrawTime = new Date(now.getTime() + remainingMinutes * 60000);
-
-            var hours = nextDrawTime.getHours();
-            var minutes = nextDrawTime.getMinutes();
-            var seconds = nextDrawTime.getSeconds();
-            var ampm = hours >= 12 ? 'P.M.' : 'A.M.';
-
-            hours = hours % 12 || 12;
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
-
-            var nextDrawTimeString = hours + ':' + minutes + ' ' + ampm;
-
-            document.getElementById('NextDrowTime').innerText = nextDrawTimeString;
-            if (now.getTime() >= nextDrawTime.getTime()) {
-                location.reload(true);
-            }
-        }
-
-        updateNextDrawTime();
-
-        setInterval(updateNextDrawTime, 900000);
-    </script>
+ 
 
 
 @endsection

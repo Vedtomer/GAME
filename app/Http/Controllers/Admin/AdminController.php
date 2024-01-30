@@ -14,6 +14,7 @@ use App\Models\Result;
 use Carbon\Carbon;
 use App\Models\Transaction;
 use App\Models\Barcode;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -29,7 +30,6 @@ class AdminController extends Controller
         if ($request->isMethod('get')) {
             return view('admin.login');
         }
-
 
         if ($request->isMethod('post')) {
             $credentials = $request->only('email', 'password');
@@ -48,18 +48,13 @@ class AdminController extends Controller
     public function logout()
     {
         Auth::guard('admin')->logout();
-        // dd('Logout successful'); // Add this line for debugging
         return redirect()->route('admin.login');
     }
 
 
     public function dashboard()
     {
-        // Retrieve the authenticated admin
         $admin = Auth::guard('admin')->user();
-
-        // You can now use $admin to access the authenticated admin's details
-
         return view('admin.dashboard', compact('admin'));
     }
     public function userdata()
@@ -73,19 +68,16 @@ class AdminController extends Controller
     public function userstore(Request $request)
     {
         $validate = $request->validate([
-
             'name' => 'required|string|max:100',  // validate krna form ko
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
 
         ]);
 
-
         $userdata = new User();
         $userdata->name = $request->name;
         $userdata->email = $request->email;
-        $userdata->password = $request->password; // store kr raha hai yani database me data insert ho raha hai
-
+        $userdata->password = $request->password; 
         $userdata->save();
 
         return redirect()->route('userdata');
@@ -106,11 +98,8 @@ class AdminController extends Controller
     public function newupdate(Request $request, $id)
     {
         $USER = DB::table('users')->where('id', $id)->update([
-
             'name' => $request->name,
             'email' => $request->email,
-
-
         ]);
         return redirect()->route('admin.user')->with('error', 'update successfully.');
         // ]);
@@ -144,7 +133,6 @@ public function changePassword(Request $request)
         'confirm_password' => 'required|min:8',
     ]);
 
-    
     $userId = $request->input('user_id');
     $newPassword = $request->input('password');
     $confirm_password = $request->input('confirm_password');
@@ -155,9 +143,6 @@ public function changePassword(Request $request)
     }else{
         return redirect()->back()->with('error', 'The  password is not match.');
     }
-
-    // Assuming 'users' is your table name
- 
 
     return redirect()->route('admin.user')->with('success', 'Password updated successfully!');
 }
@@ -198,7 +183,6 @@ public function adminchangePassword(Request $request)
     }
     public function useradd()
     {
-      
         return view('admin.useradd');
     }
     
@@ -224,7 +208,6 @@ public function adminchangePassword(Request $request)
     $userdata->name = $request->name;
     $userdata->email = $request->email;
     $userdata->password = bcrypt($request->password);
-
     $userdata->save();
 
     session()->flash('success', 'User created successfully.');
@@ -258,8 +241,6 @@ public function userupdate(Request $request, $id)
 
         'name' => $request->name,
         'email' => $request->email,
-
-
     ]);
     return redirect()->route('user')->with('success', 'update successfully.');
     // ]);
@@ -277,7 +258,6 @@ public function userdelete(string $id)
 
     public function resultadd()
     {
-      
         return view('admin.resultadd');
     }
 
@@ -292,7 +272,6 @@ public function userdelete(string $id)
         $date = $request->date;
         $data = Result::whereDate('created_at', $date)->orderBy('timesloat', 'desc')->get();
         // $dataa = Transaction::whereDate('created_at', $date)->get();
-    
         // return response()->json(['data' => $data]);
         $dataTransaction = Transaction::whereDate('created_at', $date)->get();
 
@@ -324,9 +303,8 @@ public function userdelete(string $id)
         $userdata->number_70 = $request->number_70;
         $userdata->number_60 = $request->number_60;
         $userdata->timesloat = $request->timesloat;
-    
+
         // $userdata->update_user_result($request->number_60, $request->number_70);
-    
         $userdata->save();
         session()->flash('success', 'User created successfully.');
         return redirect()->route('admin.result');
@@ -501,14 +479,37 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
 
 
     
-    public function ticket(Request $request, $number = null)
+    public function ticket(Request $request)
     {
-        // $agent = Auth::guard('agent')->user();
-        // $currentDate = Carbon::now()->format('Y-m-d');
-        $data = Barcode::with('ticketPurchases')->orderBy('id', 'desc')->get();
-        return view('admin.ticket', compact( 'number', 'data'));
+   $selectedDate = $request->input('date');
+        if(!empty($selectedDate)){
+            $data = Barcode::with('ticketPurchases','User')
+            ->whereDate('created_at', '=', $selectedDate)->orderBy('id', 'desc')->get(); 
+        }else{
+            $currentDate = Carbon::now()->format('Y-m-d');
+            $data = Barcode::with('ticketPurchases')->where('is_result_declared', 0)->whereDate('created_at', '=', $currentDate)->orderBy('id', 'desc')->get(); 
+        }
+    
+        return view('admin.ticket', compact('data'));
     }
+    
+    
+    
+    // public function getFilteredData(Request $request)
+    // {
+     
 
+    //         $date = $request->date;
+    //         $data = Barcode::with('ticketPurchases')->whereDate('created_at', $date)->orWhereDate('created_at', '>', $date)->orderBy('id', 'desc')->get();
+    
+    //         if (!$data) {
+    //             return response()->json(['error' => 'No data found.'], 404);
+    //         }
+    
+    //         return response()->json(['data' => $data]);
+    
+    // }
+    
     
     // public function ticket(Request $request, $number = null)
     // {
