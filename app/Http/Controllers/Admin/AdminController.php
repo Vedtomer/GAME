@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\Result;
 use Carbon\Carbon;
 use App\Models\Transaction;
+use App\Models\TicketPurchase;
 use App\Models\Barcode;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
@@ -493,6 +494,43 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
         return view('admin.ticket', compact('data'));
     }
     
+
+    // public function book(Request $request)
+    // {
+    //     $currentDateTime = now();
+    //     $startTime = $currentDateTime->subMinutes(15)->toDateTimeString();
+    
+    //     $data = TicketPurchase::whereBetween('created_at', [$startTime, now()])
+    //         ->where('is_result_declared', 0)->orderBy('ticket_number', 'ASC')
+    //         ->get();
+    
+    //     $range6000to6099 = $data->whereBetween('ticket_number', [6000, 6099]);
+    //     $range7000to7099 = $data->whereBetween('ticket_number', [7000, 7099]);
+    
+    //     return view('admin.book', compact('range6000to6099', 'range7000to7099'));
+    // }
+    public function book(Request $request)
+{
+    $currentDateTime = now();
+    $startTime = $currentDateTime->subMinutes(15)->toDateTimeString();
+
+    $data = TicketPurchase::whereBetween('created_at', [$startTime, now()])
+        ->where('is_result_declared', 0)
+        ->orderBy('ticket_number', 'ASC')
+        ->get();
+
+    // Group the data by ticket_number and sum the qty
+  $groupedData = $data->groupBy('ticket_number')->map(function ($items) {
+        return [
+            'ticket_number' => $items->first()->ticket_number,
+            'qty' => $items->sum('qty'),
+            // Add more fields if needed
+        ];
+    });
+
+    return view('admin.book', compact('groupedData','data'));
+}
+
     
     
     // public function getFilteredData(Request $request)

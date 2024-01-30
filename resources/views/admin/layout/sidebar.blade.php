@@ -85,6 +85,12 @@
                             </i><b>Ticket</b>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{route('book')}}">
+                            <i class="metismenu-icon pe-7s-graph2">
+                            </i><b>Book</b>
+                        </a>
+                    </li> 
                 {{-- <li>
                     <a href="">
                         <i class="metismenu-icon pe-7s-car"></i>
@@ -162,12 +168,7 @@
                 {{-- </li>
               
                 <li class="app-sidebar__heading"></li>
-                <li>
-                    <a href="">
-                        <i class="metismenu-icon pe-7s-display2"></i>
-                        Dashboard Boxes
-                    </a>
-                </li> --}}
+                --}}
                 {{-- <li class="app-sidebar__heading">Forms</li> --}}
                 {{-- <li>
                     <a href="">
@@ -181,19 +182,8 @@
                         </i>Forms Layouts
                     </a>
                 </li>
-                <li>
-                    <a href="">
-                        <i class="metismenu-icon pe-7s-pendrive">
-                        </i>Forms Validation
-                    </a>
-                </li> --}}
+               --}}
                 {{-- <li class="app-sidebar__heading">Charts</li> --}}
-                {{-- <li>
-                    <a href="">
-                        <i class="metismenu-icon pe-7s-graph2">
-                        </i>ChartJS
-                    </a>
-                </li> --}}
                 {{-- <li class="app-sidebar__heading">PRO Version</li> --}}
                 {{-- <li>
                     <a href="https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/" target="_blank">
