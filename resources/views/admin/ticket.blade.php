@@ -57,7 +57,7 @@ td{
                             <thead>
                                 <tr>
                                     <th>User Name</th>
-                                    <th>Email</th>
+                                    {{-- <th>Email</th> --}}
                                     <th>Draw Time</th>
                                     <th>Qty</th>
                                     <th>Points</th>
@@ -72,7 +72,7 @@ td{
                             <tbody>
                                 @foreach ($data as $user)
                                     <tr>
-                                        <td><b>{{ $user->user->name }}</b></td>
+                                        {{-- <td><b>{{ $user->user->name }}</b></td> --}}
                                         <td><b>{{ $user->user->email }}</b></td>
                                         <td><b>{{ $user->drawtime }}</b></td>
                                         <td><b>{{ $user->qty }}</b></td>
