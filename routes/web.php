@@ -81,7 +81,7 @@ Route::prefix('admin')->group(function () {
         route::get('resultedit/{id}', [AdminController::class, 'resultedit'])->name('admin.resultedit');
         Route::post('resultupdate/{id}', [AdminController::class, 'resultupdate'])->name('admin.resultupdate');
         route::get('resultdelete/{id}', [AdminController::class, 'resultdelete'])->name('admin.resultdelete');
-        route::get('profile', [AdminController::class, 'profile']);
+        // route::get('profile', [AdminController::class, 'profile']);
         // Route::get('/header', [AdminController::class, 'header'])->name('admin.header');
         Route::get('adminchangepassword', [AdminController::class, 'adminshowChangePassword'])->name('admin.adminchangepassword');
 
@@ -128,8 +128,8 @@ Route::middleware('auth:agent')->group(function () {
     // route::get('user', [AgentController::class, 'user']);
     // route::post('user', [AgentController::class, 'usersave'])->name('agent.usersave');
     route::get('result', [AgentController::class, 'result'])->name('result');
-    Route::get('tes', [AgentController::class, 'tes'])->name('agent.tes');
-    Route::post('tes', [AgentController::class, 'tessave'])->name('tessave');
+    // Route::get('tes', [AgentController::class, 'tes'])->name('agent.tes');
+    // Route::post('tes', [AgentController::class, 'tessave'])->name('tessave');
     
     Route::post('result', [AgentController::class, 'resultsave'])->name('result.save');
     route::get('resultedit/{id}', [AgentController::class, 'resultedit'])->name('resultedit');

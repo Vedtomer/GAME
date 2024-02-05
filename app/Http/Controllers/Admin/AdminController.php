@@ -20,8 +20,6 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
-
-
     public function login(Request $request)
     {
         if (Auth::guard('admin')->check()) {
@@ -45,13 +43,11 @@ class AdminController extends Controller
         return redirect()->route('admin.login')->with('error', 'Invalid login credentials');
     }
 
-
     public function logout()
     {
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }
-
 
     public function dashboard()
     {
@@ -65,7 +61,6 @@ class AdminController extends Controller
         return view('admin.userdata', ['data' => $userdata]);
     }
 
-
     public function userstore(Request $request)
     {
         $validate = $request->validate([
@@ -74,13 +69,11 @@ class AdminController extends Controller
             'password' => 'required|min:8',
 
         ]);
-
         $userdata = new User();
         $userdata->name = $request->name;
         $userdata->email = $request->email;
         $userdata->password = $request->password; 
         $userdata->save();
-
         return redirect()->route('userdata');
     }
 
@@ -111,16 +104,12 @@ class AdminController extends Controller
         return view('admin.header');
     }
 
-
     public function delete(string $id)
     {
         $userdata = DB::table('users')->where('id', $id)->delete();
         return redirect()->route('userdata');
     }
 
-
-
-   
    public function showChangePasswordForm($id)
 {
     $userdata = DB::table('users')->where('id', $id)->first();
@@ -175,8 +164,6 @@ public function adminchangePassword(Request $request)
     return redirect()->route('user')->with('success', 'Password updated successfully!');
 }
 
-
-
     public function user()
     {
         $users = User::orderBy('created_at', 'desc')->get();
@@ -204,31 +191,20 @@ public function adminchangePassword(Request $request)
     if ($request->confirm_password != $request->password) {
         return redirect()->back()->withErrors(['password' => 'Password does not match'])->withInput();
     }
-
     $userdata = new User();
     $userdata->name = $request->name;
     $userdata->email = $request->email;
     $userdata->password = bcrypt($request->password);
     $userdata->save();
-
     session()->flash('success', 'User created successfully.');
     return redirect()->route('user');
 }
-
-    
 
     public function displayUsers()
 {
     $users = User::all(); 
     return view('admin.user', ['data' => $users]);
 }
-// public function displayUsers()
-// {
-//     $users = User::all();
-//     dd($users); // Check karne ke liye
-//     // return view('admin.user', ['data' => $users]);
-// }
-
 
 public function useredit(string $id)
 {
@@ -252,16 +228,10 @@ public function userdelete(string $id)
     return redirect()->route('admin.user');
 }
 
-    // public function result()
-    // {
-    //     return view('admin.result');
-    // }
-
     public function resultadd()
     {
         return view('admin.resultadd');
     }
-
 
     public function result()
     {
@@ -278,17 +248,7 @@ public function userdelete(string $id)
 
         return response()->json(['data' => $data, 'dataTransaction' => $dataTransaction]);
     }
- 
-    
-    
-    // public function getFilteredDataForAdmins(Request $request) {
-    //     $date = $request->date;
-    //     // $data = Result::whereDate('created_at', $date)->with('user')->get();
-    //     $dataTransaction = Transaction::whereDate('created_at', $date)->get();
-    
-    //     return response()->json(['data' => $data, 'dataTransaction' => $dataTransaction]);
-    // }
-    
+
     public function resultsave(Request $request)
     {
         $validate = $request->validate([
@@ -299,7 +259,6 @@ public function userdelete(string $id)
             'number_70.max' => 'The Number 70 field must not exceed 2 characters.',
             'number_60.max' => 'The Number 60 field must not exceed 2 characters.',
         ]);
-    
         $userdata = new Result();
         $userdata->number_70 = $request->number_70;
         $userdata->number_60 = $request->number_60;
@@ -310,7 +269,6 @@ public function userdelete(string $id)
         session()->flash('success', 'User created successfully.');
         return redirect()->route('admin.result');
     }
-    
 
     public function resultedit(string $id)
     {
@@ -328,17 +286,12 @@ public function resultupdate(Request $request, $id)
         'number_60' => 'required',
         'timesloat' => 'nullable', // 'nullable' allows the field to be optional
     ];
-
-    // Validation messages
     $messages = [
         'number_70.required' => 'The number_70 field is required.',
         'number_60.required' => 'The number_60 field is required.',
         'timesloat' => 'The timesloat field is required.',
     ];
-
-    // Validate the request
     $request->validate($rules, $messages);
-    // return $request;
       $USER = DB::table('result')->where('id', $id)->update([
         'number_70' => $request->number_70,
         'number_60' => $request->number_60,
@@ -352,10 +305,6 @@ public function resultdelete(string $id)
     $userdata = DB::table('result')->where('id', $id)->delete();
     return redirect()->route('admin.result')->with('error', 'Delete successfully.');
 }
-    public function profile()
-    {
-        return view('admin.profile');
-    }
     
     public function amount(Request $request, $id)
     {
@@ -368,8 +317,6 @@ public function resultdelete(string $id)
             $userdata->user_id = $id;
             $userdata->action = $request->add;
             $userdata->amount = $request->amount;
-           
-
             $user =User::where('id',$id)->first();
             $amount=$user->balance+$request->amount;
             $user->balance=floatval($amount);
@@ -379,8 +326,6 @@ public function resultdelete(string $id)
             session()->flash('success', 'Amount Added successfully.');
             return redirect()->route('user');
         }
-
-        
         $data = Transaction::all();
         return view('admin.amount', ['data' => $data, 'id' => $id]);
     }
@@ -394,25 +339,18 @@ public function resultdelete(string $id)
             $userdata = new Transaction();
             $userdata->user_id = $id;
             $userdata->action = $request->withdrawal;
-
             $userdata->amount = $request->amount;
-
-           
-
             $user =User::where('id',$id)->first();
             $epsilon = 0.0001; 
 if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
     session()->flash('error', 'Insufficient balance.');
     return redirect()->route('user');
 }
-
             $amount=$user->balance-$request->amount;
-
             $user->balance=floatval($amount);
             $userdata->balance=$user->balance;
             $userdata->save();
             $user->save();
-            
             session()->flash('success', 'Amount Debit successfully.');
             return redirect()->route('user');
         }
@@ -427,8 +365,7 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
         }else{
             $users = Transaction::where('user_id',$id)->get();
         }
-        return view('admin.transaction', ['data' => $users]);
-        
+        return view('admin.transaction', ['data' => $users]); 
     }
     public function  home()
     {
@@ -438,48 +375,32 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
     }
 
     public function settlement(){
-    
      $currentTime = now();
-
-        // Calculate the nearest time in 15-minute intervals
         $nearestTime = floor($currentTime->minute / 15) * 15;
-        
-        // Adjust the time accordingly
         $currentTime->minute = $nearestTime;
         $nearestTimeIn24HourFormat = $currentTime->format('H:i');
-
- 
-     
      $userdata = Result::where('timesloat', '<=', $nearestTimeIn24HourFormat)
-->whereDate('created_at', $currentTime->toDateString())
-->orderBy('timesloat', 'desc')
-->first();
+->whereDate('created_at', $currentTime->toDateString())->orderBy('timesloat', 'desc')->first();
 
     if ($userdata) {
    $userdata->update_user_result($userdata->number_60, $userdata->number_70);
-
     // $userdata->save();
-    
     return true;
     } else {
          
     return false;
     }
     }
+
     public function  newhome()
     {
         $currentTime = now()->format('H:i');
   $users = Result::whereDate('created_at', now()->toDateString())
-            ->where('timesloat', '<=', $currentTime)
-            ->orderBy('timesloat', 'desc')
-            ->get();
-        
+    ->where('timesloat', '<=', $currentTime)->orderBy('timesloat', 'desc')->get();
     
         return view('admin.layout.newhome', ['data' => $users]);
     }
 
-
-    
     public function ticket(Request $request)
     {
    $selectedDate = $request->input('date');
@@ -490,95 +411,24 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
             $currentDate = Carbon::now()->format('Y-m-d');
             $data = Barcode::with('ticketPurchases')->where('is_result_declared', 0)->whereDate('created_at', '=', $currentDate)->orderBy('id', 'desc')->get(); 
         }
-    
         return view('admin.ticket', compact('data'));
     }
-    
 
-    // public function book(Request $request)
-    // {
-    //     $currentDateTime = now();
-    //     $startTime = $currentDateTime->subMinutes(15)->toDateTimeString();
-    
-    //     $data = TicketPurchase::whereBetween('created_at', [$startTime, now()])
-    //         ->where('is_result_declared', 0)->orderBy('ticket_number', 'ASC')
-    //         ->get();
-    
-    //     $range6000to6099 = $data->whereBetween('ticket_number', [6000, 6099]);
-    //     $range7000to7099 = $data->whereBetween('ticket_number', [7000, 7099]);
-    
-    //     return view('admin.book', compact('range6000to6099', 'range7000to7099'));
-    // }
     public function book(Request $request)
 {
     $currentDateTime = now();
     $startTime = $currentDateTime->subMinutes(15)->toDateTimeString();
 
-    $data = TicketPurchase::whereBetween('created_at', [$startTime, now()])
-        ->with('barcodes')->where('is_result_declared', 0)
-        ->orderBy('ticket_number', 'ASC')
-        ->get();
+    $data = TicketPurchase::where('drawtime', '=>', $currentDateTime)
+    ->with('barcodes')->where('is_result_declared', 0)->orderBy('ticket_number', 'ASC')->get();
 
-    // Group the data by ticket_number and sum the qty
   $groupedData = $data->groupBy('ticket_number')->map(function ($items) {
         return [
             'ticket_number' => $items->first()->ticket_number,
             'qty' => $items->sum('qty'),
-            // Add more fields if needed
         ];
     });
-
     return view('admin.book', compact('groupedData','data'));
 }
 
-    
-    
-    // public function getFilteredData(Request $request)
-    // {
-     
-
-    //         $date = $request->date;
-    //         $data = Barcode::with('ticketPurchases')->whereDate('created_at', $date)->orWhereDate('created_at', '>', $date)->orderBy('id', 'desc')->get();
-    
-    //         if (!$data) {
-    //             return response()->json(['error' => 'No data found.'], 404);
-    //         }
-    
-    //         return response()->json(['data' => $data]);
-    
-    // }
-    
-    
-    // public function ticket(Request $request, $number = null)
-    // {
-
-    //     // $data = Barcode::with('ticketPurchases')->orderBy('id', 'desc')
-    //     //     ->get();
-
-    //     $data = DB::table('barcodes')
-    //     ->join('Ticket_purchase', 'barcodes.id', '=', 'Ticket_purchase.barcode_id')
-    //     ->select('barcodes.*', 'Ticket_purchase.ticket_number', 'Ticket_purchase.qty')
-    //     ->get();
-    
-    
-   
-    //     return view('admin.ticket', compact('data'));
-    // }
-    // public function view(){
-
-
-    // }
-    // public function view()
-    // {
-    //     $userdata = DB::table('users')->get();
-    //     $data = ['data' => $userdata];
-
-    //     // Check if $userdata is not null and is an array
-    //     if (!is_null($userdata) && is_array($userdata) && count($userdata) > 0) {
-    //         return view('userdata', $data);
-    //     } else {
-    //         // If no data, return a view without the table
-    //         return view('userdata', $data);
-    //     }
-    // }
 }

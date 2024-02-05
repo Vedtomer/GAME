@@ -268,8 +268,11 @@
                                 <div colspan="2">
                                     <marquee
                                         style="font-size: xx-large; margin-top: 10px; background-color: white; font-family: Tahoma; font-weight: bold;">
-                                        For Lucky Shubhank Contact on <span style="font-weight: bold;">02269710251 "
-                                            08062179850"</span>, For Trade Enquiry please Contact on 02269710251 , 
+                                        For Lucky Shubhank Contact on <span style="font-weight: bold;"><a href="tel:+868301 4960">8683014960</a>
+                                           <a href="https://wa.me/8683014960">8683014960</a>
+                                            02269710251 "
+                                            08062179850" 02269710251" 08062179850" 9930577999"
+                                        </span>, For Trade Enquiry please Contact on 02269710251 , 
                                             08062179850
                                     </marquee>
                                     <div

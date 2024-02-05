@@ -18,20 +18,14 @@ use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Models\Barcode;
-// use Carbon\Carbon;
 use function Ramsey\Uuid\v1;
 
 class AgentController extends Controller
 {
-
-
-
     public function ViewBarcode($barcod_id)
     {
         Barcode::with('ticketPurchases')->where('id', $barcod_id)->first();
     }
-
-
 
     public function login(Request $request)
     {
@@ -42,8 +36,6 @@ class AgentController extends Controller
         if ($request->isMethod('get')) {
             return view('login');
         }
-
-
         if ($request->isMethod('post')) {
             $credentials = $request->only('email', 'password');
 
@@ -56,8 +48,6 @@ class AgentController extends Controller
         }
         return redirect()->route('login')->with('error', 'Invalid login credentials');
     }
-
-
     public function logout()
     {
         Auth::guard('agent')->logout();
@@ -66,13 +56,9 @@ class AgentController extends Controller
 
     public function dashboard($number = null)
     {
-
-
-
         if (!$number) {
             $number = 6000;
         }
-
         $agent = Auth::guard('agent')->user();
 
         $currentTime = now()->format('H:i');
@@ -86,41 +72,27 @@ class AgentController extends Controller
 
     public function dashview(Request $request, $number = null)
     {
-
-
         $agent = Auth::guard('agent')->user();
-
-
         $currentDate = Carbon::now()->format('Y-m-d');
 
         $data = Barcode::with('ticketPurchases')->where('user_id', Auth::user()->id)
         ->whereDate('created_at', $currentDate)->orderBy('id', 'desc')
             ->get();
 
-
-        
         return view('agent.dashview', compact('agent', 'number', 'data'));
     }
 
     public function savedashboard(Request $request)
     {
-
-       
-
         $currentTime = now();
         $ticketWindowOpenTime = now()->setTime(8, 45); // Set the opening time to 8:45 AM
         $ticketWindowCloseTime = now()->setTime(21, 30); // Set the closing time to 9:30 PM
     
-        // Check if the current time is within the ticket window
         if ($currentTime->lt($ticketWindowOpenTime) || $currentTime->gte($ticketWindowCloseTime)) {
             // Ticket window is not open
             $openingTime = $ticketWindowOpenTime->format('h:i A');
             return back()->with('error', "Ticket window is not open. Please try again after $openingTime.");
         }
-    
-        
-
-      
         $startTime = now()->setHour(9)->setMinute(0)->setSecond(0); // Set your start time
         $endTime = now()->setHour(21)->setMinute(30)->setSecond(0);   // Set your end time
     
@@ -130,21 +102,14 @@ class AgentController extends Controller
                 return back()->with('error', 'Please wait for 1 minute');
             }
         }
-
-
         $data = $request->all();
         $balance = Auth::user()->balance;
         $user_id = Auth::user()->id;
-
-
         if ($balance <= 0) {
             return back()->with('error', 'Please recharge your account.');
         }
-
         $totalPts = 0;
         $totalQty = 0;
-
-
         foreach ($data as $key => $value) {
             $keyInt = (int)$key;
 
@@ -152,34 +117,26 @@ class AgentController extends Controller
                 if (!empty($value)) {
  $notempty = true;
                     $pts = (int)$value * 1.1;
-
-
                     $totalPts += $pts;
                     $totalQty += $value;
                 }
-
             }
         }
 if(empty($notempty)){
     return back()->with('error', 'Please Purchase at least One Ticket');
 }
-
         if ($totalPts > $balance) {
 
             return back()->with('error', 'Insufficient points. Please recharge your account.');
         }
-
         $currentTime = strtotime(date("H:i"));
         $drawtime = ceil($currentTime / (15 * 60)) * (15 * 60);
        
         if(empty($data['timeslots'])){
             $data['timeslots'][0] = date("H:i", $drawtime);
         }
-
         // $drawtimeFormatted now contains the formatted drawtime like 9:15, 9:30, 9:45, 10:00, etc.
-
         foreach ($data['timeslots'] as  $timeslots) {
-           
         $barcode = new Barcode();
         $barcode->drawtime = $timeslots;
         $barcode->user_id = $user_id;
@@ -191,19 +148,12 @@ if(empty($notempty)){
         $barcode->save();
         $savedId = $barcode->id;
        
-
-
         foreach ($data as $key => $value) {
             $keyInt = (int)$key;
-
             if (($keyInt >= 7000 && $keyInt <= 7099) || ($keyInt >= 6000 && $keyInt <= 6099)) {
                 if (!empty($value)) {
-
                     $pts = (int)$value * 1.1;
-
-
                     $balance -= $pts;
-
 
                     DB::transaction(function () use ($keyInt, $value, $pts, $user_id, $savedId, $timeslots) {
                         $TicketPurchase = new TicketPurchase();
@@ -215,8 +165,6 @@ if(empty($notempty)){
                         $TicketPurchase->barcode_id = $savedId;
                         $TicketPurchase->save();
                     });
-
-
                     DB::table('transaction')->insert([
                         'user_id' => $user_id,
                         'action' => 'purchase',
@@ -228,21 +176,16 @@ if(empty($notempty)){
                 }
             }
         }
-
     }
         Auth::user()->update(['balance' => $balance]);
-
         return back()->with('success', 'Ticket purchased successfully.');
     }
 
-
     public function userdata()
     {
-
         $userdata = DB::table('users')->get();
         return view('agent.userdata', ['data' => $userdata]);
     }
-
 
     public function userstore(Request $request)
     {
@@ -253,15 +196,11 @@ if(empty($notempty)){
             'password' => 'required|min:8',
 
         ]);
-
-
         $userdata = new User();
         $userdata->name = $request->name;
         $userdata->email = $request->email;
         $userdata->password = $request->password;
-
         $userdata->save();
-
         return redirect()->route('userdata');
     }
 
@@ -280,11 +219,8 @@ if(empty($notempty)){
     public function newupdate(Request $request, $id)
     {
         $USER = DB::table('users')->where('id', $id)->update([
-
             'name' => $request->name,
             'email' => $request->email,
-
-
         ]);
         return redirect()->route('userdata')->with('error', 'update successfully.');
         // ]);
@@ -295,15 +231,11 @@ if(empty($notempty)){
         return view('agent.header');
     }
 
-
     public function delete(string $id)
     {
         $userdata = DB::table('users')->where('id', $id)->delete();
         return redirect()->route('userdata');
     }
-
-
-
     public function showChangePasswordForm()
     {
         return view('agent.change-password');
@@ -317,17 +249,11 @@ if(empty($notempty)){
         ]);
 
         return redirect()->route('userdata')->with('success', 'Password changed successfully.');
-
-
-
-
-
         $user = Auth::user();
 
         if (!Hash::check($request->current_password, $user->password)) {
             return redirect()->back()->with('error', 'The current password is incorrect.');
         }
-
         $user->update([
             'password' => bcrypt($request->new_password),
         ]);
@@ -353,15 +279,11 @@ if(empty($notempty)){
             'password' => 'required|min:8',
 
         ]);
-
-
         $userdata = new User();
         $userdata->name = $request->name;
         $userdata->email = $request->email;
         $userdata->password = $request->password;
-
         $userdata->save();
-
         return redirect()->route('user');
     }
 
@@ -381,10 +303,8 @@ if(empty($notempty)){
     public function getFilteredData(Request $request)
     {
         $date = $request->date;
-        
         $data = Result::whereDate('created_at', $date)->get();
         $dataTransaction = Transaction::whereDate('created_at', $date)->get();
-
         return response()->json(['data' => $data, 'dataTransaction' => $dataTransaction]);
     }
 
@@ -400,7 +320,6 @@ if(empty($notempty)){
         $userdata->number_70 = $request->number_70;
         $userdata->number_60 = $request->number_60;
         $userdata->timesloat = $request->timesloat;
-
         $userdata->save();
         session()->flash('success', 'User created successfully.');
         return redirect()->route('result');
@@ -409,25 +328,18 @@ if(empty($notempty)){
     public function resultedit(string $id)
     {
         $userData = Result::find($id);
-
         if (!$userData) {
             abort(404);
         }
-
         return view('agent.resultedit', ['data' => $userData]);
     }
 
     public function resultupdate(Request $request, $id)
     {
-
         $USER = DB::table('result')->where('id', $id)->update([
-
-
             'number_70' => $request->number_70,
             'number_60' => $request->number_60,
             'timesloat' => $request->timesloat,
-
-
         ]);
         return redirect()->route('result')->with('success', 'update successfully.');
     }
@@ -440,8 +352,6 @@ if(empty($notempty)){
     {
         return view('agent.profile');
     }
-
-
     public function transaction()
     {
         $user = Auth::user();
@@ -465,27 +375,16 @@ if(empty($notempty)){
 
     public function tessave(Request $request)
     {
-
         $numValue = $request->input('num');
-
-
         if (!empty($numValue)) {
             $request->merge(['nums' => $numValue]);
         } else {
 
             $request->merge(['nums' => 'default_value']);
         }
-
         $numsValue = $request->input('nums');
-
-
         return redirect()->route('agent.tes');
     }
-
-
-
-
-
 
     public function agentshowChangePassword()
     {
@@ -495,12 +394,10 @@ if(empty($notempty)){
 
     public function agentchangePassword(Request $request)
     {
-
         $request->validate([
             'password' => 'required|min:8',
             'confirm_password' => 'required|min:8',
         ]);
-
         $auth = Auth::user();
         $newPassword = $request->input('password');
         $confirm_password = $request->input('confirm_password');
@@ -519,11 +416,7 @@ if(empty($notempty)){
     {
         $currentTime = now()->format('H:i');
         $users = Result::whereDate('created_at', now()->toDateString())
-            ->where('timesloat', '<=', $currentTime)
-            ->orderBy('timesloat', 'desc')
-            ->get();
-
-
+        ->where('timesloat', '<=', $currentTime)->orderBy('timesloat', 'desc')->get();
         return view('subhank', ['data' => $users]);
     }
 
@@ -545,7 +438,6 @@ if(empty($notempty)){
             }
             
             $data = Barcode::whereBetween('created_at', [$start_date, $end_date])->get();
-    
             $sumQty = $data->sum('qty');
             $sumpoints = $data->sum('points');
             $winpoints = $data->sum('winpoints');
@@ -566,11 +458,6 @@ if(empty($notempty)){
         }
     }
     
-    
-    
-
-
-
     public function filtereddata(Request $request)
     {
         $start_date = $request->input('start_date');
@@ -587,7 +474,6 @@ if(empty($notempty)){
             $end_date = Carbon::parse($end_date)->endOfDay();
         }
         $data = Barcode::whereBetween('created_at', [$start_date, $end_date])->get();
-      
         $sumQty = $data->sum('qty');
         $sumpoints = $data->sum('points');
         $winpoints = $data->sum('winpoints');
@@ -603,15 +489,12 @@ if(empty($notempty)){
             return !empty($item->winpoints);
         });
         $sumQtyWinpoints = $Claimqty->sum('claimQty');
-    
         $Netpay = $netplus - $data->sum('winpoints');
-    
         return view('agent.report', compact('data', 'start_date', 'end_date', 'sumQty', 'sumpoints', 'cancelCount', 'netAmt', 'netplus', 'sumQtyWinpoints', 'Netpay', 'winpoints'));
     }
     public function getFilteredDataForAdmins(Request $request)
     {
         $date = $request->date;
-
         if ($date === Carbon::now()->format('Y-m-d')) {
             $currentTime = now()->format('H:i');
             $data = Result::whereDate('created_at', now()->toDateString())
@@ -621,34 +504,26 @@ if(empty($notempty)){
         } else {
             $data = Result::whereDate('created_at', $date)->orderBy('timesloat', 'desc')->get();
         }
-
         return response()->json(['data' => $data]);
     }
-
 
     public function resultdeclared()
     {
         for ($hour = 9; $hour <= 21; $hour++) {
-
             for ($minute = 0; $minute < 60; $minute += 15) {
-
                 $timeSlot = sprintf('%02d:%02d', $hour, $minute);
-
                 if ($timeSlot > '21:30') {
                     Log::info("Stopped creating entries after 20:30");
                     return true;
                 }
-
                 Result::create([
                     'number_70' => rand(10, 99),
                     'number_60' => rand(10, 99),
                     'timesloat' => $timeSlot,
                 ]);
-
                 Log::info("Result created for time slot: $timeSlot");
             }
         }
-
         return true;
     }
 }
