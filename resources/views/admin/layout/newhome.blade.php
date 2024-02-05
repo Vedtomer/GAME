@@ -14,7 +14,7 @@
     <script src="{{ asset('home3.js') }}"></script>
     <script src="{{ asset('home4.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('homes2.css') }}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body {
             margin: 0;
@@ -266,15 +266,17 @@
                         <div>
                             <div>
                                 <div colspan="2">
-                                    <marquee
-                                        style="font-size: xx-large; margin-top: 10px; background-color: white; font-family: Tahoma; font-weight: bold;">
-                                        For Lucky Shubhank Contact on <span style="font-weight: bold;"><a href="tel:+868301 4960">8683014960</a>
-                                           <a href="https://wa.me/8683014960">8683014960</a>
-                                            02269710251 "
-                                            08062179850" 02269710251" 08062179850" 9930577999"
-                                        </span>, For Trade Enquiry please Contact on 02269710251 , 
-                                            08062179850
-                                    </marquee>
+                                <marquee
+                                    style="font-size: xx-large; margin-top: 10px; background-color: white; font-family: Tahoma; font-weight: bold;">
+                                    For Lucky Shubhank Contact on <span style="font-weight: bold;"> <i class="fa fa-phone" style="font-size:36px"></i> <a href="tel:+02269710251">02269710251</a> , <i class="fa fa-phone" style="font-size:36px"></i>
+                                    <a href="tel:+08062179850">08062179850</a> , <i class="fa fa-whatsapp" style="font-size:36px"></i>  
+                                    <a href="https://wa.me/9930577999">9930577999</a>
+                                             
+                                            
+                                    </span>, For Trade Enquiry please Contact on  <i class="fa fa-phone" style="font-size:36px"></i> <a href="tel:+02269710251">02269710251</a> ,  <i class="fa fa-phone" style="font-size:36px"></i>
+                                    <a href="tel:+08062179850">08062179850</a> ,  
+                                     <i class="fa fa-whatsapp" style="font-size:36px"></i> <a href="https://wa.me/9930577999">9930577999</a>
+                                </marquee>
                                     <div
                                         style="background-image: url('{{ asset('logo12_files/17.png') }}'); background-repeat: no-repeat; background-size: 750px 100px; width: 750px; height: 100px; margin: 0;">
                                     </div>
