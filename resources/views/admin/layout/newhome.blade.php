@@ -268,9 +268,9 @@
                                 <div colspan="2">
                                     <marquee
                                         style="font-size: xx-large; margin-top: 10px; background-color: white; font-family: Tahoma; font-weight: bold;">
-                                        For Lucky Shubhank Contact on <span style="font-weight: bold;">022.0000000 "
-                                            0000000000,0000000,000000000"</span>, For Trade Enquiry please Contact on
-                                        000000000
+                                        For Lucky Shubhank Contact on <span style="font-weight: bold;">02269710251 "
+                                            08062179850"</span>, For Trade Enquiry please Contact on 02269710251 , 
+                                            08062179850
                                     </marquee>
                                     <div
                                         style="background-image: url('{{ asset('logo12_files/17.png') }}'); background-repeat: no-repeat; background-size: 750px 100px; width: 750px; height: 100px; margin: 0;">

@@ -527,51 +527,87 @@ if(empty($notempty)){
         return view('subhank', ['data' => $users]);
     }
 
-    public function report() {
-        // Check if the agent is authenticated
+    public function report(Request $request)
+    {
         if (Auth::guard('agent')->check()) {
-            // Agent is authenticated, proceed to the view
-            return view('agent.report');
+            $start_date = $request->input('start_date');
+            $end_date = $request->input('end_date');
+    
+            if (empty($start_date)) {
+                $start_date = now()->startOfDay();
+            } else {
+                $start_date = Carbon::parse($start_date)->startOfDay();
+            }
+            if (empty($end_date)) {
+                $end_date = now()->endOfDay();
+            } else {
+                $end_date = Carbon::parse($end_date)->endOfDay();
+            }
+            
+            $data = Barcode::whereBetween('created_at', [$start_date, $end_date])->get();
+    
+            $sumQty = $data->sum('qty');
+            $sumpoints = $data->sum('points');
+            $winpoints = $data->sum('winpoints');
+    
+            $cancelCount = $data->where(function ($item) {
+                return strcasecmp($item->status, 'CANCEL') === 0;
+            })->count();
+            $netAmt = $sumQty - $cancelCount;
+            $netplus = $netAmt * 1.1;
+            $Claimqty = $data->filter(function ($item) {
+                return !empty($item->winpoints);
+            });
+            $sumQtyWinpoints = $Claimqty->sum('claimQty');
+            $Netpay = $netplus - $data->sum('winpoints');  
+            return view('agent.report', compact('data', 'start_date', 'end_date', 'sumQty', 'sumpoints', 'cancelCount', 'netAmt', 'netplus', 'sumQtyWinpoints', 'Netpay', 'winpoints'));
         } else {
-            // Agent is not authenticated, handle accordingly (e.g., redirect to login)
-            return redirect()->route('agent.login'); // Adjust the route name as needed
+            return redirect()->route('agent.login');
         }
     }
+    
+    
     
 
 
 
     public function filtereddata(Request $request)
-{
-    $start_date = $request->input('start_date');
-    $end_date = $request->input('end_date');
-
-    $start_date = Carbon::parse($start_date)->startOfDay();
-    $end_date = Carbon::parse($end_date)->endOfDay();
-
-    $data = Barcode::whereBetween('created_at', [$start_date, $end_date])->get();
-  
-    $sumQty = $data->sum('qty');
-    $sumpoints = $data->sum('points');
-    $winpoints = $data->sum('winpoints');
-
-
-    $cancelCount = $data->where(function ($item) {
-        return strcasecmp($item->status, 'CANCEL') === 0;
-    })->count();
+    {
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
     
-    $netAmt = $sumQty - $cancelCount;
-    $netplus = $netAmt * 1.1;
-
-    // $Claimqty = !empty($data[0]->winpoints) ? ($sumQty + $netplus) : $data[0]->winpoints;
-    $Claimqty = $data->filter(function ($item) {
-        return !empty($item->winpoints);
-    });
-    $sumQtyWinpoints = $Claimqty->sum('claimQty');
-
-    $Netpay =   $netplus - $data->sum('winpoints');
-    return view('agent.report', compact('data', 'start_date', 'end_date', 'sumQty', 'sumpoints', 'cancelCount', 'netAmt', 'netplus','sumQtyWinpoints', 'Netpay' ,'winpoints'));
-}
+        if (empty($start_date)) {
+            $start_date = now()->startOfDay();
+        } else {
+            $start_date = Carbon::parse($start_date)->startOfDay();
+        }
+        if (empty($end_date)) {
+            $end_date = now()->endOfDay();
+        } else {
+            $end_date = Carbon::parse($end_date)->endOfDay();
+        }
+        $data = Barcode::whereBetween('created_at', [$start_date, $end_date])->get();
+      
+        $sumQty = $data->sum('qty');
+        $sumpoints = $data->sum('points');
+        $winpoints = $data->sum('winpoints');
+    
+        $cancelCount = $data->where(function ($item) {
+            return strcasecmp($item->status, 'CANCEL') === 0;
+        })->count();
+        
+        $netAmt = $sumQty - $cancelCount;
+        $netplus = $netAmt * 1.1;
+    
+        $Claimqty = $data->filter(function ($item) {
+            return !empty($item->winpoints);
+        });
+        $sumQtyWinpoints = $Claimqty->sum('claimQty');
+    
+        $Netpay = $netplus - $data->sum('winpoints');
+    
+        return view('agent.report', compact('data', 'start_date', 'end_date', 'sumQty', 'sumpoints', 'cancelCount', 'netAmt', 'netplus', 'sumQtyWinpoints', 'Netpay', 'winpoints'));
+    }
     public function getFilteredDataForAdmins(Request $request)
     {
         $date = $request->date;

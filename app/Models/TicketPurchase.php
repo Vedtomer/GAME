@@ -29,4 +29,10 @@ class TicketPurchase extends Model
         // Add other fields you want to mass assign
     ];
 
+   
+    public function barcodes()
+    {
+        return $this->hasMany(Barcode::class, 'user_id', 'id');
+    }
+
 }

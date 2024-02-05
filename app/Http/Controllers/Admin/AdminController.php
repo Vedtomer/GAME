@@ -515,7 +515,7 @@ if (floatval($request->amount) > floatval($user->balance) + $epsilon) {
     $startTime = $currentDateTime->subMinutes(15)->toDateTimeString();
 
     $data = TicketPurchase::whereBetween('created_at', [$startTime, now()])
-        ->where('is_result_declared', 0)
+        ->with('barcodes')->where('is_result_declared', 0)
         ->orderBy('ticket_number', 'ASC')
         ->get();
 
