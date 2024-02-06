@@ -273,8 +273,8 @@
                                     <a href="https://wa.me/+919930577999">9930577999</a>
                                              
                                             
-                                    </span>, For Trade Enquiry please Contact on  <i class="fa fa-phone" style="font-size:36px"></i> <a href="tel:2269710251">02269710251</a> ,  <i class="fa fa-phone" style="font-size:36px"></i>
-                                    <a href="tel:8062179850">08062179850</a> ,  
+                                    </span>, For Trade Enquiry please Contact on  <i class="fa fa-phone" style="font-size:36px"></i> <a href="tel:02269710251">02269710251</a> ,  <i class="fa fa-phone" style="font-size:36px"></i>
+                                    <a href="tel:08062179850">08062179850</a> ,  
                                      <i class="fa fa-whatsapp" style="font-size:36px"></i> <a href="https://wa.me/+919930577999">9930577999</a>
                                 </marquee>
                                     <div
