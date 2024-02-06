@@ -22,6 +22,7 @@ class TicketPurchase extends Model
      */
     protected $fillable = [
         'ticket_number',
+        'drawtime',
         'qty',
         'total',
         'user_id',
