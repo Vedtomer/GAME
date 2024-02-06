@@ -268,8 +268,8 @@
                                 <div colspan="2">
                                 <marquee
                                     style="font-size: xx-large; margin-top: 10px; background-color: white; font-family: Tahoma; font-weight: bold;">
-                                    For Lucky Shubhank Contact on <span style="font-weight: bold;"> <i class="fa fa-phone" style="font-size:36px"></i> <a href="tel:2269710251">02269710251</a> , <i class="fa fa-phone" style="font-size:36px"></i>
-                                    <a href="tel:8062179850">08062179850</a> , <i class="fa fa-whatsapp" style="font-size:36px"></i>  
+                                    For Lucky Shubhank Contact on <span style="font-weight: bold;"> <i class="fa fa-phone" style="font-size:36px"></i> <a href="tel:02269710251">02269710251</a> , <i class="fa fa-phone" style="font-size:36px"></i>
+                                    <a href="tel:08062179850">08062179850</a> , <i class="fa fa-whatsapp" style="font-size:36px"></i>  
                                     <a href="https://wa.me/+919930577999">9930577999</a>
                                              
                                             
