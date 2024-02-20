@@ -169,19 +169,16 @@
 
         /* Default styles for .mains */
         .mains {
-            margin-left: 40px;
+            
             margin-top: 100px;
         }
     </style>
 </head>
 
 <body style="background-image: url('{{ asset('logo12_files/background.png') }}');"
-    data-new-gr-c-s-check-loaded="14.1147.0" data-gr-ext-installed="">
+    >
     <div class="container">
-        <div class="said">
-            <div class="container" border="0">
-                <div>
-
+        
                     <div class="sidebar">
 
                         <div>
@@ -254,13 +251,12 @@
                         </div>
 
                     </div>
-                </div>
-            </div>
+               
 
-        </div>
-        <div class="main">
+       
+        
 
-            <div class="container">
+            
                 <div class="mains">
                     <div>
                         <div>
@@ -519,14 +515,12 @@
                          
                     </div>
                  
-                </div>
+              
                 
             </div>
      
-        </div>
         
-    </div>
-    </div>
+        
     </div>
     <div class="banner">
         <img style="height: 100%; width: 100%;" src="{{ asset('vid.gif') }}" > </img> 
