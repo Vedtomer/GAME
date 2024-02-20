@@ -23,6 +23,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            height:100vh
         }
 
 
