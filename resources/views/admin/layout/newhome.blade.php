@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body {
-            margin: 0;
+           
             /* font-family: Tahoma; */
             background-image: url('{{ asset(' logo12_files/background.png') }}');
             background-size: cover;
@@ -170,7 +170,7 @@
         /* Default styles for .mains */
         .mains {
             
-            margin-top: 100px;
+            margin-top: 50px;
         }
     </style>
 </head>
