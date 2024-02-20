@@ -296,7 +296,7 @@ class AdminController extends Controller
         $USER = DB::table('result')->where('id', $id)->update([
             'number_70' => $request->number_70,
             'number_60' => $request->number_60,
-            'timesloat' => $request->timesloat,
+            // 'timesloat' => $request->timesloat,
         ]);
         return redirect()->route('admin.result')->with('success', 'update successfully.');
     }

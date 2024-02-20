@@ -38,7 +38,8 @@
               <input type="text" class="form-control" name="number_60" value="{{$data->number_60}}" onkeypress="allowOnlyNumbers(event)" maxlength="2">
             </div>
             <br>
-            <div class="form-group mb-3">
+            
+            {{-- <div class="form-group mb-3">
                 <label for="exampleDropdown">Select a time slot:</label>
                 <select class="form-control" id="exampleDropdown" name="timesloat" required>
                     <option value="" {{ $data->timesloat == '' ? 'selected' : '' }}></option>
@@ -81,7 +82,7 @@
                   
                 </select>
                 </select>
-              </div>
+              </div> --}}
 
        
 
