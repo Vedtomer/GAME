@@ -20,13 +20,17 @@
 
             /* font-family: Tahoma; */
             background-image: url('{{ asset('logo12_files/background.png') }}');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            height: 100vh
+           
         }
 
-
+body{
+    margin: 0px;
+    padding:0px;
+    width: 100%;
+}
+html{
+    width: 1320px;
+}
 
         /* Media query for devices with a maximum width of 768 pixels (typical for tablets and mobile devices) */
 
