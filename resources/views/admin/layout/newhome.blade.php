@@ -9,11 +9,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    
 
-    <link rel="stylesheet" href="{{ asset('homes.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('homes.css') }}"> --}}
     <script src="{{ asset('homejs.js') }}"></script>
     <script src="{{ asset('home3.js') }}"></script>
     <script src="{{ asset('home4.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('homes2.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('homes2.css') }}"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body {
@@ -166,6 +166,7 @@
 </head>
 
 <body>
+    <div class="container">
     <div>
         <marquee style="font-size: xx-large;  font-family: Tahoma; font-weight: bold;color:white">
             For Lucky Shubhank Contact on <span style="font-weight: bold;"> <i class="fa fa-phone"
@@ -191,6 +192,7 @@
             style="background-image: url('{{ asset('logo12_files/17.png') }}');background-repeat:no-repeat;background-position: center top; height: 85px;">
         </div>
 
+    </div>
     </div>
     <div class="container">
 
