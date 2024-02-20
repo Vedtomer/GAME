@@ -481,7 +481,7 @@
 
 
     <div class="banner">
-        <img style="width: 100%;height:400px;" src="{{ asset('vid.gif') }}"> </img>
+        <img style="width: 100%;height:600px;" src="{{ asset('vid.gif') }}"> </img>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
