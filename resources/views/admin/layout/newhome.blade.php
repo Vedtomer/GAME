@@ -510,10 +510,15 @@
 
                         </div>
 
-                        <iframe src="https://g2.ipcamlive.com/player/player.php?alias=5e5a05863bb0b" height="550px"
-                            autoplay="1" allow="autoplay" frameborder="0"
-                            style="width: 788px; margin-top:10px;"></iframe>
+                        {{-- <iframe src="https://g2.ipcamlive.com/player/player.php?alias=5e5a05863bb0b" height="550px"
 
+                            autoplay="1" allow="autoplay" frameborder="0"
+                            style="width: 788px; margin-top:10px;"></iframe> --}}
+
+                            <div class="banner">
+                             <img style="height: 100%; width: 100%;" src="{{ asset('vid.gif') }}" > </img> 
+                            </div>
+                         
                     </div>
                 </div>
             </div>
