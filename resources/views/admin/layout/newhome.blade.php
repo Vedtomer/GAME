@@ -166,6 +166,27 @@
 </head>
 
 <body>
+    <div >
+
+
+
+
+        <marquee
+            style="font-size: xx-large; background-color: white; font-family: Tahoma; font-weight: bold;color:red">
+            For Lucky Shubhank Contact on <span style="font-weight: bold;"> <i class="fa fa-phone"
+                    style="font-size:36px"></i> <a href="tel:02269710251">02269710251</a> , <i class="fa fa-phone"
+                    style="font-size:36px"></i>
+                <a href="tel:08062179850">08062179850</a> , <i class="fa fa-whatsapp" style="font-size:36px"></i>
+                <a href="https://wa.me/+919930577999">9930577999</a>
+
+
+            </span>, For Trade Enquiry please Contact on <i class="fa fa-phone" style="font-size:36px"></i> <a
+                href="tel:02269710251">02269710251</a> , <i class="fa fa-phone" style="font-size:36px"></i>
+            <a href="tel:08062179850">08062179850</a> ,
+            <i class="fa fa-whatsapp" style="font-size:36px"></i> <a
+                href="https://wa.me/+919930577999">9930577999</a>
+        </marquee>
+    </div>
     <div class="container">
 
         <div class="sidebar">
@@ -218,7 +239,7 @@
 
             <div style="margin-bottom: 20px;">
                 <div style="width: 230px; height: 30px; color: Yellow; font-size: 24px; margin-bottom: 20px;">
-                    FREE GIFT...FREE GIFT For First 70 Lucky Voucher Winner GIFT
+                    खेलिए और जीतिए, क्या आपका अंक सही होगा?
                 </div>
             </div>
 
@@ -244,25 +265,6 @@
 
 
         <div class="mains">
-
-
-
-
-            <marquee
-                style="font-size: xx-large; margin-top: 10px; background-color: white; font-family: Tahoma; font-weight: bold;">
-                For Lucky Shubhank Contact on <span style="font-weight: bold;"> <i class="fa fa-phone"
-                        style="font-size:36px"></i> <a href="tel:02269710251">02269710251</a> , <i class="fa fa-phone"
-                        style="font-size:36px"></i>
-                    <a href="tel:08062179850">08062179850</a> , <i class="fa fa-whatsapp" style="font-size:36px"></i>
-                    <a href="https://wa.me/+919930577999">9930577999</a>
-
-
-                </span>, For Trade Enquiry please Contact on <i class="fa fa-phone" style="font-size:36px"></i> <a
-                    href="tel:02269710251">02269710251</a> , <i class="fa fa-phone" style="font-size:36px"></i>
-                <a href="tel:08062179850">08062179850</a> ,
-                <i class="fa fa-whatsapp" style="font-size:36px"></i> <a
-                    href="https://wa.me/+919930577999">9930577999</a>
-            </marquee>
 
             <img src="{{ asset('logo12_files/17.png') }}" />
 
@@ -365,7 +367,7 @@
 
             {{-- img code start --}}
 
-            <table class="caltable" cellpadding="0" cellspacing="0">
+            {{-- <table class="caltable" cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr>
                         <td colspan="3"
@@ -460,9 +462,11 @@
 
                     </tr>
                 </tbody>
-            </table>
+            </table> --}}
 
-
+            <div class="banner">
+                <img style="width: 100%;height:600px;" src="{{ asset('vid.gif') }}"> </img>
+            </div>
 
 
         </div>
@@ -480,9 +484,7 @@
 
 
 
-    <div class="banner">
-        <img style="width: 100%;height:600px;" src="{{ asset('vid.gif') }}"> </img>
-    </div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
