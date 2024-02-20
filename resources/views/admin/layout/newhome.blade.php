@@ -23,7 +23,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            height:100vh
+            height: 100vh
         }
 
 
@@ -166,13 +166,8 @@
 </head>
 
 <body>
-    <div >
-
-
-
-
-        <marquee
-            style="font-size: xx-large; background-color: white; font-family: Tahoma; font-weight: bold;color:red">
+    <div>
+        <marquee style="font-size: xx-large;  font-family: Tahoma; font-weight: bold;color:white">
             For Lucky Shubhank Contact on <span style="font-weight: bold;"> <i class="fa fa-phone"
                     style="font-size:36px"></i> <a href="tel:02269710251">02269710251</a> , <i class="fa fa-phone"
                     style="font-size:36px"></i>
@@ -183,19 +178,29 @@
             </span>, For Trade Enquiry please Contact on <i class="fa fa-phone" style="font-size:36px"></i> <a
                 href="tel:02269710251">02269710251</a> , <i class="fa fa-phone" style="font-size:36px"></i>
             <a href="tel:08062179850">08062179850</a> ,
-            <i class="fa fa-whatsapp" style="font-size:36px"></i> <a
-                href="https://wa.me/+919930577999">9930577999</a>
+            <i class="fa fa-whatsapp" style="font-size:36px"></i> <a href="https://wa.me/+919930577999">9930577999</a>
         </marquee>
+
+
+
+        <div
+            style="background-image: url('{{ asset('logo12_files/logo.png') }}');background-repeat:no-repeat;background-position: center top; height: 190px;    margin-bottom: 20px;">
+        </div>
+
+        <div
+            style="background-image: url('{{ asset('logo12_files/17.png') }}');background-repeat:no-repeat;background-position: center top; height: 85px;">
+        </div>
+
     </div>
     <div class="container">
 
         <div class="sidebar">
 
-            <div>
+            {{-- <div>
                 <div
                     style="background-image: url('{{ asset('logo12_files/logo.png') }}');background-repeat:no-repeat;background-position: center top; height: 190px;    margin-bottom: 20px;">
                 </div>
-            </div>
+            </div> --}}
             <div>
                 <div>
                     <div>
@@ -266,9 +271,9 @@
 
         <div class="mains">
 
-            <img src="{{ asset('logo12_files/17.png') }}" />
 
-            <div style="overflow:auto;width:750px; height: 224px">
+
+            <div style="overflow:auto;width:1080px; height: 224px">
                 <div class="divTable" style="overflow:auto;">
 
                     <div class="divTableRow" style="">
@@ -484,7 +489,7 @@
 
 
 
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
