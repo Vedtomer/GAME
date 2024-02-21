@@ -34,7 +34,7 @@
                                 <td>{{ $user->number_70 }}</td>
                                 <td>{{ $user->number_60 }}</td>
                                 <td>{{ $user->timesloat }}</td>
-                                <td>{{ $user->created_at->format('d-m-Y') }}</td>
+                                <td>{{ Carbon\Carbon::parse($user->created_at)->format('Y-m-d') }}</td>
                                 <td><a class="btn " href="{{route('admin.resultedit',$user->id)}}"><i class="fa fa-edit" style="font-size:24px"></i></a></td>
                                 {{-- <td><a class="btn btn-danger" href="{{route('admin.resultdelete',$user->id)}}">Delete</a></td> --}}
                                 <!-- Add more columns as needed -->
