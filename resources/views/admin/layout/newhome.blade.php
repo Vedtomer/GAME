@@ -123,10 +123,11 @@ html{
 
         .divTableCell1 {
             flex: 0 0 auto;
-            width: 60px;
-            height: 40px;
-            margin-right: 10px;
-            margin-top: 10px;
+    height: 61px;
+    margin-right: 8px;
+    margin-top: 10px;
+    text-align: center;
+    color: white;
 
 
         }
@@ -172,35 +173,41 @@ html{
 <body>
     <div class="container">
     <div>
-        <marquee style="font-size: xx-large;  font-family: Tahoma; font-weight: bold;color:white">
+        <marquee style="font-size: xx-large;  font-family: Tahoma; font-weight: bold;color:white;font-size: 52px;
+        margin-top: 20px;">
             For Lucky Shubhank Contact on <span style="font-weight: bold;"> <i class="fa fa-phone"
-                    style="font-size:36px"></i> <a href="tel:02269710251">02269710251</a> , <i class="fa fa-phone"
+                    style="font-size:36px"></i> <a href="tel:02269710251" style="color: red">02269710251</a> , <i class="fa fa-phone"
                     style="font-size:36px"></i>
-                <a href="tel:08062179850">08062179850</a> , <i class="fa fa-whatsapp" style="font-size:36px"></i>
-                <a href="https://wa.me/+919930577999">9930577999</a>
+                <a href="tel:08062179850" style="color: red">08062179850</a> , <i class="fa fa-whatsapp" style="font-size:36px"></i>
+                <a href="https://wa.me/+919930577999" style="color: red">9930577999</a>
 
 
-            </span>, For Trade Enquiry please Contact on <i class="fa fa-phone" style="font-size:36px"></i> <a
+            </span>, For Trade Enquiry please Contact on <i class="fa fa-phone" style="font-size:36px"></i> <a style="color: red"
                 href="tel:02269710251">02269710251</a> , <i class="fa fa-phone" style="font-size:36px"></i>
-            <a href="tel:08062179850">08062179850</a> ,
-            <i class="fa fa-whatsapp" style="font-size:36px"></i> <a href="https://wa.me/+919930577999">9930577999</a>
+            <a href="tel:08062179850" style="color: red" >08062179850</a> ,
+            <i class="fa fa-whatsapp" style="font-size:36px"></i> <a style="color: red" href="https://wa.me/+919930577999">9930577999</a>
         </marquee>
 
 
 
         <div
-            style="background-image: url('{{ asset('logo12_files/logo.png') }}');background-repeat:no-repeat;background-position: center top; height: 190px;    margin-bottom: 20px;">
+            style="background-image: url('{{ asset('logo12_files/logo.png') }}');background-repeat:no-repeat; height: 190px;    margin-bottom: 20px;">
+            {{-- background-position: center top; --}}
         </div>
 
-        <div
-            style="background-image: url('{{ asset('logo12_files/17.png') }}');background-repeat:no-repeat;background-position: center top; height: 85px;">
+        {{-- <div
+        style="background-image: url('{{ asset('logo12_files/17.png') }}');background-repeat:no-repeat;background-position: center top; height: 85px;">
+       
+    </div> --}}
+        <div>
+            <img src="{{ asset('logo12_files/17.png') }}"    style="background-repeat:no-repeat;background-position: center top; height: 100px; margin-left: 247px; width: 1106px; margin-bottom: 20px;" alt="">
         </div>
 
     </div>
     </div>
     <div class="container">
 
-        <div class="sidebar">
+        <div class="sidebar" style="margin-right: 28px">
 
             {{-- <div>
                 <div
@@ -279,21 +286,21 @@ html{
 
 
 
-            <div style="overflow:auto;width:1080px; height: 224px">
-                <div class="divTable" style="overflow:auto;">
+            <div style="overflow:auto;width:1080px; height: 254px">
+                <div class="divTable" style="overflow:auto; height: 269px;">
 
                     <div class="divTableRow" style="">
                         <div class="container1"> <img src="{{ asset('logo12_files/time_1.png') }}"
-                                style="margin-top: 9px;height:46px; margin-right:10px">
+                                style="margin-top: 9px;height:61px; margin-right:10px">
                             <div class="centered"> </div>
                         </div>
                         @foreach ($data as $user)
                             <div class="divTableCell1">
                                 <div class="container1">
                                     <img src="{{ asset($user->id % 2 == 0 ? 'logo12_files/time_1.png' : 'logo12_files/time_2.png') }}"
-                                        style="text-align: center;">
+                                        style="text-align: center; height:60px;">
                                     <div class="centered"
-                                        style="text-align: center; margin-left: 2px; margin-bottom: 2px; margin-top: -6px; font-size: 18px;">
+                                        style="text-align: center; margin-left: 2px; margin-bottom: 2px; margin-top: -48px; font-size: 28px;">
                                         {{ $user->timesloat }}
                                     </div>
                                 </div>
@@ -304,13 +311,15 @@ html{
                     </div>
                     <div class="divTableRow" style="margin-bottom: 15px;margin-top: 10px;">
                         <div class="divTableCell1"><img src="{{ asset('logo12_files/601.png') }}"
-                                style="height:50px;width:50px;background-color:transparent"></div>
+                                style="height:61px;width:69px;background-color:transparent; margin-right: 15px;"></div>
 
                         @foreach ($data as $user)
                             <div class="divTableCell1">
-                                <div class="container"> <img src="https://www.goldwinrashi.com//desktoppng/rnum.png"
-                                        style="width:60px;height:40px">
-                                    <div class="centered1" style="font-size: 30px; ">
+                                <div class="container"> 
+                                    <img src="https://www.goldwinrashi.com//desktoppng/rnum.png"
+                                        style="width:69px;height:61px;">
+                                    <div class="centered1" style="font-size: 30px;     margin-left: -54px;
+                                    margin-right: 30px; z-index: 1; color: black; margin-top: 10px; font-size: 40px; ">
                                         {{ $user->number_60 }}
                                     </div>
                                 </div>
@@ -320,12 +329,14 @@ html{
                     </div>
                     <div class="divTableRow">
                         <div class="divTableCell1"> <img src="{{ asset('logo12_files/70gh.png') }}"
-                                style="height:50px;width:50px"> </div>
+                                style="height:61px;width:69px; background-color:transparent; margin-right: 15px;"> </div>
                         @foreach ($data as $user)
                             <div class="divTableCell1">
-                                <div class="container"> <img src="https://www.goldwinrashi.com//desktoppng/rnum.png"
-                                        style="width:60px;height:40px">
-                                    <div class="centered1" style="font-size: 30px">
+                                <div class="container" style="text-align: center"> 
+                                    <img src="https://www.goldwinrashi.com//desktoppng/rnum.png"
+                                        style="width:69px;height:61px">
+                                    <div class="centered1" style="font-size: 30px;   margin-left: -54px;
+                                    margin-right: 30px; z-index: 1; color: black; margin-top: 10px; font-size: 40px;">
                                         {{ $user->number_70 }}
                                     </div>
                                 </div>
