@@ -368,7 +368,7 @@ html{
 
 
 
-            <span style="font-size:48px; color:Yellow;">Due to Technical issue Live View is Not
+            <span style="font-size:44px; color:Yellow;">Due to Technical issue Live View is Not
                 Available </span>
 
 
