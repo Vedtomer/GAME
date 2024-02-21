@@ -283,8 +283,8 @@ class AdminController extends Controller
     public function resultupdate(Request $request, $id)
     {
         $rules = [
-            'number_70' => 'required',
-            'number_60' => 'required',
+            'number_70' => 'required|string',
+            'number_60' => 'required|string',
             'timesloat' => 'nullable', // 'nullable' allows the field to be optional
         ];
         $messages = [

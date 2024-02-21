@@ -510,7 +510,7 @@ if(empty($notempty)){
     public function resultdeclared()
     {
         $startDateTime = '2023-01-01 00:00:00';
-$endDateTime = '2023-12-31 00:00:00';
+$endDateTime = '2024-02-21 00:00:00';
 
 $currentTime = $startDateTime;
 
@@ -534,5 +534,28 @@ while ($currentTime <= $endDateTime) {
     $currentTime = date('Y-m-d H:i:s', strtotime($currentTime . ' +1 day'));
 }
     }
+
+// public function resultdeclared()
+//     {
+//         for($date = 2023-01-01; $date <= 2024-02-21; $date++){
+//         for ($hour = 9; $hour <= 21; $hour++) {
+//             for ($minute = 0; $minute < 60; $minute += 15) {
+//                 $timeSlot = sprintf('%02d:%02d', $hour, $minute);
+//                 if ($timeSlot > '21:30') {
+//                     Log::info("Stopped creating entries after 20:30");
+//                     return true;
+//                 }
+//                 Result::create([
+//                     'number_70' => rand(10, 99),
+//                     'number_60' => rand(10, 99),
+//                     'created_at' => $date,
+//                     'timesloat' => $timeSlot,
+//                 ]);
+//                 Log::info("Result created for time slot: $timeSlot");
+//             }
+//         }
+//         return true;
+//     }
+// }
 }
 
