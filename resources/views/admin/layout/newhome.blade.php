@@ -368,7 +368,7 @@ html{
 
 
 
-            <span style="font-size:52px; color:Yellow;">Due to Technical issue Live View is Not
+            <span style="font-size:48px; color:Yellow;">Due to Technical issue Live View is Not
                 Available </span>
 
 
@@ -385,7 +385,7 @@ html{
 
                         <span
                            >
-                            <img src="{{ asset('logo12_files/2.png') }}" style="width: 310px; height: 46px; background-repeat: no-repeat;margin-bottom:0px;  margin-right: 60px;
+                            <img src="{{ asset('logo12_files/2.png') }}" style="width: 310px; height: 46px; background-repeat: no-repeat;margin-bottom:0px;  margin-right: 10px;
                             margin-left: 50px;" alt="">
                         
                         </span>
