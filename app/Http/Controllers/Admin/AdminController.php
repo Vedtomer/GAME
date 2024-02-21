@@ -362,7 +362,7 @@ class AdminController extends Controller
     public function  transaction($id = null)
     {
         if (empty($id)) {
-        return    $users = Transaction::orderBy('created_at', 'desc')->get();
+            $users = Transaction::orderBy('created_at', 'desc')->get();
         } else {
             $users = Transaction::where('user_id', $id)->orderBy('created_at', 'desc')->get();
         }
