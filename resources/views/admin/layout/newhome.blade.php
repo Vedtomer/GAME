@@ -386,7 +386,7 @@ html{
                         <span
                            >
                             <img src="{{ asset('logo12_files/2.png') }}" style="width: 310px; height: 46px; background-repeat: no-repeat;margin-bottom:0px;  margin-right: 10px;
-                            margin-left: 50px;" alt="">
+                            margin-left: 40px;" alt="">
                         
                         </span>
                         <span style="color: yellow;font-size: 50px;">Visitor: <span id="visitcount">27869034</span></span>
