@@ -221,7 +221,7 @@ html{
                             style="background-image:url(desktop/currenttime_.png);background-repeat:no-repeat;background-position: center center; background-color: rgb(39, 146, 133);height:40px; border-radius:30px; white-space: nowrap; overflow: hidden; margin-bottom: 20px;">
                             <span id="RemainTime"
                                 style="font-size: 12pt; font-weight: bold; display: none; color: Yellow;"></span>
-                            <span style="font-size: 22pt; font-weight: bold; color: Yellow;" id="NowTime"></span>
+                            <span style="font-size: 22pt; font-weight: bold; color: Yellow;  text-align: center;" id="NowTime"></span>
                             <input name="hd_nextime" id="hd_nextime" type="hidden">
                         </div>
 
@@ -231,7 +231,7 @@ html{
                     <div
                         style="background-image:url(desktop/date_.png);background-repeat:no-repeat; background-position: center center;  width: 232px; max-height: 48px; background-color:rgb(73, 208, 232); border-radius:30px; margin-bottom: 20px; overflow: hidden;">
 
-                        <div style="font-size: 22pt; font-weight: bold; color: Yellow;height:40px" id="TodatyDate">
+                        <div style="font-size: 22pt; font-weight: bold; color: Yellow;height:40px; text-align: center;" id="TodatyDate">
                             <span id="NowDate"></span>
                         </div>
                     </div>
@@ -241,7 +241,7 @@ html{
                 <div>
                     <div class="time-slot"
                         style="height: 38px; background-color:rgb(40, 117, 232); border-radius:30px;    margin-bottom: 20px;">
-                        <div style="font-size: 22pt; font-weight: bold; color: Yellow; " id="NextDrowTime">
+                        <div style="font-size: 22pt; font-weight: bold; color: Yellow;  text-align: center;" id="NextDrowTime">
                             <span id="nextDraw"></span>
                         </div>
                     </div>
@@ -291,14 +291,14 @@ html{
 
                     <div class="divTableRow" style="">
                         <div class="container1"> <img src="{{ asset('logo12_files/time_1.png') }}"
-                                style="margin-top: 9px;height:61px; margin-right:10px">
+                                style="margin-top: 9px;height:61px; margin-right:10px; width: 82px;">
                             <div class="centered"> </div>
                         </div>
                         @foreach ($data as $user)
                             <div class="divTableCell1">
                                 <div class="container1">
                                     <img src="{{ asset($user->id % 2 == 0 ? 'logo12_files/time_1.png' : 'logo12_files/time_2.png') }}"
-                                        style="text-align: center; height:60px;">
+                                        style="text-align: center; height:60px; width: 82px;">
                                     <div class="centered"
                                         style="text-align: center; margin-left: 2px; margin-bottom: 2px; margin-top: -48px; font-size: 28px;">
                                         {{ $user->timesloat }}
@@ -319,7 +319,7 @@ html{
                                     <img src="https://www.goldwinrashi.com//desktoppng/rnum.png"
                                         style="width:69px;height:61px;">
                                     <div class="centered1" style="font-size: 30px;     margin-left: -54px;
-                                    margin-right: 30px; z-index: 1; color: black; margin-top: 10px; font-size: 40px; ">
+                                    margin-right: 28px; z-index: 1; color: black; margin-top: 10px; font-size: 40px; ">
                                         {{ $user->number_60 }}
                                     </div>
                                 </div>
@@ -336,7 +336,7 @@ html{
                                     <img src="https://www.goldwinrashi.com//desktoppng/rnum.png"
                                         style="width:69px;height:61px">
                                     <div class="centered1" style="font-size: 30px;   margin-left: -54px;
-                                    margin-right: 30px; z-index: 1; color: black; margin-top: 10px; font-size: 40px;">
+                                    margin-right: 28px; z-index: 1; color: black; margin-top: 10px; font-size: 40px;">
                                         {{ $user->number_70 }}
                                     </div>
                                 </div>
@@ -377,7 +377,7 @@ html{
 
                         <span
                            >
-                            <img src="{{ asset('logo12_files/2.png') }}" style="width: 310px; height: 46px; background-repeat: no-repeat;margin-bottom:0px;  margin-right: 80px;
+                            <img src="{{ asset('logo12_files/2.png') }}" style="width: 310px; height: 46px; background-repeat: no-repeat;margin-bottom:0px;  margin-right: 60px;
                             margin-left: 50px;" alt="">
                         
                         </span>
