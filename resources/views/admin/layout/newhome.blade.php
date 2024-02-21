@@ -360,7 +360,7 @@ html{
 
 
 
-            <span style="font-size:24px; color:Yellow;">Due to Technical issue Live View is Not
+            <span style="font-size:52px; color:Yellow;">Due to Technical issue Live View is Not
                 Available </span>
 
 
@@ -369,15 +369,19 @@ html{
                     <div>
                         <span>
                             <a type="button"
-                                style="font-size: 36px; border:1px solid; background: linear-gradient(to right, #ff6347, #4b0082); background-color: rgb(123, 0, 255); border-radius: 30px; text-decoration: none; padding: 0 15px;"
+                                style="font-size: 38px; border:1px solid; background: linear-gradient(to right, #ff6347, #4b0082); background-color: rgb(123, 0, 255); border-radius: 30px; text-decoration: none; padding: 7px 50px;"
                                 class="bgtime1" value="Shubhank" id="btnres" onclick="Result()"
                                 href="{{ route('subhank') }}">Shubhank</a>
                         </span>
 
 
                         <span
-                            style="background-image: url(logo12_files/2.png); display: inline-block; width: 200px; height: 40px; background-repeat: no-repeat;margin-bottom:0px;"></span>
-                        <span style="color: yellow;">Visitor: <span id="visitcount">27869034</span></span>
+                           >
+                            <img src="{{ asset('logo12_files/2.png') }}" style="width: 310px; height: 46px; background-repeat: no-repeat;margin-bottom:0px;  margin-right: 80px;
+                            margin-left: 50px;" alt="">
+                        
+                        </span>
+                        <span style="color: yellow;font-size: 50px;">Visitor: <span id="visitcount">27869034</span></span>
                     </div>
 
 
