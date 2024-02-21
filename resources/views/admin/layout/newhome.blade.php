@@ -286,62 +286,70 @@ html{
 
 
 
-            <div style="overflow:auto;width:1080px; height: 254px">
-                <div class="divTable" style="overflow:auto; height: 269px;">
+            <div style="overflow:auto;width:1080px; height: 272px">
+                <div class="divTable" style="overflow:auto; height: 272px;">
 
-                    <div class="divTableRow" style="">
-                        <div class="container1"> <img src="{{ asset('logo12_files/time_1.png') }}"
+                    <div class="divTableRow" style="margin-left:12px;">
+                        <div class="container1"> 
+                            <img src="{{ asset('logo12_files/time_1.png') }}"
                                 style="margin-top: 9px;height:61px; margin-right:10px; width: 82px;">
                             <div class="centered"> </div>
-                        </div>
+                    </div>
+
+                       <tr>
                         @foreach ($data as $user)
-                            <div class="divTableCell1">
-                                <div class="container1">
-                                    <img src="{{ asset($user->id % 2 == 0 ? 'logo12_files/time_1.png' : 'logo12_files/time_2.png') }}"
-                                        style="text-align: center; height:60px; width: 82px;">
-                                    <div class="centered"
-                                        style="text-align: center; margin-left: 2px; margin-bottom: 2px; margin-top: -48px; font-size: 28px;">
-                                        {{ $user->timesloat }}
-                                    </div>
+                        <div class="divTableCell1">
+                            <th class="container1" style="">
+                                <img src="{{ asset($user->id % 2 == 0 ? 'logo12_files/time_1.png' : 'logo12_files/time_2.png') }}"
+                                    style="text-align: center; height:60px; width: 78px; ">
+                                <div class="centered"
+                                    style="text-align: center; margin-left: 2px; margin-bottom: 2px; margin-top: -48px; font-size: 28px;">
+                                    {{ $user->timesloat }}
                                 </div>
-                            </div>
-                        @endforeach
+                            </th>
+                        </div>
+                    @endforeach
+                       </tr>
 
 
                     </div>
-                    <div class="divTableRow" style="margin-bottom: 15px;margin-top: 10px;">
+                    <div class="divTableRow" style="margin-bottom: 15px;margin-top: 10px; margin-left:12px;">
                         <div class="divTableCell1"><img src="{{ asset('logo12_files/601.png') }}"
                                 style="height:61px;width:69px;background-color:transparent; margin-right: 15px;"></div>
 
+                      <tr>
                         @foreach ($data as $user)
-                            <div class="divTableCell1">
-                                <div class="container"> 
-                                    <img src="https://www.goldwinrashi.com//desktoppng/rnum.png"
-                                        style="width:69px;height:61px;">
-                                    <div class="centered1" style="font-size: 30px;     margin-left: -54px;
-                                    margin-right: 28px; z-index: 1; color: black; margin-top: 10px; font-size: 40px; ">
-                                        {{ $user->number_60 }}
-                                    </div>
+                        <div class="divTableCell1">
+                            <td class="container"> 
+                                <img src="https://www.goldwinrashi.com//desktoppng/rnum.png"
+                                    style="width:78px;height:68px;">
+                                <div class="centered1" style="font-size: 30px;     margin-left: -11px;
+                                margin-right: -13px; z-index: 1; color: black; margin-top: -60px; font-size: 40px; ">
+                                    {{ $user->number_60 }}
                                 </div>
-                            </div>
-                        @endforeach
+                            </td>
+                        </div>
+                    @endforeach
 
+                      </tr>
                     </div>
-                    <div class="divTableRow">
+                    <div class="divTableRow" style="margin-left:12px;">
                         <div class="divTableCell1"> <img src="{{ asset('logo12_files/70gh.png') }}"
                                 style="height:61px;width:69px; background-color:transparent; margin-right: 15px;"> </div>
+                      <tr>
                         @foreach ($data as $user)
-                            <div class="divTableCell1">
-                                <div class="container" style="text-align: center"> 
-                                    <img src="https://www.goldwinrashi.com//desktoppng/rnum.png"
-                                        style="width:69px;height:61px">
-                                    <div class="centered1" style="font-size: 30px;   margin-left: -54px;
-                                    margin-right: 28px; z-index: 1; color: black; margin-top: 10px; font-size: 40px;">
-                                        {{ $user->number_70 }}
-                                    </div>
+                        <div class="divTableCell1">
+                            <td class="container" style="text-align: center"> 
+                                <img src="https://www.goldwinrashi.com//desktoppng/rnum.png"
+                                    style="width:78px;height:68px">
+                                <div class="centered1" style="font-size: 30px;     margin-left: -11px;
+                                margin-right: -10px; z-index: 1; color: black; margin-top: -60px; font-size: 40px;">
+                                    {{ $user->number_70 }}
                                 </div>
-                            </div>
-                        @endforeach
+                            </td>
+                        </div>
+                    @endforeach
+                      </tr>
                     </div>
 
                 </div>
