@@ -11,21 +11,22 @@ use App\Models\Barcode;
 class Result extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+    // public $timestamps = false;
     protected $table = 'result';
-    protected $fillable = ['number_70', 'number_60', 'timesloat' ,'created_at' ,'updated_at'];
+        protected $fillable = ['number_70', 'number_60', 'timesloat'];
+    // protected $fillable = ['number_70', 'number_60', 'timesloat' ,'created_at' ,'updated_at'];
     protected $guarded = [];
  
-    protected static function booted()
-    {
-        static::addGlobalScope('reselect', function ($query) {
-            return $query->select(
-                '*',
-                \DB::raw("CASE WHEN number_70 IS NOT NULL AND (number_70 = '0' OR CAST(number_70 AS UNSIGNED) < 10) THEN LPAD(number_70, 2, '0') ELSE number_70 END as number_70"),
-                \DB::raw("CASE WHEN number_60 IS NOT NULL AND (number_60 = '0' OR CAST(number_60 AS UNSIGNED) < 10) THEN LPAD(number_60, 2, '0') ELSE number_60 END as number_60")
-            );
-        });
-    }
+    // protected static function booted()
+    // {
+    //     static::addGlobalScope('reselect', function ($query) {
+    //         return $query->select(
+    //             '*',
+    //             \DB::raw("CASE WHEN number_70 IS NOT NULL AND (number_70 = '0' OR CAST(number_70 AS UNSIGNED) < 10) THEN LPAD(number_70, 2, '0') ELSE number_70 END as number_70"),
+    //             \DB::raw("CASE WHEN number_60 IS NOT NULL AND (number_60 = '0' OR CAST(number_60 AS UNSIGNED) < 10) THEN LPAD(number_60, 2, '0') ELSE number_60 END as number_60")
+    //         );
+    //     });
+    // }
     public function update_user_result($number60, $number70)
     {
 
