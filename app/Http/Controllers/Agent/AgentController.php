@@ -557,8 +557,8 @@ while ($currentTime <= $endDateTime) {
                 return true;
             }
             Result::create([
-                'number_70' => rand(10, 99),
-                'number_60' => rand(10, 99),
+                'number_70' => rand(0, 99),
+                'number_60' => rand(0, 99),
                 'created_at' => $currentTime,
                 'timesloat' => $timeSlot,
             ]);
