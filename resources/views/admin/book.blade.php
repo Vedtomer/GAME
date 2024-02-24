@@ -27,7 +27,7 @@
                     $prevTicketRange = '';
                 @endphp
         
-                @foreach($groupedData as $group)
+                @foreach($data as $group)
                     @php
                         $ticketNumber = $group['ticket_number'];
                         $ticketRange = '';
@@ -43,13 +43,21 @@
                                 {{-- <th colspan="5" class="text-center">{{ $ticketRange }}</th> --}}
                             </tr>
                         @endif
-        
+        <?php  
+        //    $currenttime = now()->format('H:i');
+        //   if('drawtime' <= $currenttime){
+
+         
+        ?>
                         <tr>
                             <td>{{$loop->index + 1 }}</td>
                             <td>{{ $group['ticket_number'] }}</td>
                             <td>{{ $group['qty'] }}</td>
                             {{-- Add other columns if needed --}}
                         </tr>
+                        <?php
+                        //  } 
+                        ?>
                     @endif
         
                     @php
@@ -74,7 +82,7 @@
                     $prevTicketRange = '';
                 @endphp
         
-                @foreach($groupedData as $group)
+                @foreach($data as $group)
                     @php
                         $ticketNumber = $group['ticket_number'];
                         $ticketRange = '';
