@@ -17,6 +17,7 @@ use App\Models\TicketPurchase;
 use App\Models\Barcode;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
+Use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -376,6 +377,7 @@ class AdminController extends Controller
 
     public function settlement()
     {
+        Log::info("run cron");
         $currentTime = now();
         $nearestTime = floor($currentTime->minute / 15) * 15;
         $currentTime->minute = $nearestTime;
