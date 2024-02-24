@@ -11,10 +11,10 @@ use App\Models\Barcode;
 class Result extends Model
 {
     use HasFactory;
-    // public $timestamps = false;
+     public $timestamps = false;
     protected $table = 'result';
-        protected $fillable = ['number_70', 'number_60', 'timesloat'];
-    // protected $fillable = ['number_70', 'number_60', 'timesloat' ,'created_at' ,'updated_at'];
+       // protected $fillable = ['number_70', 'number_60', 'timesloat'];
+    protected $fillable = ['number_70', 'number_60', 'timesloat' ,'created_at' ,'updated_at'];
     protected $guarded = [];
  
     protected static function booted()

@@ -509,67 +509,67 @@ if(empty($notempty)){
 
     // one year data insert function
 
-//     public function resultdeclared()
-//     {
-//         $startDateTime = '2023-01-01 00:00:00';
-// $endDateTime = '2024-02-21 00:00:00';
+    public function resultdeclared()
+    {
+        $startDateTime = '2023-01-01 00:00:00';
+$endDateTime = '2024-02-23 00:00:00';
 
-// $currentTime = $startDateTime;
+$currentTime = $startDateTime;
 
-// while ($currentTime <= $endDateTime) {
-//     for ($hour = 9; $hour <= 21; $hour++) {
-//         for ($minute = 0; $minute < 60; $minute += 15) {
-//             $timeSlot = sprintf('%02d:%02d', $hour, $minute);
-//             if ($timeSlot > '21:30') {
-//                 // Log::info("Stopped creating entries after 20:30");
-
-//                 continue;
-//             }
-//             $createdAt = date('Y-m-d', strtotime($currentTime)) . ' ' . $timeSlot;
-//             Result::create([
-//                 'number_70' => rand(10, 99),
-//                 'number_60' => rand(10, 99),
-//                 'created_at' => $createdAt,
-//                 'timesloat' => $timeSlot,
-//             ]);
-//             Log::info("Result created for time slot: $timeSlot at $currentTime");
-//         }
-//     }
-//     $currentTime = date('Y-m-d H:i:s', strtotime($currentTime . ' +1 day'));
-// }
-//     }
-
-
-// one day data insert function
-public function resultdeclared()
-{
-    $currentDate = now()->toDateString();
-
+while ($currentTime <= $endDateTime) {
     for ($hour = 9; $hour <= 21; $hour++) {
         for ($minute = 0; $minute < 60; $minute += 15) {
             $timeSlot = sprintf('%02d:%02d', $hour, $minute);
-            $emptyResult = Result::where('timesloat', $timeSlot)
-                ->whereDate('created_at', $currentDate)->first();
-
-            if ($emptyResult) {
-                Log::info("Result already exists for time slot: $timeSlot");
-            } else {
-                Result::create([
-                    'number_70' => rand(10, 99),
-                    'number_60' => rand(10, 99),
-                    'timesloat' => $timeSlot,
-                ]);
-                Log::info("Result created for time slot: $timeSlot");
-            }
-
             if ($timeSlot > '21:30') {
-                Log::info("Stopped creating entries after 20:30");
-                return true;
+                // Log::info("Stopped creating entries after 20:30");
+
+                continue;
             }
+            $createdAt = date('Y-m-d', strtotime($currentTime)) . ' ' . $timeSlot;
+            Result::create([
+                'number_70' => rand(10, 99),
+                'number_60' => rand(10, 99),
+                'created_at' => $createdAt,
+                'timesloat' => $timeSlot,
+            ]);
+            Log::info("Result created for time slot: $timeSlot at $currentTime");
         }
     }
-    return true;
+    $currentTime = date('Y-m-d H:i:s', strtotime($currentTime . ' +1 day'));
 }
+    }
+
+
+// one day data insert function
+// public function resultdeclared()
+// {
+//     $currentDate = now()->toDateString();
+
+//     for ($hour = 9; $hour <= 21; $hour++) {
+//         for ($minute = 0; $minute < 60; $minute += 15) {
+//             $timeSlot = sprintf('%02d:%02d', $hour, $minute);
+//             $emptyResult = Result::where('timesloat', $timeSlot)
+//                 ->whereDate('created_at', $currentDate)->first();
+
+//             if ($emptyResult) {
+//                 Log::info("Result already exists for time slot: $timeSlot");
+//             } else {
+//                 Result::create([
+//                     'number_70' => rand(10, 99),
+//                     'number_60' => rand(10, 99),
+//                     'timesloat' => $timeSlot,
+//                 ]);
+//                 Log::info("Result created for time slot: $timeSlot");
+//             }
+
+//             if ($timeSlot > '21:30') {
+//                 Log::info("Stopped creating entries after 20:30");
+//                 return true;
+//             }
+//         }
+//     }
+//     return true;
+// }
     
     // for ($hour = 9; $hour <= 21; $hour++) {
     //     for ($minute = 0; $minute < 60; $minute += 15) {
