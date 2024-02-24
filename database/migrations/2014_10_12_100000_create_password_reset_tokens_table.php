@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
-            $table->string('token');
+            $table->string('email', 191)->primary(); // Reduce the length of email to 191 characters
+            $table->string('token', 255); // Keep the token length as is
             $table->timestamp('created_at')->nullable();
         });
     }
