@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,6 +19,9 @@ return new class extends Migration
             $table->timestamp('last_used_at')->nullable();
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
+
+            // Define index with explicit length for tokenable_type
+            $table->index(['tokenable_type', 'tokenable_id'], 'personal_access_tokens_tokenable_type_tokenable_id_index', 'utf8mb4', ['length' => ['tokenable_type' => 191]]);
         });
     }
 
@@ -31,3 +33,4 @@ return new class extends Migration
         Schema::dropIfExists('personal_access_tokens');
     }
 };
+
