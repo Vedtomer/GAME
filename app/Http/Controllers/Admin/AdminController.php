@@ -424,7 +424,7 @@ class AdminController extends Controller
     
         $data = TicketPurchase::where('is_result_declared', 0)
                                ->where('drawtime', $drawtime)
-                               ->whereDate('created_at', now()) // Filter by today's date
+                               ->whereDate('created_at', now()) 
                                ->orderBy('id', 'desc')
                                ->get();
     

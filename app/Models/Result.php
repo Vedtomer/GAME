@@ -87,5 +87,14 @@ class Result extends Model
 
          
         }
+
+        $currentTime = strtotime(date("H:i"));
+        $drawtime = ceil($currentTime / (15 * 60)) * (15 * 60);
+        $drawtime = date("H:i", $drawtime);
+
+        $data = TicketPurchase::where('drawtime', $drawtime)
+                      ->whereDate('created_at', now()) 
+                      ->update(['is_result_declared' => 1]);
+
     }
 }
