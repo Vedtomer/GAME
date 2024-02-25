@@ -15,7 +15,7 @@
         <table class="mb-0 table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th style="width: 5%" scope="col">S No</th>
+                  
                     <th style="width: 20%" scope="col">Number </th>
                     <th style="width: 20%" scope="col">QTY </th>
                     {{-- Add other columns if needed --}}
