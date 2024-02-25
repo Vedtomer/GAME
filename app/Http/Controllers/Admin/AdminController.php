@@ -423,7 +423,7 @@ class AdminController extends Controller
         $drawtime = ceil($currentTime / (15 * 60)) * (15 * 60);
         $drawtime = date("H:i", $drawtime);
     
-        $data = TicketPurchase::select('*', DB::raw('SUM(qty) as total_qty'))
+        $data = TicketPurchase::select('ticket_number', DB::raw('SUM(qty) as total_qty'))
                       ->where('is_result_declared', 0)
                       ->where('drawtime', $drawtime)
                       ->whereDate('created_at', now()) 
