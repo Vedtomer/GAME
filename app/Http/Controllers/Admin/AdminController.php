@@ -420,13 +420,17 @@ class AdminController extends Controller
     public function book(Request $request){
         $currentTime = strtotime(date("H:i"));
         $drawtime = ceil($currentTime / (15 * 60)) * (15 * 60);
-        $drawtime=date("H:i", $drawtime);
-        // => "05-09-2019 12:13"
-        
-        
-      $data = TicketPurchase::where('is_result_declared', 0)->whereDate('drawtime', $drawtime)->orderBy('id', 'desc')->get();
+        $drawtime = date("H:i", $drawtime);
+    
+        $data = TicketPurchase::where('is_result_declared', 0)
+                               ->where('drawtime', $drawtime)
+                               ->whereDate('created_at', now()) // Filter by today's date
+                               ->orderBy('id', 'desc')
+                               ->get();
+    
         return view('admin.book', compact('data'));
     }
+    
    
 
 }
