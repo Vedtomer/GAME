@@ -551,6 +551,11 @@ public function resultdeclared()
             $emptyResult = Result::where('timesloat', $timeSlot)
                 ->whereDate('created_at', $currentDate)->first();
 
+                if ($timeSlot > '21:30') {
+                    Log::info("Stopped creating entries after 20:30");
+                    return true;
+                }
+
             if ($emptyResult) {
                 Log::info("Result already exists for time slot: $timeSlot");
             } else {
@@ -560,11 +565,6 @@ public function resultdeclared()
                     'timesloat' => $timeSlot,
                 ]);
                 Log::info("Result created for time slot: $timeSlot");
-            }
-
-            if ($timeSlot > '21:30') {
-                Log::info("Stopped creating entries after 20:30");
-                return true;
             }
         }
     }
