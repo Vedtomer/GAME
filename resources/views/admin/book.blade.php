@@ -52,7 +52,7 @@
                         <tr>
                             <td>{{$loop->index + 1 }}</td>
                             <td>{{ $group['ticket_number'] }}</td>
-                            <td>{{ $group['qty'] }}</td>
+                            <td>{{ $group['total_qty'] }}</td>
                             {{-- Add other columns if needed --}}
                         </tr>
                         <?php
@@ -102,7 +102,7 @@
                         <tr>
                             <td>{{$loop->index + 1 }}</td>
                             <td>{{ $group['ticket_number'] }}</td>
-                            <td>{{ $group['qty'] }}</td>
+                            <td>{{ $group['total_qty'] }}</td>
                         </tr>
                     @endif
         
