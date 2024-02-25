@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
 Use Illuminate\Support\Facades\Log;
 
+
 class AdminController extends Controller
 {
     public function login(Request $request)
@@ -422,11 +423,15 @@ class AdminController extends Controller
         $drawtime = ceil($currentTime / (15 * 60)) * (15 * 60);
         $drawtime = date("H:i", $drawtime);
     
-        $data = TicketPurchase::where('is_result_declared', 0)
-                               ->where('drawtime', $drawtime)
-                               ->whereDate('created_at', now()) 
-                               ->orderBy('id', 'desc')
-                               ->get();
+        $data = TicketPurchase::select('*', DB::raw('SUM(qty) as total_qty'))
+                      ->where('is_result_declared', 0)
+                      ->where('drawtime', $drawtime)
+                      ->whereDate('created_at', now()) 
+                      ->groupBy('ticket_number')
+                      ->orderBy('id', 'desc')
+                      ->get();
+
+
     
         return view('admin.book', compact('data'));
     }
