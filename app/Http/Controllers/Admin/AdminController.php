@@ -429,6 +429,7 @@ class AdminController extends Controller
                       ->whereDate('created_at', now()) 
                       ->groupBy('ticket_number')
                       ->orderBy('total_qty', 'asc')
+                      ->orderBy('ticket_number', 'asc')
                       ->get();
 
 
