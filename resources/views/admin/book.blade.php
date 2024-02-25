@@ -50,7 +50,7 @@
          
         ?>
                         <tr>
-                            <td>{{$loop->index + 1 }}</td>
+                           
                             <td>{{ $group['ticket_number'] }}</td>
                             <td>{{ $group['total_qty'] }}</td>
                             {{-- Add other columns if needed --}}
@@ -72,7 +72,7 @@
         <table class="mb-0 table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th style="width: 5%" scope="col">S No</th>
+                    
                     <th style="width: 20%" scope="col">Number </th>
                     <th style="width: 20%" scope="col">QTY </th>
                 </tr>
@@ -100,7 +100,7 @@
                         @endif
         
                         <tr>
-                            <td>{{$loop->index + 1 }}</td>
+                           
                             <td>{{ $group['ticket_number'] }}</td>
                             <td>{{ $group['total_qty'] }}</td>
                         </tr>
