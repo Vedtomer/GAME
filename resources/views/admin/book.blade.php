@@ -117,7 +117,7 @@
     </table>
     
         @else
-            <p>No users found.</p>
+            <p>No Booking found.</p>
         @endif
     </div>
         </div>

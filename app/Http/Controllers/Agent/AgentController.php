@@ -76,7 +76,7 @@ class AgentController extends Controller
         $currentDate = Carbon::now()->format('Y-m-d');
 
         $data = Barcode::with('ticketPurchases')->where('user_id', Auth::user()->id)
-        ->whereDate('created_at', $currentDate)->orderBy('id', 'desc')
+            ->whereDate('created_at', $currentDate)->orderBy('id', 'desc')
             ->get();
 
         return view('agent.dashview', compact('agent', 'number', 'data'));
@@ -87,7 +87,7 @@ class AgentController extends Controller
         $currentTime = now();
         $ticketWindowOpenTime = now()->setTime(8, 45); // Set the opening time to 8:45 AM
         $ticketWindowCloseTime = now()->setTime(21, 30); // Set the closing time to 9:30 PM
-    
+
         if ($currentTime->lt($ticketWindowOpenTime) || $currentTime->gte($ticketWindowCloseTime)) {
             // Ticket window is not open
             $openingTime = $ticketWindowOpenTime->format('h:i A');
@@ -95,9 +95,9 @@ class AgentController extends Controller
         }
         $startTime = now()->setHour(9)->setMinute(0)->setSecond(0); // Set your start time
         $endTime = now()->setHour(21)->setMinute(30)->setSecond(0);   // Set your end time
-    
+
         if ($currentTime >= $startTime && $currentTime <= $endTime) {
-       
+
             if ($currentTime->minute % 15 === 0 && $currentTime->minute !== 0) {
                 return back()->with('error', 'Please wait for 1 minute');
             }
@@ -115,68 +115,68 @@ class AgentController extends Controller
 
             if (($keyInt >= 7000 && $keyInt <= 7099) || ($keyInt >= 6000 && $keyInt <= 6099)) {
                 if (!empty($value)) {
- $notempty = true;
+                    $notempty = true;
                     $pts = (int)$value * 1.1;
                     $totalPts += $pts;
                     $totalQty += $value;
                 }
             }
         }
-if(empty($notempty)){
-    return back()->with('error', 'Please Purchase at least One Ticket');
-}
+        if (empty($notempty)) {
+            return back()->with('error', 'Please Purchase at least One Ticket');
+        }
         if ($totalPts > $balance) {
 
             return back()->with('error', 'Insufficient points. Please recharge your account.');
         }
         $currentTime = strtotime(date("H:i"));
         $drawtime = ceil($currentTime / (15 * 60)) * (15 * 60);
-       
-        if(empty($data['timeslots'])){
+
+        if (empty($data['timeslots'])) {
             $data['timeslots'][0] = date("H:i", $drawtime);
         }
         // $drawtimeFormatted now contains the formatted drawtime like 9:15, 9:30, 9:45, 10:00, etc.
         foreach ($data['timeslots'] as  $timeslots) {
-        $barcode = new Barcode();
-        $barcode->drawtime = $timeslots;
-        $barcode->user_id = $user_id;
-        $barcode->requestid = mt_rand(100000000000, 999999999999);
-        $barcode->qty = $totalQty;
-        $barcode->points = $totalPts;
-        $barcode->status = "ACTIVE";
-        $barcode->barcode = mt_rand(1000000000000, 9999999999999);
-        $barcode->save();
-        $savedId = $barcode->id;
-       
-        foreach ($data as $key => $value) {
-            $keyInt = (int)$key;
-            if (($keyInt >= 7000 && $keyInt <= 7099) || ($keyInt >= 6000 && $keyInt <= 6099)) {
-                if (!empty($value)) {
-                    $pts = (int)$value * 1.1;
-                    $balance -= $pts;
+            $barcode = new Barcode();
+            $barcode->drawtime = $timeslots;
+            $barcode->user_id = $user_id;
+            $barcode->requestid = mt_rand(100000000000, 999999999999);
+            $barcode->qty = $totalQty;
+            $barcode->points = $totalPts;
+            $barcode->status = "ACTIVE";
+            $barcode->barcode = mt_rand(1000000000000, 9999999999999);
+            $barcode->save();
+            $savedId = $barcode->id;
 
-                    DB::transaction(function () use ($keyInt, $value, $pts, $user_id, $savedId, $timeslots) {
-                        $TicketPurchase = new TicketPurchase();
-                        $TicketPurchase->drawtime = $timeslots;
-                        $TicketPurchase->ticket_number = $keyInt;
-                        $TicketPurchase->qty = (int)$value;
-                        $TicketPurchase->points = $pts;
-                        $TicketPurchase->user_id = $user_id;
-                        $TicketPurchase->barcode_id = $savedId;
-                        $TicketPurchase->save();
-                    });
-                    DB::table('transaction')->insert([
-                        'user_id' => $user_id,
-                        'action' => 'purchase',
-                        'amount' => $pts,
-                        'balance' => $balance,
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ]);
+            foreach ($data as $key => $value) {
+                $keyInt = (int)$key;
+                if (($keyInt >= 7000 && $keyInt <= 7099) || ($keyInt >= 6000 && $keyInt <= 6099)) {
+                    if (!empty($value)) {
+                        $pts = (int)$value * 1.1;
+                        $balance -= $pts;
+
+                        DB::transaction(function () use ($keyInt, $value, $pts, $user_id, $savedId, $timeslots) {
+                            $TicketPurchase = new TicketPurchase();
+                            $TicketPurchase->drawtime = $timeslots;
+                            $TicketPurchase->ticket_number = $keyInt;
+                            $TicketPurchase->qty = (int)$value;
+                            $TicketPurchase->points = $pts;
+                            $TicketPurchase->user_id = $user_id;
+                            $TicketPurchase->barcode_id = $savedId;
+                            $TicketPurchase->save();
+                        });
+                        DB::table('transaction')->insert([
+                            'user_id' => $user_id,
+                            'action' => 'purchase',
+                            'amount' => $pts,
+                            'balance' => $balance,
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ]);
+                    }
                 }
             }
         }
-    }
         Auth::user()->update(['balance' => $balance]);
         return back()->with('success', 'Ticket purchased successfully.');
     }
@@ -290,13 +290,13 @@ if(empty($notempty)){
 
     public function result()
     {
-      
+
         $currentTime = now()->format('H:i');
         $data = Result::whereDate('created_at', now()->toDateString())
             ->where('timesloat', '<=', $currentTime)
             ->orderBy('timesloat', 'desc')
             ->get();
-    
+
         return view('agent.result', ['data' => $data]);
     }
 
@@ -416,7 +416,7 @@ if(empty($notempty)){
     {
         $currentTime = now()->format('H:i');
         $users = Result::whereDate('created_at', now()->toDateString())
-        ->where('timesloat', '<=', $currentTime)->orderBy('timesloat', 'desc')->get();
+            ->where('timesloat', '<=', $currentTime)->orderBy('timesloat', 'desc')->get();
         return view('subhank', ['data' => $users]);
     }
 
@@ -425,7 +425,7 @@ if(empty($notempty)){
         if (Auth::guard('agent')->check()) {
             $start_date = $request->input('start_date');
             $end_date = $request->input('end_date');
-    
+
             if (empty($start_date)) {
                 $start_date = now()->startOfDay();
             } else {
@@ -436,12 +436,12 @@ if(empty($notempty)){
             } else {
                 $end_date = Carbon::parse($end_date)->endOfDay();
             }
-            
+
             $data = Barcode::whereBetween('created_at', [$start_date, $end_date])->get();
             $sumQty = $data->sum('qty');
             $sumpoints = $data->sum('points');
             $winpoints = $data->sum('winpoints');
-    
+
             $cancelCount = $data->where(function ($item) {
                 return strcasecmp($item->status, 'CANCEL') === 0;
             })->count();
@@ -451,18 +451,18 @@ if(empty($notempty)){
                 return !empty($item->winpoints);
             });
             $sumQtyWinpoints = $Claimqty->sum('claimQty');
-            $Netpay = $netplus - $data->sum('winpoints');  
+            $Netpay = $netplus - $data->sum('winpoints');
             return view('agent.report', compact('data', 'start_date', 'end_date', 'sumQty', 'sumpoints', 'cancelCount', 'netAmt', 'netplus', 'sumQtyWinpoints', 'Netpay', 'winpoints'));
         } else {
             return redirect()->route('agent.login');
         }
     }
-    
+
     public function filtereddata(Request $request)
     {
         $start_date = $request->input('start_date');
         $end_date = $request->input('end_date');
-    
+
         if (empty($start_date)) {
             $start_date = now()->startOfDay();
         } else {
@@ -477,14 +477,14 @@ if(empty($notempty)){
         $sumQty = $data->sum('qty');
         $sumpoints = $data->sum('points');
         $winpoints = $data->sum('winpoints');
-    
+
         $cancelCount = $data->where(function ($item) {
             return strcasecmp($item->status, 'CANCEL') === 0;
         })->count();
-        
+
         $netAmt = $sumQty - $cancelCount;
         $netplus = $netAmt * 1.1;
-    
+
         $Claimqty = $data->filter(function ($item) {
             return !empty($item->winpoints);
         });
@@ -509,69 +509,65 @@ if(empty($notempty)){
 
     // one year data insert function
 
-//     public function resultdeclared()
-//     {
-//         $startDateTime = '2023-01-01 00:00:00';
-// $endDateTime = '2024-02-23 00:00:00';
+    //     public function resultdeclared()
+    //     {
+    //         $startDateTime = '2023-01-01 00:00:00';
+    // $endDateTime = '2024-02-23 00:00:00';
 
-// $currentTime = $startDateTime;
+    // $currentTime = $startDateTime;
 
-// while ($currentTime <= $endDateTime) {
-//     for ($hour = 9; $hour <= 21; $hour++) {
-//         for ($minute = 0; $minute < 60; $minute += 15) {
-//             $timeSlot = sprintf('%02d:%02d', $hour, $minute);
-//             if ($timeSlot > '21:30') {
-//                 // Log::info("Stopped creating entries after 20:30");
+    // while ($currentTime <= $endDateTime) {
+    //     for ($hour = 9; $hour <= 21; $hour++) {
+    //         for ($minute = 0; $minute < 60; $minute += 15) {
+    //             $timeSlot = sprintf('%02d:%02d', $hour, $minute);
+    //             if ($timeSlot > '21:30') {
+    //                 // Log::info("Stopped creating entries after 20:30");
 
-//                 continue;
-//             }
-//             $createdAt = date('Y-m-d', strtotime($currentTime)) . ' ' . $timeSlot;
-//             Result::create([
-//                 'number_70' => rand(0, 99),
-//                 'number_60' => rand(0, 99),
-//                 'created_at' => $createdAt,
-//                 'timesloat' => $timeSlot,
-//             ]);
-//             Log::info("Result created for time slot: $timeSlot at $currentTime");
-//         }
-//     }
-//     $currentTime = date('Y-m-d H:i:s', strtotime($currentTime . ' +1 day'));
-// }
-//     }
+    //                 continue;
+    //             }
+    //             $createdAt = date('Y-m-d', strtotime($currentTime)) . ' ' . $timeSlot;
+    //             Result::create([
+    //                 'number_70' => rand(0, 99),
+    //                 'number_60' => rand(0, 99),
+    //                 'created_at' => $createdAt,
+    //                 'timesloat' => $timeSlot,
+    //             ]);
+    //             Log::info("Result created for time slot: $timeSlot at $currentTime");
+    //         }
+    //     }
+    //     $currentTime = date('Y-m-d H:i:s', strtotime($currentTime . ' +1 day'));
+    // }
+    //     }
 
 
-// one day data insert function
-public function resultdeclared()
-{
-    $currentDate = now()->toDateString();
+    // one day data insert function
+    public function resultdeclared()
+    {
+        $currentDate = now()->toDateString();
 
-    for ($hour = 9; $hour <= 21; $hour++) {
-        for ($minute = 0; $minute < 60; $minute += 15) {
-            $timeSlot = sprintf('%02d:%02d', $hour, $minute);
-            $emptyResult = Result::where('timesloat', $timeSlot)
-                ->whereDate('created_at', $currentDate)->first();
+        for ($hour = 9; $hour <= 21; $hour++) {
+            for ($minute = 0; $minute < 60; $minute += 15) {
+                $timeSlot = sprintf('%02d:%02d', $hour, $minute);
+                $emptyResult = Result::where('timesloat', $timeSlot)
+                    ->whereDate('created_at', $currentDate)->first();
 
                 if ($timeSlot > '21:30') {
                     Log::info("Stopped creating entries after 20:30");
                     return true;
                 }
 
-            if ($emptyResult) {
-                Log::info("Result already exists for time slot: $timeSlot");
-            } else {
-                Result::create([
-                    'number_70' => rand(0, 99),
-                    'number_60' => rand(0, 99),
-                    'timesloat' => $timeSlot,
-                ]);
-                Log::info("Result created for time slot: $timeSlot");
+                if ($emptyResult) {
+                    Log::info("Result already exists for time slot: $timeSlot");
+                } else {
+                    Result::create([
+                        'number_70' => rand(0, 99),
+                        'number_60' => rand(0, 99),
+                        'timesloat' => $timeSlot,
+                    ]);
+                    Log::info("Result created for time slot: $timeSlot");
+                }
             }
         }
+        return true;
     }
-    return true;
 }
-    
- 
-}
-
-

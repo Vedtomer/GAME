@@ -418,35 +418,15 @@ class AdminController extends Controller
     }
 
     public function book(Request $request){
-        $currentDate = now()->toDateString();
-        $currenttime = now()->format('H:i');
-
+        $currentTime = strtotime(date("H:i"));
+        $drawtime = ceil($currentTime / (15 * 60)) * (15 * 60);
+        $drawtime=date("H:i", $drawtime);
         // => "05-09-2019 12:13"
         
         
-      $data = TicketPurchase::where('is_result_declared', 0)->whereDate('created_at', $currentDate)->orderBy('id', 'desc')->get();
-    // $data = TicketPurchase::whereDate('created_at', $currentDate)->orderBy('id', 'desc')->where('drawtime' <= $currenttime )->get();
+      $data = TicketPurchase::where('is_result_declared', 0)->whereDate('drawtime', $drawtime)->orderBy('id', 'desc')->get();
         return view('admin.book', compact('data'));
     }
-    // public function book(Request $request)
-    //     {
-
-    //         $currentTime = now();
-    //         $nearestTime = floor($currentTime->minute / 15) * 15;
-    //         $currentTime->minute = $nearestTime;
-    //         $nearestTimeIn24HourFormat = $currentTime->format('H:i');
-    //         $data = TicketPurchase::where('is_result_declared', 0)->where('drawtime', '<', $nearestTimeIn24HourFormat)
-    //         ->orderBy('ticket_number', 'ASC')->get();
-    //         $groupedData = $data->groupBy('ticket_number')->map(function ($items) {
-    //         return [
-    //             'ticket_number' => $items->first()->ticket_number,
-    //             'qty' => $items->sum('qty'),
-    //         ];
-    //     });
-    //     return view('admin.book', compact('groupedData','data'));
-    // }
-    
-    
-
+   
 
 }
