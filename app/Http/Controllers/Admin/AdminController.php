@@ -428,7 +428,7 @@ class AdminController extends Controller
                       ->where('drawtime', $drawtime)
                       ->whereDate('created_at', now()) 
                       ->groupBy('ticket_number')
-                      ->orderBy('total_qty', 'desc')
+                      ->orderBy('total_qty', 'asc')
                       ->get();
 
 
