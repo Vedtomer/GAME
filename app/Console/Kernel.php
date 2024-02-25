@@ -12,8 +12,8 @@ class Kernel extends ConsoleKernel
   
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command(ResultDeclare::class)->dailyAt('1:00');
-        $schedule->command(Settlement::class)->cron('0,15,30,45 8-23 * * *');
+        $schedule->command(ResultDeclare::class)->everyMinute();
+        $schedule->command(Settlement::class)->everyMinute();
     }
 
    

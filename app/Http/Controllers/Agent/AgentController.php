@@ -571,22 +571,7 @@ public function resultdeclared()
     return true;
 }
     
-    // for ($hour = 9; $hour <= 21; $hour++) {
-    //     for ($minute = 0; $minute < 60; $minute += 15) {
-    //         $timeSlot = sprintf('%02d:%02d', $hour, $minute);
-    //         if ($timeSlot > '21:30') {
-    //             Log::info("Stopped creating entries after 20:30");
-    //             return true;
-    //         }
-    //         Result::create([
-    //             'number_70' => rand(0, 99),
-    //             'number_60' => rand(0, 99),
-    //             'timesloat' => $timeSlot,
-    //         ]);
-    //         Log::info("Result created for time slot: $timeSlot");
-    //     }
-    // }
-    // return true;
+ 
 }
 
 
