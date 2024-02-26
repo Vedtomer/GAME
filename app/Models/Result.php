@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\TicketPurchase;
 use Illuminate\Support\Facades\DB;
 use App\Models\Barcode;
+use Illuminate\Support\Facades\Log;
 
 class Result extends Model
 {
@@ -41,7 +42,7 @@ class Result extends Model
 
         foreach ($ticketPurchases as $ticketPurchase) {
 
-
+Log::info($ticketPurchase);
             // Calculate winning amount (assuming qty is a column in the TicketPurchase table)
             $ticketPurchase = TicketPurchase::find($ticketPurchase->id);
             $winningAmount = $ticketPurchase->qty * 100;
