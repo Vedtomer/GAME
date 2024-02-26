@@ -42,7 +42,7 @@ class Result extends Model
 
         foreach ($ticketPurchases as $ticketPurchase) {
 
-Log::info($ticketPurchase);
+        Log::info($ticketPurchase);
             // Calculate winning amount (assuming qty is a column in the TicketPurchase table)
             $ticketPurchase = TicketPurchase::find($ticketPurchase->id);
             $winningAmount = $ticketPurchase->qty * 100;
@@ -89,13 +89,13 @@ Log::info($ticketPurchase);
          
         }
 
-        $currentTime = strtotime(date("H:i"));
-        $drawtime = ceil($currentTime / (15 * 60)) * (15 * 60);
-        $drawtime = date("H:i", $drawtime);
+        // $currentTime = strtotime(date("H:i"));
+        // $drawtime = ceil($currentTime / (15 * 60)) * (15 * 60);
+        // $drawtime = date("H:i", $drawtime);
 
-        $data = TicketPurchase::where('drawtime', $drawtime)
-                      ->whereDate('created_at', now()) 
-                      ->update(['is_result_declared' => 1]);
+        // $data = TicketPurchase::where('drawtime', $drawtime)
+        //               ->whereDate('created_at', now()) 
+        //               ->update(['is_result_declared' => 1]);
 
     }
 }
