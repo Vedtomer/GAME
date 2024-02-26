@@ -383,7 +383,7 @@ class AdminController extends Controller
         $nearestTime = floor($currentTime->minute / 15) * 15;
         $currentTime->minute = $nearestTime;
         $nearestTimeIn24HourFormat = $currentTime->format('H:i');
-        $userdata = Result::where('timesloat', '<=', $nearestTimeIn24HourFormat)
+   return     $userdata = Result::where('timesloat', '<=', $nearestTimeIn24HourFormat)
             ->whereDate('created_at', $currentTime->toDateString())->orderBy('timesloat', 'desc')->first();
 
         if ($userdata) {
