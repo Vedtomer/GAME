@@ -9,9 +9,14 @@
 
     <title> @yield('title', 'Agent Dashboard')</title>
 
-    <link rel="stylesheet" href="{{ asset('main.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('main.css') }}"> --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+</head>
+
+<body>
+
     <style>
         .container {
             display: flex;
@@ -63,12 +68,7 @@
             }
 
         }
-    </style>
 
-</head>
-
-<body>
-<style>
 
 * {
   box-sizing: border-box;
@@ -163,6 +163,7 @@ body {
 
 
         .card-body {
+        
             padding: 2px !important;
         }
 
@@ -327,261 +328,262 @@ body {
 </style>
 
 <form action="{{ route('savedashboard') }}" method="post">
-<table class="table  table-striped">
-    <thead>
-        <tr>
-            <td scope="col" style=" font-size:18px;border-top: 1px solid black;"><b style="color: blue;">Date</b></td>
-            <td scope="col" style="font-size:18px;border-top: 1px solid black;"><b style="color: blue;">CURRENT TIME</b>
-            </td>
-            <td scope="col" style=" font-size:18px;border-top: 1px solid black;"><b style="color: blue;">REMAINING
-                    TIME</b></td>
-            <td scope="col" style="font-size:18px;border-top: 1px solid black;"><b style="color: blue;">DRAW TIME</b>
-            </td>
-            {{-- <td style="color: blue; font-size:18px">User Name</td> --}}
-            <td style="border-top: 1px solid black;"><span id="" class="value">{{ Auth::guard('agent')->user()->email
-                    }}</span></td>
-            {{-- <td style="color: blue; font-size:18px">Balance</td> --}}
-            <td style="width: 160px; border-top: 1px solid black;"><b><span id="" class="value pr-2 mr-4">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span></b></td>
-            <td style="border-top: 1px solid black;"><button style="height: 34px"> <a style="padding: 0px;"
-                        href="{{ URL::to('logout') }}" class="dropdown-item">Logout</a></button></td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td> <span id="NowDate" class="value"></span></td>
-            <td><span id="NowTime" class="value"></span></td>
-            <td><span id="RemainingTime" class="value"></span></td>
-            <td><span id="NextDrowTime" class="value"></span></td>
-            <td>
-          
-                <div class="dropdown">
-                    <div class="dropdown" data-control="checkbox-dropdown" id="exampleDropdown">
-                        <label class="dropdown-label">Select</label>
-                        
-                        <div class="dropdown-list" id="timeDropdownList">
-                          <a href="#" data-toggle="check-all" class="dropdown-option">
-                            Check All  
-                          </a>
-                          
-                          <label class="dropdown-option" >
-                            <input type="checkbox" name="timeslots[]" value="9:00"> 9:00
-                           
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="9:15">9:15
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="9:30">9:30
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="9:45">9:45
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="10:00">10:00
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="10:15">10:15
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="10:30">10:30
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="10:45">10:45
-                          </label>  
 
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="11:00">11:00
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="11:15">11:15
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="11:30">11:30
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="11:45">11:45
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="12:00">12:00
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="12:15">12:15
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="12:30">12:30
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="12:45">12:45
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="13:00">13:00
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="13:15">13:15
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="13:30">13:30
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="13:45">13:45
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="14:00">14:00
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="14:15">14:15
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="14:30">14:30
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="14:45">14:45
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="15:00">15:00
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="15:15">15:15
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="15:30">15:30
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="15:45">15:45
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="16:00">16:00
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="16:15">16:15
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="16:30">16:30
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="16:45">16:45
-                          </label>
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="17:00">17:00
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="17:15">17:15
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="17:30">17:30
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="17:45">17:45
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="18:00">18:00
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="18:15">18:15
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="18:30">18:30
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="18:45">18:45
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="19:00">19:00
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="19:15">19:15
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="19:30">19:30
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="19:45">19:45
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="20:00">20:00
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="20:15">20:15
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="20:30">20:30
-                          </label> 
-                          
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="20:45">20:45
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="21:00">21:00
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="21:15">21:15
-                          </label>  
-
-                          <label class="dropdown-option">
-                            <input type="checkbox" name="timeslots[]" value="21:30">21:30
-                          </label>  
-                        </div>
-                      </div>
-                    {{-- </div> --}}
-           
-                    
-                  </div>
-            </td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
 <div>
-    <div class="main-card mb-3 card">
+    <div class="main-card  card">
         <div class="card-body">
+          <table class="table mb-0 table-striped">
+            <thead>
+                <tr>
+                    <td scope="col" style=" font-size:18px;border-top: 1px solid black;"><b style="color: blue;">Date</b></td>
+                    <td scope="col" style="font-size:18px;border-top: 1px solid black;"><b style="color: blue;">CURRENT TIME</b>
+                    </td>
+                    <td scope="col" style=" font-size:18px;border-top: 1px solid black;"><b style="color: blue;">REMAINING
+                            TIME</b></td>
+                    <td scope="col" style="font-size:18px;border-top: 1px solid black;"><b style="color: blue;">DRAW TIME</b>
+                    </td>
+                    {{-- <td style="color: blue; font-size:18px">User Name</td> --}}
+                    <td style="border-top: 1px solid black;"><span id="" class="value">{{ Auth::guard('agent')->user()->email
+                            }}</span></td>
+                    {{-- <td style="color: blue; font-size:18px">Balance</td> --}}
+                    <td style="width: 160px; border-top: 1px solid black;"><b><span id="" class="value pr-2 mr-4">{{ Auth::guard('agent')->user()->balance ?? 00 }}</span></b></td>
+                    <td style="border-top: 1px solid black;"><button style="height: 34px"> <a style="padding: 0px;"
+                                href="{{ URL::to('logout') }}" class="dropdown-item">Logout</a></button></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> <span id="NowDate" class="value"></span></td>
+                    <td><span id="NowTime" class="value"></span></td>
+                    <td><span id="RemainingTime" class="value"></span></td>
+                    <td><span id="NextDrowTime" class="value"></span></td>
+                    <td>
+                  
+                        <div class="dropdown">
+                            <div class="dropdown" data-control="checkbox-dropdown" id="exampleDropdown">
+                                <label class="dropdown-label">Select</label>
+                                
+                                <div class="dropdown-list" id="timeDropdownList">
+                                  <a href="#" data-toggle="check-all" class="dropdown-option">
+                                    Check All  
+                                  </a>
+                                  
+                                  <label class="dropdown-option" >
+                                    <input type="checkbox" name="timeslots[]" value="9:00"> 9:00
+                                   
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="9:15">9:15
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="9:30">9:30
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="9:45">9:45
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="10:00">10:00
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="10:15">10:15
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="10:30">10:30
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="10:45">10:45
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="11:00">11:00
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="11:15">11:15
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="11:30">11:30
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="11:45">11:45
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="12:00">12:00
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="12:15">12:15
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="12:30">12:30
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="12:45">12:45
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="13:00">13:00
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="13:15">13:15
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="13:30">13:30
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="13:45">13:45
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="14:00">14:00
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="14:15">14:15
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="14:30">14:30
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="14:45">14:45
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="15:00">15:00
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="15:15">15:15
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="15:30">15:30
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="15:45">15:45
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="16:00">16:00
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="16:15">16:15
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="16:30">16:30
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="16:45">16:45
+                                  </label>
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="17:00">17:00
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="17:15">17:15
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="17:30">17:30
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="17:45">17:45
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="18:00">18:00
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="18:15">18:15
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="18:30">18:30
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="18:45">18:45
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="19:00">19:00
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="19:15">19:15
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="19:30">19:30
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="19:45">19:45
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="20:00">20:00
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="20:15">20:15
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="20:30">20:30
+                                  </label> 
+                                  
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="20:45">20:45
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="21:00">21:00
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="21:15">21:15
+                                  </label>  
+        
+                                  <label class="dropdown-option">
+                                    <input type="checkbox" name="timeslots[]" value="21:30">21:30
+                                  </label>  
+                                </div>
+                              </div>
+                            {{-- </div> --}}
+                   
+                            
+                          </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
             <div class="add" style="display: flex; align-items: center;">
                 <div class="btns" style="margin-left: auto;">
                 </div>
@@ -640,8 +642,8 @@ body {
                                         echo "<th class=gradient-container ><span  id='qty{$i}' name='qty{$i}'>0</span></th>";
                                         echo "<th class=gradient-container><span  id='pts{$i}' name='pts{$i}'>0.00</span></th>";
                                         echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['timesloat'] ?? '--') . '</span></th>';
-echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['number_60'] ?? '--') . '</span></th>';
-echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['number_70'] ?? '--') . '</span></th>';
+echo "<th class='result'><span style='color: red;'>" . "60".($data[$lastSetIndex]['number_60'] ?? '--') . '</span></th>';
+echo "<th class='result'><span style='color: red;'>" . "70".($data[$lastSetIndex]['number_70'] ?? '--') . '</span></th>';
                                 
                                         echo '</tr><tr>';
                                     }
