@@ -8,7 +8,7 @@
                     <input type="date" id="dateFilter" onchange="fetchData()">
                 </div>
                 <div class="btns" style="margin-left: auto;">
-                    <a href="{{ route('admin.resultadd') }}" id="openModalBtn" class="btn btn-secondary">Add Result</a>
+                    {{-- <a href="{{ route('admin.resultadd') }}" id="openModalBtn" class="btn btn-secondary">Add Result</a> --}}
                 </div>
             </div>
             <div class="modal-container" id="myModal">
