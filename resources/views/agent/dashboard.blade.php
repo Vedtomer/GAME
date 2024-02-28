@@ -211,7 +211,7 @@ body {
 
     .gradient-container {
         background: rgb(211, 251, 155);
-        border: 1px solid;
+        border: 2px solid;
         /* // #FFD700, #FFA07A, #87CEFA, #98FB98); */
         /* You can add more colors and adjust the angles as needed */
     }
