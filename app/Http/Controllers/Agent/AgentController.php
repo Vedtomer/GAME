@@ -422,7 +422,9 @@ class AgentController extends Controller
 
     public function report(Request $request)
     {
+       
         if (Auth::guard('agent')->check()) {
+           $id = Auth::guard('agent')->user()->id;
             $start_date = $request->input('start_date');
             $end_date = $request->input('end_date');
 
@@ -437,14 +439,15 @@ class AgentController extends Controller
                 $end_date = Carbon::parse($end_date)->endOfDay();
             }
 
-            $data = Barcode::whereBetween('created_at', [$start_date, $end_date])->get();
+            $data = Barcode::whereBetween('created_at', [$start_date, $end_date])->where('user_id',$id)
+            ->get();
             $sumQty = $data->sum('qty');
             $sumpoints = $data->sum('points');
             $winpoints = $data->sum('winpoints');
 
             $cancelCount = $data->where(function ($item) {
                 return strcasecmp($item->status, 'CANCEL') === 0;
-            })->count();
+            })->sum('qty');
             $netAmt = $sumQty - $cancelCount;
             $netplus = $netAmt * 1.1;
             $Claimqty = $data->filter(function ($item) {
@@ -460,6 +463,7 @@ class AgentController extends Controller
 
     public function filtereddata(Request $request)
     {
+        // return "abs";
         $start_date = $request->input('start_date');
         $end_date = $request->input('end_date');
 
@@ -473,14 +477,15 @@ class AgentController extends Controller
         } else {
             $end_date = Carbon::parse($end_date)->endOfDay();
         }
-        $data = Barcode::whereBetween('created_at', [$start_date, $end_date])->get();
+        $data = Barcode::whereBetween('created_at', [$start_date, $end_date])
+        ->get();
         $sumQty = $data->sum('qty');
         $sumpoints = $data->sum('points');
         $winpoints = $data->sum('winpoints');
 
         $cancelCount = $data->where(function ($item) {
             return strcasecmp($item->status, 'CANCEL') === 0;
-        })->count();
+        })->sum('qty');
 
         $netAmt = $sumQty - $cancelCount;
         $netplus = $netAmt * 1.1;
