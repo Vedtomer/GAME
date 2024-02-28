@@ -363,11 +363,13 @@ class AdminController extends Controller
 
     public function  transaction($id = null)
     {
+        // return $id;
         if (empty($id)) {
             $users = Transaction::orderBy('created_at', 'desc')->get();
         } else {
             $users = Transaction::where('user_id', $id)->orderBy('created_at', 'desc')->get();
         }
+        // return $users;
         return view('admin.transaction', ['data' => $users]);
     }
     public function  home()

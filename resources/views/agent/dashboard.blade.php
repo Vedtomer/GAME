@@ -1,12 +1,73 @@
-@extends('agent.layout.agentmain')
-@section('title', 'Purchase Ticket')
-@section('section')
+<!doctype html>
+<html lang="en">
 
-<script
-  src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
-  integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
-  crossorigin="anonymous"></script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+    <title> @yield('title', 'Agent Dashboard')</title>
+
+    <link rel="stylesheet" href="{{ asset('main.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow-x: auto;
+            padding: 10px;
+        }
+
+        .info-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 2px solid;
+            padding: 5px;
+        }
+
+        .label {
+            margin-bottom: 5px;
+        }
+
+        .value {
+            display: inline-block;
+            font-weight: 900;
+            font-size: 16px;
+        }
+
+        /* Equal height for inner boxes */
+        .info-box {
+            flex: 1;
+        }
+
+        /* Smaller text on mobile */
+        @media (max-width: 768px) {
+            .value {
+                font-size: 12px;
+                /* Adjust as needed */
+            }
+
+            .label {
+                font-size: 10px;
+                font-weight: bolder
+            }
+
+            .info-box {
+
+                padding: 0px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
 <style>
 
 * {
@@ -264,6 +325,7 @@ body {
 }
 
 </style>
+
 <form action="{{ route('savedashboard') }}" method="post">
 <table class="table  table-striped">
     <thead>
@@ -622,4 +684,7 @@ echo "<th class='result'><span style='color: red;'>" . ($data[$lastSetIndex]['nu
     });
     </script>
    
-    @endsection
+   @include('agent.layout.agentfooter')
+  </body>
+  
+  </html>
