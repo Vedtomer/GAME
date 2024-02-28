@@ -191,7 +191,7 @@ body {
 
     th,
     td {
-        border: 1px solid;
+        border: 2px solid;
         text-align: center;
     }
 
@@ -206,6 +206,7 @@ body {
 
     th {
         background-color: #f2f2f2;
+        padding: 0;
     }
 
     .gradient-container {
