@@ -573,6 +573,10 @@ class AgentController extends Controller
                 }
             }
         }
+
+        TicketPurchase::where('is_result_declared', 0)
+        ->update(['is_result_declared' => 1]);
+        
         return true;
     }
 }
