@@ -551,7 +551,12 @@ class AgentController extends Controller
 
         TicketPurchase::where('is_result_declared', 0)
         ->update(['is_result_declared' => 1]);
+
+        Barcode::where('is_result_declared', 0)
+        ->update(['is_result_declared' => 1]);
+
         
+
         $currentDate = now()->toDateString();
 
         for ($hour = 9; $hour <= 21; $hour++) {
