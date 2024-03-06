@@ -14,10 +14,10 @@ class Result extends Model
     use HasFactory;
     // public $timestamps = false;
     protected $table = 'result';
-        protected $fillable = ['number_70', 'number_60', 'timesloat'];
+    protected $fillable = ['number_70', 'number_60', 'timesloat'];
     // protected $fillable = ['number_70', 'number_60', 'timesloat' ,'created_at' ,'updated_at'];
     protected $guarded = [];
- 
+
     protected static function booted()
     {
         static::addGlobalScope('reselect', function ($query) {
@@ -31,6 +31,11 @@ class Result extends Model
     public function update_user_result($number60, $number70)
     {
 
+        $currentTime = now();
+
+        // Get today's date in Y-m-d format
+        $todayDate = $currentTime->toDateString();
+
         $num60 = (int) "60" . $number60;
         $num70 = (int) "70" . $number70;
 
@@ -38,11 +43,15 @@ class Result extends Model
 
         $currentTime = now();
 
-     $ticketPurchases = TicketPurchase::where('is_result_declared', 0)->where('drawtime' ,$currentTime->format('H:i'))->whereIn('ticket_number', $numbers)->get();
+        $ticketPurchases = TicketPurchase::where('is_result_declared', 0)
+            ->where('drawtime', $currentTime->format('H:i'))
+            ->whereDate('created_at', $todayDate)
+            ->whereIn('ticket_number', $numbers)
+            ->get();
 
         foreach ($ticketPurchases as $ticketPurchase) {
 
-        Log::info($ticketPurchase);
+            Log::info($ticketPurchase);
             // Calculate winning amount (assuming qty is a column in the TicketPurchase table)
             $ticketPurchase = TicketPurchase::find($ticketPurchase->id);
             $winningAmount = $ticketPurchase->qty * 100;
@@ -67,26 +76,24 @@ class Result extends Model
                 'updated_at' => now(),
             ]);
 
-            $barcode = Barcode::where('id', $ticketPurchase->barcode_id)->where('status', 'ACTIVE')->where('is_result_declared' , 0)->first();
+            $barcode = Barcode::where('id', $ticketPurchase->barcode_id)->where('status', 'ACTIVE')->where('is_result_declared', 0)->first();
 
             if ($barcode) {
                 // Get the existing values
                 $existingClaimQty = $barcode->claimQty;
                 $existingWinpoints = $barcode->winpoints;
-            
+
                 // Add the new values
                 $newClaimQty = $existingClaimQty + $ticketPurchase->qty;
                 $newWinpoints = $existingWinpoints + $winningAmount;
-            
+
                 // Update the column values
                 $barcode->update([
                     'claimQty' => $newClaimQty,
                     'winpoints' => $newWinpoints,
-                    'is_result_declared' => 1 ,
+                    'is_result_declared' => 1,
                 ]);
             }
-
-         
         }
 
         // $currentTime = strtotime(date("H:i"));
