@@ -85,7 +85,7 @@ class AgentController extends Controller
     public function savedashboard(Request $request)
     {
         $currentTime = now();
-        $ticketWindowOpenTime = now()->setTime(8, 30); // Set the opening time to 8:45 AM
+        $ticketWindowOpenTime = now()->setTime(8, 45); // Set the opening time to 8:45 AM
         $ticketWindowCloseTime = now()->setTime(21, 30); // Set the closing time to 9:30 PM
 
         if ($currentTime->lt($ticketWindowOpenTime) || $currentTime->gte($ticketWindowCloseTime)) {
@@ -129,14 +129,16 @@ class AgentController extends Controller
 
             return back()->with('error', 'Insufficient points. Please recharge your account.');
         }
-        $currentTime = time();
-        $drawtime = ceil($currentTime / (15 * 60)) * (15 * 60);
-        $drawtimeFormatted = date("H:i", $drawtime);
-
-        if (strtotime($currentTime) < strtotime('8:59')) {
-            $drawtimeFormatted = "9:00";
-        }
-        $drawtime = $drawtimeFormatted;
+       // $currentTime = strtotime(date("H:i"));
+       $currentTime = strtotime(date("H:i"));
+       $drawtime = ceil($currentTime / (15 * 60)) * (15 * 60);
+       $drawtimeFormatted = date("H:i", $drawtime);
+       
+       if ($currentTime < strtotime('8:59')) {
+           $drawtimeFormatted = "9:00";
+       }
+       
+       $drawtime = strtotime($drawtimeFormatted);
 
         if (empty($data['timeslots'])) {
             $data['timeslots'][0] = date("H:i", $drawtime);
@@ -428,9 +430,9 @@ class AgentController extends Controller
 
     public function report(Request $request)
     {
-
+       
         if (Auth::guard('agent')->check()) {
-            $id = Auth::guard('agent')->user()->id;
+           $id = Auth::guard('agent')->user()->id;
             $start_date = $request->input('start_date');
             $end_date = $request->input('end_date');
 
@@ -445,8 +447,8 @@ class AgentController extends Controller
                 $end_date = Carbon::parse($end_date)->endOfDay();
             }
 
-            $data = Barcode::whereBetween('created_at', [$start_date, $end_date])->where('user_id', $id)
-                ->get();
+            $data = Barcode::whereBetween('created_at', [$start_date, $end_date])->where('user_id',$id)
+            ->get();
             $sumQty = $data->sum('qty');
             $sumpoints = $data->sum('points');
             $winpoints = $data->sum('winpoints');
@@ -484,7 +486,7 @@ class AgentController extends Controller
             $end_date = Carbon::parse($end_date)->endOfDay();
         }
         $data = Barcode::whereBetween('created_at', [$start_date, $end_date])
-            ->get();
+        ->get();
         $sumQty = $data->sum('qty');
         $sumpoints = $data->sum('points');
         $winpoints = $data->sum('winpoints');
@@ -556,12 +558,12 @@ class AgentController extends Controller
     {
 
         TicketPurchase::where('is_result_declared', 0)
-            ->update(['is_result_declared' => 1]);
+        ->update(['is_result_declared' => 1]);
 
         Barcode::where('is_result_declared', 0)
-            ->update(['is_result_declared' => 1]);
+        ->update(['is_result_declared' => 1]);
 
-
+        
 
         $currentDate = now()->toDateString();
 
@@ -589,7 +591,7 @@ class AgentController extends Controller
             }
         }
 
-
+    
 
         return true;
     }
